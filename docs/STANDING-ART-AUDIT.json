@@ -1,0 +1,98 @@
+[
+  {
+    "file": "assets\\portraits\\rowan-standing\\book.png",
+    "width": 1024,
+    "height": 1536,
+    "transparentPixels": 884926,
+    "bounds": [
+      187,
+      6,
+      900,
+      1536
+    ]
+  },
+  {
+    "file": "assets\\portraits\\rowan-standing\\concerned.png",
+    "width": 1024,
+    "height": 1536,
+    "transparentPixels": 853520,
+    "bounds": [
+      191,
+      6,
+      864,
+      1536
+    ]
+  },
+  {
+    "file": "assets\\portraits\\rowan-standing\\embarrassed.png",
+    "width": 1024,
+    "height": 1536,
+    "transparentPixels": 854507,
+    "bounds": [
+      191,
+      6,
+      864,
+      1536
+    ]
+  },
+  {
+    "file": "assets\\portraits\\rowan-standing\\neutral.png",
+    "width": 1024,
+    "height": 1536,
+    "transparentPixels": 850177,
+    "bounds": [
+      191,
+      6,
+      863,
+      1536
+    ]
+  },
+  {
+    "file": "assets\\portraits\\rowan-standing\\playful.png",
+    "width": 1024,
+    "height": 1536,
+    "transparentPixels": 854136,
+    "bounds": [
+      191,
+      6,
+      864,
+      1536
+    ]
+  },
+  {
+    "file": "assets\\portraits\\rowan-standing\\sad.png",
+    "width": 1024,
+    "height": 1536,
+    "transparentPixels": 854334,
+    "bounds": [
+      191,
+      6,
+      864,
+      1536
+    ]
+  },
+  {
+    "file": "assets\\portraits\\rowan-standing\\smile.png",
+    "width": 1024,
+    "height": 1536,
+    "transparentPixels": 854745,
+    "bounds": [
+      191,
+      6,
+      864,
+      1536
+    ]
+  },
+  {
+    "file": "assets\\portraits\\rowan-standing\\surprised.png",
+    "width": 1024,
+    "height": 1536,
+    "transparentPixels": 854456,
+    "bounds": [
+      191,
+      6,
+      864,
+      1536
+    ]
+  }
+]

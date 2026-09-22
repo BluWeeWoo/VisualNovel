@@ -1,0 +1,59 @@
+{
+  "backgrounds": {
+    "exterior": "assets/backgrounds/exterior-illustrated.png",
+    "living": "assets/backgrounds/living-illustrated.png",
+    "bedroom": "assets/backgrounds/bedroom-illustrated.png",
+    "street": "assets/backgrounds/street-illustrated.png",
+    "pier": "assets/backgrounds/pier-day.png"
+  },
+  "portraits": {
+    "Rowan": {
+      "neutral": "assets/portraits/rowan-standing/neutral.png",
+      "smile": "assets/portraits/rowan-standing/smile.png",
+      "playful": "assets/portraits/rowan-standing/playful-soft.png",
+      "embarrassed": "assets/portraits/rowan-standing/embarrassed.png",
+      "concerned": "assets/portraits/rowan-standing/concerned.png",
+      "sad": "assets/portraits/rowan-standing/sad.png",
+      "surprised": "assets/portraits/rowan-standing/surprised.png",
+      "book": "assets/portraits/rowan-standing/book.png"
+    }
+  },
+  "portraitLabel": "",
+  "lighting": "CSS overlays: day, evening, twilight, night, dawn. Set per-node background in scene data for replacement painted variants.",
+  "originalReference": "assets/references/rowan-original.png",
+  "spriteCanvas": {
+    "width": 1024,
+    "height": 1536
+  },
+  "credits": {
+    "design": "User-created original Rowan illustration",
+    "variations": "Generated using the built-in image tool, based on the user reference"
+  },
+  "backgroundVariants": {
+    "pier": {
+      "dawn": "assets/backgrounds/pier-illustrated.png"
+    }
+  },
+  "cgs": {
+    "reunion": {
+      "src": "assets/cg/reunion.webp",
+      "alt": "Rowan greets you on the guesthouse porch, holding a screwdriver and the troublesome door latch."
+    },
+    "promises": {
+      "src": "assets/cg/promises.webp",
+      "alt": "Rowan looks up from your childhood promise list in the sunlit bedroom."
+    },
+    "laughter": {
+      "src": "assets/cg/laughter.webp",
+      "alt": "Rowan laughs beneath the seaside shelter and offers you a crisp chip."
+    },
+    "third-cup": {
+      "src": "assets/cg/third-cup.webp",
+      "alt": "Rowan holds the yellow cup in both hands, quiet in the evening kitchen."
+    },
+    "beginning": {
+      "src": "assets/cg/beginning.webp",
+      "alt": "Rowan looks toward you with a hopeful smile over the promise list, planning tomorrow together."
+    }
+  }
+}

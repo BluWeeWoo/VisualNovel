@@ -1,0 +1,106 @@
+[
+  {
+    "file": "book.png",
+    "width": 1254,
+    "height": 1254,
+    "transparentSamples": 39217,
+    "visibleSamples": 57911,
+    "bounds": [
+      8,
+      4,
+      1244,
+      1252
+    ]
+  },
+  {
+    "file": "concerned.png",
+    "width": 1254,
+    "height": 1254,
+    "transparentSamples": 41376,
+    "visibleSamples": 55795,
+    "bounds": [
+      44,
+      0,
+      1244,
+      1252
+    ]
+  },
+  {
+    "file": "embarrassed.png",
+    "width": 1254,
+    "height": 1254,
+    "transparentSamples": 41438,
+    "visibleSamples": 55807,
+    "bounds": [
+      44,
+      4,
+      1244,
+      1252
+    ]
+  },
+  {
+    "file": "neutral.png",
+    "width": 1254,
+    "height": 1254,
+    "transparentSamples": 41489,
+    "visibleSamples": 55869,
+    "bounds": [
+      44,
+      4,
+      1244,
+      1252
+    ]
+  },
+  {
+    "file": "playful.png",
+    "width": 1254,
+    "height": 1254,
+    "transparentSamples": 41223,
+    "visibleSamples": 56201,
+    "bounds": [
+      44,
+      0,
+      1244,
+      1252
+    ]
+  },
+  {
+    "file": "sad.png",
+    "width": 1254,
+    "height": 1254,
+    "transparentSamples": 41329,
+    "visibleSamples": 56115,
+    "bounds": [
+      44,
+      4,
+      1244,
+      1252
+    ]
+  },
+  {
+    "file": "smile.png",
+    "width": 1254,
+    "height": 1254,
+    "transparentSamples": 41329,
+    "visibleSamples": 56111,
+    "bounds": [
+      44,
+      0,
+      1244,
+      1252
+    ]
+  },
+  {
+    "file": "surprised.png",
+    "width": 1254,
+    "height": 1254,
+    "transparentSamples": 41361,
+    "visibleSamples": 56118,
+    "bounds": [
+      44,
+      0,
+      1244,
+      1252
+    ]
+  }
+]

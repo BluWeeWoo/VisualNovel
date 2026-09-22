@@ -1,0 +1,30 @@
+/* Sea-glass afternoon: styles are loaded only for the desktop title. */
+.seaglass-menu{position:relative;isolation:isolate;min-height:100svh;overflow:hidden;background:#f2ebdd;color:#283f63;font-family:Georgia,'Times New Roman',serif}
+.seaglass-scene{position:absolute;inset:0;z-index:-2;background:url('backgrounds/menu-seaglass.png') center right/cover no-repeat}
+.seaglass-scene:after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,#f5efdf44 0%,#f5efdf38 28%,transparent 45%)}
+.seaglass-copy{width:40%;max-width:690px;min-width:420px;padding:clamp(34px,6vh,85px) 0 30px;margin-left:6.7%;position:relative;z-index:2;animation:summer-arrive 1s ease-out both}
+.seaglass-kicker{font:10px/1.5 'Segoe UI',sans-serif;letter-spacing:2.6px;color:#637080;margin-bottom:18px}
+.seaglass-copy h1{font-family:Georgia,'Times New Roman',serif;font-size:clamp(56px,5.3vw,96px);font-weight:400;line-height:1.02;letter-spacing:-2.5px;margin:0 0 18px;color:#283f63}
+.seaglass-copy h1 em{font-weight:400}
+.seaglass-tagline{font-size:clamp(16px,1.25vw,21px);line-height:1.5;margin-bottom:25px;color:#4c5871}
+.seaglass-actions{display:grid;gap:10px;width:clamp(310px,25vw,415px)}
+.plank{position:relative;isolation:isolate;min-height:47px;padding:9px 30px;border:1px solid #aa9276;border-radius:5px 3px 6px 4px;color:#283f63;font-family:Georgia,'Times New Roman',serif;font-size:clamp(17px,1.4vw,24px);text-align:center;text-decoration:none;text-shadow:0 1px #fff9ed;background-color:#e5d6be;background-image:url('menu-driftwood.svg');background-size:100% 100%;box-shadow:inset 0 2px 1px #fff7e6,inset 0 -2px 1px #9f876b70,0 3px 4px #65533e26;transition:transform .2s ease,box-shadow .2s ease,background-color .2s ease,color .2s ease}
+.plank:nth-child(even){background-position:right center;border-radius:3px 6px 3px 5px}
+.plank:before,.plank:after{content:'';position:absolute;top:50%;width:4px;height:4px;border-radius:50%;background:#97826a;box-shadow:0 1px #fff4d7;transform:translateY(-50%)}
+.plank:before{left:10px}.plank:after{right:10px}
+.plank:enabled:hover{filter:none;transform:translateY(-2px);background-color:#f3e4cc;box-shadow:inset 0 0 0 1px #fff5dc,0 0 0 2px #e7c799,0 6px 10px #65533e30}
+.plank:focus-visible{outline:3px solid #436d91;outline-offset:4px}
+.plank.is-selected,.plank:enabled:active{background-color:#527c9a;color:#fff8e8;text-shadow:0 1px #294560;box-shadow:inset 0 0 0 2px #dec7a4,inset 0 3px 8px #24496650;transform:translateY(1px)}
+.plank.is-selected:before,.plank:active:before{width:8px;height:8px;border-radius:0;background:#fff0d4;transform:translateY(-50%) rotate(45deg)}
+.seaglass-access{font:15px/1.5 Georgia,serif;margin-top:23px;padding:6px 0;color:#3a4d6c;text-underline-offset:5px}
+.seaglass-access:before,.seaglass-access:after{content:'—';color:#a49984;margin:0 12px}.seaglass-access:hover{text-decoration:underline}
+.seaglass-note{font:11px/1.6 'Segoe UI',sans-serif;color:#626c71;margin:13px 0 0;max-width:330px}
+.seaglass-location{position:absolute;right:4%;bottom:15px;font:italic 15px/1.4 Georgia,serif;background:#f7eedecf;color:#626452;padding:7px 14px;border-radius:2px;margin:0}
+.summer-breeze{position:absolute;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+.summer-breeze i{position:absolute;left:calc(43% + var(--i)*8%);top:-40px;width:12px;height:23px;border-radius:95% 0 95% 0;background:linear-gradient(65deg,#6f755850 45%,#a3a17a99 49%,#9e9b6c80 52%);border:1px solid #7d826333;animation:summer-leaf calc(17s + var(--i)*2s) linear infinite;animation-delay:calc(var(--i)*-4.3s)}
+.summer-breeze i:nth-child(3n){width:8px;height:15px;filter:blur(.5px);opacity:.6}
+@keyframes summer-leaf{0%{transform:translate3d(0,-30px,0) rotate(-30deg);opacity:0}8%,80%{opacity:.7}35%{transform:translate3d(-40px,36vh,0) rotate(110deg)}70%{transform:translate3d(35px,72vh,0) rotate(225deg)}100%{transform:translate3d(-65px,110vh,0) rotate(350deg);opacity:0}}
+@keyframes summer-arrive{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@media(min-width:1051px) and (max-height:800px){.seaglass-copy{padding-top:28px}.seaglass-kicker{margin-bottom:10px}.seaglass-copy h1{font-size:clamp(54px,4.7vw,78px);margin-bottom:12px}.seaglass-tagline{margin-bottom:16px}.seaglass-actions{gap:8px}.plank{min-height:41px;padding:7px 26px}.seaglass-access{margin-top:14px}.seaglass-note{margin-top:8px}}
+@media(prefers-reduced-motion:reduce){.seaglass-menu *{animation:none!important;transition:none!important}.summer-breeze{display:none}}
+.reduced-motion .summer-breeze{display:none}
