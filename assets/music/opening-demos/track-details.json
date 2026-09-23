@@ -1,0 +1,42 @@
+[
+  {
+    "file": "01-coming-home.wav",
+    "title": "Coming Home",
+    "seconds": 60.0,
+    "bpm": 64,
+    "peak_dbfs": -7.42,
+    "rms_dbfs": -21.0,
+    "bytes": 10584044,
+    "scene": "Sea reveal through thoughts of Lola; fade out at conductor call."
+  },
+  {
+    "file": "02-small-kindness.wav",
+    "title": "A Small Kindness",
+    "seconds": 28.24,
+    "bpm": 68,
+    "peak_dbfs": -8.53,
+    "rms_dbfs": -21.0,
+    "bytes": 4980748,
+    "scene": "Driver waives the fare through drop-off and “Ingat.”"
+  },
+  {
+    "file": "03-old-neighborhood.wav",
+    "title": "The Old Neighborhood",
+    "seconds": 64.0,
+    "bpm": 60,
+    "peak_dbfs": -7.86,
+    "rms_dbfs": -21.0,
+    "bytes": 11289644,
+    "scene": "Hill, childhood memories, both grief choices and neighbor visit; stop before hammer."
+  },
+  {
+    "file": "04-rowan-reunion.wav",
+    "title": "A Familiar Door",
+    "seconds": 61.94,
+    "bpm": 62,
+    "peak_dbfs": -8.1,
+    "rms_dbfs": -21.0,
+    "bytes": 10925464,
+    "scene": "Rowan looks up in the special CG; hold softly on his recognition."
+  }
+]

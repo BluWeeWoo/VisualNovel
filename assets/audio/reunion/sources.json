@@ -1,0 +1,36 @@
+{
+  "music": "User supplied; copied unchanged. No music generated.",
+  "tracks": [
+    {
+      "supplied": "Reunion.mp3",
+      "file": "assets/audio/reunion/reunion.mp3",
+      "sha256": "fac6c362d3cf46578595c28269cf28109b0777dbea9dfbf88f7786ac3eb1b413"
+    },
+    {
+      "supplied": "Catching up.mp3",
+      "file": "assets/audio/reunion/catching-up.mp3",
+      "sha256": "be71c5c4bf7452cf95ec603cbc308f12731dd3aba690d7116a635fa68418e827"
+    },
+    {
+      "supplied": "Lost contact.mp3",
+      "file": "assets/audio/reunion/lost-contact.mp3",
+      "sha256": "7d56d0b8df697027101e96056b17af4206405c6b6b1704cb9bce5a3df20d0627"
+    },
+    {
+      "supplied": "Rainy-night flashback.mp3",
+      "file": "assets/audio/reunion/rainy-night.mp3",
+      "sha256": "6fdfe1095398690cfe0571697225b197f21579ba3521543a3013de37e26fcc72"
+    },
+    {
+      "supplied": "The letters.mp3",
+      "file": "assets/audio/reunion/letters.mp3",
+      "sha256": "1cd4d4616f2d382428aa3bb484c1c7293d86edcae96489f46f9e6f40e0175632"
+    },
+    {
+      "supplied": "Back together.mp3",
+      "file": "assets/audio/reunion/back-together.mp3",
+      "sha256": "7e13645bfb8d91515f352761c2ae4e5297b8b413aac7d93a7dfb6e5ba33b12bb"
+    }
+  ],
+  "effects": "Original synthesized rain, fire, box, phone, tools and footsteps; no third-party recordings."
+}

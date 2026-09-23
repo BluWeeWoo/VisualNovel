@@ -21,11 +21,11 @@ test('All CGs appear only inside their authored cue windows without changing sav
    else assert.equal(cg,null);
   }
  }
- assert.equal(seen.size,8);
+ assert.equal(seen.size,11);
 });
 test('All event illustrations are optimized WebP with accessible descriptions',()=>{
  const manifest=JSON.parse(readFileSync(new URL('../assets/manifest.json',import.meta.url)));
- assert.equal(Object.keys(manifest.cgs).length,8);
+ assert.equal(Object.keys(manifest.cgs).length,11);
  for(const cue of Object.values(cgCues)){
   const asset=manifest.cgs[cue.key];assert.ok(asset.alt.length>30);
   const path=new URL('../'+asset.src,import.meta.url);const data=readFileSync(path);

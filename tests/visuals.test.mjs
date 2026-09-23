@@ -4,6 +4,27 @@ import {readFileSync} from 'node:fs';
 import vm from 'node:vm';
 
 const source=readFileSync(new URL('../src/app.js',import.meta.url),'utf8');
+test('Dialogue updates keep the panel, text node and unchanged controls mounted',()=>{
+ const selectors=['.dialogue-card','.speaker','.dialogue-reserve','.dialogue-status','.dialogue-extras','.dialogue-footer','.game-footer','#dialogue-text','.scene-backdrops','.scene-art'];
+ const make=()=>Object.fromEntries(selectors.map(key=>[key,{innerHTML:key,className:key,replaceChildren(){}}]));
+ const old=make(),incoming=make();incoming['.speaker'].innerHTML='Rowan';incoming['.dialogue-reserve'].innerHTML='A longer sentence.';
+ let footerWrites=0;Object.defineProperty(old['.dialogue-footer'],'innerHTML',{get:()=>'.dialogue-footer',set:()=>footerWrites++});
+ const main={querySelector:s=>old[s]},next={querySelector:s=>incoming[s]};
+ const context=vm.createContext({app:{querySelector:()=>main},document:{createElement:()=>({content:{firstElementChild:next}})},updateVisual(){}});
+ vm.runInContext(source.slice(source.indexOf('function mountGame('),source.indexOf('function renderGame(')),context);
+ const card=old['.dialogue-card'],text=old['#dialogue-text'];context.mountGame('html','bg','art');
+ assert.equal(old['.dialogue-card'],card);assert.equal(old['#dialogue-text'],text);assert.equal(footerWrites,0);
+ assert.equal(old['.speaker'].innerHTML,'Rowan');assert.equal(old['.dialogue-reserve'].innerHTML,'A longer sentence.');
+});
+
+test('Rebinding persistent Next button never accumulates advance handlers',()=>{
+ let advances=0;const button={dataset:{action:'next'}};
+ const root={querySelectorAll:selector=>selector==='[data-action]'?[button]:[]};
+ const context=vm.createContext({app:root,action:()=>advances++});
+ vm.runInContext(source.slice(source.indexOf('function bind('),source.indexOf('function action(')),context);
+ for(let i=0;i<10;i++)context.bind(root);
+ button.onclick();assert.equal(advances,1);
+});
 const updateSource=source.slice(source.indexOf('async function updateVisual('),source.indexOf('function mountGame('));
 function fixture(motion=false){
  const decodes=new Map(),animations=[];

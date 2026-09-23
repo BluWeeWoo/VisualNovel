@@ -1,10 +1,11 @@
+import {phoneCue,hasRowanContact,phoneBody,phoneIdentity} from './phone-ui.js';
 import {story} from './story.js';
 import {freshState, interpolate, applyChoice, validSave, visibleLines, promises, milestones, refreshAuthoredHistory} from './engine.js';
 import {rowan, protagonistAge} from './characters.js';
 import {spriteAt, expressions, cgAt} from './staging.js';
 import {scriptedReply, requestReply, suggestions} from './chat.js';
 import {setAudio} from './audio.js';
-import {setOpeningAudio} from './opening-audio.js';
+import {setOpeningAudio, openingAudioCue, menuAudioCue} from './opening-audio.js';
 import {desktopMenu} from '../assets/desktop-menu.js';
 
 const $=s=>document.querySelector(s);
@@ -30,9 +31,20 @@ function record(line){
   if(!state.history.some(h=>h.id===id))state.history.push({id,speaker:line.speaker||'',text});
 }
 function start(name,pronouns){state=freshState(name,pronouns);screen='game';modal=null;enter(state.node);render();}
-function load(slot){const saved=read(slot);if(!validSave(saved?.state,story)){toast('This save is missing or incompatible.');return;}
+function load(slot){presentedPhone='';const saved=read(slot);if(!validSave(saved?.state,story)){toast('This save is missing or incompatible.');return;}
   state=refreshAuthoredHistory(structuredClone(saved.state),story);screen='game';modal=null;busy=false;error='';draft='';enterAudio();render();toast('Summer resumed.');}
-function enterAudio(){const node=screen==='game'&&state?story[state.node]:null;setAudio(settings.sound&&!node?.opening,settings.volume);setOpeningAudio(node?.opening&&settings.sound?node.audio:null,settings.volume,state?`${state.node}:${state.line}`:'',node?.lines[state?.line]?.text||'');}
+let audioUnlocked=false;
+function enterAudio(){
+  const node=screen==='game'&&state?story[state.node]:null;
+  const enabled=settings.sound&&audioUnlocked;
+  setAudio(enabled&&screen==='game'&&!node?.opening,settings.volume);
+  const cue=screen==='title'?menuAudioCue():openingAudioCue(node,state);
+  setOpeningAudio(enabled?cue:{layers:[],fade:.2},settings.volume,()=>toast('Audio could not play. Toggle sound off and on in Settings to retry.'));
+}
+// Browsers require an interaction before audible playback; preserve the saved mute preference.
+function unlockAudio(){if(audioUnlocked)return;audioUnlocked=true;enterAudio();}
+document.addEventListener('pointerdown',unlockAudio,{once:true});
+document.addEventListener('keydown',unlockAudio,{once:true});
 function advance(){
   if(screen!=='game'||modal||busy)return;
   if(typing){stopTyping();$('#dialogue-text').textContent=fullText;return;}
@@ -45,7 +57,7 @@ function choose(index){const node=story[state.node],opt=node.choices?.[index];if
   const text=interpolate(opt.text,state);
   state.history.push({id:`choice:${state.node}`,speaker:state.name,text});
   applyChoice(state,opt);enter(state.node);renderGame();}
-function bg(place,time){const url=manifest.backgroundVariants?.[place]?.[time]||manifest.backgrounds[place]||`assets/backgrounds/${place}.svg`;return `<div class="backdrop ${time}" style="background-image:url('${escape(url)}')" aria-hidden="true"></div><div class="paper-grain" aria-hidden="true"></div>`;}
+function bg(place,time){const url=manifest.backgroundVariants?.[place]?.[time]||manifest.backgrounds[place]||`assets/backgrounds/${place}.svg`;return `<div class="backdrop ${time} ${place.startsWith('manila-')?'painted-light':''}" style="background-image:url('${escape(url)}')" aria-hidden="true"></div><div class="paper-grain" aria-hidden="true"></div>`;}
 function brand(){return '<span class="brand-mark" aria-hidden="true">☼</span><span class="brand-name">SUMMERHOUSE<br><small>A place to come back to</small></span>';}
 function iconButton(action,label,symbol){return `<button class="tool" data-action="${action}" aria-label="${label}" title="${label}"><span aria-hidden="true">${symbol}</span><span>${label}</span></button>`;}
 function title(){
@@ -107,7 +119,14 @@ function mountGame(html,backgroundKey,artKey){
     if(main===next)target.replaceChildren();
     updateVisual(target,content,selector==='.scene-art'?artKey:backgroundKey);
   }
-  if(main!==next)main.querySelector('.scene-bottom').replaceWith(next.querySelector('.scene-bottom'));
+  if(main!==next){
+    // Preserve the panel and unchanged controls, including keyboard focus.
+    main.querySelector('.dialogue-card').className=next.querySelector('.dialogue-card').className;
+    for(const selector of ['.speaker','.dialogue-reserve','.dialogue-status','.dialogue-extras','.dialogue-footer','.game-footer']){
+      const current=main.querySelector(selector),incoming=next.querySelector(selector);
+      if(current.innerHTML!==incoming.innerHTML)current.innerHTML=incoming.innerHTML;
+    }
+  }
 }
 function renderGame(){
   stopTyping();
@@ -115,6 +134,8 @@ function renderGame(){
   if(!line){toast('This scene could not be loaded.');return;}
   record(line);autoSave();enterAudio();
   const last=state.line>=all.length-1;
+  const cue=phoneCue(story,state);
+  const displayText=cue?.message?'A message from Rowan lights up your phone.':interpolate(line.text,state);
   const staging=spriteAt(story,state);
   const portrait=staging&&manifest.portraits.Rowan?.[staging.key];
   const cg=manifest.cgs?.[cgAt(story,state)];
@@ -124,29 +145,32 @@ function renderGame(){
     </div>
     <div class="scene-bottom">
     <section class="dialogue-card ${line.speaker?'spoken':'narration'}" aria-label="Story dialogue">
-    <div class="dialogue-top"><span class="speaker">${escape(line.speaker==='You'?state.name:line.speaker||'SUMMERHOUSE · DAY ONE')}</span><span class="dialogue-ornament" aria-hidden="true">✳</span></div>
-    <p id="dialogue-text" aria-live="off"></p><span class="sr-only" role="status">${escape((line.speaker?line.speaker+': ':'')+interpolate(line.text,state))}</span>
-    ${last&&node.choices?`<div class="choices" aria-label="Choose your response">${node.choices.map((c,i)=>`<button data-choice="${i}"><span class="choice-number">${i+1}</span>${escape(interpolate(c.text,state))}<span class="choice-arrow" aria-hidden="true">↗</span></button>`).join('')}</div>`:''}
+    <div class="dialogue-top"><span class="speaker">${escape(cue?.message?'PHONE':line.speaker==='You'?state.name:line.speaker||(node.continuation&&node.time==='night'?'MANILA · TWO YEARS EARLIER':'SUMMERHOUSE · DAY ONE'))}</span><span class="dialogue-ornament" aria-hidden="true">✳</span></div>
+    <div class="dialogue-copy"><p class="dialogue-reserve" aria-hidden="true">${escape(displayText)}</p><p id="dialogue-text" aria-live="off"></p></div><span class="sr-only dialogue-status" role="status">${escape(cue?.message?displayText:(line.speaker?line.speaker+': ':'')+interpolate(line.text,state))}</span>
+    <div class="dialogue-extras">${last&&node.choices?`<div class="choices" aria-label="Choose your response">${node.choices.map((c,i)=>`<button data-choice="${i}"><span class="choice-number">${i+1}</span>${escape(interpolate(c.text,state))}<span class="choice-arrow" aria-hidden="true">↗</span></button>`).join('')}</div>`:''}
     ${last&&node.phone?'<div class="phone-invitation"><p>A short late-night conversation · up to 4 messages<br><small>An early preview. Open conversations unlock at Close in future chapters.</small></p><button class="primary" data-action="phone">Open your phone ↗</button><button class="text-button" data-action="skip-chat">Save your words for morning</button></div>':''}
-    ${last&&node.openingEnd?`<div class="opening-end"><span class="eyebrow">END OF THE REVISED OPENING</span><p>Your place is saved. The story pauses at Rowan’s recognition.</p><button class="text-button" data-action="title">Back to the title ↗</button></div>`:''}
+    ${last&&node.openingEnd?`<div class="opening-end"><span class="eyebrow">END OF THE REVISED OPENING</span><p>Your place is saved. The story pauses as you enter Lola’s house.</p><button class="text-button" data-action="title">Back to the title ↗</button></div>`:''}
     ${last&&node.ending&&!node.openingEnd?`<div class="chapter-end"><span class="eyebrow">END OF CHAPTER ONE</span><h2>A little less unfinished.</h2><p>Your summer is saved. The sunrise is planned, not yet fulfilled.</p><div><button class="primary" data-action="promises">Keep the list ↗</button><button class="secondary" data-action="title">Back to the title</button></div><small>Chapter two continues the sunrise promise. This build contains chapter one.</small></div>`:''}
-    <div class="dialogue-footer"><nav class="dialogue-tools" aria-label="Game tools"><button data-action="history">History</button><button data-action="saves">Save / load</button><button data-action="settings">Settings</button><button data-action="promises">Promises</button><button data-action="title" aria-label="Return to title">Menu</button></nav>${!(last&&(node.choices||node.phone||node.ending))?'<button class="next-button" data-action="next" aria-label="Continue dialogue">Continue <span aria-hidden="true">→</span></button>':'<span class="small-flower" aria-hidden="true">✳</span>'}</div></section>
+    </div><div class="dialogue-footer"><nav class="dialogue-tools" aria-label="Game tools"><button data-action="history">History</button><button data-action="saves">Save / load</button><button data-action="settings">Settings</button><button data-action="promises">Promises</button>${hasRowanContact(state)?'<button data-action="sg">Phone</button>':''}<button data-action="title" aria-label="Return to title">Menu</button></nav>${!(last&&(node.choices||node.phone||node.ending))?'<button class="next-button" data-action="next" aria-label="Continue dialogue">Continue <span aria-hidden="true">→</span></button>':'<span class="small-flower" aria-hidden="true">✳</span>'}</div></section>
     <footer class="game-footer"><span>${escape(state.name)}’s summer <span class="footer-dot">·</span> <button data-action="relationship" aria-label="Relationship milestones">${escape(state.milestone)}</button></span><span>${state.phoneUnlocked?'<button data-action="phone">↗ Late-night messages</button>':'A story at your own pace'}</span><span class="save-indicator">${storageAvailable?'● Progress saved locally':'! Local saves unavailable'}</span></footer></div></main>`;
   mountGame(gameHTML,`${node.place}:${node.time}`,cg?`cg:${cg.src}`:`sprite:${portrait||'none'}:${node.time}`);
   bind();
-  fullText=interpolate(line.text,state);
+  fullText=displayText;
   const textNode=$('#dialogue-text');
   if(settings.speed===0||!settings.motion||last&&(node.choices||node.phone||node.ending)){textNode.textContent=fullText;}
-  else {typing=true;timerIndex=0;timer=setInterval(()=>{timerIndex+=2;textNode.textContent=fullText.slice(0,timerIndex);if(timerIndex>=fullText.length)stopTyping();},1000/settings.speed);}
-  $('.dialogue-card').addEventListener('click',e=>{if(!e.target.closest('button,input,textarea'))advance();});
+  else {textNode.textContent='';typing=true;timerIndex=0;timer=setInterval(()=>{timerIndex+=2;textNode.textContent=fullText.slice(0,timerIndex);if(timerIndex>=fullText.length)stopTyping();},1000/settings.speed);}
+  $('.dialogue-card').onclick=e=>{if(!e.target.closest('button,input,textarea'))advance();};
+  const cueKey=state.node+':'+state.line;
+  if(cue&&presentedPhone!==cueKey){presentedPhone=cueKey;phonePage=cue.page;openModal('story-phone');}
 }
 let previousFocus;
+let presentedPhone='',phonePage='contact';
 function openModal(kind){
   previousFocus=document.activeElement;
   if(typing){stopTyping();$('#dialogue-text').textContent=fullText;}
   modal=kind;drawModal();
 }
-function closeModal(){if(busy)return;$('.modal-layer')?.remove();modal=null;error='';if(screen==='title'&&Boolean($('.seaglass-menu'))!==matchMedia('(min-width: 1051px)').matches){render();return;}if(previousFocus?.isConnected)previousFocus.focus();}
+function closeModal(){if(busy)return;const layer=$('.modal-layer');if(layer?.querySelector('.sg-device,.phone-modal')&&settings.motion&&!matchMedia('(prefers-reduced-motion: reduce)').matches){layer.style.pointerEvents='none';layer.animate([{opacity:1},{opacity:0}],{duration:160}).finished.catch(()=>{}).then(()=>layer.remove());}else layer?.remove();modal=null;error='';if(screen==='title'&&Boolean($('.seaglass-menu'))!==matchMedia('(min-width: 1051px)').matches){render();return;}if(previousFocus?.isConnected)previousFocus.focus();}
 function shell(title,body,extra=''){
   $('.modal-layer')?.remove();
   const layer=document.createElement('div');layer.className='modal-layer';
@@ -154,6 +178,13 @@ function shell(title,body,extra=''){
   document.body.append(layer);bind(layer);
   layer.addEventListener('click',e=>{if(e.target===layer&&!busy)closeModal();});
   (layer.querySelector('input:not([type=range]),textarea')||layer.querySelector('button'))?.focus();
+}
+function savePreview(saved){
+  const node=story[saved.node],line=visibleLines(node,saved)[saved.line];
+  const background=manifest.backgroundVariants?.[node.place]?.[node.time]||manifest.backgrounds[node.place]||`assets/backgrounds/${node.place}.svg`;
+  const cg=manifest.cgs?.[cgAt(story,saved)],sprite=spriteAt(story,saved);
+  const portrait=!cg&&sprite&&manifest.portraits.Rowan?.[sprite.key];
+  return `<div class="save-preview" role="img" aria-label="${escape(node.title)} — scene preview"><img class="save-background ${escape(node.time)} ${node.place.startsWith('manila-')?'painted-light':''}" src="${escape(background)}" alt="" loading="lazy">${cg?`<img class="save-cg" src="${escape(cg.src)}" alt="" loading="lazy">`:portrait?`<img class="save-portrait" src="${escape(portrait)}" alt="" loading="lazy">`:''}<div class="save-dialogue" aria-hidden="true"><b>${escape(line?.speaker==='You'?saved.name:line?.speaker||'')}</b><span>${escape(line?interpolate(line.text,saved):'')}</span></div></div>`;
 }
 function drawModal(){
   if(modal==='cast'){
@@ -167,12 +198,16 @@ function drawModal(){
     shell('Before we get boring',`<div class="journal"><div class="journal-date">A summer, years ago <span>in green ink</span></div>${found?`<ol class="promise-list">${promises.map((p,i)=>`<li><span class="promise-check ${i===0&&state.sunrise==='planned'?'planned':''}">${i===0&&state.sunrise==='planned'?'◷':'○'}</span><div>${p}${i===0?`<small>${state.sunrise==='planned'?`Tomorrow · 4:40 at the gate · ${escape(state.flags.ritual||'a flask')}<br>Planned — still waiting for the sunrise.`:'Not yet begun.'}</small>`:'<small>For another day.</small>'}</div></li>`).join('')}</ol><p class="handwritten">A promise isn’t a trap.</p>`:'<p class="empty-state">Some things are waiting in the drawers.<br>You haven’t found the list yet.</p>'}</div>`);
   }
   if(modal==='history')shell('The things we said',`<div class="history-list">${state?.history.length?state.history.map(h=>`<article><strong>${escape(h.speaker==='You'?state.name:h.speaker||'—')}</strong><p>${escape(h.text)}</p></article>`).join(''):'<p>No dialogue yet. Begin your summer first.</p>'}</div>`);
-  if(modal==='saves')shell('Saved moments',`<p class="muted">Stored in this browser on this device. Manual saves hold the story, choices, and conversation.</p><div class="save-list">${['-auto','-slot1','-slot2','-slot3'].map((key,i)=>{const data=read(key);const valid=validSave(data?.state,story);return `<article><div><span class="eyebrow">${i?'MOMENT 0'+i:'AUTOSAVE'}</span><strong>${valid?escape(data.state.name)+' · '+escape(story[data.state.node].title):'An empty page'}</strong><small>${valid?new Date(data.date).toLocaleString():'Nothing saved here yet.'}</small></div><div>${i&&state?`<button class="secondary" data-save="${key}">${valid?'Replace':'Save'}</button>`:''}<button class="secondary" data-load="${key}" ${!valid?'disabled':''}>Load</button></div></article>`;}).join('')}</div><p class="small-note">Loading replaces your current moment. Your other manual saves are kept.</p>`);
-  if(modal==='settings')shell('Make yourself comfortable',`<div class="settings-list"><label>Text speed <span id="speed-label">${settings.speed===0?'Instant':settings.speed+' letters / second'}</span><input id="speed" aria-label="Text speed, zero is instant" type="range" min="0" max="80" step="8" value="${settings.speed}"></label><label class="toggle-row"><span>Reduced motion<small>Also displays dialogue instantly.</small></span><input id="motion" type="checkbox" ${!settings.motion?'checked':''}></label><label class="toggle-row"><span>Music & ambience<small>Original synthesized scene audio. Off by default.</small></span><input id="sound" type="checkbox" ${settings.sound?'checked':''}></label><label>Audio volume<input id="volume" aria-label="Audio volume" type="range" min="0" max="1" step=".05" value="${settings.volume}"></label></div><div class="controls-note"><strong>At your own pace</strong><p>Space / Enter: reveal or advance · 1–4: choose a response<br>H: history · P: promises · S: save / load · Esc: close a panel<br>Tab and Shift+Tab move between controls. There are no timed choices.</p></div><button class="secondary" data-action="memories">Review saved chat memories</button>`);
-  if(modal==='about')shell('A summer worth taking slowly',`<p>A story about an old guesthouse, unfinished promises, and choosing how to come back to someone.</p><p>Original story, interface, and synthesized ambience created for this project. Rowan’s official design is your original illustration, with matching generated expressions and illustrated backgrounds. Both Rowan and the protagonist are 23.</p><p><strong>New games play the revised opening through Rowan’s first recognition.</strong> Existing saves retain the earlier chapter draft. Later scenes have not yet been adapted to the new continuity.</p><p class="muted">Reading time varies. Includes grief, bereavement, and references to a difficult childhood home. All romantic characters are adults. Nothing is timed.</p><p class="small-note">The default phone is a scripted demo, not live AI. No messages leave this device in demo mode. Local progress stays in this browser.</p>`);
+  if(modal==='saves')shell('Saved moments',`<p class="muted save-intro">A little picture of where you left off. Saved in this browser, on this device.</p><div class="save-gallery">${['-auto','-slot1','-slot2','-slot3'].map((key,i)=>{
+    const data=read(key),valid=validSave(data?.state,story),label=i?'Moment 0'+i:'Autosave';
+    return `<article class="save-card"><span class="eyebrow">${label}</span>${valid?savePreview(data.state):'<div class="save-preview save-empty"><span aria-hidden="true">☼</span><span>An empty moment</span></div>'}<div class="save-caption"><strong>${valid?escape(data.state.name)+' · '+escape(story[data.state.node].title):'Your summer goes here'}</strong><small>${valid?escape(new Date(data.date).toLocaleString()):'Nothing saved here yet.'}</small></div><div class="save-actions">${i&&state?`<button class="secondary" data-save="${key}" aria-label="${valid?'Replace':'Save to'} ${label}">${valid?'Replace':'Save'}</button>`:''}<button class="secondary" data-load="${key}" aria-label="Load ${label}" ${!valid?'disabled':''}>Load</button></div></article>`;
+  }).join('')}</div><p class="small-note">Loading returns you to that moment. Your other manual saves stay safe.</p>`,'saves-modal');
+  if(modal==='settings')shell('Make yourself comfortable',`<div class="settings-list"><label>Text speed <span id="speed-label">${settings.speed===0?'Instant':settings.speed+' letters / second'}</span><input id="speed" aria-label="Text speed, zero is instant" type="range" min="0" max="80" step="8" value="${settings.speed}"></label><label class="toggle-row"><span>Reduced motion<small>Also displays dialogue instantly.</small></span><input id="motion" type="checkbox" ${!settings.motion?'checked':''}></label><label class="toggle-row"><span>Music & ambience<small>Your scene soundtrack and ambience. Off by default.</small></span><input id="sound" type="checkbox" ${settings.sound?'checked':''}></label><label>Audio volume<input id="volume" aria-label="Audio volume" type="range" min="0" max="1" step=".05" value="${settings.volume}"></label></div><div class="controls-note"><strong>At your own pace</strong><p>Space / Enter: reveal or advance · 1–4: choose a response<br>H: history · P: promises · S: save / load · Esc: close a panel<br>Tab and Shift+Tab move between controls. There are no timed choices.</p></div><button class="secondary" data-action="memories">Review saved chat memories</button>`);
+  if(modal==='about')shell('A summer worth taking slowly',`<p>A story about an old guesthouse, unfinished promises, and choosing how to come back to someone.</p><p>Original story, interface, and synthesized ambience created for this project. Rowan’s official design is your original illustration, with matching generated expressions and illustrated backgrounds. Both Rowan and the protagonist are 23.</p><p><strong>New games play the revised opening through the reunion and your return inside Lola’s house.</strong> Existing saves retain the earlier chapter draft. Later scenes have not yet been adapted to the new continuity.</p><p class="muted">Reading time varies. Includes grief, bereavement, controlling parents, and the destruction of personal letters. All romantic characters are adults. Nothing is timed.</p><p class="small-note">The default phone is a scripted demo, not live AI. No messages leave this device in demo mode. Local progress stays in this browser.</p>`);
   if(modal==='relationship')shell('Becoming familiar',`<p>Trust grows through shared moments and honest choices. It isn’t a score. Friendship and romance have the same room to grow.</p><ol class="milestone-list">${milestones.map(m=>`<li><strong>${m.name}${state?.milestone===m.name?' · now':''}</strong><p>${m.unlock}</p></li>`).join('')}</ol><p class="small-note">Chapter one ends at Familiar. Later milestones await future chapters. Skipping chat, disagreeing respectfully, or needing space never takes trust away.</p>`);
   if(modal==='memories')memoryModal();
   if(modal==='phone')phoneModal();
+  if(modal==='story-phone')storyPhoneModal();
   if(modal==='history') {const history=$('.history-list');history.scrollTop=history.scrollHeight;}
   bindForms();
 }
@@ -188,11 +223,22 @@ function memoryModal(){shell('Only what you choose to keep',`<p class="muted">No
   $('#memory-form')?.addEventListener('submit',e=>{e.preventDefault();const value=new FormData(e.target).get('memory').trim();if(value&&state.memories.length<8){state.memories.push({key:'player-approved note',value});autoSave();drawModal();toast('Detail saved with your permission.');}});
 }
 function scrubSaves(field){for(const key of ['-auto','-slot1','-slot2','-slot3']){const save=read(key);if(validSave(save?.state,story)){save.state[field]=[];write(key,save);}}}
+function storyPhoneModal(){
+  const cue=phoneCue(story,state);
+  if(phonePage!=='lola'&&!hasRowanContact(state))return;
+  const next=nodeLines()[state.line+1];
+  const nextMessage=next?.speaker==='Rowan · text';
+  const content=phoneBody(phonePage,state,{typing:cue?.typing&&phonePage==='messages'});
+  const nextButton=nextMessage?'<button class="sg-main-button" data-action="phone-next">Read next message →</button>':'';
+  const existing=$('.sg-device');
+  if(existing){existing.querySelector('.sg-body').innerHTML=content+nextButton;bind(existing);}
+  else shell('Your phone',`<div class="sg-body">${content}${nextButton}</div>`,'sg-device');
+}
 function phoneModal(){
   if(!state?.phoneUnlocked){shell('A number, not yet exchanged','<p>The phone opens later in chapter one.</p>');return;}
   const done=state.chatDone||state.chatTurns>=4||state.node!=='texting';
-  shell('<img class="phone-avatar" src="assets/references/rowan-original.png" alt="">Rowan <span class="online-dot" aria-hidden="true"></span>',`<div class="phone-status"><span>21:48 · HE/HIM · AGE 23</span><span>${state.chatTurns}/4 messages</span></div><div class="chat-mode"><strong>${chatMode==='live'?'External AI conversation':'Scripted chat demo · not live AI'}</strong><p>${chatMode==='live'?`Your message, recent conversation, chapter-one choices, name, pronouns, and approved memories are sent to ${escape(provider.provider)}. Provider retention rules apply. No plot changes are made by chat.`:'Original prewritten replies respond to broad topics. Nothing is sent to an external provider.'}</p>${provider.available&&!done?`<button class="text-button" data-action="${chatMode==='live'?'demo':'live'}">${chatMode==='live'?'Use scripted demo':'Use external AI…'}</button>`:''}</div>
-    <div class="chat-log" role="log" aria-label="Messages with Rowan" aria-live="polite"><div class="chat-date">TONIGHT</div><div class="bubble rowan">Important clarification: the gull was not representative of the local hospitality industry.</div>${state.chat.map(m=>`<div class="bubble ${m.role==='player'?'player':'rowan'}">${escape(m.text)}</div>`).join('')}${busy?'<div class="bubble rowan typing" role="status">Rowan is typing<span>…</span></div>':''}</div>
+  shell('<img class="phone-avatar" src="assets/references/rowan-original.png" alt="">Rowan <span class="online-dot" aria-hidden="true"></span>',`<div class="phone-status"><span>21:48 · HE/HIM · AGE 23</span><span>${state.chatTurns}/4 messages</span></div><p class="sg-thread-number">${phoneIdentity.number} · fictional number · private conversation</p><div class="chat-mode"><strong>${chatMode==='live'?'External AI conversation':'Scripted chat demo · not live AI'}</strong><p>${chatMode==='live'?`Your message, recent conversation, chapter-one choices, name, pronouns, and approved memories are sent to ${escape(provider.provider)}. Provider retention rules apply. No plot changes are made by chat.`:'Original prewritten replies respond to broad topics. Nothing is sent to an external provider.'}</p>${provider.available&&!done?`<button class="text-button" data-action="${chatMode==='live'?'demo':'live'}">${chatMode==='live'?'Use scripted demo':'Use external AI…'}</button>`:''}</div>
+    <div class="chat-log" role="log" aria-label="Messages with Rowan" aria-live="polite"><div class="chat-date">TONIGHT</div><div class="bubble rowan">Important clarification: the gull was not representative of the local hospitality industry.</div>${state.chat.map(m=>`<div class="bubble ${m.role==='player'?'player':'rowan'}">${escape(m.text)}<small class="chat-receipt">21:48 · ${m.role==='player'?'Read':'Received'}</small></div>`).join('')}${busy?'<div class="bubble rowan typing" role="status">Rowan is typing<span>…</span></div>':''}</div>
     ${error?`<div class="chat-error" role="alert">${escape(error)}<div><button class="secondary" data-action="retry">Retry</button><button class="text-button" data-action="demo">Use scripted demo</button></div></div>`:''}
     ${!done?`<div class="suggestions">${suggestions.map(s=>`<button data-suggest="${escape(s)}" ${busy?'disabled':''}>${escape(s)}</button>`).join('')}</div><form id="chat-form"><label class="sr-only" for="chat-input">Your message to Rowan</label><textarea id="chat-input" maxlength="600" rows="2" placeholder="Say something in your own words…" ${busy?'disabled':''}>${escape(draft)}</textarea><button class="send-button" aria-label="Send message" ${busy?'disabled':''}>↑</button></form><p class="small-note">Up to 4 messages tonight. Enter to send; Shift+Enter for a new line.</p>`:'<p class="chat-goodnight">Enough for tonight. Tomorrow has room for more.</p>'}
     <footer class="phone-footer"><button class="text-button" data-action="memories" ${busy?'disabled':''}>Saved memories</button><button class="secondary" data-action="finish-chat" ${busy?'disabled':''}>${state.node==='texting'?'Put the phone down':'Back to the story'}</button></footer>`,'phone-modal');
@@ -219,14 +265,17 @@ async function sendMessage(){
   finally{busy=false;if(modal==='phone')phoneModal();}
 }
 function bind(root=app){
-  root.querySelectorAll('[data-action]').forEach(el=>el.addEventListener('click',()=>action(el.dataset.action)));
-  root.querySelectorAll('[data-choice]').forEach(el=>el.addEventListener('click',()=>choose(Number(el.dataset.choice))));
+  root.querySelectorAll('[data-action]').forEach(el=>{el.onclick=()=>action(el.dataset.action);});
+  root.querySelectorAll('[data-choice]').forEach(el=>{el.onclick=()=>choose(Number(el.dataset.choice));});
   root.querySelectorAll('[data-save]').forEach(el=>el.addEventListener('click',()=>{const key=el.dataset.save;if(read(key)){shell('Replace this saved moment?',`<p>Your current point will replace this manual save. Other slots stay as they are.</p><div class="confirm-actions"><button class="primary" id="confirm-save">Replace saved moment</button><button class="secondary" data-action="saves">Keep old save</button></div>`);$('#confirm-save').onclick=()=>{write(key,{date:Date.now(),state});modal='saves';drawModal();toast('Moment saved.');};}else{write(key,{date:Date.now(),state});drawModal();toast('Moment saved.');}}));
   root.querySelectorAll('[data-load]').forEach(el=>el.addEventListener('click',()=>{load(el.dataset.load);$('.modal-layer')?.remove();}));
   root.querySelectorAll('[data-suggest]').forEach(el=>el.addEventListener('click',()=>{draft=el.dataset.suggest;const input=$('#chat-input');input.value=draft;input.focus();}));
   root.querySelectorAll('[data-forget]').forEach(el=>el.addEventListener('click',()=>{const removed=state.memories.splice(Number(el.dataset.forget),1)[0];for(const key of ['-slot1','-slot2','-slot3']){const save=read(key);if(validSave(save?.state,story)){save.state.memories=save.state.memories.filter(m=>m.value!==removed.value);write(key,save);}}autoSave();drawModal();}));
 }
 function action(type){
+  if(type==='sg'){phonePage='profile';openModal('story-phone');return;}
+  if(type.startsWith('sg-')){phonePage=type.slice(3);storyPhoneModal();return;}
+  if(type==='phone-next'){modal=null;advance();return;}
   if(type==='next'){advance();return;}
   if(type==='close'){closeModal();return;}
   if(type==='continue'){load('-auto');return;}

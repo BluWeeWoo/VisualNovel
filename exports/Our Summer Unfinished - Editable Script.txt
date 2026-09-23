@@ -1,0 +1,829 @@
+﻿OUR SUMMER, UNFINISHED
+Chapter One: A Familiar Door
+Editable script — current playable opening
+Exported: 23 September 2026
+
+ABOUT THIS FILE
+This is the script currently used by new games, from the bus ride through Rowan recognizing the MC. It includes every choice branch. The older chapter draft is not part of this opening.
+
+You can edit the dialogue and add new scenes directly in this file. Changes here do not automatically change the game; send the edited file back when you want them implemented.
+
+READING NOTES
+MC is the player character, age 23. Rowan is 23 and uses he/him.
+{name} means the player’s chosen name. Keep this placeholder where needed.
+NARRATION is the MC’s internal narration.
+Directions in brackets describe the current game presentation.
+SCENE IDs and GO TO directions show how choices reconnect. Alternative branches do not all play in one run.
+Artwork stays on screen between lines unless a direction changes it. Backgrounds and CGs transition smoothly; reduced-motion settings are respected.
+No Rowan sprite appears before his recognition scene.
+
+============================================================
+
+SCENE: 01 / The road back
+ID: journey
+[BACKGROUND: bus; lighting: day]
+[Background asset: assets/cg/opening/bus-interior.webp]
+
+[AUDIO: bus (03-bus.mp3); transition: 1 seconds]
+
+NARRATION:
+It’s been eight hours since we left the city, including the stopover. I can’t get comfortable anymore.
+
+NARRATION:
+I move my knee away from the seat in front of me. The window keeps rattling beside my head.
+
+NARRATION:
+I used to come to Saint Luis every summer.
+
+NARRATION:
+Then I stopped visiting.
+
+NARRATION:
+I kept telling myself I’d come back the next year.
+
+NARRATION:
+More than four years have passed since my last visit.
+
+[AUDIO: arrival (01-coming-home.mp3); transition: 3 seconds]
+
+[SHOW CG: way-back — The bay and fishing boats of Saint Luis seen through a bus window.]
+
+NARRATION:
+The sea appears between two buildings. I lean closer to the window to get a better look.
+
+NARRATION:
+I’m finally back in Saint Luis.
+
+NARRATION:
+There are small fishing boats in the bay. I can see the old baywalk along the shore.
+
+NARRATION:
+Lola used to take Rowan and me for walks there in the afternoons.
+
+NARRATION:
+Rowan and I would argue over little things, then forget about them a few minutes later.
+
+MC:
+Hay. I wonder how he’s been.
+
+NARRATION:
+Thinking about him makes me smile.
+
+[AUDIO: lola (02-lola.mp3); transition: 3 seconds]
+
+NARRATION:
+Then I remember Lola’s funeral.
+
+NARRATION:
+He was probably at the funeral.
+
+NARRATION:
+Two years ago, Lola died during finals week.
+
+NARRATION:
+I stayed in the city to take my exams. I thought missing them would put my studies at risk.
+
+NARRATION:
+I had a reason for staying, but I still feel guilty.
+
+NARRATION:
+I was her grandchild, and I wasn’t there.
+
+NARRATION:
+I hold my bag a little tighter.
+
+NARRATION:
+My family always put so much pressure on me to do well in school.
+
+NARRATION:
+They made me leave Saint Luis with them, even though I wanted to stay with Lola.
+
+NARRATION:
+They left her behind too. Why am I the only one who should feel bad?
+
+NARRATION:
+I know that’s unfair. Blaming them won’t change the fact that I missed her funeral.
+
+NARRATION:
+Now they’re upset with me for spending the summer here. I just wanted a break.
+
+MC:
+Can I do anything without someone getting angry at me?
+
+NARRATION:
+I take a breath and turn toward the open window.
+
+NARRATION:
+I came here because I needed some rest.
+
+NARRATION:
+College has been exhausting. These past few weeks have been rough, and I keep thinking about the arguments with my family.
+
+NARRATION:
+Lola’s house needs cleaning, and a few things probably need fixing. I can help with that.
+
+NARRATION:
+I’ll clean up, do what repairs I can, and get some sleep.
+
+NARRATION:
+That’s all I planned to do this summer.
+
+NARRATION:
+I look back toward the baywalk.
+
+NARRATION:
+What am I going to say if I see Rowan?
+
+NARRATION:
+Sorry I stopped visiting? Sorry I never called?
+
+NARRATION:
+And how do I explain missing the funeral?
+
+[AUDIO: bus (03-bus.mp3); transition: 0.45 seconds]
+
+[RETURN TO SCENE BACKGROUND]
+
+Conductor:
+SAINT LUIS! SAINT LUIS!
+
+NARRATION:
+The shout makes me jump. It wakes the passenger across the aisle too.
+
+MC:
+Grabe.
+
+NARRATION:
+At least I’m not the only one he scared.
+
+GO TO: busBump
+
+============================================================
+
+SCENE: A very good start
+ID: busBump
+[BACKGROUND: bus; lighting: day]
+[Background asset: assets/cg/opening/bus-interior.webp]
+
+[AUDIO: bus (03-bus.mp3); transition: 3 seconds]
+
+NARRATION:
+Everyone gets up at once. After eight hours, we’re all ready to get off this bus.
+
+NARRATION:
+I reach for my bag.
+
+NARRATION:
+A man bumps into me. My hand slips off the seat, and I fall into the aisle.
+
+MC:
+Aray!
+
+NARRATION:
+I sit on the floor for a moment. My hip hurts, and my bag is still caught around my wrist.
+
+Stranger:
+Sorry! Sorry. My son’s already getting off.
+
+NARRATION:
+He looks toward the front of the bus.
+
+Stranger:
+I need to catch him.
+
+PLAYER CHOICE:
+A. “It’s fine. Go.”
+   GO TO: bumpKind
+   [Remember choice: strangerResponse = kind]
+B. Glare at him.
+   GO TO: bumpGlare
+   [Remember choice: strangerResponse = glare]
+C. “Watch where you’re going!”
+   GO TO: bumpAngry
+   [Remember choice: strangerResponse = angry]
+D. Say nothing.
+   GO TO: bumpSilent
+   [Remember choice: strangerResponse = silent]
+
+============================================================
+
+SCENE: A very good start
+ID: bumpKind
+[BACKGROUND: bus; lighting: day]
+[Background asset: assets/cg/opening/bus-interior.webp]
+
+[AUDIO: bus (03-bus.mp3); transition: 3 seconds]
+
+MC:
+It’s fine. Go.
+
+NARRATION:
+My hip still hurts, but he’s clearly in a hurry.
+
+Stranger:
+Thank you. Sorry again.
+
+NARRATION:
+He hurries past the other passengers toward the exit.
+
+GO TO: wallet
+
+============================================================
+
+SCENE: A very good start
+ID: bumpGlare
+[BACKGROUND: bus; lighting: day]
+[Background asset: assets/cg/opening/bus-interior.webp]
+
+[AUDIO: bus (03-bus.mp3); transition: 3 seconds]
+
+NARRATION:
+I glare at him from the floor.
+
+NARRATION:
+He looks uncomfortable.
+
+Stranger:
+Sorry.
+
+NARRATION:
+He leaves before I can say anything.
+
+GO TO: wallet
+
+============================================================
+
+SCENE: A very good start
+ID: bumpAngry
+[BACKGROUND: bus; lighting: day]
+[Background asset: assets/cg/opening/bus-interior.webp]
+
+[AUDIO: bus (03-bus.mp3); transition: 3 seconds]
+
+MC:
+Watch where you’re going!
+
+NARRATION:
+I didn’t mean to shout that loudly. He looks startled.
+
+Stranger:
+Sorry, sorry.
+
+NARRATION:
+He turns toward the exit.
+
+GO TO: wallet
+
+============================================================
+
+SCENE: A very good start
+ID: bumpSilent
+[BACKGROUND: bus; lighting: day]
+[Background asset: assets/cg/opening/bus-interior.webp]
+
+[AUDIO: bus (03-bus.mp3); transition: 3 seconds]
+
+NARRATION:
+I reach for the seat and pull myself up.
+
+Stranger:
+Sorry.
+
+NARRATION:
+I don’t answer, so he walks away.
+
+GO TO: wallet
+
+============================================================
+
+SCENE: A very good start
+ID: wallet
+[BACKGROUND: bus; lighting: day]
+[Background asset: assets/cg/opening/bus-interior.webp]
+
+[AUDIO: bus (03-bus.mp3); transition: 3 seconds]
+
+NARRATION:
+I brush the dirt off my clothes.
+
+MC:
+Great start.
+
+NARRATION:
+I check that I still have my bag and phone. Then I reach for my wallet.
+
+NARRATION:
+I check both back pockets.
+
+NARRATION:
+They’re empty.
+
+NARRATION:
+I search the seat, the floor underneath it, and the aisle.
+
+MC:
+No. Come on.
+
+NARRATION:
+My wallet is gone.
+
+NARRATION:
+I look toward the exit. The man is gone too.
+
+NARRATION:
+Did he take it when he bumped into me? Was there even a child with him?
+
+MC:
+Shit.
+
+NARRATION:
+My cards and IDs are in my bag. I check them twice anyway.
+
+NARRATION:
+The wallet only had cash.
+
+NARRATION:
+But I needed that cash to pay for the ride to Lola’s house.
+
+NARRATION:
+Through the windshield, I can see the road toward town.
+
+NARRATION:
+The nearest ATM is in town, too far to walk with my bag. Lola’s house is the other way.
+
+MC:
+Napakamalas naman.
+
+NARRATION:
+I hold onto my bag and try to think of what to do.
+
+NARRATION:
+Then I remember that some buses pass through Santiago Street, near Lola’s house.
+
+NARRATION:
+Maybe this one does. I should ask.
+
+GO TO: driver
+
+============================================================
+
+SCENE: A small kindness
+ID: driver
+[BACKGROUND: bus; lighting: day]
+[Background asset: assets/cg/opening/bus-interior.webp]
+
+[AUDIO: bus (03-bus.mp3); transition: 3 seconds]
+
+MC:
+Manong? Excuse me po.
+
+NARRATION:
+The driver looks over.
+
+MC:
+Dadaan po ba kayo sa Santiago Street?
+
+Driver:
+Oo. Doon ka bababa?
+
+MC:
+Opo.
+
+NARRATION:
+I feel a little better. At least the bus goes where I need to go.
+
+MC:
+Thank you po.
+
+NARRATION:
+Then I notice the tickets in the conductor’s hand.
+
+NARRATION:
+Will I have to pay extra to stay on? I don’t have any cash left.
+
+NARRATION:
+I briefly think about getting off before they ask me to pay. But then I’d still be stuck here.
+
+MC:
+May dagdag po ba? Kasi—
+
+[AUDIO: kindness (04-kindness.mp3) + bus (03-bus.mp3); transition: 2 seconds]
+
+Driver:
+Upo ka na. Hindi na kita sisingilin.
+
+NARRATION:
+Before I can explain, he points toward where I fell.
+
+Driver:
+Nakita kong nabangga ka. May nawala?
+
+MC:
+Wallet ko po.
+
+NARRATION:
+The driver sighs.
+
+Driver:
+Hay. Sige. Sa Santiago kita ibababa.
+
+MC:
+Salamat po. Talaga.
+
+NARRATION:
+He points to an empty seat.
+
+Driver:
+Hawakang mabuti ’yang bag mo.
+
+MC:
+Opo.
+
+NARRATION:
+I sit down and keep my bag on my lap as the bus starts moving again.
+
+NARRATION:
+I watch the houses pass by the window.
+
+NARRATION:
+I’m still upset about my wallet.
+
+NARRATION:
+But I’m grateful to the driver. Thanks to him, I can get to Lola’s house.
+
+GO TO: hill
+
+============================================================
+
+SCENE: The hill
+ID: hill
+[BACKGROUND: saint-luis; lighting: day]
+[Background asset: assets/cg/opening/hill-houses.webp]
+
+[AUDIO: kindness (04-kindness.mp3) + bus (03-bus.mp3); transition: 2 seconds]
+
+MC:
+Dito na po. Thank you!
+
+Driver:
+Ingat.
+
+[AUDIO: hill (05-neighborhood.mp3); transition: 3 seconds]
+
+NARRATION:
+I wait until the bus has gone. Then I turn toward the hill.
+
+NARRATION:
+It looks smaller.
+
+NARRATION:
+My legs disagree almost immediately.
+
+NARRATION:
+Halfway up, I have to change hands with my bag.
+
+NARRATION:
+Rowan and I used to race here. Downhill was easy.
+
+NARRATION:
+Uphill, one of us always started arguing about where the finish line was.
+
+[SHOW CG: hill-houses — Lola’s blue-doored house and the Sanchez home above the sea.]
+
+NARRATION:
+I can see his house now. And beyond it, Lola’s porch.
+
+NARRATION:
+After we’d worn ourselves out, she’d call us in for bibingka.
+
+NARRATION:
+We’d eat before it had cooled properly. Then go straight back to hide-and-seek.
+
+NARRATION:
+I remember those afternoons so clearly.
+
+NARRATION:
+The heat. The crumbs. Trying not to laugh when Rowan walked past my hiding place.
+
+NARRATION:
+I can’t remember the last thing I said to her.
+
+NARRATION:
+My grip tightens around the bag. I try.
+
+NARRATION:
+Something ordinary, probably.
+
+NARRATION:
+Something I thought I’d get to follow up on.
+
+NARRATION:
+The path blurs.
+
+PLAYER CHOICE:
+A. Let yourself cry.
+   GO TO: hillCry
+   [Remember choice: griefResponse = cry]
+B. Hold the tears for now.
+   GO TO: hillHold
+   [Remember choice: griefResponse = hold]
+
+============================================================
+
+SCENE: The hill
+ID: hillCry
+[BACKGROUND: saint-luis; lighting: day]
+[Background asset: assets/cg/opening/hill-houses.webp]
+
+[AUDIO: hill (05-neighborhood.mp3); transition: 1.5 seconds]
+
+[SHOW CG: hill-houses — Lola’s blue-doored house and the Sanchez home above the sea.]
+
+NARRATION:
+I put my bag down.
+
+NARRATION:
+There isn’t a graceful way to do this, apparently.
+
+NARRATION:
+I wipe my face, then have to do it again.
+
+MC:
+Sorry, Lola.
+
+NARRATION:
+I don’t try to make the words explain everything.
+
+NARRATION:
+I stand there until I can breathe without catching on it.
+
+NARRATION:
+Then I pick up my bag.
+
+GO TO: otherDoor
+
+============================================================
+
+SCENE: The hill
+ID: hillHold
+[BACKGROUND: saint-luis; lighting: day]
+[Background asset: assets/cg/opening/hill-houses.webp]
+
+[AUDIO: hill (05-neighborhood.mp3); transition: 1.5 seconds]
+
+[SHOW CG: hill-houses — Lola’s blue-doored house and the Sanchez home above the sea.]
+
+NARRATION:
+I look down at my shoes. One breath. Then another.
+
+NARRATION:
+Not here.
+
+NARRATION:
+I want to get inside first. Put my things down. Have a door I can close.
+
+MC:
+Just a little farther.
+
+NARRATION:
+I loosen my grip on the handle and keep walking.
+
+GO TO: otherDoor
+
+============================================================
+
+SCENE: The other door
+ID: otherDoor
+[BACKGROUND: saint-luis; lighting: day]
+[Background asset: assets/cg/opening/hill-houses.webp]
+
+[AUDIO: hill (05-neighborhood.mp3); transition: 3 seconds]
+
+NARRATION:
+The house won’t clean itself.
+
+NARRATION:
+That sounds like something Lola would have said. I almost laugh.
+
+[AUDIO: neighbor (06-neighbor-door.mp3); transition: 3 seconds]
+
+NARRATION:
+Rowan’s house is right there.
+
+NARRATION:
+I could knock. Just to let them know I’m back.
+
+NARRATION:
+That would be normal. Polite, even.
+
+NARRATION:
+I rehearse it.
+
+NARRATION:
+Hi. It’s been a while.
+
+NARRATION:
+Four years is probably longer than “a while.”
+
+NARRATION:
+What if he opens the door?
+
+NARRATION:
+What if he looks happy to see me?
+
+NARRATION:
+Somehow, I haven’t prepared for that either.
+
+MC:
+I can say hello.
+
+MC:
+In theory.
+
+PLAYER CHOICE:
+A. Knock on the door.
+   GO TO: neighborVisit
+   [Remember choice: knocked = true]
+B. Get settled first.
+   GO TO: neighborWait
+   [Remember choice: knocked = false]
+
+============================================================
+
+SCENE: The other door
+ID: neighborVisit
+[BACKGROUND: saint-luis; lighting: day]
+[Background asset: assets/cg/opening/hill-houses.webp]
+
+[AUDIO: neighbor (06-neighbor-door.mp3); transition: 3 seconds]
+
+NARRATION:
+I turn toward the porch before I can hold a full debate about it.
+
+NARRATION:
+Up close, the door is familiar enough to make my stomach tighten.
+
+NARRATION:
+How many afternoons did I spend waiting here?
+
+NARRATION:
+I knock.
+
+NARRATION:
+Nothing. I listen.
+
+NARRATION:
+Then knock again, a little louder.
+
+MC:
+Hello? Mr. and Mrs. Sanchez?
+
+NARRATION:
+I hesitate before the last name.
+
+MC:
+Rowan?
+
+NARRATION:
+I wait longer than I need to.
+
+MC:
+Okay. Nobody home.
+
+NARRATION:
+The relief is immediate. The disappointment takes another second.
+
+NARRATION:
+I step off the porch and head toward Lola’s house.
+
+GO TO: doorRepair
+
+============================================================
+
+SCENE: The other door
+ID: neighborWait
+[BACKGROUND: saint-luis; lighting: day]
+[Background asset: assets/cg/opening/hill-houses.webp]
+
+[AUDIO: neighbor (06-neighbor-door.mp3); transition: 3 seconds]
+
+NARRATION:
+I keep walking.
+
+NARRATION:
+I’ve been traveling all day. I’ve lost my money. I’m not sure what my face is doing.
+
+NARRATION:
+I can put my bag down before trying to explain four years.
+
+NARRATION:
+For a moment, I tell myself he probably wouldn’t remember me anyway.
+
+NARRATION:
+I know that isn’t true.
+
+NARRATION:
+I’m just not ready.
+
+GO TO: doorRepair
+
+============================================================
+
+SCENE: A familiar stranger
+ID: doorRepair
+[BACKGROUND: repair; lighting: day]
+[Background asset: assets/cg/opening/door-before.webp]
+
+[AUDIO: hammer (hammer-and-seaside-outdoors.wav) + outdoors (07-outdoors-only.wav); transition: 0.35 seconds]
+
+NARRATION:
+I stop.
+
+NARRATION:
+Another tap. Then a scrape.
+
+NARRATION:
+Someone’s at the house.
+
+MC:
+What the hell?
+
+NARRATION:
+I hurry the last few steps.
+
+NARRATION:
+A man about my age is kneeling in front of the door, his back toward me.
+
+NARRATION:
+A screwdriver lies beside his knee. He has a hammer in one hand.
+
+NARRATION:
+The door is open just far enough that I can’t see what he’s doing to it.
+
+NARRATION:
+My bag knocks against my leg as I climb onto the porch.
+
+[AUDIO: outdoors (07-outdoors-only.wav); transition: 0.12 seconds]
+
+MC:
+Excuse me!
+
+NARRATION:
+He stops.
+
+MC:
+What are you doing? That’s my lola’s house.
+
+NARRATION:
+The hammer lowers.
+
+NARRATION:
+The man turns.
+
+GO TO: recognition
+
+============================================================
+
+SCENE: A familiar door
+ID: recognition
+[BACKGROUND: saint-luis; lighting: day]
+[Background asset: assets/cg/opening/hill-houses.webp]
+
+[AUDIO: reunion (08-reunion.mp3) + outdoors (07-outdoors-only.wav); transition: 2 seconds]
+
+[SHOW CG: familiar-door — Rowan looks up in surprised recognition, kneeling beside Lola’s blue door with a lowered hammer.]
+
+NARRATION:
+Brown hair, tied back low.
+
+NARRATION:
+A loose strand falls across his face as he looks up.
+
+NARRATION:
+Then I see his eyes.
+
+NARRATION:
+Oh.
+
+NARRATION:
+Rowan.
+
+NARRATION:
+The accusation is still hanging between us.
+
+NARRATION:
+For a moment, neither of us moves.
+
+NARRATION:
+His eyes widen.
+
+Rowan:
+{name}?
+
+END OF CURRENT PLAYABLE OPENING
+The story currently pauses at Rowan’s recognition.
+
+CONTINUATION / YOUR NOTES:
+
+
+============================================================

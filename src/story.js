@@ -1,3 +1,4 @@
+import {continuation} from './continuation.js';
 import {opening} from './opening.js';
 // Authored story only. No AI output can change this graph or its relationship flags.
 const lines = text => text.trim().split('\n').filter(Boolean).map(row => {
@@ -446,3 +447,7 @@ story.end.lines.unshift(
 );
 // Keep legacy IDs intact for saved games, but new games use the approved PDF opening.
 Object.assign(story, opening);
+
+Object.assign(story, continuation);
+// Resume old recognition saves into the newly approved continuation.
+delete story.recognition.ending; delete story.recognition.openingEnd; story.recognition.next='rGreeting';

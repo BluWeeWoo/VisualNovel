@@ -1,6 +1,6 @@
 # Our Summer, Unfinished
 
-New games play the approved PDF adaptation: a college-exhausted MC returns to Saint Luis, Philippines, through the first reunion with Rowan. The revised section deliberately ends at his recognition. Choose **Start a new summer** to read it; Continue restores your current save. Existing saves and the older chapter draft remain intact, but those later scenes have not yet been adapted to the new continuity.
+New games play the approved PDF adaptation: a college-exhausted MC returns to Saint Luis, Philippines, through the first reunion with Rowan. The approved continuation follows the reunion, the hidden-letters flashback, and entering Lola’s house. Choose **Start a new summer** to read it; Continue restores your current save. Existing saves and the older chapter draft remain intact, but those later scenes have not yet been adapted to the new continuity.
 
 ## Play
 
@@ -64,3 +64,7 @@ Rowan’s official illustration is user-created. Additional sprites and backgrou
 ## Approved PDF opening
 
 See `docs/OPENING-DIRECTIONS.md` for scene/audio direction and `docs/OPENING-ART-PROMPTS.md` for generation prompts. The three new CGs and two supporting backgrounds are in `assets/cg/opening/`, with PNG masters and optimized WebP delivery. Audio is original procedural ambience, simple instrumental phrases, and subtle knocks, controlled by Settings; no recorded voice acting is included. No AI configuration is needed for this opening, and phone chat stays locked until a later authored scene.
+
+## Soundtrack
+
+The eight approved tracks are integrated into the revised opening. Enable **Music & ambience** in Settings, then adjust **Audio volume**. Refresh after updating; if the server was already running before this update, restart it using Launch.cmd so it serves MP3/WAV files correctly. Tracks crossfade at story cues and repeat gently for slower reading. See `docs/SOUNDTRACK-PLACEMENT.md`. Original supplied files and earlier audio remain intact.

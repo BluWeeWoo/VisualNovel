@@ -2,6 +2,10 @@
 export const expressions=['neutral','smile','playful','embarrassed','concerned','sad','surprised'];
 // Event illustrations are presentation only: no story, save or relationship mutations.
 export const cgCues={
+ rGreeting:{key:'familiar-door',from:'He’s here'},
+ rHug:{key:'reunion-hug',from:'He wraps'},
+ rLetters:{key:'hidden-letters',from:'I lift the lid',until:'Mom pulls'},
+ rBurning:{key:'burning-letters',from:'Paper slides',until:'Why would you'},
  journey:{key:'way-back',from:'The sea appears',until:'SAINT LUIS!'},
  hill:{key:'hill-houses',from:'I can see his house'},
  hillCry:{key:'hill-houses',from:'I put my bag down'},
@@ -44,6 +48,13 @@ export const directions={
 };
 export function spriteAt(story,state){
  const node=story[state.node];
+ if(node.continuation){
+  if(!node.rowan)return null;
+  const lines=node.lines.filter(l=>!l.if||state.flags[l.if[0]]===l.if[1]);
+  let expression='neutral';
+  for(let i=0;i<=state.line;i++)if(lines[i]?.expression)expression=lines[i].expression;
+  return {expression,pose:'ordinary',key:expression};
+ }
  if(!(state.node in defaults))return null;
  const lines=node.lines.filter(l=>!l.if||state.flags[l.if[0]]===l.if[1]);
  if(state.node==='arrival' && state.line<6)return null;

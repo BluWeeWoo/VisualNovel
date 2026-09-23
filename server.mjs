@@ -16,7 +16,7 @@ try {
 const port = Number(process.env.PORT || 4173);
 const endpoint = process.env.AI_ADAPTER_URL;
 const configured = !!endpoint;
-const mime={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.svg':'image/svg+xml','.json':'application/json','.png':'image/png','.webp':'image/webp','.jpg':'image/jpeg'};
+const mime={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.svg':'image/svg+xml','.json':'application/json','.png':'image/png','.webp':'image/webp','.jpg':'image/jpeg','.mp3':'audio/mpeg','.wav':'audio/wav','.ogg':'audio/ogg'};
 let lastRequest=0;
 const send=(res,status,body)=>{res.writeHead(status,{'Content-Type':'application/json; charset=utf-8'});res.end(JSON.stringify(body));};
 export const server = http.createServer(async(req,res)=>{
@@ -54,7 +54,7 @@ export const server = http.createServer(async(req,res)=>{
   let pathname;
   try {pathname=decodeURIComponent(url.pathname);} catch{return send(res,400,{error:'Invalid path'});}
   const relative=pathname==='/'?'index.html':pathname.slice(1);
-  const publicFile=relative==='index.html'||relative==='styles.css'||/^src\/(app|engine|story|opening|opening-audio|chat|audio|characters|staging)\.js$/.test(relative)||/^assets\/[a-zA-Z0-9_./-]+$/.test(relative);
+  const publicFile=relative==='index.html'||relative==='styles.css'||/^src\/(app|phone-ui|engine|story|continuation|opening|opening-audio|chat|audio|characters|staging)\.js$/.test(relative)||/^assets\/[a-zA-Z0-9_./-]+$/.test(relative);
   const target=path.resolve(root,relative);
   if(!publicFile || !target.startsWith(root+path.sep) || relative.split('/').includes('..')) return send(res,404,{error:'Not found'});
   try {const bytes=await readFile(target);res.writeHead(200,{'Content-Type':mime[path.extname(target)]||'application/octet-stream'});res.end(req.method==='HEAD'?undefined:bytes);}

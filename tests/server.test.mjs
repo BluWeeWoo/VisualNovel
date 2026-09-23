@@ -13,6 +13,9 @@ test('Server serves game but protects secrets and spoiler documents; offline API
   try {
     assert.equal((await fetch(base)).status,200);
     assert.equal((await fetch(base+'/src/story.js')).status,200);
+    for(const [file,type] of [['/assets/audio/soundtrack/01-coming-home.mp3','audio/mpeg'],['/assets/audio/porch/hammer-and-seaside-outdoors.wav','audio/wav']]){
+      const response=await fetch(base+file,{method:'HEAD'});assert.equal(response.status,200);assert.equal(response.headers.get('content-type'),type);
+    }
     for(const file of ['/src/opening.js','/src/opening-audio.js']){
       const response=await fetch(base+file);assert.equal(response.status,200);
       assert.match(response.headers.get('content-type'),/javascript/);

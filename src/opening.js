@@ -7,101 +7,101 @@ const scene = (place, title, text, end = {}) => ({place, time:'day', title,
 const option=(text,next,set)=>({text,next,set});
 export const opening = {
 journey:scene('bus','01 / The road back',`
-Eight hours on a bus, including a stopover, and I’ve run out of comfortable ways to sit.
-I shift my knee away from the seat in front of me. The window rattles beside my head.
-Every summer, we used to take this road.
-Then one summer, I didn’t.
-After that, it became easier to say “next year.”
-More than four years of next year.
-The sea appears between two buildings. I lean toward the window before I mean to.
-There. Saint Luis.
-Small fishing boats crowd the bay. Along the water, the baywalk bends out of sight.
-Lola used to take us there in the afternoons. Me on one side. Rowan on the other.
-Usually arguing about something that mattered enormously for about ten minutes.
+It’s been eight hours since we left the city, including the stopover. I can’t get comfortable anymore.
+I move my knee away from the seat in front of me. The window keeps rattling beside my head.
+I used to come to Saint Luis every summer.
+Then I stopped visiting.
+I kept telling myself I’d come back the next year.
+More than four years have passed since my last visit.
+The sea appears between two buildings. I lean closer to the window to get a better look.
+I’m finally back in Saint Luis.
+There are small fishing boats in the bay. I can see the old baywalk along the shore.
+Lola used to take Rowan and me for walks there in the afternoons.
+Rowan and I would argue over little things, then forget about them a few minutes later.
 You|Hay. I wonder how he’s been.
-I’m smiling. It takes me a moment to notice.
-Then another thought catches up.
+Thinking about him makes me smile.
+Then I remember Lola’s funeral.
 He was probably at the funeral.
-Two years ago. Lola died during finals week.
-I stayed in the city. Took my exams. Told myself I couldn’t afford to miss them.
-I still don’t know how to explain that without hearing what it sounds like.
-Her grandchild didn’t come.
-I press my thumb against the seam of my bag.
-My family had spent years telling me how much depended on doing well.
-When they made me leave Saint Luis with them, I hadn’t wanted to go. I wanted to stay here. With her.
-And they left too.
-The thought comes quickly. Meanly. It doesn’t make me feel any better.
-Now I’m finally taking a summer for myself, and somehow that’s wrong too.
-You|Can I do one thing without—
-I stop. The wind lifts the hair from my forehead.
-I came here because I was tired.
-Of college. Of the last few weeks. Of having the same argument in my head long after everyone else had finished talking.
-Lola’s house needs cleaning. Probably repairs. Things I can actually do something about.
-Sweep a floor. Fix a window. Sleep.
-That was the plan.
+Two years ago, Lola died during finals week.
+I stayed in the city to take my exams. I thought missing them would put my studies at risk.
+I had a reason for staying, but I still feel guilty.
+I was her grandchild, and I wasn’t there.
+I hold my bag a little tighter.
+My family always put so much pressure on me to do well in school.
+They made me leave Saint Luis with them, even though I wanted to stay with Lola.
+They left her behind too. Why am I the only one who should feel bad?
+I know that’s unfair. Blaming them won’t change the fact that I missed her funeral.
+Now they’re upset with me for spending the summer here. I just wanted a break.
+You|Can I do anything without someone getting angry at me?
+I take a breath and turn toward the open window.
+I came here because I needed some rest.
+College has been exhausting. These past few weeks have been rough, and I keep thinking about the arguments with my family.
+Lola’s house needs cleaning, and a few things probably need fixing. I can help with that.
+I’ll clean up, do what repairs I can, and get some sleep.
+That’s all I planned to do this summer.
 I look back toward the baywalk.
-What would I even say to Rowan?
-Sorry I disappeared? Sorry I didn’t call?
-Sorry about—
+What am I going to say if I see Rowan?
+Sorry I stopped visiting? Sorry I never called?
+And how do I explain missing the funeral?
 Conductor|SAINT LUIS! SAINT LUIS!
-I jerk upright. Across the aisle, a sleeping passenger does the same.
+The shout makes me jump. It wakes the passenger across the aisle too.
 You|Grabe.
-At least I wasn’t the only one.
+At least I’m not the only one he scared.
 `,{next:'busBump',audio:'bus'}),
 busBump:scene('bus','A very good start',`
-Everyone seems to stand at once. After eight hours, I understand the urgency.
+Everyone gets up at once. After eight hours, we’re all ready to get off this bus.
 I reach for my bag.
-A shoulder hits mine. My hand slips off the seat.
+A man bumps into me. My hand slips off the seat, and I fall into the aisle.
 You|Aray!
-For a second, all I can do is sit in the aisle and stare at the strap still looped around my wrist.
+I sit on the floor for a moment. My hip hurts, and my bag is still caught around my wrist.
 Stranger|Sorry! Sorry. My son’s already getting off.
-He glances toward the front.
+He looks toward the front of the bus.
 Stranger|I need to catch him.
 `,{audio:'bus',choices:[option('“It’s fine. Go.”','bumpKind',{strangerResponse:'kind'}),option('Glare at him.','bumpGlare',{strangerResponse:'glare'}),option('“Watch where you’re going!”','bumpAngry',{strangerResponse:'angry'}),option('Say nothing.','bumpSilent',{strangerResponse:'silent'})]}),
 bumpKind:scene('bus','A very good start',`
 You|It’s fine. Go.
-It isn’t fine, exactly. My hip hurts. But he’s already looking past me.
+My hip still hurts, but he’s clearly in a hurry.
 Stranger|Thank you. Sorry again.
-He squeezes down the aisle.
+He hurries past the other passengers toward the exit.
 `,{audio:'bus',next:'wallet'}),
 bumpGlare:scene('bus','A very good start',`
-I look up at him. Then down at myself, still on the floor.
-He shifts awkwardly.
+I glare at him from the floor.
+He looks uncomfortable.
 Stranger|Sorry.
-He leaves before I decide whether I have anything to add.
+He leaves before I can say anything.
 `,{audio:'bus',next:'wallet'}),
 bumpAngry:scene('bus','A very good start',`
 You|Watch where you’re going!
-It comes out louder than I intended. The man flinches.
+I didn’t mean to shout that loudly. He looks startled.
 Stranger|Sorry, sorry.
 He turns toward the exit.
 `,{audio:'bus',next:'wallet'}),
 bumpSilent:scene('bus','A very good start',`
 I reach for the seat and pull myself up.
 Stranger|Sorry.
-I don’t answer. After a moment, he moves on.
+I don’t answer, so he walks away.
 `,{audio:'bus',next:'wallet'}),
 wallet:scene('bus','A very good start',`
-I brush my clothes down.
+I brush the dirt off my clothes.
 You|Great start.
-Bag. Phone—
-My hand goes to my back pocket. Then the other one.
-Nothing.
-I check the seat. Under it. The aisle.
+I check that I still have my bag and phone. Then I reach for my wallet.
+I check both back pockets.
+They’re empty.
+I search the seat, the floor underneath it, and the aisle.
 You|No. Come on.
 My wallet is gone.
 I look toward the exit. The man is gone too.
-Was there even a child?
+Did he take it when he bumped into me? Was there even a child with him?
 You|Shit.
 My cards and IDs are in my bag. I check them twice anyway.
 The wallet only had cash.
-Only the cash I was going to use to get home.
+But I needed that cash to pay for the ride to Lola’s house.
 Through the windshield, I can see the road toward town.
-The nearest place to withdraw money is back that way. Lola’s house is in the other direction.
+The nearest ATM is in town, too far to walk with my bag. Lola’s house is the other way.
 You|Napakamalas naman.
-I stand there for a moment, gripping my bag.
-Then I remember. Some buses take Santiago Street.
-Some don’t.
+I hold onto my bag and try to think of what to do.
+Then I remember that some buses pass through Santiago Street, near Lola’s house.
+Maybe this one does. I should ask.
 `,{audio:'bus',next:'driver'}),
 driver:scene('bus','A small kindness',`
 You|Manong? Excuse me po.
@@ -109,26 +109,26 @@ The driver looks over.
 You|Dadaan po ba kayo sa Santiago Street?
 Driver|Oo. Doon ka bababa?
 You|Opo.
-My shoulders loosen.
+I feel a little better. At least the bus goes where I need to go.
 You|Thank you po.
-Then I look at the conductor’s ticket stack.
-Farther along the route. An extra fare. Of course.
-For one embarrassing second, I consider getting off very quickly and hoping nobody stops me.
+Then I notice the tickets in the conductor’s hand.
+Will I have to pay extra to stay on? I don’t have any cash left.
+I briefly think about getting off before they ask me to pay. But then I’d still be stuck here.
 You|May dagdag po ba? Kasi—
 Driver|Upo ka na. Hindi na kita sisingilin.
-I hesitate. He nods toward the aisle.
+Before I can explain, he points toward where I fell.
 Driver|Nakita kong nabangga ka. May nawala?
 You|Wallet ko po.
-The driver exhales through his nose.
+The driver sighs.
 Driver|Hay. Sige. Sa Santiago kita ibababa.
 You|Salamat po. Talaga.
-He gestures toward an empty seat.
+He points to an empty seat.
 Driver|Hawakang mabuti ’yang bag mo.
 You|Opo.
-I sit down. For a while, I just hold my bag against my knees.
-Outside, Saint Luis slips past the window.
-The day hasn’t improved much.
-But someone made a little room in it for me.
+I sit down and keep my bag on my lap as the bus starts moving again.
+I watch the houses pass by the window.
+I’m still upset about my wallet.
+But I’m grateful to the driver. Thanks to him, I can get to Lola’s house.
 `,{audio:'bus',next:'hill'}),
 hill:scene('saint-luis','The hill',`
 You|Dito na po. Thank you!

@@ -30,3 +30,7 @@ All new art has original PNG masters and optimized WebP delivery in `assets/cg/o
 ## Validation
 
 `tests/opening.test.mjs` traverses all 16 paths, round-trips every line through save/load and history refresh, checks choice persistence, verifies Rowan's face CG cannot precede the reveal, and confirms no promise/phone/trust unlock. The older chapter, sprite, CG, server and transition tests remain in the test suite.
+
+## Approved soundtrack update
+
+The synthesized-music directions above describe the earlier draft. Active playback now uses the eight user-approved tracks and scene cues in `SOUNDTRACK-PLACEMENT.md`. Supplied music replaces the procedural phrases; the original hammer mix and a separated outdoor bed provide the repair sounds. Existing audio is preserved.

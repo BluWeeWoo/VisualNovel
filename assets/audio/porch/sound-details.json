@@ -1,0 +1,18 @@
+{
+  "file": "C:\\Users\\prinz\\OneDrive\\\u30c9\u30ad\u30e5\u30e1\u30f3\u30c8\\Summer Visual Novel\\assets\\audio\\porch\\hammer-and-seaside-outdoors.wav",
+  "seconds": 24,
+  "sample_rate": 44100,
+  "channels": 2,
+  "peak_dbfs": -12.35,
+  "source": "Original procedural synthesis; no external samples; no music",
+  "hammer_times_seconds": [
+    2,
+    2.58,
+    3.18,
+    7,
+    7.65,
+    12.3,
+    12.93,
+    13.61
+  ]
+}

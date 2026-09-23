@@ -7,7 +7,11 @@
     "pier": "assets/backgrounds/pier-day.png",
     "bus": "assets/cg/opening/bus-interior.webp",
     "saint-luis": "assets/cg/opening/hill-houses.webp",
-    "repair": "assets/cg/opening/door-before.webp"
+    "repair": "assets/cg/opening/door-before.webp",
+    "manila-bedroom": "assets/cg/reunion/manila-bedroom.webp",
+    "manila-landing": "assets/cg/reunion/manila-landing.webp",
+    "manila-service": "assets/cg/reunion/manila-service.webp",
+    "reunion-porch": "assets/cg/reunion/reunion-porch.webp"
   },
   "portraits": {
     "Rowan": {
@@ -69,6 +73,18 @@
     "familiar-door": {
       "src": "assets/cg/opening/familiar-door.webp",
       "alt": "Rowan looks up in surprised recognition, kneeling beside Lola’s blue door with a lowered hammer."
+    },
+    "reunion-hug": {
+      "src": "assets/cg/reunion/reunion-hug.webp",
+      "alt": "Rowan reaches around the viewpoint in a gentle welcome-back embrace on Lola’s sunlit porch."
+    },
+    "hidden-letters": {
+      "src": "assets/cg/reunion/hidden-letters.webp",
+      "alt": "An open box of handwritten letters beside a single yellow envelope in the rainy Manila home."
+    },
+    "burning-letters": {
+      "src": "assets/cg/reunion/burning-letters.webp",
+      "alt": "Handwritten letters curl in a small charcoal brazier on the covered service patio at night."
     }
   }
 }

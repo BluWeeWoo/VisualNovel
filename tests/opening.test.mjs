@@ -5,7 +5,7 @@ import {opening} from '../src/opening.js';
 import {freshState,applyChoice,visibleLines,validSave,interpolate,refreshAuthoredHistory} from '../src/engine.js';
 import {cgAt,spriteAt} from '../src/staging.js';
 
-test('All 16 opening routes preserve choices and saves, stopping at recognition without later unlocks',()=>{
+test('All 16 opening routes preserve choices and saves, reach recognition without premature later unlocks',()=>{
  const covered=new Set();
  for(let response=0;response<4;response++)for(let grief=0;grief<2;grief++)for(let visit=0;visit<2;visit++){
   let s=freshState('River','they');const choices={busBump:response,hill:grief,otherDoor:visit};let ended=false;
@@ -17,7 +17,7 @@ test('All 16 opening routes preserve choices and saves, stopping at recognition 
     assert.equal(spriteAt(story,s),null,'No premature standing portrait');
     if(s.node!=='recognition')assert.notEqual(cgAt(story,s),'familiar-door');
    }
-   if(n.ending){assert.equal(s.node,'recognition');assert.equal(interpolate(n.lines.at(-1).text,s),'River?');assert.equal(cgAt(story,s),'familiar-door');ended=true;break;}
+   if(s.node==='recognition'){assert.equal(s.node,'recognition');assert.equal(interpolate(n.lines.at(-1).text,s),'River?');assert.equal(cgAt(story,s),'familiar-door');ended=true;break;}
    if(n.choices){const c=n.choices[choices[s.node]];s.history.push({id:`choice:${s.node}`,speaker:s.name,text:c.text});applyChoice(s,c);}
    else{s.node=n.next;s.line=0;}
   }

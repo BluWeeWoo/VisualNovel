@@ -1,0 +1,34 @@
+{
+  "supplied_tracks": [
+    {
+      "original": "The_Slow_Breath_of_Cedar.mp3",
+      "project_copy": "01-coming-home.mp3"
+    },
+    {
+      "original": "Morning_at_the_Edge_of_Sight.mp3",
+      "project_copy": "02-lola.mp3"
+    },
+    {
+      "original": "Inside City Bus Sound Effect Free Sound Clips City Sounds - Free Sounds Library (128k).mp3",
+      "project_copy": "03-bus.mp3"
+    },
+    {
+      "original": "Sunday_Morning_Strums.mp3",
+      "project_copy": "04-kindness.mp3"
+    },
+    {
+      "original": "First_Light_in_the_Orchard.mp3",
+      "project_copy": "05-neighborhood.mp3"
+    },
+    {
+      "original": "Sunday_Window_Light.mp3",
+      "project_copy": "06-neighbor-door.mp3"
+    },
+    {
+      "original": "Afternoon_in_Amber.mp3",
+      "project_copy": "08-reunion.mp3"
+    }
+  ],
+  "hammer": "../porch/hammer-and-seaside-outdoors.wav",
+  "outdoor_bed": "Original synthesis, separated from the same generator as the hammer effect."
+}
