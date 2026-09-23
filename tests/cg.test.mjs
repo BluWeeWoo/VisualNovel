@@ -5,7 +5,7 @@ import {cgAt,cgCues} from '../src/staging.js';
 import {story} from '../src/story.js';
 import {freshState,visibleLines} from '../src/engine.js';
 
-test('Five CGs appear only inside their authored cue windows without changing saves',()=>{
+test('All CGs appear only inside their authored cue windows without changing saves',()=>{
  const seen=new Set();
  for(const [node,scene] of Object.entries(story)){
   const state=freshState('Alex','they');state.node=node;
@@ -21,13 +21,13 @@ test('Five CGs appear only inside their authored cue windows without changing sa
    else assert.equal(cg,null);
   }
  }
- assert.equal(seen.size,5);
+ assert.equal(seen.size,8);
 });
-test('All five event illustrations are optimized WebP with accessible descriptions',()=>{
+test('All event illustrations are optimized WebP with accessible descriptions',()=>{
  const manifest=JSON.parse(readFileSync(new URL('../assets/manifest.json',import.meta.url)));
- assert.equal(Object.keys(manifest.cgs).length,5);
+ assert.equal(Object.keys(manifest.cgs).length,8);
  for(const cue of Object.values(cgCues)){
-  const asset=manifest.cgs[cue.key];assert.ok(asset.alt.includes('Rowan'));
+  const asset=manifest.cgs[cue.key];assert.ok(asset.alt.length>30);
   const path=new URL('../'+asset.src,import.meta.url);const data=readFileSync(path);
   assert.equal(data.toString('ascii',8,12),'WEBP');assert.ok(statSync(path).size<600_000,'Each CG stays under 600 KB');
  }

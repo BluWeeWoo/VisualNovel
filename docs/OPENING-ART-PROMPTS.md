@@ -1,0 +1,23 @@
+# Approved opening — image provenance
+
+## door-before
+
+Create a matching supporting 16:9 visual novel scene immediately BEFORE the reference reunion CG. Same Rowan, same cardigan brown low bun and same faded blue front door and Philippine wooden porch. Camera now behind him from outside porch approach: man kneeling at front door with BACK fully toward viewer, face COMPLETELY HIDDEN, no eye or facial profile, head angled down toward repair. Tool in hand, screwdriver beside knee. Wider composition with shaded porch, tropical leaves, cream weathered wall. Match reference hand-drawn anime brown textured lines and muted shading, not photorealistic. This must conceal Rowan's identity until the next shot. No text or UI.
+
+## bus-interior
+
+Create a supporting 16:9 hand-drawn anime visual novel background matching reference image's textured muted illustrated style. Inside a modest Philippine provincial bus, camera from seated passenger toward front aisle and driver area. Worn blue-gray fabric seats, open sliding side windows, overhead luggage rails, late-afternoon light. Subtle anonymous distant driver/conductor silhouettes only, no identifiable faces or protagonist. Outside windows soft tropical roadside glimpses, avoid revealing whole sea bay. Brown textured pencil lines, soft watercolor shading, cozy subdued palette. Not photorealistic or 3D. No text or UI.
+
+Generated with the built-in image-generation tool. Rowan uses the user's original design reference. Original sprites and CGs remain untouched. New PNG masters and optimized WebP delivery files live in `assets/cg/opening/`.
+
+## way-back
+
+Use case: illustration-story. Create a polished wide 16:9 visual novel event background, The Way Back. View from inside a modest Philippine provincial bus through its open side window toward Saint Luis, a fictional small fishing town in the Philippines. A strip of worn bus window frame and muted seat edge foreground; beyond it a sunlit bay with small Filipino outrigger fishing boats, modest coastal houses and a simple concrete baywalk. Warm late afternoon, soft sea blues, linen cream, muted olive and wood brown. Hand-drawn anime environment, textured brown pencil lines, soft watercolor shading, restrained detail. Emotional warm homecoming. No visible protagonist, no close people, no text, logos or interface. Compose important bay in upper two thirds; full-bleed illustration.
+
+## hill-houses
+
+Use case: illustration-story. Create a polished wide 16:9 visual novel CG The Hill Between Our Houses. Eye-level view walking up a modest gently sloped path in fictional Saint Luis, a small fishing town in the Philippines. Two familiar modest homes opposite each other on upper path: Lola's aged cream timber and plaster house with small shaded wooden porch and faded blue wooden front door to the right; Sanchez family's pale sage house with simple porch and closed wooden front door to left. Corrugated metal roofs, tropical leaves, electric wires discreetly overhead, glimpse of sea below. Believable lived-in Philippine neighborhood, not European tourist village, not luxurious resort. No people. Warm afternoon, muted colors, textured brown pencil linework and soft watercolor anime shading, cozy and quietly melancholy. No text. Important houses within center safe framing, bottom quarter simple path for dialogue overlay.
+
+## familiar-door
+
+Use case: illustration-story. Reference image is identity/style reference for Rowan only, NOT a scene to copy. Create a premium polished 16:9 full-screen visual novel first reunion CG. Rowan aged23 kneels repairing the faded blue wooden front door on a modest old Philippine coastal home's shaded wooden porch, looking up toward the unseen protagonist in sudden recognition. His expression surprised and unguarded, gently widened blue eyes, SMALL softly parted mouth, no wide mouth, no smirk or blush exaggeration. Preserve reference facial proportions, brown tousled hair in low tied bun, earrings, gray cardigan with small pale dog and bone doodles over pale gray crewneck. No book. One hand safely lowers a hammer by his knee; screwdriver rests on porch beside loosened door hardware, believable anatomy and tools. Warm reflected afternoon light touches face, cooler porch shade, foliage and muted plaster wall. Delicate textured brown anime linework, soft shading, subdued reference palette. Character center, head entirely in upper-middle safe area y20-48 percent so dialogue bottom doesn't cover it. Medium wide framing includes kneeling body, doorway and tools. Face is focal point; avoid extreme close-up, photorealism, 3D, any text/UI, extra people.

@@ -8,7 +8,7 @@ import {freshState,visibleLines,refreshAuthoredHistory,validSave} from '../src/e
 import {expressions,spriteAt,directions} from '../src/staging.js';
 test('Both characters are 23; Rowan is he/him and player choices remain available',()=>{
  assert.equal(rowan.age,23);assert.equal(protagonistAge,23);assert.equal(character.pronouns,'he/him');assert.equal(character.age,23);
- assert.equal(rowan.timeline.departureAge+rowan.timeline.yearsApart,23);
+ assert.equal(rowan.timeline.lastVisit,'more than four years ago');assert.equal(rowan.timeline.lolaDiedYearsAgo,2);
  for(const p of ['he','she','they'])assert.equal(freshState('Alex',p).pronouns,p);
  const prose=Object.values(story).flatMap(n=>n.lines).map(l=>l.text).join(' ');
  assert.doesNotMatch(prose,/twenty-five|twenty-six|were he|He charge|he have|he are/);

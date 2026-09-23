@@ -15,7 +15,7 @@ export const promises = [
 ];
 export function freshState(name = 'Alex', pronouns = 'they') {
   return { version: VERSION, name: name.trim().slice(0, 24) || 'Alex', pronouns,
-    node: 'arrival', line: 0, flags: {}, history: [], chat: [], chatTurns: 0,
+    node: 'journey', line: 0, flags: {}, history: [], chat: [], chatTurns: 0,
     chatDone: false, promiseFound: false, sunrise: 'unstarted', milestone: 'Reacquainted',
     memories: [], completed: false, startedAt: Date.now() };
 }

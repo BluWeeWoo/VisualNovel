@@ -1,6 +1,6 @@
 # Our Summer, Unfinished
 
-A playable, original visual novel opening about returning to a seaside guesthouse and a childhood friend. Chapter one is complete; the rest of the summer is outlined, not yet implemented.
+New games play the approved PDF adaptation: a college-exhausted MC returns to Saint Luis, Philippines, through the first reunion with Rowan. The revised section deliberately ends at his recognition. Choose **Start a new summer** to read it; Continue restores your current save. Existing saves and the older chapter draft remain intact, but those later scenes have not yet been adapted to the new continuity.
 
 ## Play
 
@@ -11,7 +11,7 @@ A playable, original visual novel opening about returning to a seaside guesthous
 
 Use the local address consistently: browser storage for `localhost` and `127.0.0.1` is separate. Do not open index.html directly; browser modules and the optional server adapter need the local server. The server listens only on this computer, not the network.
 
-## What is playable
+## Earlier chapter draft features (retained for existing saves)
 
 - A complete first day: reunion, room sorting, three childhood-memory choices, the promise list, chip-shop outing, an optional pier walk, a quiet grief scene, sunrise planning, exchanged numbers, limited nighttime texting, and an authored closing hook.
 - About **3,600–3,800 words per route**, approximately **20–30 minutes** with interaction. Reading speed varies. There is no forced delay or timed choice.
@@ -29,7 +29,7 @@ Use the local address consistently: browser storage for `localhost` and `127.0.0
 | --- | --- |
 | Click dialogue / Continue | Reveal text, then advance |
 | Space or Enter | Reveal / advance |
-| 1, 2, 3 | Select the corresponding visible choice |
+| 1, 2, 3, 4 | Select the corresponding visible choice |
 | H / P / S | History / promise list / save and load |
 | Tab / Shift+Tab | Move between controls |
 | Escape | Close a panel |
@@ -60,3 +60,7 @@ The engine uses native browser modules, HTML/CSS, and a small Node HTTP server. 
 - `docs/QA.md`: verification and remaining limitations.
 
 Rowan’s official illustration is user-created. Additional sprites and backgrounds were generated with the built-in image tool from that reference. The writing, interface, and synthesized sound are original to this project. No third-party image, music, font download, or copied character design is included. Emotional inspiration does not imply an affiliation with *Our Life: Beginnings & Always*.
+
+## Approved PDF opening
+
+See `docs/OPENING-DIRECTIONS.md` for scene/audio direction and `docs/OPENING-ART-PROMPTS.md` for generation prompts. The three new CGs and two supporting backgrounds are in `assets/cg/opening/`, with PNG masters and optimized WebP delivery. Audio is original procedural ambience, simple instrumental phrases, and subtle knocks, controlled by Settings; no recorded voice acting is included. No AI configuration is needed for this opening, and phone chat stays locked until a later authored scene.

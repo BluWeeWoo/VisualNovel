@@ -54,7 +54,7 @@ export const server = http.createServer(async(req,res)=>{
   let pathname;
   try {pathname=decodeURIComponent(url.pathname);} catch{return send(res,400,{error:'Invalid path'});}
   const relative=pathname==='/'?'index.html':pathname.slice(1);
-  const publicFile=relative==='index.html'||relative==='styles.css'||/^src\/(app|engine|story|chat|audio|characters|staging)\.js$/.test(relative)||/^assets\/[a-zA-Z0-9_./-]+$/.test(relative);
+  const publicFile=relative==='index.html'||relative==='styles.css'||/^src\/(app|engine|story|opening|opening-audio|chat|audio|characters|staging)\.js$/.test(relative)||/^assets\/[a-zA-Z0-9_./-]+$/.test(relative);
   const target=path.resolve(root,relative);
   if(!publicFile || !target.startsWith(root+path.sep) || relative.split('/').includes('..')) return send(res,404,{error:'Not found'});
   try {const bytes=await readFile(target);res.writeHead(200,{'Content-Type':mime[path.extname(target)]||'application/octet-stream'});res.end(req.method==='HEAD'?undefined:bytes);}
@@ -64,3 +64,4 @@ if(process.argv[1] && path.resolve(process.argv[1])===fileURLToPath(import.meta.
   server.listen(port,'127.0.0.1',()=>console.log(`Our Summer, Unfinished is ready at http://127.0.0.1:${port}\nKeep this window open while playing. Press Ctrl+C to stop.`));
   server.on('error',e=>{console.error(e.code==='EADDRINUSE'?`Port ${port} is already in use. The game may already be running.`:e.message);process.exitCode=1;});
 }
+

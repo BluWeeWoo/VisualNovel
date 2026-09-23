@@ -4,7 +4,10 @@
     "living": "assets/backgrounds/living-illustrated.png",
     "bedroom": "assets/backgrounds/bedroom-illustrated.png",
     "street": "assets/backgrounds/street-illustrated.png",
-    "pier": "assets/backgrounds/pier-day.png"
+    "pier": "assets/backgrounds/pier-day.png",
+    "bus": "assets/cg/opening/bus-interior.webp",
+    "saint-luis": "assets/cg/opening/hill-houses.webp",
+    "repair": "assets/cg/opening/door-before.webp"
   },
   "portraits": {
     "Rowan": {
@@ -54,6 +57,18 @@
     "beginning": {
       "src": "assets/cg/beginning.webp",
       "alt": "Rowan looks toward you with a hopeful smile over the promise list, planning tomorrow together."
+    },
+    "way-back": {
+      "src": "assets/cg/opening/way-back.webp",
+      "alt": "The bay and fishing boats of Saint Luis seen through a bus window."
+    },
+    "hill-houses": {
+      "src": "assets/cg/opening/hill-houses.webp",
+      "alt": "Lola’s blue-doored house and the Sanchez home above the sea."
+    },
+    "familiar-door": {
+      "src": "assets/cg/opening/familiar-door.webp",
+      "alt": "Rowan looks up in surprised recognition, kneeling beside Lola’s blue door with a lowered hammer."
     }
   }
 }

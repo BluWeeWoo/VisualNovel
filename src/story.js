@@ -1,3 +1,4 @@
+import {opening} from './opening.js';
 // Authored story only. No AI output can change this graph or its relationship flags.
 const lines = text => text.trim().split('\n').filter(Boolean).map(row => {
   const i = row.indexOf('|');
@@ -443,3 +444,5 @@ story.end.lines.unshift(
   {speaker:'',text:'You leave the book beside your small treasure, open to the first page. Some things deserve to be said with a person in the room.',if:['hook','inperson']},
   {speaker:'',text:'On a clean sheet you write: “I’d like to start saving you a bit, too.” Beneath it, your first entry: Today, Rowan lost a chip and found a fourth chord.',if:['hook','reciprocity']}
 );
+// Keep legacy IDs intact for saved games, but new games use the approved PDF opening.
+Object.assign(story, opening);

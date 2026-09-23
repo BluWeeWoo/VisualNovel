@@ -2,6 +2,11 @@
 export const expressions=['neutral','smile','playful','embarrassed','concerned','sad','surprised'];
 // Event illustrations are presentation only: no story, save or relationship mutations.
 export const cgCues={
+ journey:{key:'way-back',from:'The sea appears',until:'SAINT LUIS!'},
+ hill:{key:'hill-houses',from:'I can see his house'},
+ hillCry:{key:'hill-houses',from:'I put my bag down'},
+ hillHold:{key:'hill-houses',from:'I look down at my shoes'},
+ recognition:{key:'familiar-door',from:'Brown hair'},
  arrival:{key:'reunion',from:'Rowan stands on the porch',until:'What are we doing?'},
  list:{key:'promises',from:'The heading says'},
  gull:{key:'laughter',from:'You relocate',until:'His hands have small marks'},

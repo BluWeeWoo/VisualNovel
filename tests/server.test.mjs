@@ -13,6 +13,10 @@ test('Server serves game but protects secrets and spoiler documents; offline API
   try {
     assert.equal((await fetch(base)).status,200);
     assert.equal((await fetch(base+'/src/story.js')).status,200);
+    for(const file of ['/src/opening.js','/src/opening-audio.js']){
+      const response=await fetch(base+file);assert.equal(response.status,200);
+      assert.match(response.headers.get('content-type'),/javascript/);
+    }
     for(const file of ['/.env','/.env.example','/server.mjs','/docs/STORY-OUTLINE-SPOILERS.md','/src/provider-policy.js','/package.json','/assets/../../.env'])assert.equal((await fetch(base+file)).status,404);
     assert.deepEqual(await(await fetch(base+'/api/config')).json(),{available:false,provider:null});
     assert.equal((await fetch(base+'/api/chat',{method:'POST',headers:{Origin:'https://unrelated.example'},body:'{}'})).status,403);

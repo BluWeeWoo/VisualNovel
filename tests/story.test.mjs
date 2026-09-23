@@ -7,7 +7,7 @@ import {scriptedReply} from '../src/chat.js';
 import {normalizeContext,buildProviderRequest,guardReply} from '../src/provider-policy.js';
 
 function play(overrides={}, defaultChoice=0) {
-  const s=freshState('Taylor','they'),seen=[];let words=0;
+  const s=freshState('Taylor','they'),seen=[];s.node='arrival';let words=0;
   for(let i=0;i<80;i++){
     const node=story[s.node];assert.ok(node,`Missing ${s.node}`);seen.push(s.node);Object.assign(s,node.enter||{});
     for(const [j,line] of visibleLines(node,s).entries()){
@@ -25,13 +25,13 @@ test('All nodes reachable; all exits exist; no story cycles',()=>{
   const visited=new Set();
   function walk(id,ancestors=[]){assert.ok(story[id],id);assert.ok(!ancestors.includes(id),`Cycle: ${id}`);if(visited.has(id))return;visited.add(id);
     const n=story[id];assert.ok(n.lines.length);assert.ok(n.ending||n.next||n.choices);for(const next of [...(n.next?[n.next]:[]),...(n.choices||[]).map(c=>c.next)])walk(next,[...ancestors,id]);
-  }walk('arrival');assert.equal(visited.size,Object.keys(story).length);
+  }walk('arrival');walk('journey');assert.equal(visited.size,Object.keys(story).length);
 });
 test('Every branch renders, persists, and reaches the ending',()=>{
   const covered=new Set();
   for(let route=0;route<3;route++){const {seen,s,words}=play({},route);seen.forEach(n=>covered.add(n));assert.equal(s.completed,true);assert.equal(s.sunrise,'planned');assert.equal(s.promiseFound,true);assert.equal(s.phoneUnlocked,true);assert.equal(s.milestone,'Familiar');assert.ok(words>3500);}
-  assert.equal(covered.size,Object.keys(story).length);
-  for(const [id,n] of Object.entries(story))for(let c=0;c<(n.choices||[]).length;c++){const {s}=play({[id]:c});assert.equal(s.completed,true);}
+  assert.equal(covered.size,Object.values(story).filter(n=>!n.opening).length);
+  for(const [id,n] of Object.entries(story).filter(([,n])=>!n.opening))for(let c=0;c<(n.choices||[]).length;c++){const {s}=play({[id]:c});assert.equal(s.completed,true);}
 });
 test('Boundary, respectful disagreement, friendship and skipped detour cost no trust',()=>{
   const {s}=play({arrival:2,list:2,gull:1,optional:1,numbers:0});
