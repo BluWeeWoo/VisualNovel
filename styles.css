@@ -89,6 +89,9 @@
 /* Standing sprites continue below the dialogue; CGs use the whole uncropped frame. */
 .scene-art .character-stage{top:11svh;height:104svh;width:69.333svh;max-width:none;aspect-ratio:2/3}
 .scene-art .character-stage img{object-fit:contain;object-position:center top}
+/* Full-body Rowan uses a smaller figure within the same canvas than the old
+   knee-cropped art. Compensate only on the story stage, not in the gallery. */
+.scene-art .character-stage:has(img[src*="/rowan-upgraded/"]){top:9.4svh;height:161.2svh;width:107.467svh}
 .scene-art .event-cg{object-fit:contain;object-position:center;padding:8svh 0 10svh;background:#303540}
 .cast-art img{aspect-ratio:2/3}
 @media(max-width:650px){

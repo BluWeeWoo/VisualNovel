@@ -15,16 +15,14 @@
   },
   "portraits": {
     "Rowan": {
-      "neutral": "assets/portraits/rowan-upgraded/neutral.png",
-      "smile": "assets/portraits/rowan-upgraded/smile.png",
-      "annoyed": "assets/portraits/rowan-upgraded/annoyed.png",
-      "embarrassed": "assets/portraits/rowan-upgraded/embarrassed.png",
-      "sad": "assets/portraits/rowan-upgraded/sad.png",
-      "surprised": "assets/portraits/rowan-upgraded/surprised.png",
-      "confused": "assets/portraits/rowan-upgraded/confused.png",
-      "playful": "assets/portraits/rowan-upgraded/playful.png",
-      "concerned": "assets/portraits/rowan-upgraded/concerned.png",
-      "book": "assets/portraits/rowan-upgraded/book.png"
+      "neutral": "assets/portraits/rowan-standing/neutral.png",
+      "smile": "assets/portraits/rowan-standing/smile.png",
+      "playful": "assets/portraits/rowan-standing/playful-soft.png",
+      "embarrassed": "assets/portraits/rowan-standing/embarrassed.png",
+      "concerned": "assets/portraits/rowan-standing/concerned.png",
+      "sad": "assets/portraits/rowan-standing/sad.png",
+      "surprised": "assets/portraits/rowan-standing/surprised.png",
+      "book": "assets/portraits/rowan-standing/book.png"
     }
   },
   "portraitLabel": "",

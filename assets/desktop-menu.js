@@ -1,6 +1,6 @@
 // Desktop title composition; existing action handlers retain their behavior.
 export function desktopMenu(resume){
-  const buttons=[...(resume?[['continue','Continue your summer'],['new','Start a new summer']]:[['new','Begin your summer']]),['saves','Saved moments'],['settings','Settings'],['cast','Rowan'],['about','About']];
+  const buttons=[...(resume?[['continue','Continue your summer'],['new','Start a new summer']]:[['new','Begin your summer']]),['saves','Saved moments'],['settings','Settings'],['love-interests','Love Interests'],['about','About']];
   return `<main class="seaglass-menu">
     <div class="seaglass-scene" aria-hidden="true"></div>
     <div class="summer-breeze" aria-hidden="true">${Array.from({length:7},(_,i)=>`<i style="--i:${i}"></i>`).join('')}</div>

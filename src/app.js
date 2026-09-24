@@ -7,6 +7,7 @@ import {scriptedReply, requestReply, suggestions} from './chat.js';
 import {setAudio} from './audio.js';
 import {setOpeningAudio, openingAudioCue, menuAudioCue} from './opening-audio.js';
 import {desktopMenu} from '../assets/desktop-menu.js';
+import {galleryUnlocks,mountGallery} from '../assets/love-interests.js';
 
 const $=s=>document.querySelector(s);
 const app=$('#app');
@@ -23,12 +24,20 @@ function write(key,value){try{localStorage.setItem(storageKey+key,JSON.stringify
 function toast(text){$('#toast').textContent=text;$('#toast').classList.add('show');setTimeout(()=>$('#toast').classList.remove('show'),3800);}
 function stopTyping(){clearInterval(timer);timer=null;typing=false;}
 function autoSave(){if(state)write('-auto',{date:Date.now(),state});}
+function syncGallery(){
+  const previous=read('-gallery');
+  const states=[state,...['-auto','-slot1','-slot2','-slot3'].map(key=>read(key)?.state)].filter(s=>validSave(s,story));
+  const unlocked=galleryUnlocks(story,manifest,states,previous?.unlocked);
+  if(JSON.stringify(previous?.unlocked)!==JSON.stringify(unlocked))write('-gallery',{version:1,unlocked});
+  return unlocked;
+}
 function enter(id){state.node=id;state.line=0;Object.assign(state,story[id].enter||{});autoSave();}
 function nodeLines(){return visibleLines(story[state.node],state);}
 function record(line){
   const text=interpolate(line.text,state);
   const id=`${state.node}:${state.line}`;
   if(!state.history.some(h=>h.id===id))state.history.push({id,speaker:line.speaker||'',text});
+  if(cgAt(story,state))syncGallery();
 }
 function start(name,pronouns){state=freshState(name,pronouns);screen='game';modal=null;enter(state.node);render();}
 function load(slot){presentedPhone='';const saved=read(slot);if(!validSave(saved?.state,story)){toast('This save is missing or incompatible.');return;}
@@ -78,7 +87,7 @@ function title(){
     <p class="tagline">An old house. Five promises.<br>Someone who remembers.</p>
     <div class="title-actions"><button class="primary" data-action="${resume?'continue':'new'}">${resume?'Continue your summer':'Begin your summer'} <span aria-hidden="true">↗</span></button>
     ${resume?'<button class="text-button" data-action="new">Start a new summer</button>':''}
-    <div class="title-secondary"><button data-action="saves">Saved moments</button><span>·</span><button data-action="settings">Settings</button><span>·</span><button data-action="cast">Rowan</button><span>·</span><button data-action="about">About</button></div></div>
+    <div class="title-secondary"><button data-action="saves">Saved moments</button><span>·</span><button data-action="settings">Settings</button><span>·</span><button data-action="love-interests">Love Interests</button><span>·</span><button data-action="about">About</button></div></div>
     <p class="content-note">A gentle story about returning, remembering, and finding room.<br>Includes bereavement, a difficult home life, and being away.</p></section>
     <aside class="postcard" aria-hidden="true"><span>Summerhouse, late June</span><small>the blue door still sticks a little</small></aside>
     <footer class="title-footer"><span>01 <i></i> THE HOUSE WITH THE BLUE DOOR</span><span>Take your time. There’s no wrong way to feel.</span><button data-action="accessibility">Reading & accessibility ↗</button></footer></main>`;
@@ -166,11 +175,11 @@ function renderGame(){
 let previousFocus;
 let presentedPhone='',phonePage='contact';
 function openModal(kind){
-  previousFocus=document.activeElement;
+  if(!document.activeElement?.closest('.modal-layer'))previousFocus=document.activeElement;
   if(typing){stopTyping();$('#dialogue-text').textContent=fullText;}
   modal=kind;drawModal();
 }
-function closeModal(){if(busy)return;const layer=$('.modal-layer');if(layer?.querySelector('.sg-device,.phone-modal')&&settings.motion&&!matchMedia('(prefers-reduced-motion: reduce)').matches){layer.style.pointerEvents='none';layer.animate([{opacity:1},{opacity:0}],{duration:160}).finished.catch(()=>{}).then(()=>layer.remove());}else layer?.remove();modal=null;error='';if(screen==='title'&&Boolean($('.seaglass-menu'))!==matchMedia('(min-width: 1051px)').matches){render();return;}if(previousFocus?.isConnected)previousFocus.focus();}
+function closeModal(){if(busy)return;const layer=$('.modal-layer');if(layer?.querySelector('.sg-device,.phone-modal')&&settings.motion&&!matchMedia('(prefers-reduced-motion: reduce)').matches){layer.style.pointerEvents='none';layer.animate([{opacity:1},{opacity:0}],{duration:160}).finished.catch(()=>{}).then(()=>layer.remove());}else layer?.remove();modal=null;error='';if(screen==='title'&&Boolean($('.seaglass-menu'))!==matchMedia('(min-width: 1051px)').matches){render();return;}if(previousFocus?.isConnected&&!previousFocus.closest('.modal-layer'))previousFocus.focus();else $('.next-button')?.focus();}
 function shell(title,body,extra=''){
   $('.modal-layer')?.remove();
   const layer=document.createElement('div');layer.className='modal-layer';
@@ -187,6 +196,11 @@ function savePreview(saved){
   return `<div class="save-preview" role="img" aria-label="${escape(node.title)} — scene preview"><img class="save-background ${escape(node.time)} ${node.place.startsWith('manila-')?'painted-light':''}" src="${escape(background)}" alt="" loading="lazy">${cg?`<img class="save-cg" src="${escape(cg.src)}" alt="" loading="lazy">`:portrait?`<img class="save-portrait" src="${escape(portrait)}" alt="" loading="lazy">`:''}<div class="save-dialogue" aria-hidden="true"><b>${escape(line?.speaker==='You'?saved.name:line?.speaker||'')}</b><span>${escape(line?interpolate(line.text,saved):'')}</span></div></div>`;
 }
 function drawModal(){
+  if(modal==='love-interests'){
+    shell('Love Interests','','li-modal');
+    mountGallery($('.li-modal'),{manifest,unlocks:syncGallery(),onClose:closeModal});
+    return;
+  }
   if(modal==='cast'){
     shell('Rowan',`<p class="cast-bio">${rowan.age} · ${rowan.pronouns} · your childhood friend<br><span>Warm, a little guarded, and still terrible at defending his chips.</span></p><div class="cast-art" style="background-image:url('${escape(manifest.backgrounds.exterior)}')"><img id="cast-sprite" src="${escape(manifest.portraits.Rowan.neutral)}" alt="Rowan, neutral expression." width="1254" height="1254"></div><div class="cast-options" aria-label="Expression previews">${[...expressions,'book'].map(key=>`<button class="secondary" data-preview="${key}" aria-pressed="${key==='neutral'}">${{smile:'Warm smile',playful:'Teasing',embarrassed:'Blushing',sad:'Quiet grief',book:'With book',neutral:'Neutral',concerned:'Concerned',surprised:'Surprised'}[key]}</button>`).join('')}</div><div class="cast-locations" aria-label="Background previews">${Object.keys(manifest.backgrounds).map(key=>`<button class="text-button" data-location="${key}">${{exterior:'Guesthouse',living:'Living room',bedroom:'Bedroom',street:'Seaside street',pier:'Old pier'}[key]||key}</button>`).join('')}</div><p class="small-note">Official character design and original illustration by you. Additional expressions and backgrounds created from your reference.</p>`,'cast-modal');
     document.querySelectorAll('[data-preview]').forEach(button=>button.onclick=()=>{const key=button.dataset.preview;$('#cast-sprite').src=manifest.portraits.Rowan[key];$('#cast-sprite').alt=`Rowan, ${key} expression.`;document.querySelectorAll('[data-preview]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));});
@@ -231,7 +245,7 @@ function storyPhoneModal(){
   const content=phoneBody(phonePage,state,{typing:cue?.typing&&phonePage==='messages'});
   const nextButton=nextMessage?'<button class="sg-main-button" data-action="phone-next">Read next message →</button>':'';
   const existing=$('.sg-device');
-  if(existing){existing.querySelector('.sg-body').innerHTML=content+nextButton;bind(existing);}
+  if(existing){const activeAction=document.activeElement?.dataset.action;existing.querySelector('.sg-body').innerHTML=content+nextButton;bind(existing);const target=[...existing.querySelectorAll('[data-action]')].find(el=>el.dataset.action===activeAction);(target||existing.querySelector('[data-action=close]'))?.focus();}
   else shell('Your phone',`<div class="sg-body">${content}${nextButton}</div>`,'sg-device');
 }
 function phoneModal(){

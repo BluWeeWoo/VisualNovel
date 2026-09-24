@@ -34,10 +34,11 @@ test('Existing saves retain choices while old authored pronouns are refreshed',(
  const refreshed=refreshAuthoredHistory(structuredClone(s),story);assert.match(refreshed.history[0].text,/his sleeve/);assert.match(refreshed.history[1].text,/him a hug/);
  assert.equal(refreshed.line,7);assert.equal(refreshed.pronouns,'they');assert.deepEqual(refreshed.chat,s.chat);assert.deepEqual(refreshed.memories,s.memories);assert.ok(validSave(refreshed,story));
 });
-test('Eight sprite PNGs share canvas and RGBA transparency format',()=>{
+test('All ten approved sprite PNGs share canvas and RGBA transparency format',()=>{
  const manifest=JSON.parse(readFileSync(new URL('../assets/manifest.json',import.meta.url)));
  assert.equal(manifest.spriteCanvas.height/manifest.spriteCanvas.width,1.5,'Standing sprites use a portrait canvas');
- for(const key of [...expressions,'book']){
+ assert.equal(Object.keys(manifest.portraits.Rowan).length,10);
+ for(const key of Object.keys(manifest.portraits.Rowan)){
    const data=readFileSync(new URL('../'+manifest.portraits.Rowan[key],import.meta.url));
    assert.equal(data.toString('hex',0,8),'89504e470d0a1a0a');assert.equal(data.readUInt32BE(16),manifest.spriteCanvas.width);assert.equal(data.readUInt32BE(20),manifest.spriteCanvas.height);assert.equal(data[25],6,`${key} needs RGBA`);
  }
