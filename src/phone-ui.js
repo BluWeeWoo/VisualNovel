@@ -16,7 +16,7 @@ export function phoneCue(story,state){
  return null;
 }
 export function hasRowanContact(state){
- if(['rBedroom','rLanding','rPush','rQuiet','rLetters','rBurning'].includes(state?.node))return false;
+ if(['rLetterPromise','rBedroom','rLanding','rPush','rQuiet','rLetters','rBurning'].includes(state?.node))return false;
  return !!state&&(state.phoneUnlocked||state.history.some(h=>h.id.startsWith('rReturn:')||h.id.startsWith('rExchange:')&&h.text==='I reach for my phone.'||h.id.startsWith('numbers:')&&h.text.startsWith('You exchange phones.')));
 }
 export function authoredMessages(state){

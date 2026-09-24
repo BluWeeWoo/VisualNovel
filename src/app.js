@@ -1,6 +1,6 @@
 import {phoneCue,hasRowanContact,phoneBody,phoneIdentity} from './phone-ui.js';
 import {story} from './story.js';
-import {freshState, interpolate, applyChoice, validSave, visibleLines, promises, milestones, refreshAuthoredHistory} from './engine.js';
+import {freshState, interpolate, applyChoice, validSave, visibleLines, promises, milestones, refreshAuthoredHistory, migrateStorySave} from './engine.js';
 import {rowan, protagonistAge} from './characters.js';
 import {spriteAt, expressions, cgAt} from './staging.js';
 import {scriptedReply, requestReply, suggestions} from './chat.js';
@@ -19,7 +19,7 @@ let manifest={backgrounds:{},portraits:{}};
 let settings={speed:32, motion:!matchMedia('(prefers-reduced-motion: reduce)').matches, sound:false, volume:.35};
 try {settings={...settings,...JSON.parse(localStorage.getItem(storageKey+'-settings')||'{}')};}catch{}
 let storageAvailable=true;
-function read(key){try{return JSON.parse(localStorage.getItem(storageKey+key)||'null');}catch{return null;}}
+function read(key){try{const value=JSON.parse(localStorage.getItem(storageKey+key)||'null');if(value?.state)migrateStorySave(value.state,story);return value;}catch{return null;}}
 function write(key,value){try{localStorage.setItem(storageKey+key,JSON.stringify(value));return true;}catch{storageAvailable=false;toast('Storage is unavailable. Keep this tab open; saves cannot be retained.');return false;}}
 function toast(text){$('#toast').textContent=text;$('#toast').classList.add('show');setTimeout(()=>$('#toast').classList.remove('show'),3800);}
 function stopTyping(){clearInterval(timer);timer=null;typing=false;}
@@ -146,15 +146,15 @@ function renderGame(){
   const cue=phoneCue(story,state);
   const displayText=cue?.message?'A message from Rowan lights up your phone.':interpolate(line.text,state);
   const staging=spriteAt(story,state);
-  const portrait=staging&&manifest.portraits.Rowan?.[staging.key];
+  const portrait=staging&&manifest.portraits[staging.character||'Rowan']?.[staging.key];
   const cg=manifest.cgs?.[cgAt(story,state)];
   const gameHTML=`<main class="game-screen"><div class="scene-backdrops">${bg(node.place,node.time)}</div>
     <div class="scene-art" aria-label="Scene illustration">
-    ${cg?`<img class="event-cg" src="${escape(cg.src)}" width="1536" height="1024" alt="${escape(cg.alt)}" fetchpriority="high" decoding="async">`:portrait?`<aside class="character-stage ${node.time}" data-expression="${staging.expression}" data-pose="${staging.pose}"><img src="${escape(portrait)}" width="${manifest.spriteCanvas.width}" height="${manifest.spriteCanvas.height}" alt="Rowan, ${staging.expression}${staging.pose==='book'?', holding an illustrated book':''}." fetchpriority="high"></aside>`:''}
+    ${cg?`<img class="event-cg" src="${escape(cg.src)}" width="1536" height="1024" alt="${escape(cg.alt)}" fetchpriority="high" decoding="async">`:portrait?`<aside class="character-stage ${node.time}${node.childhood?' childhood':''}" data-expression="${staging.expression}" data-pose="${staging.pose}"><img src="${escape(portrait)}" width="${manifest.spriteCanvas.width}" height="${manifest.spriteCanvas.height}" alt="Rowan${node.childhood?', age eleven':''}, ${staging.expression}${staging.pose==='book'?', holding an illustrated book':''}." fetchpriority="high"></aside>`:''}
     </div>
     <div class="scene-bottom">
     <section class="dialogue-card ${line.speaker?'spoken':'narration'}" aria-label="Story dialogue">
-    <div class="dialogue-top"><span class="speaker">${escape(cue?.message?'PHONE':line.speaker==='You'?state.name:line.speaker||(node.continuation&&node.time==='night'?'MANILA · TWO YEARS EARLIER':'SUMMERHOUSE · DAY ONE'))}</span><span class="dialogue-ornament" aria-hidden="true">✳</span></div>
+    <div class="dialogue-top"><span class="speaker">${escape(cue?.message?'PHONE':line.speaker==='You'?state.name:line.speaker||(node.childhood?'SAINT LUIS · TWELVE YEARS EARLIER':node.continuation&&node.time==='night'?'MANILA · TWO YEARS EARLIER':'SUMMERHOUSE · DAY ONE'))}</span><span class="dialogue-ornament" aria-hidden="true">✳</span></div>
     <div class="dialogue-copy"><p class="dialogue-reserve" aria-hidden="true">${escape(displayText)}</p><p id="dialogue-text" aria-live="off"></p></div><span class="sr-only dialogue-status" role="status">${escape(cue?.message?displayText:(line.speaker?line.speaker+': ':'')+interpolate(line.text,state))}</span>
     <div class="dialogue-extras">${last&&node.choices?`<div class="choices" aria-label="Choose your response">${node.choices.map((c,i)=>`<button data-choice="${i}"><span class="choice-number">${i+1}</span>${escape(interpolate(c.text,state))}<span class="choice-arrow" aria-hidden="true">↗</span></button>`).join('')}</div>`:''}
     ${last&&node.phone?'<div class="phone-invitation"><p>A short late-night conversation · up to 4 messages<br><small>An early preview. Open conversations unlock at Close in future chapters.</small></p><button class="primary" data-action="phone">Open your phone ↗</button><button class="text-button" data-action="skip-chat">Save your words for morning</button></div>':''}
@@ -192,7 +192,7 @@ function savePreview(saved){
   const node=story[saved.node],line=visibleLines(node,saved)[saved.line];
   const background=manifest.backgroundVariants?.[node.place]?.[node.time]||manifest.backgrounds[node.place]||`assets/backgrounds/${node.place}.svg`;
   const cg=manifest.cgs?.[cgAt(story,saved)],sprite=spriteAt(story,saved);
-  const portrait=!cg&&sprite&&manifest.portraits.Rowan?.[sprite.key];
+  const portrait=!cg&&sprite&&manifest.portraits[sprite.character||'Rowan']?.[sprite.key];
   return `<div class="save-preview" role="img" aria-label="${escape(node.title)} — scene preview"><img class="save-background ${escape(node.time)} ${node.place.startsWith('manila-')?'painted-light':''}" src="${escape(background)}" alt="" loading="lazy">${cg?`<img class="save-cg" src="${escape(cg.src)}" alt="" loading="lazy">`:portrait?`<img class="save-portrait" src="${escape(portrait)}" alt="" loading="lazy">`:''}<div class="save-dialogue" aria-hidden="true"><b>${escape(line?.speaker==='You'?saved.name:line?.speaker||'')}</b><span>${escape(line?interpolate(line.text,saved):'')}</span></div></div>`;
 }
 function drawModal(){

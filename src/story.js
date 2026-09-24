@@ -11,7 +11,7 @@ export const story = {
 arrival: scene('exterior','day','01 / The house with the blue door', `
 The bus leaves you with a warm suitcase handle, a mouthful of salt air, and the uncomfortable suspicion that you have arrived on the wrong day of your own life.
 The timetable at the stop has changed. The sea has not. Beyond the rooftops, it keeps folding and unfolding itself, utterly occupied.
-At twenty-three, you expected returning to feel more like an arrival. Instead you stand outside the gate, looking for somewhere to put your hands. Eight years since you moved away at fifteen; the latch still sits at the same height.
+At twenty-three, you expected returning to feel more like an arrival. Instead you stand outside the gate, looking for somewhere to put your hands. Twelve years since you moved away at eleven; the latch still sits at the same height.
 Summerhouse. Your grandmother painted the name herself, then complained for seventeen years about the spacing of the letters.
 Someone has recently oiled the gate. It opens without the long, theatrical squeal you were preparing for. Somehow this is the first thing that hurts.
 There are six weeks until the handover. Six weeks to sort a house into things to keep, things to give away, things you cannot bear to decide about yet. Your return ticket waits in your email.
@@ -122,7 +122,7 @@ You|You could have applied for a promotion.
 Rowan|I preferred being someone the coastguard couldn’t prosecute.
 When you lift the photograph, a folded sheet slips out behind it. Green ink shows through the paper. You recognize the color before the words.
 You used to fight over that pen. It smelled of apples, theoretically. Mostly it smelled of a pen someone had put near an apple.
-The heading says BEFORE WE GET BORING. You were both twelve when you wrote it. Beneath it, in two competing styles of handwriting, is a list.
+The heading says BEFORE WE GET BORING. You were both eleven when you wrote it. Beneath it, in two competing styles of handwriting, is a list.
 You|Watch the sunrise from the old pier.
 Rowan|Perform a song in front of someone.
 You|Tell each other a secret. Take a trip with no planned destination.

@@ -2,6 +2,8 @@
 export const expressions=['neutral','smile','playful','embarrassed','concerned','sad','surprised'];
 // Event illustrations are presentation only: no story, save or relationship mutations.
 export const cgCues={
+ rLetterPromise:{key:'porch-before-letters',from:'I was eleven.'},
+ rYellowPromise:{key:'yellow-envelope-promise',from:'I’ll write first.',until:'He writes his name'},
  rGreeting:{key:'familiar-door',from:'He’s here'},
  rHug:{key:'reunion-hug',from:'He wraps'},
  rLetters:{key:'hidden-letters',from:'I lift the lid',until:'Mom pulls'},
@@ -53,7 +55,7 @@ export function spriteAt(story,state){
   const lines=node.lines.filter(l=>!l.if||state.flags[l.if[0]]===l.if[1]);
   let expression='neutral';
   for(let i=0;i<=state.line;i++)if(lines[i]?.expression)expression=lines[i].expression;
-  return {expression,pose:'ordinary',key:expression};
+  return {expression,pose:'ordinary',key:expression,...(node.childhood?{character:'RowanChild'}:{})};
  }
  if(!(state.node in defaults))return null;
  const lines=node.lines.filter(l=>!l.if||state.flags[l.if[0]]===l.if[1]);

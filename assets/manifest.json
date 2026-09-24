@@ -25,6 +25,14 @@
       "playful": "assets/portraits/rowan-upgraded/playful.png",
       "concerned": "assets/portraits/rowan-upgraded/concerned.png",
       "book": "assets/portraits/rowan-upgraded/book.png"
+    },
+    "RowanChild": {
+      "neutral": "assets/portraits/rowan-age-11/neutral.png",
+      "smile": "assets/portraits/rowan-age-11/smile.png",
+      "playful": "assets/portraits/rowan-age-11/playful.png",
+      "concerned": "assets/portraits/rowan-age-11/concerned.png",
+      "sad": "assets/portraits/rowan-age-11/sad.png",
+      "surprised": "assets/portraits/rowan-age-11/surprised.png"
     }
   },
   "portraitLabel": "",
@@ -70,7 +78,7 @@
     },
     "hill-houses": {
       "src": "assets/cg/opening/hill-houses.webp",
-      "alt": "Lola’s blue-doored house and the Sanchez home above the sea."
+      "alt": "Lola’s blue-doored house and Rowan’s home above the sea."
     },
     "familiar-door": {
       "src": "assets/cg/opening/familiar-door.webp",
@@ -87,6 +95,14 @@
     "burning-letters": {
       "src": "assets/cg/reunion/burning-letters.webp",
       "alt": "Handwritten letters curl in a small charcoal brazier on the covered service patio at night."
+    },
+    "porch-before-letters": {
+      "src": "assets/cg/reunion/porch-before-letters.webp",
+      "alt": "Eleven-year-old Rowan sits alone on Lola’s sunlit porch steps, quietly thinking about his friend leaving. No envelopes are present."
+    },
+    "yellow-envelope-promise": {
+      "src": "assets/cg/reunion/yellow-envelope-promise.webp",
+      "alt": "Young Rowan smiles toward his off-screen friend while holding a sunshine-yellow envelope on Lola’s porch."
     }
   }
 }

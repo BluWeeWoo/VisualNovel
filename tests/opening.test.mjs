@@ -30,7 +30,7 @@ test('All 16 opening routes preserve choices and saves, reach recognition withou
 
 test('Opening keeps PDF chronology, editable identity, and no invented resolution',()=>{
  const text=Object.values(opening).flatMap(n=>n.lines).map(l=>l.text).join(' ');
- assert.match(text,/Saint Luis/);assert.match(text,/More than four years/);assert.match(text,/Two years ago/);assert.match(text,/finals week/);
+ assert.match(text,/Saint Luis/);assert.match(text,/Twelve years have passed/);assert.match(text,/Two years ago/);assert.match(text,/finals week/);
  assert.doesNotMatch(text,/eight years|six weeks until|handover|sunrise promise/i);
  for(const pronouns of ['they','she','he']){const s=freshState('Kai',pronouns);assert.equal(s.pronouns,pronouns);assert.equal(interpolate(opening.recognition.lines.at(-1).text,s),'Kai?');}
 });

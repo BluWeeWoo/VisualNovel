@@ -6,12 +6,12 @@ import {freshState,applyChoice,visibleLines,validSave,interpolate} from '../src/
 import {cgAt,spriteAt,expressions} from '../src/staging.js';
 import {openingAudioCue,tracks} from '../src/opening-audio.js';
 
-test('All 864 continuation routes preserve boundaries, save positions and the authored ending',()=>{
+test('All 2592 continuation routes preserve boundaries, save positions and the authored ending',()=>{
  const covered=new Set();let routes=0;
- for(let greet=0;greet<4;greet++)for(let hug=0;hug<3;hug++)for(let tears=0;tears<2;tears++)for(let contact=0;contact<3;contact++)for(let family=0;family<2;family++)for(let repair=0;repair<3;repair++)for(let bags=0;bags<2;bags++){
+ for(let yellow=0;yellow<3;yellow++)for(let greet=0;greet<4;greet++)for(let hug=0;hug<3;hug++)for(let tears=0;tears<2;tears++)for(let contact=0;contact<3;contact++)for(let family=0;family<2;family++)for(let repair=0;repair<3;repair++)for(let bags=0;bags<2;bags++){
   const s=freshState('River','they');s.node='rGreeting';let finished=false,sawHug=false,sawLetters=false,sawBurn=false;
-  const selections={rGreeting:greet,rHugAsk:hug,rEmotion:tears,rContact:contact,rLanding:family,rReturn:repair,rBags:bags};
-  for(let step=0;step<40;step++){
+  const selections={rPorchEnvelopes:yellow,rGreeting:greet,rHugAsk:hug,rEmotion:tears,rContact:contact,rLanding:family,rReturn:repair,rBags:bags};
+  for(let step=0;step<50;step++){
    const node=story[s.node];covered.add(s.node);
    for(const [i,line] of visibleLines(node,s).entries()){
     s.line=i;const before=JSON.stringify(s),text=interpolate(line.text,s);assert.doesNotMatch(text,/\{name\}/);
@@ -29,7 +29,7 @@ test('All 864 continuation routes preserve boundaries, save positions and the au
   assert.ok(finished);assert.equal(sawHug,hug!==2);assert.ok(sawLetters&&sawBurn);
   assert.equal(s.milestone,'Reacquainted');assert.equal(s.promiseFound,false);assert.ok(!s.phoneUnlocked);routes++;
  }
- assert.equal(routes,864);assert.equal(covered.size,Object.keys(continuation).length);
+ assert.equal(routes,2592);assert.equal(covered.size,Object.keys(continuation).length);
 });
 test('Existing recognition saves can continue without losing the saved line',()=>{
  const s=freshState();s.node='recognition';s.line=story.recognition.lines.length-1;
@@ -40,7 +40,7 @@ test('Reunion music is fixed by scene; one-shot phone cue occurs only on its aut
   const s=freshState();s.node=id;s.flags.greeting='shocked';
   for(const [i,line] of visibleLines(node,s).entries()){
    s.line=i;const cue=openingAudioCue(node,s);
-   assert.equal(cue.layers[0].key,node.music==='reunion'?'reunion-new':node.music);
+   if(node.music)assert.equal(cue.layers[0].key,node.music==='reunion'?'reunion-new':node.music);else assert.ok(cue.layers.every(l=>l.key==='outdoors'));
    assert.equal(cue.layers.some(l=>l.key==='phone'),id==='rReturn'&&line.text==='It’s Rowan.');
   }
  }

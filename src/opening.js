@@ -9,10 +9,10 @@ export const opening = {
 journey:scene('bus','01 / The road back',`
 It’s been eight hours since we left the city, including the stopover. I can’t get comfortable anymore.
 I move my knee away from the seat in front of me. The window keeps rattling beside my head.
-I used to come to Saint Luis every summer.
-Then I stopped visiting.
-I kept telling myself I’d come back the next year.
-More than four years have passed since my last visit.
+I grew up in Saint Luis with Lola nearby.
+My parents took me to Manila when I was eleven.
+I kept hoping I’d come back the next year. I never did.
+Twelve years have passed. I’m twenty-three now.
 The sea appears between two buildings. I lean closer to the window to get a better look.
 I’m finally back in Saint Luis.
 There are small fishing boats in the bay. I can see the old baywalk along the shore.
@@ -170,11 +170,12 @@ otherDoor:scene('saint-luis','The other door',`
 The house won’t clean itself.
 That sounds like something Lola would have said. I almost laugh.
 Rowan’s house is right there.
+The nameplate says Mayumi. The paint around it looks newer than the rest of the gate.
 I could knock. Just to let them know I’m back.
 That would be normal. Polite, even.
 I rehearse it.
 Hi. It’s been a while.
-Four years is probably longer than “a while.”
+Twelve years is probably longer than “a while.”
 What if he opens the door?
 What if he looks happy to see me?
 Somehow, I haven’t prepared for that either.
@@ -188,7 +189,7 @@ How many afternoons did I spend waiting here?
 I knock.
 Nothing. I listen.
 Then knock again, a little louder.
-You|Hello? Mr. and Mrs. Sanchez?
+You|Tita Mayumi? Hello?
 I hesitate before the last name.
 You|Rowan?
 I wait longer than I need to.
@@ -199,7 +200,7 @@ I step off the porch and head toward Lola’s house.
 neighborWait:scene('saint-luis','The other door',`
 I keep walking.
 I’ve been traveling all day. I’ve lost my money. I’m not sure what my face is doing.
-I can put my bag down before trying to explain four years.
+I can put my bag down before trying to explain twelve years.
 For a moment, I tell myself he probably wouldn’t remember me anyway.
 I know that isn’t true.
 I’m just not ready.

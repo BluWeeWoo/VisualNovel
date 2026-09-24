@@ -1,6 +1,7 @@
 // Approved soundtrack. Cues follow reading position, not elapsed time.
 const base='assets/audio/soundtrack/';
 export const tracks={
+ paper:{src:'assets/audio/reunion/paper.wav',level:.28,loop:false},
  rain:{src:'assets/audio/reunion/rain.wav',level:.28},fire:{src:'assets/audio/reunion/fire.wav',level:.30},
  phone:{src:'assets/audio/reunion/phone.wav',level:.45,loop:false},box:{src:'assets/audio/reunion/box.wav',level:.38,loop:false},
  tools:{src:'assets/audio/reunion/tools.wav',level:.25,loop:false},steps:{src:'assets/audio/reunion/steps.wav',level:.30,loop:false},
@@ -23,16 +24,19 @@ export function openingAudioCue(node,state){
  if(!node?.opening)return cue([], .35);
  if(node.continuation){
   const key=node.music==='reunion'?'reunion-new':node.music;
-  const layers=[key];
+  const layers=key?[key]:[];
   const lines=node.lines.filter(l=>!l.if||state.flags?.[l.if[0]]===l.if[1]);
   const text=lines[state.line]?.text||'';
   if(node.time==='night')layers.push('rain');
-  else if(node.place!=='living')layers.push({key:'outdoors',level:.18});
+  else if(node.childhood||node.place!=='living')layers.push({key:'outdoors',level:.18});
   if(state.node==='rBurning')layers.push('fire');
   if(state.node==='rLetters'&&text.startsWith('She puts it on'))layers.push('box');
   if(state.node==='rReturn'&&text==='It’s Rowan.')layers.push('phone');
   if(state.node==='rBags'&&state.line===0)layers.push('tools');
   if(state.node==='rInside'&&state.line===0)layers.push('steps');
+  if(state.node==='rPorchEnvelopes'&&state.line===0)layers.push('steps');
+  if(state.node==='rPorchEnvelopes'&&text.startsWith('Lola sets a small box'))layers.push('box');
+  if(state.node==='rPorchEnvelopes'&&(text.startsWith('Lola sets a small box')||text.startsWith('He chooses a yellow envelope')))layers.push('paper');
   return cue(layers,node.time==='night'?2.5:2);
  }
  const reached=fragment=>{const index=node.lines.findIndex(l=>l.text.includes(fragment));return index>=0&&state.line>=index;};
