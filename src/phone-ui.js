@@ -5,7 +5,7 @@ export function phoneCue(story,state){
  if(!state)return null;
  const line=story[state.node].lines.filter(l=>!l.if||state.flags[l.if[0]]===l.if[1])[state.line];
  const text=line?.text||'';
- if(line?.speaker==='Rowan · text')return {page:'messages',message:true};
+ if(['Rowan · text','You · text'].includes(line?.speaker))return {page:'messages',message:true};
  if(state.node==='rExchange'&&text==='I reach for my phone.')return {page:'contact'};
  if(state.node==='rReturn'&&text==='I’ll send you a message so you have mine.')return {page:'messages',typing:true};
  if(state.node==='rReturn'&&text==='I enter his number.')return {page:'contact'};
@@ -16,13 +16,14 @@ export function phoneCue(story,state){
  return null;
 }
 export function hasRowanContact(state){
- if(['rLetterPromise','rBedroom','rLanding','rPush','rQuiet','rLetters','rBurning','rEnvelope','rReadNow','rLetterNow','rReadNowAfter','rKeepSealed','rAfterEnvelope'].includes(state?.node))return false;
+ if(['rLetterPromise','rPorchEnvelopes','rYellowLook','rYellowName','rYellowWords','rYellowPromise','rBedroom','rLanding','rPush','rQuiet','rLetters','rBurning','rEnvelope','rReadNow','rLetterNow','rReadNowAfter','rKeepSealed','rAfterEnvelope'].includes(state?.node))return false;
  return !!state&&(state.phoneUnlocked||state.history.some(h=>h.id.startsWith('rReturn:')||h.id.startsWith('rExchange:')&&h.text==='I reach for my phone.'||h.id.startsWith('numbers:')&&h.text.startsWith('You exchange phones.')));
 }
 export function authoredMessages(state){
  const messages=[];
  for(const h of state.history){
   if(h.speaker==='Rowan · text')messages.push({text:h.text,sender:'rowan',time:'16:42'});
+  if(h.speaker==='You · text')messages.push({text:h.text,sender:'player',time:'16:42'});
   if(h.id.startsWith('numbers:')&&h.text==='You send a single wave. His pocket lights up.')messages.push({text:'👋',sender:'player',time:'19:16'});
   if(h.id.startsWith('night:')&&h.speaker==='Rowan')messages.push({text:h.text,sender:'rowan',time:'21:48'});
  }

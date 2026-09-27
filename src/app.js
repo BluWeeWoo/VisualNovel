@@ -1,7 +1,7 @@
 import {rowansLetter} from './continuation.js';
 import {phoneCue,hasRowanContact,phoneBody,phoneIdentity} from './phone-ui.js';
 import {story} from './story.js';
-import {freshState, interpolate, applyChoice, validSave, visibleLines, promises, milestones, refreshAuthoredHistory, migrateStorySave} from './engine.js';
+import {freshState, interpolate, applyChoice, validSave, visibleLines, promises, milestones, refreshAuthoredHistory, migrateStorySave, nextStoryNode} from './engine.js';
 import {rowan, protagonistAge} from './characters.js';
 import {spriteAt, expressions, cgAt} from './staging.js';
 import {scriptedReply, requestReply, suggestions} from './chat.js';
@@ -40,7 +40,7 @@ function record(line){
   if(!state.history.some(h=>h.id===id))state.history.push({id,speaker:line.speaker||'',text});
   if(cgAt(story,state))syncGallery();
 }
-function start(name,pronouns){state=freshState(name,pronouns);screen='game';modal=null;enter(state.node);render();}
+function start(name,pronouns){presentedPhone='';presentedLetter='';state=freshState(name,pronouns);screen='game';modal=null;enter(state.node);render();}
 function load(slot){presentedPhone='';presentedLetter='';const saved=read(slot);if(!validSave(saved?.state,story)){toast('This save is missing or incompatible.');return;}
   state=refreshAuthoredHistory(structuredClone(saved.state),story);screen='game';modal=null;busy=false;error='';draft='';enterAudio();render();toast('Summer resumed.');}
 let audioUnlocked=false;
@@ -61,7 +61,7 @@ function advance(){
   const node=story[state.node],all=nodeLines();
   if(state.line<all.length-1){state.line++;autoSave();renderGame();return;}
   if(node.choices||node.ending||node.phone)return;
-  if(node.next){enter(node.next);renderGame();}
+  if(node.next){enter(nextStoryNode(story,state));renderGame();}
 }
 function choose(index){const node=story[state.node],opt=node.choices?.[index];if(!opt)return;
   const text=interpolate(opt.text,state);
@@ -145,7 +145,7 @@ function renderGame(){
   record(line);autoSave();enterAudio();
   const last=state.line>=all.length-1;
   const cue=phoneCue(story,state);
-  const displayText=cue?.message?'A message from Rowan lights up your phone.':interpolate(line.text,state);
+  const displayText=cue?.message?(line.speaker==='You · text'?'I send him a message.':'A message from Rowan lights up your phone.'):interpolate(line.text,state);
   const staging=spriteAt(story,state);
   const portrait=staging&&manifest.portraits[staging.character||'Rowan']?.[staging.key];
   const cg=manifest.cgs?.[cgAt(story,state)];
@@ -250,7 +250,7 @@ function storyPhoneModal(){
   const cue=phoneCue(story,state);
   if(phonePage!=='lola'&&!hasRowanContact(state))return;
   const next=nodeLines()[state.line+1];
-  const nextMessage=next?.speaker==='Rowan · text';
+  const nextMessage=['Rowan · text','You · text'].includes(next?.speaker);
   const content=phoneBody(phonePage,state,{typing:cue?.typing&&phonePage==='messages'});
   const nextButton=nextMessage?'<button class="sg-main-button" data-action="phone-next">Read next message →</button>':'';
   const existing=$('.sg-device');

@@ -14,7 +14,7 @@ export const promises = [
   'Leave town together someday.'
 ];
 export function freshState(name = 'Alex', pronouns = 'they') {
-  return { version: VERSION, storyRevision: 4, name: name.trim().slice(0, 24) || 'Alex', pronouns,
+  return { version: VERSION, storyRevision: 5, name: name.trim().slice(0, 24) || 'Alex', pronouns,
     node: 'journey', line: 0, flags: {letterTiming:'later'}, history: [], chat: [], chatTurns: 0,
     chatDone: false, promiseFound: false, sunrise: 'unstarted', milestone: 'Reacquainted',
     memories: [], completed: false, startedAt: Date.now() };
@@ -122,7 +122,7 @@ function migrateRevisionThree(s,story){
 }
 
 // Revision four adds the letter-reading choice and continues beyond the old ending.
-export function migrateStorySave(s,story){
+function migrateRevisionFour(s,story){
  if(!s || s.version!==VERSION || !story[s.node] || !Array.isArray(s.history) || !s.flags)return s;
  if(!(s.storyRevision>=3))migrateRevisionThree(s,story);
  if(s.storyRevision>=4)return s;
@@ -134,4 +134,45 @@ export function migrateStorySave(s,story){
  });
  if(s.node==='rInside')s.completed=false;
  s.storyRevision=4;return refreshAuthoredHistory(s,story);
+}
+
+// Old saves keep their route through the flashback they already entered.
+export function nextStoryNode(story,state){
+ if(state.flags.legacyReunionOrder){
+  if(state.node==='rAfterEnvelope')return 'rReturn';
+  if(state.node==='rInside')return 'rWater';
+ }
+ return story[state.node].next;
+}
+const revisionFourPositions={"journey":{"indices":[0,1,2,3,4,5,6,7,8,9,10,12,13,14,15,16,16,17,22,19,20,21,22,23,24,25,32,27,28,28,30,31,32,33,34,35,36,37,38,39],"conditions":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]},"driver":{"indices":[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,25],"conditions":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]},"neighborVisit":{"indices":[0,1,2,3,4,5,6,7,8,9,10,11,12],"conditions":[null,null,null,null,null,null,null,null,null,null,null,null,null]},"rNormal":{"indices":[0,1,2,4,5],"conditions":[null,null,null,null,null]},"rShocked":{"indices":[0,1,2,3,4,5],"conditions":[null,null,null,null,null,null]},"rEmotion":{"indices":[4,5],"conditions":[null,null]},"rCry":{"indices":[0,1,2,3,4,6,7,8,9,10,11,12,13,14,15],"conditions":[null,null,null,["reunionBoundary","hug"],null,null,null,null,null,null,["reunionBoundary","hug"],["reunionBoundary","space"],null,null,null]},"rHold":{"indices":[0,1,2,2,3,4,3,5],"conditions":[null,null,["reunionBoundary","hug"],null,null,null,null,null]},"rCatchup":{"indices":[0,1,2,3,4,5,6,7,8,9,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,29],"conditions":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]},"rContact":{"indices":[0,1,2,4,3,4,5,9],"conditions":[null,null,null,null,null,null,null,null]},"rBusy":{"indices":[0,4,2,4,6,8],"conditions":[null,null,null,null,null,null]},"rNumber":{"indices":[0,1,1,4,6],"conditions":[null,null,null,null,null]},"rLater":{"indices":[0,2,1,5],"conditions":[null,null,null,null]},"rExchange":{"indices":[0,1,2,3,3,4,4,5,5,7,7,7],"conditions":[null,null,null,null,null,null,null,null,null,null,null,null]},"rLetterPromise":{"indices":[0,1,1,1,2,2,4,5,4,4,5,5,7,6,7,7,8,9,9,9,5,12,11,14,12,12,13,13,14,18,8,15,16,6,17,17,18,18,19,18,19],"conditions":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]},"rPorchEnvelopes":{"indices":[0,1,1,3,2,5,3,4,4,5,5,6,6,4,7],"conditions":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]},"rYellowPromise":{"indices":[0,1,2,3,4,5,6,7,9,10,9,1,13,14],"conditions":[null,null,null,null,null,null,null,null,null,null,null,null,null,null]},"rLetterYears":{"indices":[0,1,3,4,5,7,8],"conditions":[null,null,null,null,null,null,null]},"rPush":{"indices":[2,1,2,3,4,5,6,7,8],"conditions":[null,null,null,null,null,null,null,null,null]},"rQuiet":{"indices":[1,1,2,3,4,7,7,8],"conditions":[null,null,null,null,null,null,null,null]},"rLetters":{"indices":[7,8,35,4,5,10,11,12,12,11,1,15,16,17,2,21,20,21,22,32,24,26,27,28,21,24,30,29,34,8,37,38],"conditions":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]},"rBurning":{"indices":[0,1,2,3,4,5,5,6,12,7,8,10,11,12,13,13,14,15],"conditions":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]},"rReturn":{"indices":[0,1,17,3,3,4,6,7,18,5,6,7,8,9,10,11,12,17,19,20,21,3,21,22,23,24,25,26],"conditions":[null,null,null,null,null,null,null,null,null,null,null,["greeting","shocked"],["greeting","oblivious"],["greeting","excited"],["greeting","normal"],null,null,null,null,null,null,null,null,null,null,null,null,null]},"rHelpBags":{"indices":[0,1,2,2,3,5,2,5],"conditions":[null,null,null,null,null,null,null,null]},"rInside":{"indices":[0,1,2,5,7,8,10,12,14,15],"conditions":[null,null,null,null,null,null,null,null,null,null]},"rWater":{"indices":[0,1,3,2,1,2,3,4,5,6,7,8,9,10,11],"conditions":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]}};
+export function migrateStorySave(s,story){
+ if(!s || s.version!==VERSION || !story[s.node] || !Array.isArray(s.history) || !s.flags)return s;
+ if(s.storyRevision>=5)return s;
+ const currentText=s.history.find(h=>h.id===`${s.node}:${s.line}`)?.text;
+ if(!(s.storyRevision>=4))migrateRevisionFour(s,story);
+ const oldOrder=['rBedroom','rLanding','rPush','rQuiet','rLetters','rBurning','rEnvelope','rReadNow','rLetterNow','rReadNowAfter','rKeepSealed','rAfterEnvelope','rReturn','rThanks','rCaretaker','rTools','rBags','rOwnBags','rHelpBags','rInside'];
+ if(oldOrder.includes(s.node))s.flags.legacyReunionOrder=true;
+ if(!s.flags.yellowPromise){
+  for(const [node,value] of [['rYellowLook','look'],['rYellowName','name'],['rYellowWords','words']]){
+   if(s.node===node||s.history.some(h=>h.id.startsWith(node+':')))s.flags.yellowPromise=value;
+  }
+ }
+ const position=(node,index)=>{
+  const map=revisionFourPositions[node];
+  if(!map)return Math.max(0,Math.min(index,visibleLines(story[node],s).length-1));
+  const previous=map.conditions.map((condition,i)=>({condition,i})).filter(x=>!x.condition||s.flags[x.condition[0]]===x.condition[1]);
+  const raw=previous[Math.min(index,previous.length-1)]?.i;
+  const target=map.indices[raw]??0;
+  return Math.max(0,story[node].lines.slice(0,target+1).filter(l=>!l.if||s.flags[l.if[0]]===l.if[1]).length-1);
+ };
+ s.line=position(s.node,s.line);
+ const exact=currentText?visibleLines(story[s.node],s).findIndex(l=>interpolate(l.text,s)===currentText):-1;
+ if(exact>=0)s.line=exact;
+ s.history=s.history.map(h=>{
+  if(h.id.startsWith('choice:')||h.id.startsWith('letter:'))return h;
+  const split=h.id.lastIndexOf(':'),node=h.id.slice(0,split),index=Number(h.id.slice(split+1));
+  return story[node]&&Number.isInteger(index)?{...h,id:node+':'+position(node,index)}:h;
+ }).filter((h,i,all)=>all.findIndex(x=>x.id===h.id)===i);
+ s.storyRevision=5;
+ return refreshAuthoredHistory(s,story);
 }

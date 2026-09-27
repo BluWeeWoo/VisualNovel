@@ -5,12 +5,12 @@ import {freshState,migrateStorySave,validSave,applyChoice} from '../src/engine.j
 import {cgAt,spriteAt} from '../src/staging.js';
 import {openingAudioCue} from '../src/opening-audio.js';
 test('Porch CG ends before envelopes; yellow CG follows selection and all choices rejoin without relationship changes',()=>{
- const s=freshState();s.node='rLetterPromise';s.line=40;
+ const s=freshState();s.node='rLetterPromise';s.line=story.rLetterPromise.lines.length-1;
  assert.equal(cgAt(story,s),'porch-before-letters');
  s.node='rPorchEnvelopes';s.line=0;assert.equal(cgAt(story,s),null);assert.equal(spriteAt(story,s).character,'RowanChild');
  assert.ok(openingAudioCue(story[s.node],s).layers.some(l=>l.key==='steps'));
  s.line=1;assert.equal(cgAt(story,s),null);assert.ok(openingAudioCue(story[s.node],s).layers.some(l=>l.key==='paper'));
- for(const choice of story.rPorchEnvelopes.choices){const branch=structuredClone(s);branch.flags={relationship:'friends',boundary:'space'};applyChoice(branch,choice);assert.deepEqual(branch.flags,{relationship:'friends',boundary:'space'});assert.equal(story[branch.node].next,'rYellowPromise');}
+ for(const choice of story.rPorchEnvelopes.choices){const branch=structuredClone(s);branch.flags={relationship:'friends',boundary:'space'};applyChoice(branch,choice);assert.deepEqual(branch.flags,{relationship:'friends',boundary:'space',...choice.set});assert.equal(story[branch.node].next,'rYellowPromise');}
  s.node='rYellowPromise';s.line=1;assert.equal(cgAt(story,s),'yellow-envelope-promise');s.line=4;assert.equal(cgAt(story,s),null);
 });
 test('Every pre-revision porch save maps to a valid moment and preserves player data exactly once',()=>{

@@ -13,9 +13,10 @@ Now I can’t remember any of it.
 rNormal:porch('A familiar voice',`
 You|Hey, Rowan. It’s good to see you.
 I manage a smile.~smile
-Rowan|Hey.
-Rowan|You’re— Sorry. Hi.
-He smiles, then lets out a breath. He looks as lost for words as I feel.
+Rowan|Hey. You’re—
+He lets out a breath.
+Rowan|Sorry. Hi.
+Rowan|It’s really good to see you.
 `,{next:'rHugAsk'}),
 rExcited:porch('A familiar voice',`
 You|Rowan! I missed you.
@@ -31,7 +32,7 @@ You|Rowan? You’re still alive?
 There were so many better things I could have said.~playful
 He looks down at himself.
 Rowan|Were you expecting a ghost?
-You|Good. That’s... good.
+You|No. I don’t know why I said that.
 Rowan|I’m choosing to take that as “nice to see you.”
 `,{next:'rHugAsk'}),
 rOblivious:porch('A familiar voice',`
@@ -97,22 +98,21 @@ Shit. Bakit ngayon pa?~concerned
 I wipe at my face, but that only makes it more obvious.
 Rowan|Hey.
 You|Sorry. I didn’t mean to—
+Rowan|You don’t have to be sorry.
 Rowan|It’s okay.
 I try to answer. Nothing comes out.
 He waits.
 I don’t have to explain it right away.
 For once, nobody is asking me to pull myself together.
 After a while, I take a steadier breath.
-You|Thanks.
-Rowan|Take your time.~smile
+You|Thanks, Ro.
+Rowan|Yeah.~smile
 `,{next:'rCatchup'}),
 rHold:porch('Take your time',`
 I look past his shoulder and take a slow breath.~concerned
 Then another.
-Rowan|Long trip?
-You|Very.
-He glances at my face. For a second, I think he’s going to ask more.
-Rowan|We should get you inside soon.~neutral
+Rowan|We’ll get you sitting down in a minute.~neutral
+You|Please.
 I’m grateful he leaves it there.
 `,{next:'rCatchup'}),
 rCatchup:porch('Twelve years to catch up on',`
@@ -126,10 +126,11 @@ Rowan|How long are you staying?~neutral
 You|For the summer.
 His eyebrows lift.~surprised
 Rowan|The whole summer?
+You|That’s the plan.
 You|You seem pleased.
 Rowan|I’m being very normal about it.~playful
 I’m glad he isn’t.
-You|That’s the plan. I needed a break from college.
+You|I needed a break from college.
 I look toward the open door.~smile
 You|And I thought I’d clean the house. See what needs fixing.
 Rowan|There’s a list.
@@ -143,113 +144,92 @@ Rowan|Someone took it?~concerned
 You|I think so. My cards were in my bag, at least.
 Rowan|Do you need anything?
 You|I’m okay for now. The driver helped me get here.
+Rowan|If that changes, tell me.
 He nods, though he still looks concerned.
 `,{music:'catching-up',next:'rContact'}),
 rContact:porch('The question',`
-Then there’s a pause.~neutral
-Rowan looks down at the hammer beside the door.
+He gathers the loose tools, then pauses.~neutral
+Rowan turns a screwdriver in his hand.
 Rowan|Can I ask you something?
-I think I know what’s coming.
 You|Yeah?
 Rowan|Why didn’t you contact me?~concerned
 My hand tightens around my bag strap.
-There it is.
+Rowan|I tried the old number. Then the account I had for you disappeared.
+Rowan|I left my number with your parents when they came back.
+Rowan|After a while, I thought you didn’t want to hear from me.~sad
+That’s the part I was afraid of.
 `,{music:'lost-contact',choices:[opt('I didn’t really get the chance.','rBusy',{contactAnswer:'busy'}),opt('I didn’t have your new number.','rNumber',{contactAnswer:'number'}),opt('Can we talk about it another time?','rLater',{contactAnswer:'later'})]}),
 rBusy:porch('What to say',`
 You|I didn’t really get the chance. Things at home were... complicated.~concerned
-Rowan|Oh. I didn’t know.
+Rowan|Oh.
 You|There’s a lot I haven’t told you.
-Rowan|You can tell me when you’re ready.
-He looks down at the phone in his hand.
-Rowan|I just missed hearing from you.~sad
+He puts the screwdriver down.
+Rowan|I wish I’d known.
+You|I know.
+Rowan|You don’t have to explain all of it now.
+His voice softens.~sad
+Rowan|I just missed you.
 `,{music:'lost-contact',next:'rExchange'}),
 rNumber:porch('What to say',`
-You|I didn’t have your new number. Sorry.~neutral
-Rowan|Oh. I gave it to your parents.
-You|They didn’t pass it on.
-He looks down for a moment.~sad
-Rowan|Oh. Okay. We can fix that.~neutral
+You|I didn’t have your new number.~neutral
+You|My parents didn’t give it to me.
+Rowan|I wondered.~sad
+You|I’m sorry.
+Rowan|I wasn’t asking you to apologize. I wanted to know what happened.
+You|I don’t think I can tell you all of it at once.
+Rowan|Okay.~concerned
 `,{music:'lost-contact',next:'rExchange'}),
 rLater:porch('What to say',`
-You|Can we talk about that later? I’ve had a long day.~concerned
-Rowan|Yeah. We can.
-There’s a short pause.
-Rowan|You’ve only just got here. We have time.~smile
+You|Can we talk about that another time, please?~concerned
+He pauses.
+Rowan|Yeah.
+You|I’m not trying to ignore you.
+Rowan|I know.
+He sets the tools down.~neutral
+Rowan|Another time.
 `,{music:'lost-contact',next:'rExchange'}),
 rExchange:porch('A yellow envelope',`
 He takes out his phone.~neutral
 Rowan|Do you want my number now?
 You|Yeah.
-Rowan|I’ll give you my SG account too.
-Rowan|If one doesn’t work, try the other.~playful
+Rowan|And my SG account. Backup plan.~smile
 I reach for my phone.
-His number. His account.
-He’s offering them like staying in touch should be simple.
-It should have been.
-I remember a yellow envelope.
-My name on the front.
-A little boat drawn beside his.
+We used to have a backup plan for calls, too.
+Letters.
+I remember the yellow envelopes.
 `,{music:'lost-contact',next:'rLetterPromise'}),
 rLetterPromise:scene('reunion-porch','Before I left Saint Luis',`
 I was eleven. We were leaving at the end of the week.~neutral
-Rowan sits on Lola’s porch steps, watching a patch of sunlight slip between the railings.~sad
-Usually, he makes room before I reach him. Today, it takes him a moment.
-Rowan|You’re really leaving?~concerned
-You|Soon.
-Rowan|Before summer’s over.
-He rubs his thumb along a seam in his shorts.
-Rowan|I thought we still had more time.~sad
-Lola (off-screen)|More time for what, Rowan?
-Rowan|Everything.
-The word comes out smaller than he seems to mean it.
-Lola (off-screen)|You could write to each other.
+Rowan sits beside me on Lola’s porch steps.
+Rowan|Before summer’s over?~concerned
+You|Yeah.
+He picks at a loose thread on his shorts.
+Rowan|I thought we had more time.~sad
+Lola (off-screen)|You can still call when your parents are free. And you can write.
 Rowan|Actual letters?~surprised
-You|Couldn’t we just use our parents’ phones?
-Lola (off-screen)|Of course. When they’re free, you can ask to call.
-Rowan|So… we can still talk?~concerned
-Lola (off-screen)|Yes. Letters can be something you do as well.
-You|But a call would be faster.
-Lola (off-screen)|It would. But a letter can stay with you after the conversation is over. You can fold it up, keep it somewhere safe, and read it again.
-Rowan|Even years later?
-Lola (off-screen)|If you take care of it.
-You|You could put drawings in them, too.
-Rowan|You’d keep my drawings?~surprised
-You|If you tell me what they’re supposed to be.
-A small smile tugs at his mouth.~smile
-Rowan|My drawings aren’t that bad.~playful
-Lola (off-screen)|And you can write about things you forget to mention on the phone. Something funny. Something you noticed on the way home.
+Lola (off-screen)|I have paper and pens. Your parents can carry them when they visit. I’ll help you send yours, Rowan.
+You|Calling would be faster.
+Lola (off-screen)|It is.
+She shows us a drawing I gave her. The corners are folded from being kept in her bag.
+Lola (off-screen)|But I like having this, too.
 Rowan|What if nothing happens?~neutral
-Lola (off-screen)|Then tell each other that. You don’t need a grand adventure to fill a page.
-You|How would we send them?
-Lola (off-screen)|Give them to your parents. They can carry them when they visit, or help with the addresses and post them for you. I’ll speak with them so everyone knows where to send the replies.
-Rowan|So we write them, and they help get them there?
-Lola (off-screen)|Exactly.
-You|And we can still call while we’re waiting?
-Lola (off-screen)|Of course.
-Rowan|But don’t tell me everything in your letter on the phone.~playful
-You|Why?
-Rowan|I want something to find out when I open it.~smile
-He looks up toward the doorway.~neutral
+You|Tell me what you had for lunch.
+Rowan|That sounds boring.~playful
+You|Depends on the lunch.
+He almost smiles.~smile
 Rowan|Do you have envelopes?
-Lola (off-screen)|A few kinds. Let me bring them out.
+Lola (off-screen)|Let me get them.
 `,{time:'evening',music:'letters',rowan:true,childhood:true,next:'rPorchEnvelopes'}),
 rPorchEnvelopes:scene('reunion-porch','A little sunshine',`
 Lola’s footsteps approach from inside the house.~neutral
-Lola sets a small box on the porch table. Inside are cream envelopes, pale blue ones, and a bright yellow stack.
-Lola (off-screen)|Go on. Choose.
-Rowan|The yellow ones.~smile
-Lola (off-screen)|That was quick.
-Rowan|They look like here.~neutral
-You|Here?
-Rowan|Saint Luis. When the sun’s on the steps.
-He glances at the light beside his shoes, then back at the envelopes.
-Rowan|Like when we stay outside all afternoon and you say it’s too hot.~smile
-Rowan|If it’s cold where you are… maybe these can look warm.
-Lola (off-screen)|I’m afraid the post office won’t let you mail the sunshine.
-Rowan|Just a little.~playful
-He chooses a yellow envelope and holds it carefully by the edges.~smile
-Rowan|And you’ll know it’s mine. Before you even read my name.
-`,{time:'evening',music:'letters',rowan:true,childhood:true,choices:[opt('I’ll look for the yellow ones.','rYellowLook'),opt('You still have to put your name on it.','rYellowName'),opt('I might not always know what to write back.','rYellowWords')]}),
+Lola sets a small box on the porch table. Cream envelopes, pale blue ones, and a yellow stack.
+Rowan|These.~smile
+You|Why yellow?
+He chooses a yellow envelope and holds it up beside the sunlight on the steps.
+Rowan|Looks like here.
+He hands it to me.
+Rowan|You’ll know it’s mine.
+`,{time:'evening',music:'letters',rowan:true,childhood:true,choices:[opt('I’ll look for the yellow ones.','rYellowLook',{yellowPromise:'look'}),opt('You still have to put your name on it.','rYellowName',{yellowPromise:'name'}),opt('I might not always know what to write back.','rYellowWords',{yellowPromise:'words'})]}),
 rYellowLook:scene('reunion-porch','The yellow ones',`
 You|I’ll look for the yellow ones.
 Rowan|Then I’ll keep using them.~smile
@@ -263,30 +243,33 @@ You|I might not always know what to write back.
 Rowan|That’s okay. You can tell me one thing. Even something small.~smile
 `,{time:'evening',music:'letters',rowan:true,childhood:true,next:'rYellowPromise'}),
 rYellowPromise:scene('reunion-porch','I’ll write first',`
-Lola (off-screen)|You can take your time with a letter. That’s one of the nice things about them.
+He picks up a pen.~neutral
 Rowan|I’ll write first.~smile
-He looks at me as he says it, smiling over the yellow envelope.
-Rowan|So you’ll know where to start.
-He writes his name in big, uneven letters and draws a tiny boat underneath it.
+He smiles at me over the yellow envelope.
+I hold it steady for him.
+He writes his name in big, uneven letters and draws a little boat below it.
 You|Is that a shoe?
 Rowan|It’s a boat!~surprised
 You|Oh. Obviously.
-Rowan|You’d better recognize it next time.~playful
-Lola laughs from beside the porch table.
-You|You’ll get a letter too, Lola.
-Lola (off-screen)|I’ll look forward to it.
-Rowan|We can still do both. Calls and letters.~smile
-I thought we’d always have things to tell each other.
+Lola laughs.
+Lola (off-screen)|Do I get a letter?
+You|Of course.
+Rowan|We all have to reply.~smile
+Lola (off-screen)|Agreed.
+You|Promise, Ro.
+We leave the envelope on the table while the ink dries.
 `,{time:'evening',music:'letters',rowan:true,childhood:true,next:'rLetterYears'}),
 rLetterYears:porch('The letters we kept',`
-Messages were quick. Letters were the things we wanted to keep.~neutral
-I gave mine to my parents whenever they went back to Saint Luis.
-At first, they brought envelopes home for me too.
-Then fewer came. Then none.
-Mom kept saying there weren’t any.
-Eventually, I stopped asking.~sad
-Two years ago, I found out why.
-`,{music:'lost-contact',next:'rBedroom'}),
+At first, we did both. Calls and letters.~neutral
+My parents carried our envelopes when they visited Saint Luis.
+Then the calls got shorter.
+“Not now.” “Maybe next weekend.”
+By the time I had my own phone, the number I knew didn’t work.
+I asked my parents. They said they’d find out.
+I believed them for longer than I should have.
+The letters stopped coming, too.
+I thought Rowan had stopped writing.~sad
+`,{music:'lost-contact',next:'rReturn'}),
 rBedroom:flash('manila-bedroom','Two years earlier',`
 Lola had died a few days earlier.
 I was in my room, staring at my phone.
@@ -320,57 +303,62 @@ They both look up.
 Mom|How long have you been standing there?
 `,{choices:[opt('Push for an answer.','rPush',{familyResponse:'push'}),opt('Struggle to speak.','rQuiet',{familyResponse:'quiet'})]}),
 rPush:flash('manila-service','Trying to be heard',`
-You|Rowan gave you his number?
+You|Rowan was trying to reach me?
 Mom|You had exams. You needed to focus.
-You|You could have let me decide.
-Dad|We weren’t going to let you throw everything aside.
-You|I wanted to go to a funeral. I wasn’t dropping out.
-My voice is getting louder.
-You|I’ve done everything you asked. My grades are good. Why wasn’t that enough?
+You|You could have given me his number.
+Dad|We knew you’d want to leave.
+You|For a funeral. I wasn’t dropping out.
+My voice gets louder.
+You|I’ve done everything you asked. Why isn’t that enough?
 Dad|Lower your voice.
-I try to answer, but Mom gets up and leaves the room.
+I stop, but the question is still there.
 `,{next:'rLetters'}),
 rQuiet:flash('manila-service','Trying to be heard',`
-You|I heard you talking.
-Dad|You should be in your room.
+Dad|What are you doing here?
+You|I heard you.
 I look at Mom.
-I want to ask what Rowan said. When he called. How many times.
-You|Why didn’t you tell me?
-Mom|We’ve been over this. You needed to focus.
-She gets up and leaves the room.
-I stay where I am.
+You|How many times?
+Mom|What?
+You|Did he ask?
+She looks away.
+Mom|You needed to focus on school.
+I grip the railing until I can get the next words out.
 `,{next:'rLetters'}),
 rLetters:flash('manila-service','The letters',`
-Mom comes back carrying a box.
-She puts it on the table beside the open service-area door.
-Beyond it, a few coals are still glowing in the small brazier.
-You|What’s that?
-Mom|Letters.
-I lift the lid.
-Some envelopes are still white. Others have yellowed at the edges.
-I recognize Lola’s handwriting.
-Underneath it, Rowan’s.
-You|These are for me?
+You|Were there letters too?
 Neither of them answers.
+You|You kept telling me there weren’t any.
+Mom|I put some things aside.
+You|Where?
+She stays seated.
+You|Please. Let me see them.
+Mom gets up. When she returns, she’s carrying a box.
+She puts it on the table beside the open service-area door.
+Mom|I was going to give these to you after things settled down.
+I lift the lid.
+Some envelopes are white. Others have yellowed at the edges.
+I recognize Lola’s handwriting. Underneath it, Rowan’s.
+You|Some of these are years old.
+Mom folds her arms.
 I pick up a yellow envelope.
 To {name}. From Rowan.
-The little boat was still there. His handwriting was neater now.
-You|You said there weren’t any.
-You|Did you give them mine? The letters I gave you?
-Mom|That’s enough.
-You|How long have you had these?
-Mom|Put it back.
-I look through the box.
-Different dates. Different envelopes.
-Some dates matched visits I remembered.
-They kept writing.
-They hadn’t forgotten me.
-You|Why didn’t you give them to me?
-Dad|Your mother asked you to put it back.
-You|They’re mine.
+The little boat is still there. His handwriting is neater now.
+You|Did you give them mine?
+Mom|Not tonight.
+You|The letters I gave you. Did you deliver them?
+Dad|Your mother kept those things aside because you couldn’t settle here.
+You|I was a kid. I missed them.
+Mom|Every call ended with you wanting to go back.
+You|That didn’t mean you could hide this.
+I reach for the others.
 Mom pulls the box toward her.
-For a moment, I think she’s going to take it upstairs.
-Instead, she carries it out to the covered service area.
+You|Leave it. They’re mine.
+Mom|And now you’ve seen them, you’re doing exactly what we were trying to avoid.
+She lifts the box.
+You|I’m calling him.
+She stops.
+Through the open door, I can see the coals left from dinner in the small brazier.
+She carries the box outside.
 Then she tips the letters into the brazier.
 You|Wait!
 `,{music:'letters',next:'rBurning'}),
@@ -379,19 +367,17 @@ Paper slides onto the coals.
 I step forward, but the nearest envelopes have already caught.
 Lola’s handwriting disappears into a curl of black paper.
 You|Why would you do that?
-Mom|We’re not having this argument again.
-I’m still holding Rowan’s envelope.
-I fold my hand around it.
-Dad|Go to your room.
-I don’t move.
+Mom|Enough. We’re done with this.
+I hold Rowan’s envelope against my chest.
+Dad stands up.
 Mom comes over and puts an arm around my shoulders.
 I go stiff.
-Mom|We’re trying to help you.
-I look at the fire.
-You|Please don’t.
+Mom|You have a life here. You need to stop doing this to yourself.
+You|Don’t.
+She looks at me.
+You|Please don’t touch me.
 Her arm falls away.
-Mom|Go upstairs, {name}.
-This time, I do.
+I leave before either of them can say anything else.
 I take the yellow envelope with me.
 `,{music:'letters',next:'rEnvelope'}),
 rEnvelope:flash('manila-bedroom','The yellow envelope',`
@@ -443,30 +429,25 @@ After that, whenever I thought about contacting Rowan, I remembered the box.
 I was still living with my parents. I was afraid of what else they might take away.
 And I didn’t know how to explain what had happened.
 So I kept putting it off.
-`,{music:'letters',next:'rReturn'}),
+`,{music:'letters',next:'rWater'}),
 rReturn:porch('Back on the porch',`
-Rowan|{name}?~concerned
-I blink.
-He’s holding his phone out.
-Rowan|You okay?
-You|Yeah. Sorry.
-I enter his number.~neutral
-My hands are steady now.
-Mostly.
-This time, I have his number myself.
-Rowan|I’ll send you a message so you have mine.
+Rowan|{name}?~neutral
+I look up from my phone.
+Rowan|Ready?
+You|Yeah.
+I enter his number.
+Rowan|I’ll send you a message so you have mine.~smile
 Rowan · text|It’s Rowan.
 I let out a small laugh.~playful
 You|Thanks for clearing that up.
 He slips his phone into his pocket.~smile
+This time, the number is mine to keep.
 I glance at the tools beside the door.
 You|So. What were you doing to the lock?
 Rowan|Fixing it. It kept sticking.~neutral
-You|Oh.
-I look at the hammer, then back at him.
-You|Sorry I shouted at you.
-Rowan|You saw a stranger messing with the door. Fair enough.~smile
-You|You’re not a stranger.
+You|Sorry I shouted at you. I thought someone was messing with the door.
+Rowan|Fair enough.~smile
+You|You’re not just someone.
 His smile softens.
 Rowan|No.
 `,{music:'back-together',choices:[opt('Thanks for fixing it.','rThanks',{repairResponse:'thanks'}),opt('Have you been looking after the house?','rCaretaker',{repairResponse:'ask'}),opt('Want a hand?','rTools',{repairResponse:'help'})]}),
@@ -505,25 +486,30 @@ He picks up his tools and steps aside.
 rHelpBags:porch('An extra pair of hands',`
 You|Yeah. Could you take this one?~smile
 Rowan|Absolutely.
-He takes the bag I offer him.
-You|Careful. It’s heavy.
-Rowan|What did you pack?~playful
-You|Apparently everything.
-He adjusts his grip.
-Rowan|I noticed.
+He takes the bag I offer him, then adjusts his grip.
+Rowan|Did you pack your whole room?~playful
+You|Only the important parts.
+Rowan|Apparently the walls were important.
 `,{music:'back-together',next:'rInside'}),
 rInside:scene('living','Familiar, and different',`
 Rowan pushes the door open.
 It moves without catching.
-I follow him in, then stop.
-I thought I knew what I’d find.
-The same furniture. The same curtains.
-Dust, probably.
-But someone has been taking care of this place.
-I look around.
-Everything is familiar.
-And I can’t remember it ever looking quite like this.
-`,{music:'back-together',rowan:false,next:'rWater'})
+I follow him in.
+The curtains are clean. The table has been wiped down.
+Lola’s old chair is still by the window.
+There’s a new piece of wood beneath one armrest. It’s lighter than the rest.
+You|You fixed her chair.
+Rowan|It was coming loose.
+I run my thumb over the edge. He’s sanded it smooth.
+Rowan|I’ll get some water.
+He heads toward the kitchen.
+I set my bag beside the chair and open the inside pocket.
+My cards are still there.
+So is the envelope I brought with me.
+Yellow, though not as bright as it used to be.
+I hadn’t planned to take it out yet.
+The last time I held it like this, I was standing in my room in Manila.
+`,{music:'back-together',rowan:false,next:'rBedroom'})
 };
 // Branch-specific gestures preserve consent and avoid a hug on the space route.
 const conditional=(text,flag,value)=>({speaker:'',text,if:[flag,value]});
@@ -533,6 +519,24 @@ continuation.rCry.lines.splice(comfort,0,conditional('I lean against him again. 
 continuation.rHold.lines.splice(2,0,conditional('He lets go, but stays nearby.','reunionBoundary','hug'));
 const textIndex=continuation.rReturn.lines.findIndex(l=>l.speaker==='Rowan · text')+1;
 for(const greeting of ['normal','excited','oblivious','shocked'])continuation.rReturn.lines.splice(textIndex,0,{speaker:'Rowan · text',text:greeting==='shocked'?'The one who’s still alive.':'The one standing in front of you.',if:['greeting',greeting]});
+
+
+continuation.rEmotion.lines.unshift(
+ conditional('He takes a closer look at my face.','griefResponse','cry'),
+ {speaker:'Rowan',text:'Rough walk up?',if:['griefResponse','cry'],expression:'concerned'},
+ {speaker:'You',text:'Something like that.',if:['griefResponse','cry']},
+ conditional('He nods without asking me to explain.','griefResponse','cry'));
+const callbackIndex=continuation.rReturn.lines.findIndex(l=>l.text==='He slips his phone into his pocket.');
+continuation.rReturn.lines.splice(callbackIndex,0,
+ conditional('No waiting for someone to bring it home.','yellowPromise','look'),
+ conditional('His name is right above the message. No extra clue needed.','yellowPromise','name'),
+ {speaker:'You · text',text:'Made it here.',if:['yellowPromise','words']},
+ conditional('One small thing. Just like he said.','yellowPromise','words'));
+const envelopeIndex=continuation.rLetters.lines.findIndex(l=>l.text.startsWith('The little boat'))+1;
+continuation.rLetters.lines.splice(envelopeIndex,0,
+ conditional('I looked for yellow envelopes after every visit.','yellowPromise','look'),
+ conditional('His name. The yellow paper. Both clues were there. Neither reached me.','yellowPromise','name'),
+ conditional('One small thing would have been enough. There’s a whole box here.','yellowPromise','words'));
 
 // One authored letter, shared by both reading routes. No chat-generated history.
 export const rowansLetter=[
@@ -575,10 +579,7 @@ const letterScene=(place,time,next)=>scene(place,'Rowan’s letter',
 continuation.rLetterNow=letterScene('manila-bedroom','night','rReadNowAfter');
 continuation.rLetterLater=letterScene('bedroom','evening','rLetterLaterAfter');
 continuation.rWater=scene('living','A glass of water',`
-I set my bag beside the chair and open the inside pocket.
-My cards are still there.
-So is the envelope I brought with me.
-Yellow, though not as bright as it used to be.
+The sound of a glass on the table brings me back.
 Rowan|Here.~neutral
 He sets a glass of water beside me.
 His eyes move to the envelope, then back to me.~surprised

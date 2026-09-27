@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {story} from '../src/story.js';
 import {rowansLetter} from '../src/continuation.js';
-import {freshState,applyChoice,visibleLines,validSave,migrateStorySave} from '../src/engine.js';
+import {freshState,applyChoice,visibleLines,validSave,migrateStorySave,nextStoryNode} from '../src/engine.js';
 import {spriteAt} from '../src/staging.js';
 import {hasRowanContact} from '../src/phone-ui.js';
 
@@ -28,7 +28,7 @@ test('Old burning and ending saves remain valid, migrate once, and can continue'
  for(const [node,line] of [['rBurning',18],['rBurning',21],['rInside',9]]){
   const s=freshState();s.storyRevision=3;s.node=node;s.line=line;s.completed=true;delete s.flags.letterTiming;
   migrateStorySave(s,story);assert.ok(validSave(s,story));assert.equal(s.flags.letterTiming,'later');
-  if(node==='rInside'){assert.equal(s.completed,false);assert.equal(story[s.node].next,'rWater');}
+  if(node==='rInside'){assert.equal(s.completed,false);assert.equal(nextStoryNode(story,s),'rWater');}
   const once=JSON.stringify(s);migrateStorySave(s,story);assert.equal(JSON.stringify(s),once);
  }
 });

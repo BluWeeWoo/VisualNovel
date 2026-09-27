@@ -17,32 +17,32 @@ The sea appears between two buildings. I lean closer to the window to get a bett
 I’m finally back in Saint Luis.
 There are small fishing boats in the bay. I can see the old baywalk along the shore.
 Lola used to take Rowan and me for walks there in the afternoons.
-Rowan and I would argue over little things, then forget about them a few minutes later.
+She held our hands when we crossed the road. Me on one side, Rowan on the other.
+He’d complain that we weren’t little anymore. Then keep holding on after we’d crossed.
 You|Hay. I wonder how he’s been.
 Thinking about him makes me smile.
 Then I remember Lola’s funeral.
 He was probably at the funeral.
 Two years ago, Lola died during finals week.
-I stayed in the city to take my exams. I thought missing them would put my studies at risk.
-I had a reason for staying, but I still feel guilty.
+My parents said I couldn’t miss my exams.
+I wanted to argue. Instead, I asked if we could go afterward.
+“We’ll talk about it.”
+We never did.
+I still took the exams. Handed everything in on time.
 I was her grandchild, and I wasn’t there.
-I hold my bag a little tighter.
-My family always put so much pressure on me to do well in school.
-They made me leave Saint Luis with them, even though I wanted to stay with Lola.
-They left her behind too. Why am I the only one who should feel bad?
-I know that’s unfair. Blaming them won’t change the fact that I missed her funeral.
-Now they’re upset with me for spending the summer here. I just wanted a break.
-You|Can I do anything without someone getting angry at me?
-I take a breath and turn toward the open window.
-I came here because I needed some rest.
-College has been exhausting. These past few weeks have been rough, and I keep thinking about the arguments with my family.
-Lola’s house needs cleaning, and a few things probably need fixing. I can help with that.
-I’ll clean up, do what repairs I can, and get some sleep.
-That’s all I planned to do this summer.
+This trip is different.
+I paid for the ticket with money I’d saved.
+I told my parents I was leaving. I didn’t ask.
+Then I left before we could finish another argument.
+I needed a break from college. From home. From having the same conversation in my head.
+Lola’s house needs cleaning. A few things probably need fixing.
+I can do that.
+Sweep a floor. Fix a window. Get some sleep.
+That was the plan.
 I look back toward the baywalk.
 What am I going to say if I see Rowan?
-Sorry I stopped visiting? Sorry I never called?
-And how do I explain missing the funeral?
+Sorry I stopped calling?
+Sorry I believed you’d forgotten me?
 Conductor|SAINT LUIS! SAINT LUIS!
 The shout makes me jump. It wakes the passenger across the aisle too.
 You|Grabe.
@@ -128,7 +128,8 @@ You|Opo.
 I sit down and keep my bag on my lap as the bus starts moving again.
 I watch the houses pass by the window.
 I’m still upset about my wallet.
-But I’m grateful to the driver. Thanks to him, I can get to Lola’s house.
+But I don’t have to figure out the rest of the trip standing in the aisle.
+For now, I can sit.
 `,{audio:'bus',next:'hill'}),
 hill:scene('saint-luis','The hill',`
 You|Dito na po. Thank you!
@@ -190,7 +191,7 @@ I knock.
 Nothing. I listen.
 Then knock again, a little louder.
 You|Tita Mayumi? Hello?
-I hesitate before the last name.
+I hesitate before calling for him.
 You|Rowan?
 I wait longer than I need to.
 You|Okay. Nobody home.
