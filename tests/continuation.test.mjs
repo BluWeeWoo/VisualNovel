@@ -23,7 +23,7 @@ test('All 5184 continuation routes preserve boundaries, save positions and the a
     const music=openingAudioCue(node,s);for(const l of music.layers)assert.ok(tracks[l.key]);
     if(node.time==='night')assert.ok(music.layers.some(l=>l.key==='rain'));
    }
-   if(node.ending){assert.equal(s.node,'rLetterLaterAfter');finished=true;break;}
+   if(s.node==='rLetterLaterAfter'){assert.equal(node.next,'d2Settling');assert.ok(!node.ending);finished=true;break;}
    if(node.choices)applyChoice(s,node.choices[selections[s.node]]);else {s.node=node.next;s.line=0;}
   }
   assert.ok(finished);assert.equal(sawHug,hug!==2);assert.ok(sawLetters&&sawBurn);

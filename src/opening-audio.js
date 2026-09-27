@@ -22,6 +22,12 @@ const cue=(keys,fade=3)=>({layers:keys.map(key=>typeof key==='string'?{key}:key)
 export const menuAudioCue=()=>cue(['menu'],2);
 export function openingAudioCue(node,state){
  if(!node?.opening)return cue([], .35);
+ if(node.dayTwo){
+  const layers=node.music?[{key:node.music,level:.32}]:[];
+  layers.push({key:'outdoors',level:node.time==='night'?.05:.14});
+  if(state.node==='d2Call'&&state.line===1)layers.push('steps');
+  return cue(layers,2);
+ }
  if(node.continuation){
   const key=node.music==='reunion'?'reunion-new':node.music;
   const layers=key?[key]:[];

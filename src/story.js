@@ -1,4 +1,5 @@
 import {continuation} from './continuation.js';
+import {dayTwo} from './day-two.js';
 import {opening} from './opening.js';
 // Authored story only. No AI output can change this graph or its relationship flags.
 const lines = text => text.trim().split('\n').filter(Boolean).map(row => {
@@ -449,5 +450,9 @@ story.end.lines.unshift(
 Object.assign(story, opening);
 
 Object.assign(story, continuation);
+Object.assign(story, dayTwo);
+delete story.rLetterLaterAfter.ending;
+delete story.rLetterLaterAfter.openingEnd;
+story.rLetterLaterAfter.next='d2Settling';
 // Resume old recognition saves into the newly approved continuation.
 delete story.recognition.ending; delete story.recognition.openingEnd; story.recognition.next='rGreeting';

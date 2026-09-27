@@ -2,6 +2,16 @@
 export const expressions=['neutral','smile','playful','embarrassed','concerned','sad','surprised'];
 // Event illustrations are presentation only: no story, save or relationship mutations.
 export const cgCues={
+ d2Hug:{key:'d2-bedroom-hug',from:'He crosses the room',until:'He lets me go'},
+ d2Missed:{key:'d2-bedroom-missed-you',from:'You just did.'},
+ d2Stay:{key:'d2-window-garden',from:'I lean toward the window',until:'I head downstairs'},
+ d2Breakfast:{key:'d2-breakfast',from:'Tapa.'},
+ d2Garden:{key:'d2-garden-approach',from:'The back door'},
+ d2Whatcha:{key:'d2-garden-whatcha',from:'He starts turning'},
+ d2Hey:{key:'d2-garden-reveal',from:'He looks back'},
+ d2Poke:{key:'d2-garden-hat-poke',from:'Rowan goes still'},
+ d2Scare:{key:'d2-garden-startled',from:'AH—!'},
+ d2Reveal:{key:'d2-garden-reveal',from:'He turns fully'},
  rLetterPromise:{key:'porch-before-letters',from:'I was eleven.'},
  rYellowPromise:{key:'yellow-envelope-promise',from:'I’ll write first.',until:'He writes his name'},
  rGreeting:{key:'familiar-door',from:'He’s here'},

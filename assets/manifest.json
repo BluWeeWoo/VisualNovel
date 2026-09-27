@@ -11,7 +11,19 @@
     "manila-bedroom": "assets/cg/reunion/manila-bedroom.webp",
     "manila-landing": "assets/cg/reunion/manila-landing.webp",
     "manila-service": "assets/cg/reunion/manila-service.webp",
-    "reunion-porch": "assets/cg/reunion/reunion-porch.webp"
+    "reunion-porch": "assets/cg/reunion/reunion-porch.webp",
+    "d2-bedroom-evening": "assets/cg/day-two/bedroom-evening.webp",
+    "d2-bedroom-night": "assets/cg/day-two/bedroom-night.webp",
+    "d2-bedroom-morning": "assets/cg/day-two/bedroom-morning.webp",
+    "d2-bedroom-hug": "assets/cg/day-two/bedroom-hug.webp",
+    "d2-bedroom-missed-you": "assets/cg/day-two/bedroom-missed-you.webp",
+    "d2-breakfast": "assets/cg/day-two/breakfast.webp",
+    "d2-garden-approach": "assets/cg/day-two/garden-approach.webp",
+    "d2-window-garden": "assets/cg/day-two/window-garden.webp",
+    "d2-garden-reveal": "assets/cg/day-two/garden-reveal.webp",
+    "d2-garden-whatcha": "assets/cg/day-two/garden-whatcha.webp",
+    "d2-garden-hat-poke": "assets/cg/day-two/garden-hat-poke.webp",
+    "d2-garden-startled": "assets/cg/day-two/garden-startled.webp"
   },
   "portraits": {
     "Rowan": {
@@ -103,6 +115,42 @@
     "yellow-envelope-promise": {
       "src": "assets/cg/reunion/yellow-envelope-promise.webp",
       "alt": "Young Rowan smiles toward his off-screen friend while holding a sunshine-yellow envelope on Lola’s porch."
+    },
+    "d2-bedroom-hug": {
+      "src": "assets/cg/day-two/bedroom-hug.webp",
+      "alt": "Rowan embraces the viewpoint in the bedroom."
+    },
+    "d2-bedroom-missed-you": {
+      "src": "assets/cg/day-two/bedroom-missed-you.webp",
+      "alt": "Rowan smiles gently in the evening bedroom."
+    },
+    "d2-breakfast": {
+      "src": "assets/cg/day-two/breakfast.webp",
+      "alt": "Two plates of tapsilog and a yellow note on the table."
+    },
+    "d2-garden-approach": {
+      "src": "assets/cg/day-two/garden-approach.webp",
+      "alt": "Rowan gardens with his back turned, wearing a T-shirt and straw hat."
+    },
+    "d2-window-garden": {
+      "src": "assets/cg/day-two/window-garden.webp",
+      "alt": "Rowan gardening below the upstairs window."
+    },
+    "d2-garden-reveal": {
+      "src": "assets/cg/day-two/garden-reveal.webp",
+      "alt": "Rowan in a pale gray T-shirt, with a toned build and sweat on his face and arms."
+    },
+    "d2-garden-whatcha": {
+      "src": "assets/cg/day-two/garden-whatcha.webp",
+      "alt": "Rowan smiles with mild amusement in the garden."
+    },
+    "d2-garden-hat-poke": {
+      "src": "assets/cg/day-two/garden-hat-poke.webp",
+      "alt": "Rowan gives a puzzled smile beneath his tipped gardening hat."
+    },
+    "d2-garden-startled": {
+      "src": "assets/cg/day-two/garden-startled.webp",
+      "alt": "Rowan catches his hat in surprise."
     }
   }
 }

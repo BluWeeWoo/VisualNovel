@@ -261,6 +261,10 @@
 }
 /* Flashback backgrounds already contain their painted night lighting. */
 .backdrop.painted-light:after { background:none; }
+.morning-phone{position:fixed;right:3vw;top:5vh;width:min(340px,38vw);max-height:48vh;overflow:auto;background:#f7f3ea;color:#263339;border:6px solid #34454a;border-radius:24px;padding:14px;box-shadow:0 12px 36px #0004;font:14px/1.4 system-ui;text-align:left;z-index:8}
+.morning-phone-title{font-weight:700;border-bottom:1px solid #bec9c4;padding:3px 0 10px}
+.morning-phone p{background:#e3ebe6;border-radius:12px;padding:9px 12px;margin:8px 0}
+@media(max-width:640px){.morning-phone{right:4vw;top:3vh;width:75vw;max-height:32vh;font-size:12px;padding:10px}}
 .save-background.painted-light { filter:none; }
 /* Compact dialogue: reserve only the current sentence, keeping typing stable. */
 .dialogue-card { padding:15px 28px 10px; }
