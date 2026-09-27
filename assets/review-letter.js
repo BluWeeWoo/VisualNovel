@@ -1,19 +1,19 @@
-import {rowansLetter} from './continuation.js';
-import {phoneCue,hasRowanContact,phoneBody,phoneIdentity} from './phone-ui.js';
-import {story} from './story.js';
-import {freshState, interpolate, applyChoice, validSave, visibleLines, promises, milestones, refreshAuthoredHistory, migrateStorySave} from './engine.js';
-import {rowan, protagonistAge} from './characters.js';
-import {spriteAt, expressions, cgAt} from './staging.js';
-import {scriptedReply, requestReply, suggestions} from './chat.js';
-import {setAudio} from './audio.js';
-import {setOpeningAudio, openingAudioCue, menuAudioCue} from './opening-audio.js';
-import {desktopMenu} from '../assets/desktop-menu.js';
-import {galleryUnlocks,mountGallery} from '../assets/love-interests.js';
+import {rowansLetter} from '/src/continuation.js';
+import {phoneCue,hasRowanContact,phoneBody,phoneIdentity} from '/src/phone-ui.js';
+import {story} from '/src/story.js';
+import {freshState, interpolate, applyChoice, validSave, visibleLines, promises, milestones, refreshAuthoredHistory, migrateStorySave} from '/src/engine.js';
+import {rowan, protagonistAge} from '/src/characters.js';
+import {spriteAt, expressions, cgAt} from '/src/staging.js';
+import {scriptedReply, requestReply, suggestions} from '/src/chat.js';
+import {setAudio} from '/src/audio.js';
+import {setOpeningAudio, openingAudioCue, menuAudioCue} from '/src/opening-audio.js';
+import {desktopMenu} from '/assets/desktop-menu.js';
+import {galleryUnlocks,mountGallery} from '/assets/love-interests.js';
 
 const $=s=>document.querySelector(s);
 const app=$('#app');
 const escape=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const storageKey='our-summer-v1';
+const storageKey='our-summer-letter-review';
 let state=null, screen='title', modal=null, timer=null, typing=false, fullText='', timerIndex=0;
 let liveConsent=false, busy=false, error='', draft='', chatMode='demo', provider={available:false};
 let manifest={backgrounds:{},portraits:{}};
@@ -338,7 +338,7 @@ document.addEventListener('keydown',e=>{
   if(e.key.toLowerCase()==='p')openModal('promises');
   if(e.key.toLowerCase()==='s')openModal('saves');
 });
-try {manifest=await(await fetch('assets/manifest.json')).json();}catch{}
+try {manifest=await(await fetch('/assets/manifest.json')).json();manifest=JSON.parse(JSON.stringify(manifest).replaceAll('assets/','/assets/'));}catch{}
 try {provider=await(await fetch('/api/config')).json();}catch{}
 matchMedia('(min-width: 1051px)').addEventListener('change',()=>{if(screen==='title'&&!modal)render();});
-render();
+state=freshState('River','they');state.node='rLetterLater';state.line=4;screen='game';settings.motion=false;settings.sound=false;render();

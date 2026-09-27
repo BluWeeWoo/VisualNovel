@@ -334,3 +334,13 @@
 @media(prefers-reduced-motion:reduce){.sg-device,.sg-message,.sg-typing span{animation:none!important}}
 .chat-receipt { display:block;font-size:10px;opacity:.75;margin-top:5px; }
 .modal.phone-modal { background:#f6f2e9;border-color:#284f50;animation:phone-rise .25s ease-out; }
+
+/* Authored yellow letter: ordinary selectable text, keyboard-accessible scrolling. */
+.letter-modal{width:min(760px,94vw);max-height:90svh;overflow-y:auto;background:#f5e9ba;color:#293b48}
+.letter-paper{font-family:Georgia,serif;font-size:clamp(18px,2.1vw,23px);line-height:1.65;padding:4px 12px 20px}
+.letter-paper p{margin:0 0 1em}
+.letter-paper .letter-date{font-family:inherit;font-size:.78em;color:#536065;border-bottom:1px solid #a7976c;padding-bottom:16px}
+.letter-drawing{font-size:30px}
+@media(prefers-reduced-motion:no-preference){.letter-modal{animation:letter-open .22s ease-out}@keyframes letter-open{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}}
+
+.letter-modal .letter-paper p{font-size:inherit;line-height:inherit}.letter-modal .letter-paper .letter-date{font-size:.78em}.letter-modal .letter-paper .letter-drawing{font-size:30px}

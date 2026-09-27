@@ -6,12 +6,12 @@ import {freshState,applyChoice,visibleLines,validSave,interpolate} from '../src/
 import {cgAt,spriteAt,expressions} from '../src/staging.js';
 import {openingAudioCue,tracks} from '../src/opening-audio.js';
 
-test('All 2592 continuation routes preserve boundaries, save positions and the authored ending',()=>{
+test('All 5184 continuation routes preserve boundaries, save positions and the authored ending',()=>{
  const covered=new Set();let routes=0;
- for(let yellow=0;yellow<3;yellow++)for(let greet=0;greet<4;greet++)for(let hug=0;hug<3;hug++)for(let tears=0;tears<2;tears++)for(let contact=0;contact<3;contact++)for(let family=0;family<2;family++)for(let repair=0;repair<3;repair++)for(let bags=0;bags<2;bags++){
+ for(let letter=0;letter<2;letter++)for(let yellow=0;yellow<3;yellow++)for(let greet=0;greet<4;greet++)for(let hug=0;hug<3;hug++)for(let tears=0;tears<2;tears++)for(let contact=0;contact<3;contact++)for(let family=0;family<2;family++)for(let repair=0;repair<3;repair++)for(let bags=0;bags<2;bags++){
   const s=freshState('River','they');s.node='rGreeting';let finished=false,sawHug=false,sawLetters=false,sawBurn=false;
-  const selections={rPorchEnvelopes:yellow,rGreeting:greet,rHugAsk:hug,rEmotion:tears,rContact:contact,rLanding:family,rReturn:repair,rBags:bags};
-  for(let step=0;step<50;step++){
+  const selections={rEnvelope:letter,rPorchEnvelopes:yellow,rGreeting:greet,rHugAsk:hug,rEmotion:tears,rContact:contact,rLanding:family,rReturn:repair,rBags:bags};
+  for(let step=0;step<65;step++){
    const node=story[s.node];covered.add(s.node);
    for(const [i,line] of visibleLines(node,s).entries()){
     s.line=i;const before=JSON.stringify(s),text=interpolate(line.text,s);assert.doesNotMatch(text,/\{name\}/);
@@ -23,13 +23,13 @@ test('All 2592 continuation routes preserve boundaries, save positions and the a
     const music=openingAudioCue(node,s);for(const l of music.layers)assert.ok(tracks[l.key]);
     if(node.time==='night')assert.ok(music.layers.some(l=>l.key==='rain'));
    }
-   if(node.ending){assert.equal(s.node,'rInside');finished=true;break;}
+   if(node.ending){assert.equal(s.node,'rLetterLaterAfter');finished=true;break;}
    if(node.choices)applyChoice(s,node.choices[selections[s.node]]);else {s.node=node.next;s.line=0;}
   }
   assert.ok(finished);assert.equal(sawHug,hug!==2);assert.ok(sawLetters&&sawBurn);
   assert.equal(s.milestone,'Reacquainted');assert.equal(s.promiseFound,false);assert.ok(!s.phoneUnlocked);routes++;
  }
- assert.equal(routes,2592);assert.equal(covered.size,Object.keys(continuation).length);
+ assert.equal(routes,5184);assert.equal(covered.size,Object.keys(continuation).length);
 });
 test('Existing recognition saves can continue without losing the saved line',()=>{
  const s=freshState();s.node='recognition';s.line=story.recognition.lines.length-1;

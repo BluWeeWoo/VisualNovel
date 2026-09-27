@@ -17,7 +17,7 @@ test('Every pre-revision porch save maps to a valid moment and preserves player 
  for(let i=0;i<37;i++){
   const s=freshState('River','they');s.storyRevision=2;s.node='rLetterPromise';s.line=i;
   s.flags={relationship:'friends',boundary:'space'};s.chat=[{role:'player',text:'Keep this'}];s.history=[{id:`rLetterPromise:${i}`,speaker:'',text:'Old authored line'}];
-  migrateStorySave(s,story);assert.ok(validSave(s,story));assert.deepEqual(s.flags,{relationship:'friends',boundary:'space'});assert.equal(s.chat[0].text,'Keep this');assert.equal(s.name,'River');
+  migrateStorySave(s,story);assert.ok(validSave(s,story));assert.deepEqual(s.flags,{relationship:'friends',boundary:'space',letterTiming:'later'});assert.equal(s.chat[0].text,'Keep this');assert.equal(s.name,'River');
   const once=JSON.stringify(s);migrateStorySave(s,story);assert.equal(JSON.stringify(s),once);
  }
 });

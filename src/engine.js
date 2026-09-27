@@ -14,8 +14,8 @@ export const promises = [
   'Leave town together someday.'
 ];
 export function freshState(name = 'Alex', pronouns = 'they') {
-  return { version: VERSION, storyRevision: 3, name: name.trim().slice(0, 24) || 'Alex', pronouns,
-    node: 'journey', line: 0, flags: {}, history: [], chat: [], chatTurns: 0,
+  return { version: VERSION, storyRevision: 4, name: name.trim().slice(0, 24) || 'Alex', pronouns,
+    node: 'journey', line: 0, flags: {letterTiming:'later'}, history: [], chat: [], chatTurns: 0,
     chatDone: false, promiseFound: false, sunrise: 'unstarted', milestone: 'Reacquainted',
     memories: [], completed: false, startedAt: Date.now() };
 }
@@ -105,7 +105,7 @@ const oldPorchPositions=[
  ['rYellowPromise',11],['rYellowPromise',10],['rYellowPromise',1],['rYellowPromise',3],['rYellowPromise',11],
  ['rPorchEnvelopes',13],['rYellowPromise',4],['rYellowPromise',5],['rYellowPromise',6],['rYellowPromise',7],['rYellowPromise',8],['rYellowPromise',9],['rYellowPromise',12],['rYellowPromise',12],['rYellowPromise',2],['rYellowPromise',13]
 ];
-export function migrateStorySave(s,story){
+function migrateRevisionThree(s,story){
  if(!s || s.version!==VERSION || !story[s.node] || !Array.isArray(s.history) || !s.flags)return s;
  if(!(s.storyRevision>=2))migrateRevisionTwo(s,story);
  if(s.storyRevision>=3)return s;
@@ -119,4 +119,19 @@ export function migrateStorySave(s,story){
  });
  s.history=s.history.filter((h,i,all)=>all.findIndex(x=>x.id===h.id)===i);
  s.storyRevision=3;return refreshAuthoredHistory(s,story);
+}
+
+// Revision four adds the letter-reading choice and continues beyond the old ending.
+export function migrateStorySave(s,story){
+ if(!s || s.version!==VERSION || !story[s.node] || !Array.isArray(s.history) || !s.flags)return s;
+ if(!(s.storyRevision>=3))migrateRevisionThree(s,story);
+ if(s.storyRevision>=4)return s;
+ if(!['now','later'].includes(s.flags.letterTiming))s.flags.letterTiming='later';
+ if(s.node==='rBurning'&&s.line>=18){s.node='rAfterEnvelope';s.line=Math.min(s.line-18,3);}
+ s.history=s.history.map(h=>{
+  const match=/^rBurning:(\d+)$/.exec(h.id);
+  return match&&Number(match[1])>=18?{...h,id:'rAfterEnvelope:'+Math.min(Number(match[1])-18,3)}:h;
+ });
+ if(s.node==='rInside')s.completed=false;
+ s.storyRevision=4;return refreshAuthoredHistory(s,story);
 }

@@ -393,6 +393,52 @@ Her arm falls away.
 Mom|Go upstairs, {name}.
 This time, I do.
 I take the yellow envelope with me.
+`,{music:'letters',next:'rEnvelope'}),
+rEnvelope:flash('manila-bedroom','The yellow envelope',`
+I close my bedroom door.
+For a while, I stand with my hand on the handle.
+Then I look down.
+The envelope is bent where I’ve been gripping it.
+Yellow paper. My name.
+A little boat beneath his.
+I sit on the bed and turn it over.
+It’s still sealed.
+`,{music:'letters',choices:[opt('Open it now.','rReadNow',{letterTiming:'now'}),opt('Keep it sealed for now.','rKeepSealed',{letterTiming:'later'})]}),
+rReadNow:flash('manila-bedroom','What did you want to tell me?',`
+You|What did you want to tell me, Ro?
+I ease a finger under the flap.
+The paper tears a little at the corner.
+I stop, then try more carefully.
+Inside are two folded pages.
+`,{music:'letters',next:'rLetterNow'}),
+rKeepSealed:flash('manila-bedroom','Not tonight',`
+I put my finger under the edge of the flap.
+Then pull it away.
+I want to read it.
+I just can’t do it while I can still smell the smoke on my clothes.
+You|Not tonight.
+I tuck the envelope inside a notebook and slide it into my bag.
+They aren’t taking this one.
+I keep it.
+Through the next semester. Through changing bags. Through every time I think about finding him.
+After a while, opening it feels like another thing I’ve waited too long to do.
+But when I pack for Saint Luis, I bring it.
+`,{music:'letters',next:'rAfterEnvelope'}),
+rReadNowAfter:flash('manila-bedroom','A few months ago',`
+I look at the date again.
+A few months ago.
+Lola was still making pancit.
+Still asking him to reach things.
+Still sending reminders through someone else’s letter.
+I read the part about her twice.
+Then I fold the pages along the same creases.
+He was waiting for an answer.
+They both were.
+You|I missed you too.
+There’s nobody here to hear it.
+I put the letter back in its envelope and keep it beside me that night.
+`,{music:'letters',next:'rAfterEnvelope'}),
+rAfterEnvelope:flash('manila-bedroom','What I carried',`
 After that, whenever I thought about contacting Rowan, I remembered the box.
 I was still living with my parents. I was afraid of what else they might take away.
 And I didn’t know how to explain what had happened.
@@ -477,7 +523,7 @@ But someone has been taking care of this place.
 I look around.
 Everything is familiar.
 And I can’t remember it ever looking quite like this.
-`,{music:'back-together',rowan:false,ending:true,openingEnd:true})
+`,{music:'back-together',rowan:false,next:'rWater'})
 };
 // Branch-specific gestures preserve consent and avoid a hug on the space route.
 const conditional=(text,flag,value)=>({speaker:'',text,if:[flag,value]});
@@ -487,3 +533,113 @@ continuation.rCry.lines.splice(comfort,0,conditional('I lean against him again. 
 continuation.rHold.lines.splice(2,0,conditional('He lets go, but stays nearby.','reunionBoundary','hug'));
 const textIndex=continuation.rReturn.lines.findIndex(l=>l.speaker==='Rowan · text')+1;
 for(const greeting of ['normal','excited','oblivious','shocked'])continuation.rReturn.lines.splice(textIndex,0,{speaker:'Rowan · text',text:greeting==='shocked'?'The one who’s still alive.':'The one standing in front of you.',if:['greeting',greeting]});
+
+// One authored letter, shared by both reading routes. No chat-generated history.
+export const rowansLetter=[
+ 'Hey, {name}.',
+ 'I turned twenty-one last week.',
+ 'Lola made pancit. She said the extra serving was for you, then told me to finish it before it went cold.',
+ 'I did. Sorry.',
+ 'I’m still not sure whether these letters are getting to you. Your parents said you’ve been busy with school.',
+ 'I hope it’s going okay.',
+ 'A few updates from here:',
+ 'I’m taller now. Properly taller. Lola asks me to get things from the top shelf instead of dragging a chair over.',
+ 'She still tells me to be careful, though. Apparently reaching for a jar is dangerous work.',
+ 'And my hair’s long.',
+ 'I meant to get it cut a while ago, but I kept putting it off. Now I can tie it back.',
+ 'Lola says it’s fine as long as I keep it out of the food.',
+ 'You’d probably have something to say about it.',
+ 'I’ve been helping her around the house. Mostly little repairs. I fixed a cupboard door last week, and it only took two tries.',
+ 'She made sure to tell your mom about the first try.',
+ 'Some things here haven’t changed much.',
+ 'Your seat at the table still wobbles.',
+ 'The hill still feels worse going up.',
+ 'I still look over when someone stops outside the gate.',
+ 'I miss you.',
+ 'I was going to write something less awkward, but that’s what I wanted to say.',
+ 'Sometimes something happens and I think, “I need to tell {name}.”',
+ 'Then I remember I can’t just go next door and find you.',
+ 'You don’t have to explain everything if you write back.',
+ 'Tell me what you had for lunch. Tell me something annoying that happened in class.',
+ 'One small thing is enough.',
+ 'I’d just like to hear from you.',
+ 'Lola says to eat properly and stop staying up so late.',
+ 'That last part might have been for both of us.',
+ 'Take care, okay?',
+ 'Ro',
+ 'P.S. The drawing is still a boat.'
+];
+const letterScene=(place,time,next)=>scene(place,'Rowan’s letter',
+ 'The date is a few months before Lola died. Just after Rowan’s twenty-first birthday.',
+ {time,music:'letters',rowan:false,letter:true,next});
+continuation.rLetterNow=letterScene('manila-bedroom','night','rReadNowAfter');
+continuation.rLetterLater=letterScene('bedroom','evening','rLetterLaterAfter');
+continuation.rWater=scene('living','A glass of water',`
+I set my bag beside the chair and open the inside pocket.
+My cards are still there.
+So is the envelope I brought with me.
+Yellow, though not as bright as it used to be.
+Rowan|Here.~neutral
+He sets a glass of water beside me.
+His eyes move to the envelope, then back to me.~surprised
+Rowan|You still have that?
+You|Yeah.
+He recognizes the little boat.~neutral
+Rowan|I remember that one. Just after my twenty-first birthday.
+He sits across from me.
+Rowan|I wrote again after, but I never finished it. Lola got sick, and…~sad
+He looks toward her chair.
+Rowan|Then everything happened.
+`,{music:'back-together',rowan:true,next:'rWaterReply'});
+const readingLine=(speaker,text,timing,expression)=>({speaker,text,if:['letterTiming',timing],...(expression?{expression}:{})});
+continuation.rWaterReply=scene('living','What I want to tell you','', {music:'back-together',rowan:true,next:'rSettled'});
+continuation.rWaterReply.lines=[
+ readingLine('','I glance at the envelope. The pancit. The cupboard door. Her reminder to eat.','now'),
+ readingLine('','That was the last letter he sent while she was still here.','now'),
+ readingLine('You','She told you to make sure I was eating.','now'),
+ readingLine('Rowan','Yeah. She worried.','now','smile'),
+ readingLine('You','You wrote it down.','now'),
+ readingLine('Rowan','She asked me twice.','now'),
+ readingLine('','I look down before he can see my face change.','now'),
+ readingLine('','His eyes settle briefly on the flap.','later','neutral'),
+ readingLine('You','I haven’t opened it.','later'),
+ readingLine('Rowan','Oh.','later','concerned'),
+ readingLine('You','I wanted to. I just…','later'),
+ readingLine('','I stop. He nods, though I’m not sure how much he understands.','later'),
+ readingLine('Rowan','You don’t have to read it in front of me.','later'),
+ readingLine('You','I think I’d like to read it upstairs.','later'),
+ readingLine('Rowan','Okay.','later','neutral'),
+ readingLine('','He leaves the envelope where it is.','later'),
+ {speaker:'You',text:'There’s something I need to tell you.'},
+ {speaker:'',text:'He waits.'},
+ {speaker:'You',text:'Not yet. But I want to.'},
+ {speaker:'Rowan',text:'Okay.',expression:'neutral'},
+ {speaker:'',text:'He nudges the water closer.'},
+ {speaker:'Rowan',text:'Start with that.'},
+ {speaker:'',text:'I take a drink. For now, I sit with him.'}
+];
+continuation.rSettled=scene('bedroom','After getting settled',`
+My bag is beside the bed.
+Rowan has gone downstairs to put away the last of his tools.
+For the first time since I arrived, I’m alone.
+I take the envelope out.
+`,{time:'evening',music:'letters',rowan:false,next:'rLetterLater'});
+continuation.rLetterLater.lines=[
+ ...['He wrote this just after turning twenty-one. Before Lola died.','The last one he finished while she was still here.','I sit by the window.','Okay, Ro.','This time, I open it.'].map((text,i)=>readingLine(i===3?'You':'',text,'later')),
+ readingLine('','I unfold the pages I first read in Manila. I want to read them here, too.','now')
+];
+continuation.rLetterLaterAfter=scene('bedroom','This time, he’s downstairs',`
+I glance toward the window.
+I saw his long hair today. How tall he’s gotten.
+The things he was trying to tell me two years ago.
+My eyes return to the part about Lola.
+In this letter, she’s still in the kitchen. Still telling him what to write.
+I know what happened a few months later.
+He didn’t. Not when he wrote this.
+I rest the pages on my lap.
+For a while, I listen to the house.
+Then I fold them carefully and put them back.
+You|I missed you too.
+This time, he’s downstairs.
+I don’t have to put it in a letter.
+`,{time:'evening',music:'letters',rowan:false,ending:true,openingEnd:true});
