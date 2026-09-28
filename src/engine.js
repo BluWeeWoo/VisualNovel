@@ -1,3 +1,4 @@
+import {gardenAffection,validGarden} from '../assets/garden-game.js';
 export const VERSION = 1;
 export const milestones = [
   {name:'Reacquainted', unlock:'Authored choices establish boundaries and shared childhood.'},
@@ -31,6 +32,7 @@ export function interpolate(text, state) {
 }
 export function applyChoice(state, choice) {
   Object.assign(state.flags, choice.set || {});
+  if(choice.set?.gardenMode==='declined')gardenAffection(state,false);
   if (choice.state) Object.assign(state, choice.state);
   state.node = choice.next;
   state.line = 0;
@@ -40,6 +42,7 @@ export function validSave(s, story) {
   return !!(s && s.version === VERSION && typeof s.name === 'string' && s.name.length <= 24 &&
     ['they','she','he'].includes(s.pronouns) && story[s.node] && Number.isInteger(s.line) && s.line >= 0 &&
     s.flags && typeof s.flags === 'object' && !Array.isArray(s.flags) &&
+    (s.garden===undefined||validGarden(s.garden)) &&
     s.line < visibleLines(story[s.node],s).length &&
     Array.isArray(s.history) && Array.isArray(s.chat) && Array.isArray(s.memories) &&
     s.history.every(h=>h && typeof h.id==='string' && typeof h.speaker==='string' && typeof h.text==='string') &&
@@ -149,6 +152,7 @@ export function migrateStorySave(s,story){
  if(!s || s.version!==VERSION || !story[s.node] || !Array.isArray(s.history) || !s.flags)return s;
  // The former ending is now a normal scene; preserve its exact reading position.
  if(s.node==='rLetterLaterAfter'&&story[s.node].next)s.completed=false;
+ if(s.node==='d2Reveal'){s.line=Math.min(s.line,story.d2Reveal.lines.length-1);s.completed=false;}
  if(s.storyRevision>=5)return s;
  const currentText=s.history.find(h=>h.id===`${s.node}:${s.line}`)?.text;
  if(!(s.storyRevision>=4))migrateRevisionFour(s,story);

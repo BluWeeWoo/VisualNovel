@@ -244,24 +244,173 @@ Rowan|Good morning to you, too!
 You|Sorry—your face—
 Rowan|I was having a peaceful morning.
 `,{next:'d2Reveal'}),
-d2Reveal:garden('Oh. There you are.',`
+d2Reveal:garden('In the morning light',`
 He turns fully toward me, brushing dirt from his fingers.
-You|Hey, I just—
-Oh.
-Without the cardigan, it’s a little harder to miss. His shoulders. His arms.
-When did that happen?
-A bead of sweat slips down his temple. His T-shirt catches the morning light.
-Then he notices me staring.
-Rowan|Oh, {name}. Dito ka pala.
-His mouth curves.
-Rowan|Were you looking for me?
-I look up a fraction too late.
-You|Breakfast.
-A pause.
-You|I was looking for you because of breakfast.
-He glances toward the house. Then back at me.
-Rowan|Right.
-That smile is getting suspicious.
-Rowan|Breakfast.
-`,{ending:true,openingEnd:true})
+The brim of Lola’s hat slips forward. He pushes it back with his wrist.
+`,{choices:[option('He looks different without the cardigan.','gNotice',{gardenNotice:'appearance'}),option('That hat is too big for him.','gHat',{gardenNotice:'hat'}),option('He’s been taking care of the garden, too.','gCare',{gardenNotice:'care'})]})
 };
+
+const outside=(title,text,end={})=>scene('garden-rematch',title,text,{...end});
+Object.assign(dayTwo,{
+gNotice:outside('Caught looking',`
+His sleeves sit a little higher as he raises his arm.
+Oh. I hadn’t really noticed his shoulders yesterday.
+Or maybe I’d had too much else to think about.
+Rowan|Something on my shirt?
+I look up.
+You|No.
+Rowan|Okay.
+He’s smiling now.
+You|I came to get you for breakfast.
+Rowan|Right. Breakfast.
+`,{next:'gBreakfastInvite'}),
+gHat:outside('An unhelpful hat',`
+You|Can you actually see under that?
+Rowan|Most of the garden.
+You|Very reassuring.
+The brim drops again. He looks at me from underneath it.
+Rowan|Don’t.
+I’m already laughing.
+`,{next:'gBreakfastInvite'}),
+gCare:outside('A little at a time',`
+Some pots have been moved into the shade. A watering can sits beside the path.
+You|You’ve been doing all this?
+Rowan|A little at a time.
+He looks down at the weeds.
+Rowan|Some parts more successfully than others.
+You|It looks cared for.
+His hand rests on the watering can.
+Rowan|Thanks.
+`,{next:'gBreakfastInvite'}),
+gBreakfastInvite:outside('Breakfast first',`
+You|I found your note.
+Rowan|You saw breakfast?
+You|I smelled it first.
+Rowan|Good. I was starting to get hungry.
+You|Then why are we still standing here?
+He puts down the little hand fork.
+Rowan|Excellent question.
+`,{next:'gBreakfastTogether'}),
+gBreakfastTogether:scene('living','Two plates',`
+Rowan washes his hands while I pull out a chair.~smile
+Two plates. Two glasses.
+I move his note away from the food.
+You|You still put little faces on things.
+Rowan|Would you prefer a formal letter?~playful
+You|For breakfast?
+Rowan|Dear {name}. Please find your eggs attached.
+A laugh slips out before I can stop it.
+You|Sit down, Ro.
+He does.
+I try the rice first. Garlic. A little salt. The crisp bits from the bottom of the pan.
+I take another bite.
+You|This tastes like hers.
+Rowan|She showed me.~smile
+You|Did she give you measurements?
+Rowan|She said I’d know when it was enough.
+You|Helpful.
+Rowan|Extremely.~playful
+He nudges the serving plate toward me.
+Rowan|There’s more.
+For a while, we just eat.
+He asks whether the fan in my room still clicks. I tell him it does.
+Apparently, he tightened it last week.
+You|It didn’t work.
+Rowan|I gathered that.
+You|Maybe it likes making noise.
+Rowan|Then it’s doing very well.
+By the time we finish, I’ve stopped watching my phone.
+Rowan carries the plates to the sink. I bring the glasses.
+Through the open back door, I can see the patch he was working on.
+You|Still trying to figure out which ones are weeds?
+Rowan|I checked the labels. We’re safe now.~smile
+You|We?
+He looks back at me.
+Rowan|That depends.~playful
+`,{rowan:true,next:'gRemember'}),
+gRemember:outside('We used to do this',`
+Rowan puts the hat back on.
+There are two empty buckets beside the step. He picks one up.
+You|Lola used to send us out here after breakfast.
+Rowan|You always said you needed another five minutes.
+You|I was digesting.
+Rowan|For an hour?
+He places the bucket beside the weeds.
+I remember one just like it sitting between us.
+Back then, it reached nearly to my knees.
+`,{next:'gChildhood'}),
+gChildhood:scene('garden-bed','Before I left · age eleven',`
+Lola (off-screen)|Weeds lang, ha. Leave my plants alone.~neutral
+Rowan crouches beside the bucket.
+Rowan|Whoever gets more wins!~smile
+You|You already started!
+Rowan|Then hurry up.~playful
+Lola (off-screen)|Basta matapos ninyo.
+We each grab a handful.
+A moment later, Rowan leans over my bucket.~concerned
+You|What?
+Rowan|That’s one weed.
+You|It has three stems.
+Rowan|Still one.~playful
+You|You’re making up rules.
+From the doorway, Lola laughs.~smile
+`,{rowan:true,childhood:true,next:'gChallenge'}),
+gChallenge:outside('A rematch',`
+You|She didn’t even care who won.
+Rowan|I know.
+You|We argued about it for ages.
+Rowan|You counted the stems.
+You|You remember that?
+Rowan|I had a difficult opponent.
+He offers me the second bucket.
+Rowan|Rematch?
+`,{choices:[option('You’re on.','gTimed',{gardenMode:'timed'}),option('I’ll help, but no timer.','gUntimed',{gardenMode:'untimed'}),option('I’ll pass this time.','gDecline',{gardenMode:'declined'})]}),
+gTimed:outside('You’re on',`
+You|You’re on.
+His smile comes quickly.
+Rowan|Okay. This half is yours.
+You|Already picked the easy side?
+Rowan|We can swap.
+You|Now I don’t trust either side.
+`,{next:'gPlay'}),
+gUntimed:outside('At our own pace',`
+You|I’ll help, but no timer.
+Rowan|Deal.
+He puts the bucket beside me.
+Rowan|I’m still counting.
+You|Of course you are.
+`,{next:'gPlay'}),
+gDecline:outside('Another time',`
+You|I’ll pass this time.
+His hand pauses around the bucket handle.
+Rowan|Oh. Okay.
+He puts the spare bucket back beside the step.
+Rowan|I’ll finish this bit, then.
+You|You don’t mind?
+Rowan|You don’t have to.
+He crouches beside the plants again.
+I hadn’t realized how much he wanted a rematch until he stopped smiling.
+`,{next:'gAfter'}),
+gPlay:outside('One More Weed','A bucket each. One rematch.',{minigame:true,next:'gResult'}),
+gResult:outside('The final count','',{next:'gTogether'}),
+gTogether:outside('A little differently',`
+Rowan looks at the cleared patch.
+Rowan|That was quicker with you.
+I brush the dirt from my hands.
+You|Even with the arguing?
+Rowan|That was part of it.
+He takes his bucket. I pick up mine.
+For once, remembering something hasn’t made me wish I could go back.
+We’ve just done it again. A little differently.
+`,{next:'gAfter'}),
+gAfter:outside('After the garden','',{ending:true,openingEnd:true})
+});
+const branch=(text,key,value)=>text.trim().split('\n').map(row=>{const i=row.indexOf('|');return {speaker:i<0?'':row.slice(0,i),text:i<0?row:row.slice(i+1),if:[key,value]};});
+dayTwo.gResult.lines=[
+ ...branch('Rowan looks between the buckets.\nRowan|Wait.\nHe checks mine again.\nYou|Roots and all.\nRowan|I can see that.\nYou|Say it.\nRowan|You won.\nYou|Thank you.\nHis smile gives him away.\nRowan|I’ll ask for a rematch when you’re less awake.','gardenResult','win'),
+ ...branch('He holds up his bucket. Just enough to be annoying.\nYou|You’ve had twelve years to practice.\nRowan|So you admit it was skill.\nYou|I admit you’ve spent a lot of time pulling weeds.\nHe laughs.\nRowan|I’ll take it.','gardenResult','loss'),
+ ...branch('We count again. The same number.\nYou|Well?\nRowan|I think we have to accept it.\nYou|That sounded painful.\nRowan|I’m being mature.','gardenResult','tie')];
+dayTwo.gAfter.lines=[
+ ...branch('When Rowan finishes, he carries his bucket to the garden waste pile.\nI move the watering can out of his way.\nRowan|Thanks.\nYou|No problem.','gardenMode','declined'),
+ ...['timed','untimed'].flatMap(mode=>branch('We leave the buckets beside the garden waste pile.\nRowan reaches for the watering can.\nYou|You need a hand with that too?\nRowan|Careful. I might say yes.','gardenMode',mode)),
+ ...branch('He hangs Lola’s hat beside the back door.\nThere’s a pale mark on the wall where it has rested for years.\nRowan|Water?\nYou|Please.\nWe go back inside.','gardenWrap',true).map(({if:condition,...line})=>line)];

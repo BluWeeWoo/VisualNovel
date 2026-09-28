@@ -1,4 +1,5 @@
 import {morningPhone} from './morning-phone.js';
+import {mountGarden} from '../assets/garden-game.js';
 import {rowansLetter} from './continuation.js';
 import {phoneCue,hasRowanContact,phoneBody,phoneIdentity} from './phone-ui.js';
 import {story} from './story.js';
@@ -13,6 +14,7 @@ import {galleryUnlocks,mountGallery} from '../assets/love-interests.js';
 
 const $=s=>document.querySelector(s);
 const app=$('#app');
+let gardenCleanup=null;
 const escape=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const storageKey='our-summer-v1';
 let state=null, screen='title', modal=null, timer=null, typing=false, fullText='', timerIndex=0;
@@ -141,6 +143,12 @@ function mountGame(html,backgroundKey,artKey){
 }
 function renderGame(){
   stopTyping();
+  gardenCleanup?.();gardenCleanup=null;
+  if(story[state.node].minigame){
+    enterAudio();
+    gardenCleanup=mountGarden(app,state,{save:autoSave,motion:settings.motion,sound:settings.sound,volume:settings.volume,done:()=>{enter('gResult');renderGame();},menu:()=>{screen='title';render();}});
+    return;
+  }
   const node=story[state.node],all=nodeLines(),line=all[Math.min(state.line,all.length-1)];
   if(!line){toast('This scene could not be loaded.');return;}
   record(line);autoSave();enterAudio();
@@ -160,7 +168,7 @@ function renderGame(){
     <div class="dialogue-copy"><p class="dialogue-reserve" aria-hidden="true">${escape(displayText)}</p><p id="dialogue-text" aria-live="off"></p></div><span class="sr-only dialogue-status" role="status">${escape(cue?.message?displayText:(line.speaker?line.speaker+': ':'')+interpolate(line.text,state))}</span>
     <div class="dialogue-extras">${morningPhone(node,state)}${node.letter?'<button class="secondary" data-action="letter">Read Rowan’s letter ↗</button>':''}${last&&node.choices?`<div class="choices" aria-label="Choose your response">${node.choices.map((c,i)=>`<button data-choice="${i}"><span class="choice-number">${i+1}</span>${escape(interpolate(c.text,state))}<span class="choice-arrow" aria-hidden="true">↗</span></button>`).join('')}</div>`:''}
     ${last&&node.phone?'<div class="phone-invitation"><p>A short late-night conversation · up to 4 messages<br><small>An early preview. Open conversations unlock at Close in future chapters.</small></p><button class="primary" data-action="phone">Open your phone ↗</button><button class="text-button" data-action="skip-chat">Save your words for morning</button></div>':''}
-    ${last&&node.openingEnd?`<div class="opening-end"><span class="eyebrow">END OF THE CURRENT STORY</span><p>Your place is saved. The story pauses at breakfast time in the garden on day two.</p><button class="text-button" data-action="title">Back to the title ↗</button></div>`:''}
+    ${last&&node.openingEnd?`<div class="opening-end"><span class="eyebrow">END OF THE CURRENT STORY</span><p>Your place is saved. The story pauses after the garden on day two.</p><button class="text-button" data-action="title">Back to the title ↗</button></div>`:''}
     ${last&&node.ending&&!node.openingEnd?`<div class="chapter-end"><span class="eyebrow">END OF CHAPTER ONE</span><h2>A little less unfinished.</h2><p>Your summer is saved. The sunrise is planned, not yet fulfilled.</p><div><button class="primary" data-action="promises">Keep the list ↗</button><button class="secondary" data-action="title">Back to the title</button></div><small>Chapter two continues the sunrise promise. This build contains chapter one.</small></div>`:''}
     </div><div class="dialogue-footer"><nav class="dialogue-tools" aria-label="Game tools"><button data-action="history">History</button><button data-action="saves">Save / load</button><button data-action="settings">Settings</button><button data-action="promises">Promises</button>${hasRowanContact(state)?'<button data-action="sg">Phone</button>':''}<button data-action="title" aria-label="Return to title">Menu</button></nav>${!(last&&(node.choices||node.phone||node.ending))?'<button class="next-button" data-action="next" aria-label="Continue dialogue">Continue <span aria-hidden="true">→</span></button>':'<span class="small-flower" aria-hidden="true">✳</span>'}</div></section>
     <footer class="game-footer"><span>${escape(state.name)}’s summer <span class="footer-dot">·</span> <button data-action="relationship" aria-label="Relationship milestones">${escape(state.milestone)}</button></span><span>${state.phoneUnlocked?'<button data-action="phone">↗ Late-night messages</button>':'A story at your own pace'}</span><span class="save-indicator">${storageAvailable?'● Progress saved locally':'! Local saves unavailable'}</span></footer></div></main>`;
@@ -321,6 +329,7 @@ function action(type){
   openModal(type);
 }
 document.addEventListener('keydown',e=>{
+  if(screen==='game'&&state&&story[state.node]?.minigame)return;
   if(modal){
     if(e.key==='Escape'){e.preventDefault();closeModal();return;}
     if(e.key==='Tab'){

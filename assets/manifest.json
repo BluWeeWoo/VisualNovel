@@ -23,7 +23,9 @@
     "d2-garden-reveal": "assets/cg/day-two/garden-reveal.webp",
     "d2-garden-whatcha": "assets/cg/day-two/garden-whatcha.webp",
     "d2-garden-hat-poke": "assets/cg/day-two/garden-hat-poke.webp",
-    "d2-garden-startled": "assets/cg/day-two/garden-startled.webp"
+    "d2-garden-startled": "assets/cg/day-two/garden-startled.webp",
+    "garden-rematch": "assets/cg/day-two/garden-reveal.webp",
+    "garden-bed": "assets/cg/reunion/reunion-porch.webp"
   },
   "portraits": {
     "Rowan": {
