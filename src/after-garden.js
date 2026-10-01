@@ -7,10 +7,10 @@ const scene=(title,text,end={})=>({place:'reunion-porch',time:'day',day:2,dayTwo
 const opt=(text,next,set)=>({text,next,...(set?{set}:{})});
 export const afterGarden={
 aWater:scene('Cold water',`
-We leave our shoes by the back door and wash the dirt from our hands.
-After freshening up, Rowan puts his cardigan back on and opens the fridge.
-Rowan|Water?~smile
-You|Please.
+We leave our shoes by the back door.
+Rowan washes the dirt from his hands. I rinse mine beside him.
+After freshening up, Rowan puts his cardigan back on and opens the fridge.~smile
+I wait beside the counter while he takes out the cold water.
 He fills two glasses and hands one to me. The outside is already cold against my fingers.
 Rowan|Careful. You might decide to live in front of the fridge.~playful
 You|Don’t give me ideas.
@@ -115,7 +115,7 @@ Thought|I’ll talk to him tomorrow.
 I set the phone down. His message will still be there in the morning.
 `,{place:'d2-bedroom-night',time:'night',rowan:false,music:'back-together',next:'aEnd'}),
 aEnd:scene('Reunion at a Familiar House',`
-The fan clicks above me.
+The familiar fan clicks in the quiet.
 Outside, the street grows quieter.
 Thought|Goodnight, Saint Luis.
 `,{place:'d2-bedroom-night',time:'night',rowan:false,music:null,ending:true,openingEnd:true})
@@ -344,7 +344,7 @@ You|What do you want to do?
 Rowan|I’m still figuring out how to say it without talking myself out of it.
 You|You can tell me when you’re ready.
 Rowan|Thanks.~smile
-His knee bumps mine when he shifts his chair. He moves it back, then seems to think better of moving any farther away.
+His knee bumps mine when he shifts. “Sorry,” he says, adjusting his chair.
 Rowan|One thing hasn’t changed.
 You|What?
 Rowan|I still like having you around.

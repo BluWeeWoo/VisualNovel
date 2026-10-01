@@ -1,5 +1,5 @@
 .modal.coastal-panel,.modal.saves-modal{background:#f7ecd6 url('chapters/parchment-frame.png') center/100% 100%;border:1px solid #c7b38d;box-shadow:0 22px 80px #17334755;color:#294762;padding:35px 48px;border-radius:5px}
-.modal.coastal-panel{width:min(760px,90vw)}
+.modal.coastal-panel{width:min(760px,90vw);background-size:cover;background-position:center top;background-repeat:no-repeat}
 .coastal-panel .modal-header,.saves-modal .modal-header{border-bottom:1px solid #7893a577;padding-bottom:16px;margin-bottom:20px;text-align:center;position:relative;display:block}
 .coastal-panel .modal-header h2,.saves-modal .modal-header h2{font:italic 32px/1.15 Georgia,serif;margin:12px 20px 0;color:#294762}
 .coastal-panel .modal-header .close,.saves-modal .modal-header .close{position:absolute;right:-25px;top:-15px;background:#f9eedee8}
@@ -31,6 +31,7 @@
 .save-pagination button:disabled{opacity:.45;cursor:not-allowed}
 .saves-modal>.small-note{text-align:center;margin:12px 0 0}
 .coastal-panel button:focus-visible,.saves-modal button:focus-visible{outline:3px solid #426986;outline-offset:3px}
+@media(max-width:650px){.modal.coastal-panel{width:100%;padding:25px 22px}.coastal-panel .modal-header h2{font-size:26px;margin:12px 26px 0}.coastal-panel .modal-header .close{right:-10px;top:-10px}.coastal-panel .settings-list{padding:0 14px}.coastal-panel .toggle-row{gap:14px}.coastal-panel input[type=checkbox]{flex-shrink:0}}
 @media(min-width:1051px) and (max-height:760px){.modal.coastal-panel{padding:23px 40px}.coastal-panel .modal-header{padding-bottom:11px;margin-bottom:13px}.coastal-panel .modal-header h2{font-size:28px}.coastal-panel .settings-list label{margin:12px 0}.coastal-panel .controls-note{margin:12px 0}.modal.saves-modal{padding:22px 35px}.saves-modal .save-preview{max-height:120px}.saves-modal .save-caption{min-height:76px}}
 
 /* Roomier desktop save gallery, retaining five slots per page. */

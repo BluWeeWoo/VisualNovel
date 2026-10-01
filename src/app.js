@@ -92,7 +92,6 @@ function title(){
     <header class="title-header">${brand()}<span class="edition">AN INTERACTIVE SUMMER STORY <span>•</span> CHAPTER ONE</span></header>
     <section class="title-copy"><div class="eyebrow"><span class="short-line"></span> SOME THINGS WAIT FOR YOU</div>
     <h1>Our Summer,<br><em>Unfinished</em><span class="title-period">.</span></h1>
-    <p class="tagline">An old house. Five promises.<br>Someone who remembers.</p>
     <div class="title-actions"><button class="primary" data-action="${resume?'continue':'new'}">${resume?'Continue your summer':'Begin your summer'} <span aria-hidden="true">↗</span></button>
     ${resume?'<button class="text-button" data-action="new">Start a new summer</button>':''}
     <div class="title-secondary"><button data-action="saves">Saved moments</button><span>·</span><button data-action="settings">Settings</button><span>·</span><button data-action="love-interests">Love Interests</button><span>·</span><button data-action="about">About</button></div></div>

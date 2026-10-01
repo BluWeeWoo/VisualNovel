@@ -7,7 +7,6 @@ export function desktopMenu(resume){
     <section class="seaglass-copy" aria-labelledby="summer-title">
       <p class="seaglass-kicker">SUMMERHOUSE · CHAPTER ONE</p>
       <h1 id="summer-title">Our Summer,<br><em>Unfinished</em></h1>
-      <p class="seaglass-tagline">An old house. Five promises.<br>Someone who remembers.</p>
       <nav class="seaglass-actions" aria-label="Main menu">${buttons.map(([action,label])=>`<button class="plank" data-action="${action}"><span>${label}</span></button>`).join('')}</nav>
       <nav class="seaglass-utilities" aria-label="Menu options"><button data-action="settings">Settings</button><span aria-hidden="true">·</span><button data-action="about">About</button><span aria-hidden="true">·</span><button data-action="accessibility">Accessibility</button></nav>
     </section>

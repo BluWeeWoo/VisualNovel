@@ -35,7 +35,7 @@
 .seaglass-copy{text-align:center}.seaglass-actions,.seaglass-utilities{margin-left:auto;margin-right:auto}
 
 /* Give the centered menu a little more space above it. */
-.seaglass-copy{top:clamp(20px,4svh,42px)}
+.seaglass-copy{top:calc(clamp(20px,4svh,42px) + 16px)}
 
 
 /* Nudge the centered desktop menu slightly toward the right. */
