@@ -12,6 +12,7 @@ import {setAudio} from './audio.js';
 import {setOpeningAudio, openingAudioCue, menuAudioCue} from './opening-audio.js';
 import {desktopMenu} from '../assets/desktop-menu.js';
 import {galleryUnlocks,mountGallery} from '../assets/love-interests.js';
+import {saveJournal,journalPages} from '../assets/save-journal.js';
 
 const $=s=>document.querySelector(s);
 const app=$('#app');
@@ -21,6 +22,7 @@ const storageKey='our-summer-v1';
 const manualSaveKeys=Array.from({length:19},(_,i)=>`-slot${i+1}`);
 const saveKeys=['-auto',...manualSaveKeys];
 let savePage=0;
+let saveMode='load',saveSelection='-auto',saveConfirmKey=null;
 let state=null, screen='title', modal=null, timer=null, typing=false, fullText='', timerIndex=0;
 let liveConsent=false, busy=false, error='', draft='', chatMode='demo', provider={available:false};
 let manifest={backgrounds:{},portraits:{}};
@@ -195,23 +197,59 @@ let presentedPhone='',phonePage='contact',presentedLetter='',presentedChapterEnd
 function openModal(kind){
   if(!document.activeElement?.closest('.modal-layer'))previousFocus=document.activeElement;
   if(typing){stopTyping();$('#dialogue-text').textContent=fullText;}
+  if(kind==='saves'){
+    saveMode=state&&screen==='game'?'save':'load';saveConfirmKey=null;
+    if(saveMode==='save'&&saveSelection==='-auto')saveSelection=journalPages(manualSaveKeys,savePage).keys[0];
+  }
   modal=kind;drawModal();
 }
 function closeModal(){if(busy)return;const layer=$('.modal-layer');if(layer?.querySelector('.sg-device,.phone-modal,.letter-paper')&&settings.motion&&!matchMedia('(prefers-reduced-motion: reduce)').matches){layer.style.pointerEvents='none';layer.animate([{opacity:1},{opacity:0}],{duration:160}).finished.catch(()=>{}).then(()=>layer.remove());}else layer?.remove();modal=null;error='';if(screen==='title'&&Boolean($('.seaglass-menu'))!==matchMedia('(min-width: 1051px)').matches){render();return;}if(previousFocus?.isConnected&&!previousFocus.closest('.modal-layer'))previousFocus.focus();else $('.next-button')?.focus();}
 function shell(title,body,extra=''){
-  $('.modal-layer')?.remove();
-  const layer=document.createElement('div');layer.className='modal-layer';
-  layer.innerHTML=`<section class="modal ${extra} ${['settings','about'].includes(modal)?'coastal-panel '+modal+'-panel':''}" role="dialog" aria-modal="true" aria-labelledby="modal-title"><header class="modal-header"><div><span class="eyebrow">OUR SUMMER, UNFINISHED</span><h2 id="modal-title">${title}</h2></div><button class="close" data-action="close" aria-label="Close dialog" ${busy?'disabled':''}>×</button></header>${body}</section>`;
-  document.body.append(layer);bind(layer);
-  layer.addEventListener('click',e=>{if(e.target===layer&&!busy)closeModal();});
-  (layer.querySelector('input:not([type=range]),textarea')||layer.querySelector('button'))?.focus();
+  const existing=$('.modal-layer');
+  const reuse=extra==='saves-modal'&&existing?.querySelector('.saves-modal');
+  const scrollTop=reuse?existing.querySelector('.modal')?.scrollTop||0:0;
+  if(!reuse)existing?.remove();
+  const layer=reuse?existing:document.createElement('div');layer.className='modal-layer';
+  const heading=extra==='saves-modal'?'':`<header class="modal-header"><div><span class="eyebrow">OUR SUMMER, UNFINISHED</span><h2 id="modal-title">${title}</h2></div><button class="close" data-action="close" aria-label="Close dialog" ${busy?'disabled':''}>×</button></header>`;
+  layer.innerHTML=`<section class="modal ${extra} ${['settings','about'].includes(modal)?'coastal-panel '+modal+'-panel':''}" role="dialog" aria-modal="true" aria-labelledby="modal-title">${heading}${body}</section>`;
+  if(!reuse){
+    document.body.append(layer);
+    layer.addEventListener('click',e=>{if(e.target===layer&&!busy)closeModal();});
+  }
+  bind(layer);
+  if(reuse){const panel=layer.querySelector('.modal');if(panel)panel.scrollTop=scrollTop;}
+  else (layer.querySelector('input:not([type=range]),textarea')||layer.querySelector('button:not([disabled])'))?.focus();
 }
 function savePreview(saved){
-  const node=story[saved.node],line=visibleLines(node,saved)[saved.line];
+  const node=story[saved.node];
   const background=manifest.backgroundVariants?.[node.place]?.[node.time]||manifest.backgrounds[node.place]||`assets/backgrounds/${node.place}.svg`;
   const cg=manifest.cgs?.[cgAt(story,saved)],sprite=spriteAt(story,saved);
   const portrait=!cg&&sprite&&manifest.portraits[sprite.character||'Rowan']?.[sprite.key];
-  return `<div class="save-preview" role="img" aria-label="${escape(node.title)} — scene preview"><img class="save-background ${escape(node.time)} ${node.place.startsWith('manila-')?'painted-light':''}" src="${escape(background)}" alt="" loading="lazy">${cg?`<img class="save-cg" src="${escape(cg.src)}" alt="" loading="lazy">`:portrait?`<img class="save-portrait" src="${escape(portrait)}" alt="" loading="lazy">`:''}<div class="save-dialogue" aria-hidden="true"><b>${escape(line?.speaker==='You'?saved.name:line?.speaker||'')}</b><span>${escape(line?interpolate(line.text,saved):'')}</span></div></div>`;
+  return `<span class="save-preview" role="img" aria-label="${escape(node.title)} — scene preview"><img class="save-background ${escape(node.time)} ${node.place.startsWith('manila-')?'painted-light':''}" src="${escape(background)}" alt="" loading="lazy">${cg?`<img class="save-cg" src="${escape(cg.src)}" alt="" loading="lazy">`:portrait?`<img class="save-portrait" src="${escape(portrait)}" alt="" loading="lazy">`:''}</span>`;
+}
+function drawSaveJournal(){
+  const entries=saveKeys.map((key,i)=>{
+    const data=read(key),valid=validSave(data?.state,story);
+    const saved=valid?data.state:null,node=saved&&story[saved.node],line=saved&&visibleLines(node,saved)[saved.line];
+    const date=new Date(data?.date);
+    return {key,number:String(i).padStart(2,'0'),label:i?'Moment '+String(i).padStart(2,'0'):'Autosave',exists:!!data,valid,
+      title:node?.title.replace(/^\d+\s*\/\s*/,''),name:saved?.name,
+      date:valid&&!Number.isNaN(date.getTime())?date.toLocaleString(undefined,{month:'short',day:'numeric',year:'numeric',hour:'numeric',minute:'2-digit'}):'Date unknown',
+      excerpt:line?interpolate(line.text,saved):'A quiet place in your summer.',preview:valid?savePreview(saved):''};
+  });
+  shell('Saved moments',saveJournal({entries,page:savePage,mode:saveMode,selected:saveSelection,canSave:!!state&&screen==='game',confirmKey:saveConfirmKey}),'saves-modal');
+}
+function redrawSaveJournal(focusSelector){
+  drawSaveJournal();
+  $(focusSelector)?.focus({preventScroll:true});
+}
+function saveMoment(key,confirmed=false){
+  if(!state||screen!=='game'||!manualSaveKeys.includes(key))return;
+  saveSelection=key;
+  if(read(key)&&!confirmed){saveConfirmKey=key;redrawSaveJournal('[data-save-cancel]');return;}
+  if(write(key,{date:Date.now(),state})){
+    saveConfirmKey=null;redrawSaveJournal(`[data-save-select="${key}"]`);toast('Moment saved.');
+  }
 }
 function drawModal(){
   if(modal==='chapters'){
@@ -245,11 +283,7 @@ function drawModal(){
     shell('Before we get boring',`<div class="journal"><div class="journal-date">A summer, years ago <span>in green ink</span></div>${found?`<ol class="promise-list">${promises.map((p,i)=>`<li><span class="promise-check ${i===0&&state.sunrise==='planned'?'planned':''}">${i===0&&state.sunrise==='planned'?'◷':'○'}</span><div>${p}${i===0?`<small>${state.sunrise==='planned'?`Tomorrow · 4:40 at the gate · ${escape(state.flags.ritual||'a flask')}<br>Planned — still waiting for the sunrise.`:'Not yet begun.'}</small>`:'<small>For another day.</small>'}</div></li>`).join('')}</ol><p class="handwritten">A promise isn’t a trap.</p>`:'<p class="empty-state">Some things are waiting in the drawers.<br>You haven’t found the list yet.</p>'}</div>`);
   }
   if(modal==='history')shell('The things we said',`<div class="history-list">${state?.history.length?state.history.map(h=>`<article><strong>${escape(h.speaker==='You'?state.name:h.speaker||'—')}</strong><p>${escape(h.text)}</p></article>`).join(''):'<p>No dialogue yet. Begin your summer first.</p>'}</div>`);
-  if(modal==='saves')shell('Saved moments',`<p class="muted save-intro">A little picture of where you left off. Saved in this browser, on this device.</p><div class="save-gallery">${saveKeys.slice(savePage*5,savePage*5+5).map((key,offset)=>{
-    const i=savePage*5+offset;
-    const data=read(key),valid=validSave(data?.state,story),label=i?'Moment '+String(i).padStart(2,'0'):'Autosave';
-    return `<article class="save-card"><span class="eyebrow">${label}</span>${valid?savePreview(data.state):'<div class="save-preview save-empty"><span aria-hidden="true">☼</span><span>An empty moment</span></div>'}<div class="save-caption"><strong>${valid?escape(data.state.name)+' · '+escape(story[data.state.node].title):'Your summer goes here'}</strong><small>${valid?escape(new Date(data.date).toLocaleString()):'Nothing saved here yet.'}</small></div><div class="save-actions">${i&&state?`<button class="secondary" data-save="${key}" aria-label="${valid?'Replace':'Save to'} ${label}">${valid?'Replace':'Save'}</button>`:''}<button class="secondary" data-load="${key}" aria-label="Load ${label}" ${!valid?'disabled':''}>Load</button></div></article>`;
-  }).join('')}</div><nav class="save-pagination" aria-label="Saved moment pages"><button class="secondary" data-save-page="${savePage-1}" ${savePage===0?'disabled':''}>← Previous</button><span role="status">Slots ${savePage*5+1}–${savePage*5+5} of 20</span>${[0,1,2,3].map(page=>`<button data-save-page="${page}" aria-label="Page ${page+1}" aria-current="${page===savePage?'page':'false'}">${page+1}</button>`).join('')}<button class="secondary" data-save-page="${savePage+1}" ${savePage===3?'disabled':''}>Next →</button></nav><p class="small-note">Loading returns you to that moment. Your other manual saves stay safe.</p>`,'saves-modal');
+  if(modal==='saves'){drawSaveJournal();return;}
   if(modal==='settings')shell('Make yourself comfortable',`<div class="settings-list"><label>Text speed <span id="speed-label">${settings.speed===0?'Instant':settings.speed+' letters / second'}</span><input id="speed" aria-label="Text speed, zero is instant" type="range" min="0" max="80" step="8" value="${settings.speed}"></label><label class="toggle-row"><span>Reduced motion<small>Also displays dialogue instantly.</small></span><input id="motion" type="checkbox" ${!settings.motion?'checked':''}></label><label class="toggle-row"><span>Music & ambience<small>Your scene soundtrack and ambience. Off by default.</small></span><input id="sound" type="checkbox" ${settings.sound?'checked':''}></label><label>Audio volume<input id="volume" aria-label="Audio volume" type="range" min="0" max="1" step=".05" value="${settings.volume}"></label></div><div class="controls-note"><strong>At your own pace</strong><p>Space / Enter: reveal or advance · 1–4: choose a response<br>H: history · P: promises · S: save / load · Esc: close a panel<br>Tab and Shift+Tab move between controls. There are no timed choices.</p></div><button class="secondary" data-action="memories">Review saved chat memories</button>`);
   if(modal==='about')shell('A summer worth taking slowly',`<p>A story about an old guesthouse, unfinished promises, and choosing how to come back to someone.</p><p>Original story, interface, and synthesized ambience created for this project. Rowan’s official design is your original illustration, with matching generated expressions and illustrated backgrounds. Both Rowan and the protagonist are 23.</p><p><strong>New games play the revised opening through the reunion, Rowan’s letter, and the garden reunion on day two.</strong> Existing saves retain the earlier chapter draft. Later scenes have not yet been adapted to the new continuity.</p><p class="muted">Reading time varies. Includes grief, bereavement, controlling parents, and the destruction of personal letters. All romantic characters are adults. Nothing is timed.</p><p class="small-note">The default phone is a scripted demo, not live AI. No messages leave this device in demo mode. Local progress stays in this browser.</p>`);
   if(modal==='relationship')shell('Becoming familiar',`<p>Trust grows through shared moments and honest choices. It isn’t a score. Friendship and romance have the same room to grow.</p><ol class="milestone-list">${milestones.map(m=>`<li><strong>${m.name}${state?.milestone===m.name?' · now':''}</strong><p>${m.unlock}</p></li>`).join('')}</ol><p class="small-note">Chapter one ends at Familiar. Later milestones await future chapters. Skipping chat, disagreeing respectfully, or needing space never takes trust away.</p>`);
@@ -313,11 +347,26 @@ async function sendMessage(){
   finally{busy=false;if(modal==='phone')phoneModal();}
 }
 function bind(root=app){
-  root.querySelectorAll('[data-save-page]').forEach(el=>el.onclick=()=>{savePage=Math.max(0,Math.min(3,Number(el.dataset.savePage)));drawModal();document.querySelector(`[data-save-page="${savePage}"][aria-current="page"]`)?.focus();});
+  root.querySelectorAll('[data-save-page]').forEach(el=>el.onclick=e=>{
+    e.stopPropagation();const next=journalPages(manualSaveKeys,Number(el.dataset.savePage));
+    savePage=next.page;saveSelection=next.keys[0];saveConfirmKey=null;
+    redrawSaveJournal(`[data-save-page="${savePage}"][aria-current="page"]`);
+  });
+  root.querySelectorAll('[data-save-select]').forEach(el=>el.onclick=e=>{
+    e.stopPropagation();saveSelection=el.dataset.saveSelect;saveConfirmKey=null;
+    redrawSaveJournal(`[data-save-select="${saveSelection}"]`);
+  });
+  root.querySelectorAll('[data-save-mode]').forEach(el=>el.onclick=e=>{
+    e.stopPropagation();saveMode=el.dataset.saveMode;saveConfirmKey=null;
+    if(saveMode==='save'&&saveSelection==='-auto')saveSelection=journalPages(manualSaveKeys,savePage).keys[0];
+    redrawSaveJournal(`[data-save-mode="${saveMode}"]`);
+  });
+  root.querySelectorAll('[data-save-cancel]').forEach(el=>el.onclick=e=>{e.stopPropagation();saveConfirmKey=null;redrawSaveJournal('[data-save]');});
+  root.querySelectorAll('[data-save-confirm]').forEach(el=>el.onclick=e=>{e.stopPropagation();if(el.dataset.saveConfirm===saveConfirmKey)saveMoment(saveConfirmKey,true);});
   root.querySelectorAll('[data-action]').forEach(el=>{el.onclick=()=>action(el.dataset.action);});
   root.querySelectorAll('[data-choice]').forEach(el=>{el.onclick=()=>choose(Number(el.dataset.choice));});
-  root.querySelectorAll('[data-save]').forEach(el=>el.addEventListener('click',()=>{const key=el.dataset.save;if(read(key)){shell('Replace this saved moment?',`<p>Your current point will replace this manual save. Other slots stay as they are.</p><div class="confirm-actions"><button class="primary" id="confirm-save">Replace saved moment</button><button class="secondary" data-action="saves">Keep old save</button></div>`);$('#confirm-save').onclick=()=>{write(key,{date:Date.now(),state});modal='saves';drawModal();toast('Moment saved.');};}else{write(key,{date:Date.now(),state});drawModal();toast('Moment saved.');}}));
-  root.querySelectorAll('[data-load]').forEach(el=>el.addEventListener('click',()=>{load(el.dataset.load);$('.modal-layer')?.remove();}));
+  root.querySelectorAll('[data-save]').forEach(el=>el.onclick=e=>{e.stopPropagation();saveMoment(el.dataset.save);});
+  root.querySelectorAll('[data-load]').forEach(el=>el.onclick=e=>{e.stopPropagation();if(validSave(read(el.dataset.load)?.state,story)){load(el.dataset.load);$('.modal-layer')?.remove();}});
   root.querySelectorAll('[data-suggest]').forEach(el=>el.addEventListener('click',()=>{draft=el.dataset.suggest;const input=$('#chat-input');input.value=draft;input.focus();}));
   root.querySelectorAll('[data-forget]').forEach(el=>el.addEventListener('click',()=>{const removed=state.memories.splice(Number(el.dataset.forget),1)[0];for(const key of manualSaveKeys){const save=read(key);if(validSave(save?.state,story)){save.state.memories=save.state.memories.filter(m=>m.value!==removed.value);write(key,save);}}autoSave();drawModal();}));
 }
