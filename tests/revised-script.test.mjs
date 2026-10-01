@@ -11,7 +11,7 @@ test('New playthrough reaches the house before the rainy flashback and returns t
   if(story[s.node].choices)applyChoice(s,story[s.node].choices[0]);
   else s.node=nextStoryNode(story,s);
  }
- assert.equal(s.node,'gAfter');
+ assert.equal(s.node,'aEnd');
  assert.ok(visited.indexOf('rReturn')<visited.indexOf('rInside'));
  assert.ok(visited.indexOf('rInside')<visited.indexOf('rBedroom'));
  assert.equal(visited[visited.indexOf('rAfterEnvelope')+1],'rWater');
@@ -29,7 +29,7 @@ test('Revision-four saves complete the old order without repeating the flashback
    if(story[s.node].choices)applyChoice(s,story[s.node].choices[0]);
    else s.node=nextStoryNode(story,s);
   }
-  assert.equal(s.node,'gAfter');assert.equal(new Set(visited).size,visited.length);
+  assert.equal(s.node,'aEnd');assert.equal(new Set(visited).size,visited.length);
   if(['rReturn','rInside','rWater'].includes(start))assert.ok(!visited.includes('rBedroom'));
   assert.equal(s.name,'Kai');assert.equal(s.flags.yellowPromise,'words');
  }

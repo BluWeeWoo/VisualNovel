@@ -25,6 +25,7 @@ export function openingAudioCue(node,state){
  if(node.dayTwo){
   const layers=node.music?[{key:node.music,level:.32}]:[];
   layers.push({key:'outdoors',level:node.time==='night'?.05:.14});
+  if(node.afterGarden&&['Rowan · text','You · text'].includes(node.lines[state.line]?.speaker))layers.push('phone');
   if(state.node==='d2Call'&&state.line===1)layers.push('steps');
   return cue(layers,2);
  }

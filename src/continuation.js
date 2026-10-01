@@ -6,9 +6,9 @@ const porch=(title,text,end={})=>scene('reunion-porch',title,text,{music:'reunio
 const flash=(place,title,text,end={})=>scene(place,title,text,{time:'night',music:'rainy-night',rowan:false,...end});
 export const continuation={
 rGreeting:porch('He’s here',`
-He’s here.~surprised
+Thought|He’s here.~surprised
 For the whole trip, I wondered what I’d say if I saw him.
-Now I can’t remember any of it.
+Thought|Now I can’t remember any of it.
 `,{choices:[opt('Greet him normally.','rNormal',{greeting:'normal'}),opt('Let your excitement show.','rExcited',{greeting:'excited'}),opt('Blurt out the first thing that comes to mind.','rShocked',{greeting:'shocked'}),opt('Pretend you don’t recognize him.','rOblivious',{greeting:'oblivious'})]}),
 rNormal:porch('A familiar voice',`
 You|Hey, Rowan. It’s good to see you.
@@ -29,7 +29,7 @@ Rowan|Put the hammer away, at least.~playful
 `,{next:'rHugAsk'}),
 rShocked:porch('A familiar voice',`
 You|Rowan? You’re still alive?
-There were so many better things I could have said.~playful
+Thought|There were so many better things I could have said.~playful
 He looks down at himself.
 Rowan|Were you expecting a ghost?
 You|No. I don’t know why I said that.
@@ -37,7 +37,7 @@ Rowan|I’m choosing to take that as “nice to see you.”
 `,{next:'rHugAsk'}),
 rOblivious:porch('A familiar voice',`
 You|Sorry. Who are you?~surprised
-I know it’s him. I just need another second.
+Thought|I know it’s him. I just need another second.
 His smile falters.~concerned
 Rowan|It’s Rowan.
 You|I know. Sorry. That was a terrible joke.
@@ -49,7 +49,7 @@ Rowan|Let me give you a proper hello.
 rHugAsk:porch('Room to choose',`
 He sets the hammer down and gets to his feet.~smile
 He’s taller than I remember.
-Of course he is. We were eleven the last time I saw him.
+Thought|Of course he is. We were eleven the last time I saw him.
 Rowan|You really came back.
 You|Yeah.
 He takes two quick steps toward me, then catches himself reaching out.~embarrassed
@@ -73,8 +73,8 @@ He rocks us gently once, then laughs under his breath.
 Rowan|Sorry. I’ve wanted to do that for a while.
 You|Hug me?
 Rowan|See you. The hug too.
-I thought he might be angry. I had answers ready for that.
-I wasn’t ready for this.
+Thought|I thought he might be angry. I had answers ready for that.
+Thought|I wasn’t ready for this.
 `,{next:'rEmotion'}),
 rSpace:porch('Room to breathe',`
 You|Give me a second?
@@ -86,15 +86,15 @@ Rowan|I have about twenty questions.
 You|Only twenty?
 Rowan|I’m cutting it down. They can wait.~playful
 I look down at the porch.
-I thought he might be angry. I had answers ready for that.
-I wasn’t ready for him to be patient.
+Thought|I thought he might be angry. I had answers ready for that.
+Thought|I wasn’t ready for him to be patient.
 `,{next:'rEmotion'}),
 rEmotion:porch('A little too much',`
 My eyes start to sting.~concerned
-Not now.
+Thought|Not now.
 `,{choices:[opt('Let yourself cry.','rCry',{reunionTears:true}),opt('Hold back your tears.','rHold',{reunionTears:false})]}),
 rCry:porch('Take your time',`
-Shit. Bakit ngayon pa?~concerned
+Thought|Shit. Bakit ngayon pa?~concerned
 I wipe at my face, but that only makes it more obvious.
 Rowan|Hey.
 You|Sorry. I didn’t mean to—
@@ -102,8 +102,8 @@ Rowan|You don’t have to be sorry.
 Rowan|It’s okay.
 I try to answer. Nothing comes out.
 He waits.
-I don’t have to explain it right away.
-For once, nobody is asking me to pull myself together.
+Thought|I don’t have to explain it right away.
+Thought|For once, nobody is asking me to pull myself together.
 After a while, I take a steadier breath.
 You|Thanks, Ro.
 Rowan|Yeah.~smile
@@ -129,7 +129,7 @@ Rowan|The whole summer?
 You|That’s the plan.
 You|You seem pleased.
 Rowan|I’m being very normal about it.~playful
-I’m glad he isn’t.
+Thought|I’m glad he isn’t.
 You|I needed a break from college.
 I look toward the open door.~smile
 You|And I thought I’d clean the house. See what needs fixing.
@@ -157,7 +157,7 @@ My hand tightens around my bag strap.
 Rowan|I tried the old number. Then the account I had for you disappeared.
 Rowan|I left my number with your parents when they came back.
 Rowan|After a while, I thought you didn’t want to hear from me.~sad
-That’s the part I was afraid of.
+Thought|That’s the part I was afraid of.
 `,{music:'lost-contact',choices:[opt('I didn’t really get the chance.','rBusy',{contactAnswer:'busy'}),opt('I didn’t have your new number.','rNumber',{contactAnswer:'number'}),opt('Can we talk about it another time?','rLater',{contactAnswer:'later'})]}),
 rBusy:porch('What to say',`
 You|I didn’t really get the chance. Things at home were... complicated.~concerned
@@ -278,9 +278,9 @@ There was no reason to. I knew she wouldn’t answer.
 Downstairs, my parents were talking.
 They sounded normal.
 I knew people didn’t have to cry all the time to be grieving.
-Still, I couldn’t understand how they could sound so normal.
-I wanted to go back to Saint Luis.
-Even if I was already too late for the funeral.
+Thought|Still, I couldn’t understand how they could sound so normal.
+Thought|I wanted to go back to Saint Luis.
+Thought|Even if I was already too late for the funeral.
 I stood up before I could talk myself out of asking.
 `,{next:'rLanding'}),
 rLanding:flash('manila-landing','What they kept from me',`
@@ -400,11 +400,11 @@ Inside are two folded pages.
 rKeepSealed:flash('manila-bedroom','Not tonight',`
 I put my finger under the edge of the flap.
 Then pull it away.
-I want to read it.
-I just can’t do it while I can still smell the smoke on my clothes.
+Thought|I want to read it.
+Thought|I just can’t do it while I can still smell the smoke on my clothes.
 You|Not tonight.
 I tuck the envelope inside a notebook and slide it into my bag.
-They aren’t taking this one.
+Thought|They aren’t taking this one.
 I keep it.
 Through the next semester. Through changing bags. Through every time I think about finding him.
 After a while, opening it feels like another thing I’ve waited too long to do.
@@ -412,14 +412,14 @@ But when I pack for Saint Luis, I bring it.
 `,{music:'letters',next:'rAfterEnvelope'}),
 rReadNowAfter:flash('manila-bedroom','A few months ago',`
 I look at the date again.
-A few months ago.
-Lola was still making pancit.
-Still asking him to reach things.
-Still sending reminders through someone else’s letter.
+Thought|A few months ago.
+Thought|Lola was still making pancit.
+Thought|Still asking him to reach things.
+Thought|Still sending reminders through someone else’s letter.
 I read the part about her twice.
 Then I fold the pages along the same creases.
-He was waiting for an answer.
-They both were.
+Thought|He was waiting for an answer.
+Thought|They both were.
 You|I missed you too.
 There’s nobody here to hear it.
 I put the letter back in its envelope and keep it beside me that night.
@@ -441,7 +441,7 @@ Rowan · text|It’s Rowan.
 I let out a small laugh.~playful
 You|Thanks for clearing that up.
 He slips his phone into his pocket.~smile
-This time, the number is mine to keep.
+Thought|This time, the number is mine to keep.
 I glance at the tools beside the door.
 You|So. What were you doing to the lock?
 Rowan|Fixing it. It kept sticking.~neutral
@@ -463,7 +463,7 @@ Rowan|I kept checking in after.
 You|You’ve been doing that all this time?
 Rowan|When I can. I live right there.~neutral
 He nods toward his house.
-Like that explains all of it.
+Thought|Like that explains all of it.
 `,{music:'back-together',next:'rBags'}),
 rTools:porch('The little repairs',`
 You|Want a hand?~smile
@@ -631,16 +631,16 @@ continuation.rLetterLater.lines=[
 ];
 continuation.rLetterLaterAfter=scene('bedroom','This time, he’s downstairs',`
 I glance toward the window.
-I saw his long hair today. How tall he’s gotten.
-The things he was trying to tell me two years ago.
+Thought|I saw his long hair today. How tall he’s gotten.
+Thought|The things he was trying to tell me two years ago.
 My eyes return to the part about Lola.
-In this letter, she’s still in the kitchen. Still telling him what to write.
-I know what happened a few months later.
-He didn’t. Not when he wrote this.
+Thought|In this letter, she’s still in the kitchen. Still telling him what to write.
+Thought|I know what happened a few months later.
+Thought|He didn’t. Not when he wrote this.
 I rest the pages on my lap.
 For a while, I listen to the house.
 Then I fold them carefully and put them back.
 You|I missed you too.
-This time, he’s downstairs.
-I don’t have to put it in a letter.
+Thought|This time, he’s downstairs.
+Thought|I don’t have to put it in a letter.
 `,{time:'evening',music:'letters',rowan:false,ending:true,openingEnd:true});

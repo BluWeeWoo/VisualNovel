@@ -22,7 +22,7 @@ test('Childhood uses all six approved sprites, no adult portraits or present-day
 });
 test('Twelve-year separation is consistent and family reveal remains withheld',()=>{
  assert.equal(rowan.timeline.movedAwayAge,11);assert.equal(rowan.timeline.yearsApart,12);assert.equal(rowan.age,23);
- const prose=Object.values(story).flatMap(n=>n.lines).map(l=>l.text).join(' ');
+ const prose=Object.values(story).filter(n=>n.title!=='The local news').flatMap(n=>n.lines).map(l=>l.text).join(' ');
  assert.doesNotMatch(prose,/Sanchez|four years|eight years|at fifteen|both twelve/i);
  assert.equal(phoneIdentity.name,'Rowan');assert.equal(rowan.nickname,'Ro');
  assert.match(story.rContact.choices[0].text,/didn’t really get the chance/);

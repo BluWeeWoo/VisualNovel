@@ -14,7 +14,7 @@ My parents took me to Manila when I was eleven.
 I kept hoping I’d come back the next year. I never did.
 Twelve years have passed. I’m twenty-three now.
 The sea appears between two buildings. I lean closer to the window to get a better look.
-I’m finally back in Saint Luis.
+Thought|I’m finally back in Saint Luis.
 There are small fishing boats in the bay. I can see the old baywalk along the shore.
 Lola used to take Rowan and me for walks there in the afternoons.
 She held our hands when we crossed the road. Me on one side, Rowan on the other.
@@ -22,31 +22,31 @@ He’d complain that we weren’t little anymore. Then keep holding on after we�
 You|Hay. I wonder how he’s been.
 Thinking about him makes me smile.
 Then I remember Lola’s funeral.
-He was probably at the funeral.
+Thought|He was probably at the funeral.
 Two years ago, Lola died during finals week.
 My parents said I couldn’t miss my exams.
 I wanted to argue. Instead, I asked if we could go afterward.
 “We’ll talk about it.”
 We never did.
 I still took the exams. Handed everything in on time.
-I was her grandchild, and I wasn’t there.
+Thought|I was her grandchild, and I wasn’t there.
 This trip is different.
 I paid for the ticket with money I’d saved.
 I told my parents I was leaving. I didn’t ask.
 Then I left before we could finish another argument.
 I needed a break from college. From home. From having the same conversation in my head.
 Lola’s house needs cleaning. A few things probably need fixing.
-I can do that.
-Sweep a floor. Fix a window. Get some sleep.
-That was the plan.
+Thought|I can do that.
+Thought|Sweep a floor. Fix a window. Get some sleep.
+Thought|That was the plan.
 I look back toward the baywalk.
-What am I going to say if I see Rowan?
-Sorry I stopped calling?
-Sorry I believed you’d forgotten me?
+Thought|What am I going to say if I see Rowan?
+Thought|Sorry I stopped calling?
+Thought|Sorry I believed you’d forgotten me?
 Conductor|SAINT LUIS! SAINT LUIS!
 The shout makes me jump. It wakes the passenger across the aisle too.
 You|Grabe.
-At least I’m not the only one he scared.
+Thought|At least I’m not the only one he scared.
 `,{next:'busBump',audio:'bus'}),
 busBump:scene('bus','A very good start',`
 Everyone gets up at once. After eight hours, we’re all ready to get off this bus.
@@ -91,7 +91,7 @@ I search the seat, the floor underneath it, and the aisle.
 You|No. Come on.
 My wallet is gone.
 I look toward the exit. The man is gone too.
-Did he take it when he bumped into me? Was there even a child with him?
+Thought|Did he take it when he bumped into me? Was there even a child with him?
 You|Shit.
 My cards and IDs are in my bag. I check them twice anyway.
 The wallet only had cash.
@@ -101,7 +101,7 @@ The nearest ATM is in town, too far to walk with my bag. Lola’s house is the o
 You|Napakamalas naman.
 I hold onto my bag and try to think of what to do.
 Then I remember that some buses pass through Santiago Street, near Lola’s house.
-Maybe this one does. I should ask.
+Thought|Maybe this one does. I should ask.
 `,{audio:'bus',next:'driver'}),
 driver:scene('bus','A small kindness',`
 You|Manong? Excuse me po.
@@ -112,7 +112,7 @@ You|Opo.
 I feel a little better. At least the bus goes where I need to go.
 You|Thank you po.
 Then I notice the tickets in the conductor’s hand.
-Will I have to pay extra to stay on? I don’t have any cash left.
+Thought|Will I have to pay extra to stay on? I don’t have any cash left.
 I briefly think about getting off before they ask me to pay. But then I’d still be stuck here.
 You|May dagdag po ba? Kasi—
 Driver|Upo ka na. Hindi na kita sisingilin.
@@ -129,7 +129,7 @@ I sit down and keep my bag on my lap as the bus starts moving again.
 I watch the houses pass by the window.
 I’m still upset about my wallet.
 But I don’t have to figure out the rest of the trip standing in the aisle.
-For now, I can sit.
+Thought|For now, I can sit.
 `,{audio:'bus',next:'hill'}),
 hill:scene('saint-luis','The hill',`
 You|Dito na po. Thank you!
@@ -145,15 +145,15 @@ After we’d worn ourselves out, she’d call us in for bibingka.
 We’d eat before it had cooled properly. Then go straight back to hide-and-seek.
 I remember those afternoons so clearly.
 The heat. The crumbs. Trying not to laugh when Rowan walked past my hiding place.
-I can’t remember the last thing I said to her.
+Thought|I can’t remember the last thing I said to her.
 My grip tightens around the bag. I try.
-Something ordinary, probably.
-Something I thought I’d get to follow up on.
+Thought|Something ordinary, probably.
+Thought|Something I thought I’d get to follow up on.
 The path blurs.
 `,{audio:'home',choices:[option('Let yourself cry.','hillCry',{griefResponse:'cry'}),option('Hold the tears for now.','hillHold',{griefResponse:'hold'})]}),
 hillCry:scene('saint-luis','The hill',`
 I put my bag down.
-There isn’t a graceful way to do this, apparently.
+Thought|There isn’t a graceful way to do this, apparently.
 I wipe my face, then have to do it again.
 You|Sorry, Lola.
 I don’t try to make the words explain everything.
@@ -162,31 +162,31 @@ Then I pick up my bag.
 `,{audio:'home',next:'otherDoor'}),
 hillHold:scene('saint-luis','The hill',`
 I look down at my shoes. One breath. Then another.
-Not here.
-I want to get inside first. Put my things down. Have a door I can close.
+Thought|Not here.
+Thought|I want to get inside first. Put my things down. Have a door I can close.
 You|Just a little farther.
 I loosen my grip on the handle and keep walking.
 `,{audio:'home',next:'otherDoor'}),
 otherDoor:scene('saint-luis','The other door',`
-The house won’t clean itself.
+Thought|The house won’t clean itself.
 That sounds like something Lola would have said. I almost laugh.
 Rowan’s house is right there.
 The nameplate says Mayumi. The paint around it looks newer than the rest of the gate.
-I could knock. Just to let them know I’m back.
-That would be normal. Polite, even.
+Thought|I could knock. Just to let them know I’m back.
+Thought|That would be normal. Polite, even.
 I rehearse it.
-Hi. It’s been a while.
-Twelve years is probably longer than “a while.”
-What if he opens the door?
-What if he looks happy to see me?
-Somehow, I haven’t prepared for that either.
+Thought|Hi. It’s been a while.
+Thought|Twelve years is probably longer than “a while.”
+Thought|What if he opens the door?
+Thought|What if he looks happy to see me?
+Thought|Somehow, I haven’t prepared for that either.
 You|I can say hello.
 You|In theory.
 `,{audio:'home',choices:[option('Knock on the door.','neighborVisit',{knocked:true}),option('Get settled first.','neighborWait',{knocked:false})]}),
 neighborVisit:scene('saint-luis','The other door',`
 I turn toward the porch before I can hold a full debate about it.
 Up close, the door is familiar enough to make my stomach tighten.
-How many afternoons did I spend waiting here?
+Thought|How many afternoons did I spend waiting here?
 I knock.
 Nothing. I listen.
 Then knock again, a little louder.
@@ -200,11 +200,11 @@ I step off the porch and head toward Lola’s house.
 `,{audio:'home',next:'doorRepair'}),
 neighborWait:scene('saint-luis','The other door',`
 I keep walking.
-I’ve been traveling all day. I’ve lost my money. I’m not sure what my face is doing.
-I can put my bag down before trying to explain twelve years.
+Thought|I’ve been traveling all day. I’ve lost my money. I’m not sure what my face is doing.
+Thought|I can put my bag down before trying to explain twelve years.
 For a moment, I tell myself he probably wouldn’t remember me anyway.
-I know that isn’t true.
-I’m just not ready.
+Thought|I know that isn’t true.
+Thought|I’m just not ready.
 `,{audio:'home',next:'doorRepair'}),
 doorRepair:scene('repair','A familiar stranger',`
 I stop.
@@ -226,8 +226,8 @@ recognition:scene('saint-luis','A familiar door',`
 Brown hair, tied back low.
 A loose strand falls across his face as he looks up.
 Then I see his eyes.
-Oh.
-Rowan.
+Thought|Oh.
+Thought|Rowan.
 The accusation is still hanging between us.
 For a moment, neither of us moves.
 His eyes widen.

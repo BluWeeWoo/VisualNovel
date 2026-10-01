@@ -373,3 +373,51 @@
 }
 @media(prefers-reduced-motion:reduce){.weed{transition:none}}
 .weed-soil{position:absolute;width:5px;height:4px;background:#bc8b55;border:1px solid #61402a;border-radius:40%;pointer-events:none;z-index:5}
+
+/* Clear speaker labels in the existing seaglass and driftwood palette. */
+.dialogue-card .dialogue-top {
+  min-height:50px;padding:0 0 7px;margin:0 0 9px;
+  background:linear-gradient(90deg,#d5e0d666,#e8dfce22 65%,transparent);
+  border-bottom:1px solid #aa92766b;
+}
+.dialogue-card .speaker,.dialogue-card.narration .speaker {
+  display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 15px;
+  padding:5px 16px 5px 12px;border-left:4px solid #52736f;
+  color:#263f5e;letter-spacing:0;line-height:1.2;
+}
+.dialogue-card .speaker-name {
+  font-family:var(--font);font-size:26px;font-weight:700;overflow-wrap:anywhere;
+}
+.dialogue-card .speaker-kind {
+  font:500 13px/1.3 system-ui,sans-serif;letter-spacing:.7px;color:#4b5d60;
+}
+/* Keep the same visible nameplate geometry for spoken and silent lines. */
+.dialogue-card .speaker-name:empty::before { content:"\00a0"; }
+.dialogue-card.thought .dialogue-copy { font-style:italic; }
+.dialogue-card.spoken .dialogue-copy,
+.dialogue-card.narration .dialogue-copy { font-style:normal; }
+
+/* Reference-sized desktop panel; long passages and choices can still grow. */
+@media (min-width:651px) {
+  .dialogue-card { width:min(70vw,940px);padding:10px 18px 8px; }
+  .game-footer { width:min(70vw,940px); }
+  .dialogue-card .dialogue-copy { min-height:1.45em;margin-bottom:10px; }
+  .dialogue-card .dialogue-footer { min-height:36px;padding-top:6px; }
+  .dialogue-card .choices { gap:6px;margin-bottom:8px; }
+  .dialogue-card .choices button { padding:8px 12px; }
+}
+
+
+/* Preserve Rowan’s headroom in the new close porch illustration. */
+.scene-art .event-cg[src$="/after-garden/quiet.webp"],
+.scene-art .event-cg[src$="/after-garden/wave-v2.webp"] { object-position:50% 0%; }
+
+/* Compact nameplate and ending notice, with identical silent/spoken geometry. */
+@media (min-width:651px) {
+  .dialogue-card .dialogue-top { min-height:42px;padding-bottom:4px;margin-bottom:7px; }
+  .dialogue-card .speaker { padding-top:2px;padding-bottom:2px; }
+  .dialogue-card .opening-end { margin-top:4px;padding-top:8px; }
+  .dialogue-card .opening-end p { margin:5px 0; }
+  .dialogue-card .opening-end .text-button { padding-top:5px;padding-bottom:5px; }
+}
+.character-stage.night img { filter:brightness(.78) saturate(.8) drop-shadow(0 5px 9px #16243555); }

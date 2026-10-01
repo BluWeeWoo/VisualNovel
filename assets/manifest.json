@@ -25,7 +25,8 @@
     "d2-garden-hat-poke": "assets/cg/day-two/garden-hat-poke.webp",
     "d2-garden-startled": "assets/cg/day-two/garden-startled.webp",
     "garden-rematch": "assets/cg/day-two/garden-reveal.webp",
-    "garden-bed": "assets/cg/reunion/reunion-porch.webp"
+    "garden-bed": "assets/cg/reunion/reunion-porch.webp",
+    "d2-porch-night": "assets/cg/after-garden/porch-night.webp"
   },
   "portraits": {
     "Rowan": {
@@ -153,6 +154,14 @@
     "d2-garden-startled": {
       "src": "assets/cg/day-two/garden-startled.webp",
       "alt": "Rowan catches his hat in surprise."
+    },
+    "after-garden-quiet": {
+      "src": "assets/cg/after-garden/quiet.webp",
+      "alt": "Rowan sits quietly on Lola’s shaded porch, a cold glass of water within reach, after talking about her death."
+    },
+    "after-garden-wave": {
+      "src": "assets/cg/after-garden/wave-v2.webp",
+      "alt": "Rowan stands at the open porch gate with his full legs and shoes visible, waving goodnight beneath a warm lamp in the blue evening."
     }
   }
 }

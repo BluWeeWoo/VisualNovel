@@ -22,8 +22,8 @@ export function hasRowanContact(state){
 export function authoredMessages(state){
  const messages=[];
  for(const h of state.history){
-  if(h.speaker==='Rowan · text')messages.push({text:h.text,sender:'rowan',time:'16:42'});
-  if(h.speaker==='You · text')messages.push({text:h.text,sender:'player',time:'16:42'});
+  if(h.speaker==='Rowan · text')messages.push({text:h.text,sender:'rowan',time:h.id.startsWith('aBedroom:')||h.id.startsWith('aReply:')?'21:48':'16:42'});
+  if(h.speaker==='You · text')messages.push({text:h.text,sender:'player',time:h.id.startsWith('aBedroom:')||h.id.startsWith('aReply:')?'21:48':'16:42'});
   if(h.id.startsWith('numbers:')&&h.text==='You send a single wave. His pocket lights up.')messages.push({text:'👋',sender:'player',time:'19:16'});
   if(h.id.startsWith('night:')&&h.speaker==='Rowan')messages.push({text:h.text,sender:'rowan',time:'21:48'});
  }
@@ -34,7 +34,7 @@ const avatar='<img class="sg-avatar" src="assets/references/rowan-original.png" 
 const logo='<span class="sg-logo" aria-hidden="true">◇<span>≈</span></span>';
 export function phoneBody(page,state,{typing=false}={}){
  if(page==='lola')return `<div class="device-clock">22:06 <span>◒ ▰</span></div><div class="sg-lola"><div class="contact-letter">L</div><h3>Lola</h3><p>Contact</p><p class="phone-muted">I knew she wouldn’t answer.</p></div><button class="sg-return" data-action="close">Put the phone down</button>`;
- const header=`<div class="device-clock">${state.node==='night'?'21:48':'16:42'} <span>◒ ▰</span></div><div class="sg-brand">${logo}<span>Seaglass<small>A little closer.</small></span></div>`;
+ const header=`<div class="device-clock">${['night','aBedroom','aReply','aNoReply','aEnd'].includes(state.node)?'21:48':'16:42'} <span>◒ ▰</span></div><div class="sg-brand">${logo}<span>Seaglass<small>A little closer.</small></span></div>`;
  const tabs=`<nav class="sg-tabs" aria-label="Seaglass screens">${[['contact','Contact'],['profile','Profile'],['feed','Feed'],['messages','Messages']].map(([key,label])=>`<button data-action="sg-${key}" aria-pressed="${page===key}">${label}</button>`).join('')}</nav>`;
  const posts=[{src:'assets/backgrounds/pier-day.png',caption:'Best part of getting up early. Before the boats get loud.',time:'3 days ago'},{src:'assets/cg/reunion/reunion-porch.webp',caption:'Taking a break in the shade.',time:'1 week ago'}];
  let content='';

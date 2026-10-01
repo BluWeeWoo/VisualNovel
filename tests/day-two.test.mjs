@@ -23,7 +23,7 @@ test('All 432 day-two routes finish after breakfast and gardening, preserving op
     if(morningPhone(n,s)){read=true;assert.equal(phone,1);}
     if(n.time==='night')assert.ok(!openingAudioCue(n,s).layers.some(l=>l.key==='rain'));
    }
-   if(n.ending){assert.equal(s.node,'gAfter');finished=true;break;}
+   if(s.node==='gAfter'){assert.equal(n.next,'aWater');assert.ok(!n.ending);finished=true;break;}
    if(n.choices)applyChoice(s,n.choices[choices[s.node]]);else {s.node=n.next;s.line=0;}
   }
   assert.ok(finished);assert.equal(hugged,evening===0);assert.equal(read,phone===1);

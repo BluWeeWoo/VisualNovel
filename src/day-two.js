@@ -9,12 +9,12 @@ export const dayTwo={
 d2Settling:evening('The room I remember',`
 The last of my clothes goes into the drawer.
 It still catches halfway. I lift it a little, then push.
-There. Apparently, my hands remember this house better than I thought.
+Thought|There. Apparently, my hands remember this house better than I thought.
 I sit on the edge of the bed.
 For the first time all day, there’s nothing I have to do immediately.
 Downstairs, something scrapes against the floor.
 Then Rowan’s voice, too low for me to make out the words.
-He’s still here.
+Thought|He’s still here.
 `,{choices:[option('Call out to Rowan.','d2Call',{eveningChoice:'call'}),option('Just go to sleep.','d2SleepEarly',{eveningChoice:'sleep'})]}),
 d2Call:evening('One more thing',`
 You|Rowan!
@@ -29,7 +29,7 @@ You|I called your name.
 Rowan|Loudly.~playful
 A smile slips out before I can stop it.
 He’s still watching me, waiting to find out what I need.
-For once, I don’t want to pretend I called him over for something else.
+Thought|For once, I don’t want to pretend I called him over for something else.
 `,{rowan:true,choices:[option('Open my arms.','d2Hug',{bedroomAffection:'hug'}),option('“I missed you.”','d2Missed',{bedroomAffection:'words'})]}),
 d2Hug:evening('A familiar embrace',`
 I stand and open my arms.
@@ -47,7 +47,7 @@ Rowan|Didn’t say that.
 He’s still holding me. I let myself settle against him.
 Earlier, on the porch, I kept thinking about what I should say. What he might ask. How much I could explain.
 Right now, I can feel his breathing slow. Mine follows.
-I’m here. Really here.
+Thought|I’m here. Really here.
 When I lean back, his eyes are wet.
 He gives a small, embarrassed laugh.
 Rowan|I had so many things I wanted to ask you.
@@ -57,7 +57,7 @@ Rowan|Hey. They can wait.
 He loosens his arms.
 Rowan|I’m glad you’re here, {name}.
 That makes it harder to look at him.
-There’s so much I wish had happened differently. So much he still doesn’t know.
+Thought|There’s so much I wish had happened differently. So much he still doesn’t know.
 You|I don’t know where to start.
 Rowan|You don’t have to start tonight.
 He lets me go, his hands falling to his sides.
@@ -71,8 +71,8 @@ You|I know I haven’t really said it properly.
 Rowan|You just did.
 Rowan|I missed you, too.
 I look down, smiling at the floor.
-After everything I practiced on the way here, that was all it took.
-Four words. The room feels a little less unfamiliar.
+Thought|After everything I practiced on the way here, that was all it took.
+Thought|Four words. The room feels a little less unfamiliar.
 `,{next:'d2Goodnight'}),
 d2Goodnight:evening('Good night, sunshine',`
 I cover my mouth as a yawn interrupts the silence.~smile
@@ -92,28 +92,28 @@ You|…No complaint.
 His smile widens.
 Rowan|Good night.
 His footsteps retreat down the stairs.
-Sunshine. I haven’t heard him say that in so long.
+Thought|Sunshine. I haven’t heard him say that in so long.
 `,{rowan:true,next:'d2FallingAsleep'}),
 d2SleepEarly:evening('Bukas na lang',`
 I glance toward the door. There are things I want to tell him.
 But my head feels heavy, and even unpacking has somehow exhausted me.
 You|Bukas na lang.
 I pull the pillow closer.
-I want to be awake enough to mean what I say.
+Thought|I want to be awake enough to mean what I say.
 `,{next:'d2FallingAsleep'}),
 d2FallingAsleep:scene('d2-bedroom-night','Peace and quiet',`
 I lie back. The fan turns with a faint, uneven click.
 Outside, someone calls a child home. A gate closes.
-Ordinary sounds. I missed them.
+Thought|Ordinary sounds. I missed them.
 You|Nandito talaga ako.
-Saint Luis. My old room.
-Rowan just downstairs—or maybe already walking home.
-Everything is familiar. It’s me I’m still trying to get used to.
+Thought|Saint Luis. My old room.
+Thought|Rowan just downstairs—or maybe already walking home.
+Thought|Everything is familiar. It’s me I’m still trying to get used to.
 I close my eyes.
-Lord, kahit ngayong gabi lang. Pahinga muna sa kakaisip.
-Tomorrow can have the questions.
+Thought|Lord, kahit ngayong gabi lang. Pahinga muna sa kakaisip.
+Thought|Tomorrow can have the questions.
 For now, I pull the blanket over my waist and turn toward the breeze.
-Peace. Quiet.
+Thought|Peace. Quiet.
 The fan clicks once more. I don’t hear the next one.
 `,{day:1,time:'night',music:null,next:'d2Morning'}),
 d2Morning:morning('A Saint Luis morning',`
@@ -131,19 +131,19 @@ I reach for my phone to check the time. My smile disappears.
 Notifications fill the screen. Mom. Dad. Again. And again. Even on SG.
 You|Paano nila nahanap ’to?
 I stare at the account names. One person comes to mind almost immediately.
-Sevi. He knows this account.
+Thought|Sevi. He knows this account.
 That doesn’t prove anything. Still, my jaw tightens.
 `,{choices:[option('Put my phone away.','d2PhoneAway',{morningMessages:'skip'}),option('Open the messages.','d2PhoneOpen',{morningMessages:'read'})]}),
 d2PhoneAway:morning('Breakfast first',`
 My thumb hovers over the screen.
-I already know how quickly one message can turn into an entire morning.
+Thought|I already know how quickly one message can turn into an entire morning.
 You|Hindi muna.
 I silence the notifications and place the phone facedown.
 For a moment, I keep looking at it anyway. Then I stand.
-Breakfast first.
+Thought|Breakfast first.
 `,{next:'d2GetUp'}),
 d2PhoneOpen:morning('Too many notifications',`
-Maybe one of them just wants to know if I arrived safely.
+Thought|Maybe one of them just wants to know if I arrived safely.
 I hate how quickly I reach for that possibility. But I open the notifications anyway.
 Phone|Dad — 60 missed calls. Mom — 34 missed calls.
 I check the numbers twice. As if they might change.
@@ -161,7 +161,7 @@ Dad · SG|Umuwi ka. Pag-uusapan natin ito.
 Dad · SG|Hindi puwedeng basta ka na lang umaalis kapag ayaw mo ang sinasabi namin.
 I press my lips together. So much for hoping.
 A different name appears below theirs. Sevrine Buenaventura.
-Four messages. Of course.
+Thought|Four messages. Of course.
 Sevi · SG|Hey, Dos. Where are you?
 Sevi · SG|Your parents keep asking if you told me anything.
 Sevi · SG|Ayoko namang makialam sa problema ninyo.
@@ -169,7 +169,7 @@ Sevi · SG|Kausapin mo na lang sila, okay? Bye, Dos.
 I read the third message again. Ayaw niyang makialam. Convenient.
 You|Hanggang dito ba naman.
 Nothing in his messages tells me whether he gave them my account.
-But he’s talking as if nothing happened between us. As if he wasn’t part of the reason I finally left.
+Thought|But he’s talking as if nothing happened between us. As if he wasn’t part of the reason I finally left.
 My fingers tighten around the phone. For a second, I consider replying.
 Then I close the conversation. Not this morning.
 I silence the notifications and put the phone down.
@@ -206,7 +206,7 @@ Beside the plates is a yellow note.
 Rowan’s note|Nasa garden lang ako. Tawagin mo ’ko kapag kakain na tayo. :3 — Row
 I stare at the little face. Then laugh.
 You|May pa-“:3” ka pa.
-Two plates. He’s waiting to eat with me.
+Thought|Two plates. He’s waiting to eat with me.
 I set the note down and walk toward the back door.
 `,{next:'d2Garden'}),
 d2Garden:garden('Behind the house',`
@@ -254,8 +254,8 @@ const outside=(title,text,end={})=>scene('garden-rematch',title,text,{...end});
 Object.assign(dayTwo,{
 gNotice:outside('Caught looking',`
 His sleeves sit a little higher as he raises his arm.
-Oh. I hadn’t really noticed his shoulders yesterday.
-Or maybe I’d had too much else to think about.
+Thought|Oh. I hadn’t really noticed his shoulders yesterday.
+Thought|Or maybe I’d had too much else to think about.
 Rowan|Something on my shirt?
 I look up.
 You|No.
@@ -400,8 +400,8 @@ I brush the dirt from my hands.
 You|Even with the arguing?
 Rowan|That was part of it.
 He takes his bucket. I pick up mine.
-For once, remembering something hasn’t made me wish I could go back.
-We’ve just done it again. A little differently.
+Thought|For once, remembering something hasn’t made me wish I could go back.
+Thought|We’ve just done it again. A little differently.
 `,{next:'gAfter'}),
 gAfter:outside('After the garden','',{ending:true,openingEnd:true})
 });

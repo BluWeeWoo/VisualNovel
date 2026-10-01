@@ -151,7 +151,7 @@ const revisionFourPositions={"journey":{"indices":[0,1,2,3,4,5,6,7,8,9,10,12,13,
 export function migrateStorySave(s,story){
  if(!s || s.version!==VERSION || !story[s.node] || !Array.isArray(s.history) || !s.flags)return s;
  // The former ending is now a normal scene; preserve its exact reading position.
- if(s.node==='rLetterLaterAfter'&&story[s.node].next)s.completed=false;
+ if(['rLetterLaterAfter','gAfter'].includes(s.node)&&story[s.node].next)s.completed=false;
  if(s.node==='d2Reveal'){s.line=Math.min(s.line,story.d2Reveal.lines.length-1);s.completed=false;}
  if(s.storyRevision>=5)return s;
  const currentText=s.history.find(h=>h.id===`${s.node}:${s.line}`)?.text;

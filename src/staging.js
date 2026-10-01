@@ -1,3 +1,4 @@
+import {afterGarden} from './after-garden.js';
 // Authored direction: no keyword-based expression guessing.
 export const expressions=['neutral','smile','playful','embarrassed','concerned','sad','surprised'];
 // Event illustrations are presentation only: no story, save or relationship mutations.
@@ -29,8 +30,9 @@ export const cgCues={
  kitchen:{key:'third-cup',from:'His hand stops'},
  plan:{key:'beginning',from:'We can aim'}
 };
+for(const [id,node] of Object.entries(afterGarden))if(node.cgCue)cgCues[id]=node.cgCue;
 export function cgAt(story,state){
- const cue=cgCues[state.node];if(!cue)return null;
+ const cue=story[state.node]?.cgCue||cgCues[state.node];if(!cue)return null;
  const lines=story[state.node].lines.filter(l=>!l.if||state.flags[l.if[0]]===l.if[1]);
  const start=lines.findIndex(l=>l.text.includes(cue.from));
  const end=cue.until?lines.findIndex(l=>l.text.includes(cue.until)):lines.length;

@@ -1,3 +1,4 @@
+import {afterGarden} from './after-garden.js';
 import {continuation} from './continuation.js';
 import {dayTwo} from './day-two.js';
 import {opening} from './opening.js';
@@ -456,3 +457,13 @@ delete story.rLetterLaterAfter.openingEnd;
 story.rLetterLaterAfter.next='d2Settling';
 // Resume old recognition saves into the newly approved continuation.
 delete story.recognition.ending; delete story.recognition.openingEnd; story.recognition.next='rGreeting';
+
+Object.assign(story, afterGarden);
+delete story.gAfter.ending; delete story.gAfter.openingEnd; story.gAfter.next='aWater';
+
+// Presentation metadata only: unlabelled rows narrate; Thought| marks silent MC thought.
+// Named rows remain spoken. Written messages retain their existing phone/note presentation.
+for (const node of Object.values(story)) for (const line of node.lines) {
+  if (line.speaker === 'Thought') { line.speaker = ''; line.kind = 'thought'; }
+  else line.kind ??= !line.speaker || / · (text|SG)$|^Phone$|note$/.test(line.speaker) ? 'narration' : 'spoken';
+}
