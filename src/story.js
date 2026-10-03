@@ -1,3 +1,4 @@
+import {chapterTwo} from './chapter-two.js';
 import {afterGarden} from './after-garden.js';
 import {continuation} from './continuation.js';
 import {dayTwo} from './day-two.js';
@@ -460,6 +461,10 @@ delete story.recognition.ending; delete story.recognition.openingEnd; story.reco
 
 Object.assign(story, afterGarden);
 delete story.gAfter.ending; delete story.gAfter.openingEnd; story.gAfter.next='aWater';
+
+Object.assign(story, chapterTwo);
+// Chapter menu handles the transition; preserve Chapter One's ending and old saves.
+story.aEnd.next='c2Start';
 
 // Presentation metadata only: unlabelled rows narrate; Thought| marks silent MC thought.
 // Named rows remain spoken. Written messages retain their existing phone/note presentation.

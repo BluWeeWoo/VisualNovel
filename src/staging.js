@@ -1,10 +1,11 @@
+import {chapterTwo} from './chapter-two.js';
 import {afterGarden} from './after-garden.js';
 // Authored direction: no keyword-based expression guessing.
-export const expressions=['neutral','smile','playful','embarrassed','concerned','sad','surprised'];
+export const expressions=['neutral','smile','playful','embarrassed','concerned','sad','surprised','annoyed'];
 // Event illustrations are presentation only: no story, save or relationship mutations.
 export const cgCues={
- d2Hug:{key:'d2-bedroom-hug',from:'He crosses the room',until:'He lets me go'},
- d2Missed:{key:'d2-bedroom-missed-you',from:'You just did.'},
+ d2Hug:{key:'d2-bedroom-hug',from:'He crosses the room'},
+ d2Missed:{key:'d2-bedroom-missed-you',from:'I missed you too.'},
  d2Stay:{key:'d2-window-garden',from:'I lean toward the window',until:'I head downstairs'},
  d2Breakfast:{key:'d2-breakfast',from:'Tapa.'},
  d2Garden:{key:'d2-garden-approach',from:'The back door'},
@@ -30,7 +31,7 @@ export const cgCues={
  kitchen:{key:'third-cup',from:'His hand stops'},
  plan:{key:'beginning',from:'We can aim'}
 };
-for(const [id,node] of Object.entries(afterGarden))if(node.cgCue)cgCues[id]=node.cgCue;
+for(const [id,node] of Object.entries({...afterGarden,...chapterTwo}))if(node.cgCue)cgCues[id]=node.cgCue;
 export function cgAt(story,state){
  const cue=story[state.node]?.cgCue||cgCues[state.node];if(!cue)return null;
  const lines=story[state.node].lines.filter(l=>!l.if||state.flags[l.if[0]]===l.if[1]);

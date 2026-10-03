@@ -16,7 +16,7 @@ export function saveJournal({entries,page,mode,selected,canSave,confirmKey}){
   const confirming=save&&confirmKey===current.key;
   const entry=e=>`<button type="button" class="journal-entry ${e.valid?'':'is-empty'}" data-save-select="${e.key}" aria-pressed="${e.key===current.key}" aria-label="Select ${escape(e.label)}${e.valid?': '+escape(e.title):e.exists?', unavailable save':', empty'}">
     <span class="journal-slot-number">${escape(e.number)}</span><span class="journal-thumb" aria-hidden="true">${e.valid?e.preview:emptyPhoto}</span>
-    <span class="journal-entry-copy"><span class="journal-entry-label">${e.valid?'Chapter 1 · '+escape(e.name):escape(e.label)}</span><strong>${e.valid?escape(e.title):e.exists?'An unreadable moment':'An unwritten moment'}</strong><small>${e.valid?escape(e.date):e.exists?'This save cannot be loaded':'A page waiting for you'}</small></span><span class="journal-entry-mark" aria-hidden="true">${e.key===current.key?'✦':''}</span>
+    <span class="journal-entry-copy"><span class="journal-entry-label">${e.valid?'Chapter '+(e.chapter||1)+' · '+escape(e.name):escape(e.label)}</span><strong>${e.valid?escape(e.title):e.exists?'An unreadable moment':'An unwritten moment'}</strong><small>${e.valid?escape(e.date):e.exists?'This save cannot be loaded':'A page waiting for you'}</small></span><span class="journal-entry-mark" aria-hidden="true">${e.key===current.key?'✦':''}</span>
   </button>`;
   return `<div class="summer-journal">
     <span class="journal-spine" aria-hidden="true"></span>

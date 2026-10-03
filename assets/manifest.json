@@ -7,7 +7,7 @@
     "pier": "assets/backgrounds/pier-day.png",
     "bus": "assets/cg/opening/bus-interior.webp",
     "saint-luis": "assets/cg/opening/hill-houses.webp",
-    "repair": "assets/cg/opening/door-before.webp",
+    "repair": "assets/cg/opening/door-before-outfit.webp",
     "manila-bedroom": "assets/cg/reunion/manila-bedroom.webp",
     "manila-landing": "assets/cg/reunion/manila-landing.webp",
     "manila-service": "assets/cg/reunion/manila-service.webp",
@@ -26,7 +26,13 @@
     "d2-garden-startled": "assets/cg/day-two/garden-startled.webp",
     "garden-rematch": "assets/cg/day-two/garden-reveal.webp",
     "garden-bed": "assets/cg/reunion/reunion-porch.webp",
-    "d2-porch-night": "assets/cg/after-garden/porch-night.webp"
+    "d2-porch-night": "assets/cg/after-garden/porch-night.webp",
+    "c2-city": "assets/cg/chapter-two/nightmare.webp",
+    "c2-school": "assets/cg/chapter-two/classroom.webp",
+    "c2-assignment": "assets/cg/chapter-two/sevi-assignment.webp",
+    "c2-confrontation": "assets/cg/chapter-two/sevi-hallway-v4.webp",
+    "c2-rest": "assets/cg/chapter-two/rest.webp",
+    "c2-meeting": "assets/cg/chapter-two/sevi-meeting.webp"
   },
   "portraits": {
     "Rowan": {
@@ -96,7 +102,7 @@
       "alt": "Lola’s blue-doored house and Rowan’s home above the sea."
     },
     "familiar-door": {
-      "src": "assets/cg/opening/familiar-door.webp",
+      "src": "assets/cg/opening/familiar-door-outfit.webp",
       "alt": "Rowan looks up in surprised recognition, kneeling beside Lola’s blue door with a lowered hammer."
     },
     "reunion-hug": {
@@ -160,8 +166,40 @@
       "alt": "Rowan sits quietly on Lola’s shaded porch, a cold glass of water within reach, after talking about her death."
     },
     "after-garden-wave": {
-      "src": "assets/cg/after-garden/wave-v2.webp",
+      "src": "assets/cg/after-garden/wave-outfit.webp",
       "alt": "Rowan stands at the open porch gate with his full legs and shoes visible, waving goodnight beneath a warm lamp in the blue evening."
+    },
+    "c2-nightmare": {
+      "src": "assets/cg/chapter-two/nightmare.webp",
+      "alt": "A distorted city bedroom in MC’s nightmare, with an impossibly distant closed door."
+    },
+    "c2-waking": {
+      "src": "assets/cg/chapter-two/waking.webp",
+      "alt": "Rowan stands worried beside the bed as MC wakes in Saint Luis."
+    },
+    "c2-company": {
+      "src": "assets/cg/chapter-two/company.webp",
+      "alt": "Rowan listens quietly from a chair beside the bed, wearing matte trousers and white sneakers."
+    },
+    "c2-rest": {
+      "src": "assets/cg/chapter-two/rest.webp",
+      "alt": "The quiet sunlit bedroom and open doorway after Rowan goes downstairs."
+    },
+    "c2-classroom": {
+      "src": "assets/cg/chapter-two/classroom.webp",
+      "alt": "An indistinct teacher and classmates in MC’s distorted university classroom nightmare."
+    },
+    "c2-sevi-assignment": {
+      "src": "assets/cg/chapter-two/sevi-assignment.webp",
+      "alt": "Sevi slides a committee folder toward MC; headphones and overshirt identify him while his eyes remain out of frame."
+    },
+    "c2-sevi-confrontation": {
+      "src": "assets/cg/chapter-two/sevi-hallway-v4.webp",
+      "alt": "Sevi turns toward the classroom, holding his notebook against his side and gesturing to the MC, his eyes obscured by nightmare shadow."
+    },
+    "c2-sevi-meeting": {
+      "src": "assets/cg/chapter-two/sevi-meeting.webp",
+      "alt": "Sevi stands beside the meeting-room table, notebook in hand and eyes obscured by the nightmare."
     }
   }
 }

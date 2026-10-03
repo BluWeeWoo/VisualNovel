@@ -23,15 +23,17 @@ const asset=name=>`assets/gallery/${name}.webp`;
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const sheet=(id,title,src,note='Approved design preview')=>({id,title,src,note});
 export function galleryCatalog(manifest,unlocks){
+  const seviKeys=new Set(['c2-sevi-assignment','c2-sevi-confrontation','c2-sevi-meeting']);
+  const storyArt=Object.entries(manifest.cgs||{}).map(([id,cg],index)=>({id,src:cg.src,title:unlocks.includes(id)?`Story artwork ${index+1}`:'Unseen story artwork',note:unlocks.includes(id)?cg.alt:`Unlock by viewing this illustration in ${seviKeys.has(id)?'Sevi’s':'Rowan’s'} story. Some scenes depend on your choices.`,locked:!unlocks.includes(id)}));
   return {
     rowan:{name:'Rowan',portrait:manifest.portraits.Rowan.neutral,description:'An old friend, a familiar doorstep, and a summer with room to begin again.',
       Outfits:[sheet('seaglass','Sea-glass morning',asset('rowan-seaglass'),'Alternative outfit preview'),sheet('porch','Porch reader',asset('rowan-porch'),'Alternative outfit preview'),sheet('harbor','Harbor afternoon',asset('rowan-harbor'),'Alternative outfit preview'),sheet('original','Original cardigan',manifest.portraits.Rowan.neutral,'Rowan’s familiar dog-and-bone cardigan.'),sheet('summer','Summer wardrobe',asset('rowan-outfits'),'Sea-glass morning · Porch reader · Harbor afternoon. Alternative outfit concepts; viewing does not change his story outfit.')],
       Expressions:[...Object.entries(manifest.portraits.Rowan).map(([id,src])=>sheet(id,({smile:'Happy',playful:'Playful',book:'Reading',concerned:'Concerned'})[id]||id[0].toUpperCase()+id.slice(1),src,'Character sprite preview')),sheet('sheet','Seven expressions',asset('rowan-expressions'),'Neutral · Happy · Annoyed · Embarrassed · Sad · Surprised · Emotionally confused')],
-      Artwork:[sheet('summerhouse','Summerhouse afternoon','assets/backgrounds/menu-seaglass.png','Main-menu illustration'),...Object.entries(manifest.cgs||{}).map(([id,cg],index)=>({id,src:cg.src,title:unlocks.includes(id)?`Story artwork ${index+1}`:'Unseen story artwork',note:unlocks.includes(id)?cg.alt:`Unlock by viewing this illustration in Rowan’s story. Some scenes depend on your choices.`,locked:!unlocks.includes(id)}))]},
+      Artwork:[sheet('summerhouse','Summerhouse afternoon','assets/backgrounds/menu-seaglass.png','Main-menu illustration'),...storyArt.filter(item=>!seviKeys.has(item.id))]},
     sevi:{name:'Sevrine “Sevi” Buenaventura',portrait:asset('sevi-full'),description:'A brilliant academic rival with a precise eye and a competitive streak. Understanding his own feelings is a harder subject.',
       Outfits:[sheet('contrast','Quiet contrast',asset('sevi-contrast'),'Approved Part 2 outfit preview'),sheet('monochrome','Summer monochrome',asset('sevi-monochrome'),'Approved Part 2 outfit preview'),sheet('coastal','Coastal scholar',asset('sevi-full'),'Approved Part 2 design preview'),sheet('summer','Summer wardrobe',asset('sevi-outfits'),'Coastal scholar · Quiet contrast · Summer monochrome')],
       Expressions:[...['neutral','happy','annoyed','embarrassed','sad','surprised','confused'].map(id=>sheet(id,id==='confused'?'Emotionally confused':id[0].toUpperCase()+id.slice(1),asset('sevi-'+id),'Approved Part 2 expression preview')),sheet('expressions','Seven expressions',asset('sevi-expressions'),'Complete approved expression sheet')],
-      Artwork:[sheet('teaser','A meeting of minds',asset('sevi-teaser'),'Spoiler-free Part 2 teaser')]
+      Artwork:[sheet('teaser','A meeting of minds',asset('sevi-teaser'),'Spoiler-free Part 2 teaser'),...storyArt.filter(item=>seviKeys.has(item.id))]
     }
   };
 }

@@ -1,3 +1,4 @@
+import {translate,localizeGameText} from './story-language.js';
 // Saved, deterministic round state; no score-based relationship reward.
 export function validGarden(r){
  return !!r&&['timed','untimed'].includes(r.mode)&&Number.isFinite(r.elapsed)&&r.elapsed>=0&&r.elapsed<=45&&
@@ -15,7 +16,7 @@ export function beginGarden(state,random=Math.random){
 }
 export function gardenAffection(state,played){
  if(state.flags.gardenAffectionApplied)return;
- state.flags.rowanAffection=(Number(state.flags.rowanAffection)||0)+(played?1:-1);
+ state.flags.rowanAffection=(Number(state.flags.rowanAffection)||0)+(played?1:0);
  state.flags.gardenAffectionApplied=true;
 }
 export function pullWeed(round,index){
@@ -80,19 +81,19 @@ export function mountGarden(root,state,{save,done,menu,motion=true,sound=false,v
     soil.animate([{opacity:1,transform:'translate(20px,0)'},{opacity:0,transform:`translate(${20+(Math.random()-.5)*65}px,${-10-Math.random()*(success?55:25)}px)`}],{duration:success?420:240}).finished.catch(()=>{}).then(()=>soil.remove());
    }
   }else w.animate([{filter:'brightness(1.5)'},{filter:'brightness(1)'}],{duration:120});
-  if(!success){q('.weed-status').textContent='The roots loosen a little.';draw();save();return;}
+  if(!success){q('.weed-status').textContent=translate('The roots loosen a little.');draw();save();return;}
   lastRemoved=performance.now();
   q('.weed-patch').tabIndex=-1;q('.weed-patch').focus({preventScroll:true});
   q('.weed-status').textContent=`${r.you} ${r.you===1?'weed':'weeds'} pulled.`;
   q('[data-banter]').textContent=r.you<4?'Roots too. Just checking.':r.you<9?'Are you counting the stems again?':r.you<14?'My hat is helping you. I’ve noticed.':'That was quicker with you.';
-  draw();save();if(r.you===18){running=false;setTimeout(()=>{if(!disposed)finish();},motion?330:0);}
+  localizeGameText(root);draw();save();if(r.you===18){running=false;setTimeout(()=>{if(!disposed)finish();},motion?330:0);}
  }
  function select(i){if(!running||weeds[i].disabled)return;selected=i;draw();}
  weeds.forEach((w,i)=>{
   w.onclick=()=>pull(i);
  });
  q('.weed-pull').onclick=()=>pull(selected);
- function pause(){if(disposed)return;running=false;q('.weed-overlay').hidden=false;q('.weed-resume').textContent='Resume round';draw();save();q('.weed-resume').focus();}
+ function pause(){if(disposed)return;running=false;q('.weed-overlay').hidden=false;q('.weed-resume').textContent=translate('Resume round');draw();save();q('.weed-resume').focus();}
  q('.weed-pause').onclick=pause;
  q('.weed-resume').onclick=()=>{running=true;last=performance.now();q('.weed-overlay').hidden=true;draw();weeds.find(w=>!w.disabled)?.focus();};
  q('.weed-menu').onclick=()=>{save();dispose();menu();};
@@ -112,5 +113,5 @@ export function mountGarden(root,state,{save,done,menu,motion=true,sound=false,v
  root.addEventListener('keydown',keys);document.addEventListener('visibilitychange',visibility);window.addEventListener('blur',pause);
  const timer=setInterval(()=>{const now=performance.now(),dt=Math.min((now-last)/1000,.5);last=now;if(!running||document.hidden)return;tickGarden(r,dt);draw();save();if(r.elapsed>=45)finish();},250);
  function dispose(){disposed=true;clearInterval(timer);audioContext?.close().catch(()=>{});root.removeEventListener('keydown',keys);document.removeEventListener('visibilitychange',visibility);window.removeEventListener('blur',pause);}
- draw();q('.weed-resume').focus();return dispose;
+ localizeGameText(root);draw();q('.weed-resume').focus();return dispose;
 }

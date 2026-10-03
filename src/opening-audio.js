@@ -22,6 +22,11 @@ const cue=(keys,fade=3)=>({layers:keys.map(key=>typeof key==='string'?{key}:key)
 export const menuAudioCue=()=>cue(['menu'],2);
 export function openingAudioCue(node,state){
  if(!node?.opening)return cue([], .35);
+ if(node.chapterTwo){
+  const layers=node.music?[{key:node.music,level:.24}]:[];
+  if(!node.place.startsWith('c2-')||node.place==='c2-rest')layers.push({key:'outdoors',level:.08});
+  return cue(layers,2);
+ }
  if(node.dayTwo){
   const layers=node.music?[{key:node.music,level:.32}]:[];
   layers.push({key:'outdoors',level:node.time==='night'?.05:.14});

@@ -123,7 +123,7 @@
 .dialogue-top { min-height:44px; }
 @media(max-width:650px) { .dialogue-copy { font-size:19px; min-height:6.2em; } }
 @media(max-width:600px) {
-  .event-cg[src$="/familiar-door.webp"] { object-position:42% 28%; }
+  .event-cg[src$="/familiar-door-outfit.webp"] { object-position:42% 28%; }
 }
 
 /* Match the title's driftwood buttons without fading the text or controls. */
@@ -410,7 +410,7 @@
 
 /* Preserve Rowan’s headroom in the new close porch illustration. */
 .scene-art .event-cg[src$="/after-garden/quiet.webp"],
-.scene-art .event-cg[src$="/after-garden/wave-v2.webp"] { object-position:50% 0%; }
+.scene-art .event-cg[src$="/after-garden/wave-outfit.webp"] { object-position:50% 0%; }
 
 /* Compact nameplate and ending notice, with identical silent/spoken geometry. */
 @media (min-width:651px) {

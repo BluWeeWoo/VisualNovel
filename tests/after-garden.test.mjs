@@ -25,7 +25,7 @@ test('Every after-garden branch saves, terminates and preserves relationship sta
  assert.equal(covered.size,Object.keys(afterGarden).length);assert.ok(endings>100);
 });
 test('Topic menus prevent repeat conversations and permit stopping after one topic',()=>{
- assert.equal(story.aTopics0.choices.length,4);
+ assert.equal(story.aTopics0.choices.length,5);
  for(let mask=1;mask<16;mask++){
   const choices=story['aTopics'+mask].choices;
   assert.equal(choices.at(-1).next,'aEvening');

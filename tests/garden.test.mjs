@@ -34,9 +34,9 @@ test('Wins, losses, ties and untimed play award equal affection once',()=>{
  const s=freshState();s.flags.gardenMode='untimed';const r=beginGarden(s);tickGarden(r,100);assert.equal(r.elapsed,0);
  for(let i=0;i<18;i++)pullWeed(r,i);finishGarden(s);assert.equal(s.flags.rowanAffection,1);
 });
-test('Declining reduces affection once without reducing trust or blocking the ending',()=>{
+test('Declining preserves affection and trust without blocking the ending',()=>{
  const s=freshState();const choice=story.gChallenge.choices[2];applyChoice(s,choice);applyChoice(s,choice);
- assert.equal(s.flags.rowanAffection,-1);assert.equal(s.milestone,'Reacquainted');assert.equal(story[s.node].next,'gAfter');
+ assert.equal(s.flags.rowanAffection,0);assert.equal(s.milestone,'Reacquainted');assert.equal(story[s.node].next,'gAfter');
 });
 test('An unfinished round survives save/load with scores, remaining time and weeds intact',()=>{
  const s=freshState();s.node='gPlay';s.flags.gardenMode='timed';const r=beginGarden(s);

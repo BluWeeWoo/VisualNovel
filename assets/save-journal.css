@@ -117,3 +117,20 @@
  .journal-list-footer i,.journal-auto-note{display:none}.journal-page-heading i{font-size:11px}.journal-page-heading>span{font-size:8px}
  .journal-action-copy{display:none}.journal-primary{width:100%}.journal-memory h3{font-size:24px}.journal-memory-meta{gap:6px}.journal-memory-meta time{font-size:9px}.journal-confirm>div{flex-wrap:wrap}.journal-confirm .journal-primary{width:auto}
 }
+/* Enlarge the left-page moments without widening them past the paper. */
+@media(min-width:1051px){
+ .journal-entry{box-sizing:border-box;max-width:100%;grid-template-columns:30px minmax(0,112px) minmax(0,1fr) 12px;min-height:88px;padding:10px 9px;gap:10px}
+ .journal-entry-copy strong{font-size:16px;line-height:1.25}
+ .journal-entry-label{font-size:11px}
+ .journal-entry-copy small{font-size:10px}
+ .journal-slot-number{font-size:25px}
+ .journal-thumb{min-width:0}
+ .journal-entries{min-height:0}
+}
+@media(min-width:1051px) and (max-height:760px){
+ .journal-entry{grid-template-columns:27px minmax(0,94px) minmax(0,1fr) 10px;min-height:75px;padding:7px 8px;gap:8px}
+ .journal-entry-copy strong{font-size:14px}
+ .journal-entry-label{font-size:10px}
+ .journal-entry-copy small{font-size:9px}
+ .journal-slot-number{font-size:23px}
+}

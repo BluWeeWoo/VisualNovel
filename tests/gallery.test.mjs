@@ -32,13 +32,20 @@ test('Every CG unlocks only at its cue, including branch-specific illustrations'
  }
 });
 
-test('Catalog preserves character order, teaser-only Sevi, and asset references',()=>{
+test('Catalog preserves character order, Sevi artwork ownership, and asset references',()=>{
  const catalog=galleryCatalog(manifest,[]);
  assert.deepEqual(Object.keys(catalog),['rowan','sevi']);
- assert.equal(catalog.rowan.Artwork.filter(a=>a.locked).length,Object.keys(manifest.cgs).length);
+ assert.equal(catalog.rowan.Artwork.filter(a=>a.locked).length,Object.keys(manifest.cgs).length-3);
  for(const character of Object.values(catalog))for(const category of ['Outfits','Expressions','Artwork'])for(const item of character[category]){
   assert.ok(existsSync(new URL('../'+item.src,import.meta.url)),item.src);
   assert.equal(item.next,undefined);assert.equal(item.set,undefined);
  }
- assert.equal(catalog.sevi.Artwork.length,1);
+ assert.equal(catalog.sevi.Artwork.length,4);
+});
+
+test('Sevi story art retains unlocks and is excluded from Rowan without changing other entries',()=>{
+ const keys=['c2-sevi-assignment','c2-sevi-confrontation','c2-sevi-meeting'];
+ const before=JSON.stringify(manifest),unlocks=[...keys];const c=galleryCatalog(manifest,unlocks);
+ for(const id of keys){assert.ok(!c.rowan.Artwork.some(a=>a.id===id));assert.equal(c.sevi.Artwork.find(a=>a.id===id).locked,false);}
+ assert.equal(JSON.stringify(manifest),before);assert.deepEqual(unlocks,keys);
 });

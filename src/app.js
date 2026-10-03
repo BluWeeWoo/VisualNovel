@@ -1,3 +1,5 @@
+import {translate,translateRecorded,setLanguage,normalizeLanguage,languageField} from '../assets/story-language.js';
+import {mountNightmare} from '../assets/nightmare.js';
 import {chapterMenu,chapterComplete} from '../assets/chapters.js';
 import {morningPhone} from './morning-phone.js';
 import {mountGarden} from '../assets/garden-game.js';
@@ -26,8 +28,11 @@ let saveMode='load',saveSelection='-auto',saveConfirmKey=null;
 let state=null, screen='title', modal=null, timer=null, typing=false, fullText='', timerIndex=0;
 let liveConsent=false, busy=false, error='', draft='', chatMode='demo', provider={available:false};
 let manifest={backgrounds:{},portraits:{}};
-let settings={speed:32, motion:!matchMedia('(prefers-reduced-motion: reduce)').matches, sound:false, volume:.35};
+let settings={language:'english',speed:32, motion:!matchMedia('(prefers-reduced-motion: reduce)').matches, sound:false, volume:.35};
 try {settings={...settings,...JSON.parse(localStorage.getItem(storageKey+'-settings')||'{}')};}catch{}
+settings.language=normalizeLanguage(settings.language);
+setLanguage(settings.language);
+const display=(text,s=state)=>interpolate(translate(text),s);
 let storageAvailable=true;
 function read(key){try{const value=JSON.parse(localStorage.getItem(storageKey+key)||'null');if(value?.state)migrateStorySave(value.state,story);return value;}catch{return null;}}
 function write(key,value){try{localStorage.setItem(storageKey+key,JSON.stringify(value));return true;}catch{storageAvailable=false;toast('Storage is unavailable. Keep this tab open; saves cannot be retained.');return false;}}
@@ -65,7 +70,7 @@ function unlockAudio(){if(audioUnlocked)return;audioUnlocked=true;enterAudio();}
 document.addEventListener('pointerdown',unlockAudio,{once:true});
 document.addEventListener('keydown',unlockAudio,{once:true});
 function advance(){
-  if(screen!=='game'||modal||busy)return;
+  if(screen!=='game'||modal||busy||story[state.node]?.nightmare)return;
   if(typing){stopTyping();$('#dialogue-text').textContent=fullText;return;}
   const node=story[state.node],all=nodeLines();
   if(state.line<all.length-1){state.line++;autoSave();renderGame();return;}
@@ -91,7 +96,7 @@ function title(){
     return;
   }
   app.innerHTML=`<main class="title-screen">${bg('exterior','day')}<div class="title-wash"></div>
-    <header class="title-header">${brand()}<span class="edition">AN INTERACTIVE SUMMER STORY <span>•</span> CHAPTER ONE</span></header>
+    <header class="title-header">${brand()}<span class="edition">AN INTERACTIVE SUMMER STORY <span>•</span> CHAPTERS ONE &amp; TWO</span></header>
     <section class="title-copy"><div class="eyebrow"><span class="short-line"></span> SOME THINGS WAIT FOR YOU</div>
     <h1>Our Summer,<br><em>Unfinished</em><span class="title-period">.</span></h1>
     <div class="title-actions"><button class="primary" data-action="${resume?'continue':'new'}">${resume?'Continue your summer':'Begin your summer'} <span aria-hidden="true">↗</span></button>
@@ -102,7 +107,7 @@ function title(){
     <footer class="title-footer"><span>01 <i></i> THE HOUSE WITH THE BLUE DOOR</span><span>Take your time. There’s no wrong way to feel.</span><button data-action="accessibility">Reading & accessibility ↗</button></footer></main>`;
   bind();
 }
-function render(){stopTyping();enterAudio();document.documentElement.classList.toggle('reduced-motion',!settings.motion);if(screen==='title')title();else renderGame();}
+function render(){if(screen==='title'){gardenCleanup?.();gardenCleanup=null;}stopTyping();enterAudio();document.documentElement.classList.toggle('reduced-motion',!settings.motion);if(screen==='title')title();else renderGame();}
 // Keep visual DOM alive across dialogue renders. Decode replacements before fading
 // them in, and discard stale loads if the player advances quickly.
 async function updateVisual(host,html,key){
@@ -149,6 +154,12 @@ function mountGame(html,backgroundKey,artKey){
 function renderGame(){
   stopTyping();
   gardenCleanup?.();gardenCleanup=null;
+  const nightmareNode=story[state.node];
+  if(nightmareNode.nightmare){
+    enterAudio();
+    gardenCleanup=mountNightmare(app,state,{wave:nightmareNode.nightmare,motion:settings.motion,save:autoSave,done:()=>{enter(nightmareNode.next);renderGame();},menu:()=>{screen='title';render();}});
+    return;
+  }
   if(story[state.node].minigame){
     enterAudio();
     gardenCleanup=mountGarden(app,state,{save:autoSave,motion:settings.motion,sound:settings.sound,volume:settings.volume,done:()=>{enter('gResult');renderGame();},menu:()=>{screen='title';render();}});
@@ -159,7 +170,7 @@ function renderGame(){
   record(line);autoSave();enterAudio();
   const last=state.line>=all.length-1;
   const cue=phoneCue(story,state);
-  const displayText=cue?.message?(line.speaker==='You · text'?'I send him a message.':'A message from Rowan lights up your phone.'):interpolate(line.text,state);
+  const displayText=cue?.message?(line.speaker==='You · text'?'I send him a message.':'A message from Rowan lights up your phone.'):display(line.text);
   const staging=spriteAt(story,state);
   const portrait=staging&&manifest.portraits[staging.character||'Rowan']?.[staging.key];
   const cg=manifest.cgs?.[cgAt(story,state)];
@@ -170,14 +181,17 @@ function renderGame(){
     <div class="scene-bottom">
     <section class="dialogue-card ${cue?.message?'narration':line.kind|| (line.speaker?'spoken':'narration')}" aria-label="Story dialogue">
     <div class="dialogue-top"><span class="speaker"><span class="speaker-name">${escape(line.kind==='spoken'?(line.speaker==='You'?state.name:line.speaker):'')}</span></span><span class="dialogue-ornament" aria-hidden="true">✳</span></div>
-    <div class="dialogue-copy"><p class="dialogue-reserve" aria-hidden="true">${escape(displayText)}</p><p id="dialogue-text" aria-live="off"></p></div><span class="sr-only dialogue-status" role="status">${escape(cue?.message?displayText:(line.speaker?line.speaker+': ':'')+interpolate(line.text,state))}</span>
-    <div class="dialogue-extras">${morningPhone(node,state)}${node.letter?'<button class="secondary" data-action="letter">Read Rowan’s letter ↗</button>':''}${last&&node.choices?`<div class="choices" aria-label="Choose your response">${node.choices.map((c,i)=>`<button data-choice="${i}"><span class="choice-number">${i+1}</span>${escape(interpolate(c.text,state))}<span class="choice-arrow" aria-hidden="true">↗</span></button>`).join('')}</div>`:''}
+    <div class="dialogue-copy"><p class="dialogue-reserve" aria-hidden="true">${escape(displayText)}</p><p id="dialogue-text" aria-live="off"></p></div><span class="sr-only dialogue-status" role="status">${escape(cue?.message?displayText:(line.speaker?line.speaker+': ':'')+display(line.text))}</span>
+    <div class="dialogue-extras">${morningPhone(node,state)}${node.letter?'<button class="secondary" data-action="letter">Read Rowan’s letter ↗</button>':''}${last&&node.choices?`<div class="choices" aria-label="Choose your response">${node.choices.map((c,i)=>`<button data-choice="${i}"><span class="choice-number">${i+1}</span>${escape(display(c.text))}<span class="choice-arrow" aria-hidden="true">↗</span></button>`).join('')}</div>`:''}
     ${last&&node.phone?'<div class="phone-invitation"><p>A short late-night conversation · up to 4 messages<br><small>An early preview. Open conversations unlock at Close in future chapters.</small></p><button class="primary" data-action="phone">Open your phone ↗</button><button class="text-button" data-action="skip-chat">Save your words for morning</button></div>':''}
-    ${last&&node.openingEnd?`<div class="opening-end"><span class="eyebrow">END OF THE CURRENT STORY</span><p>${node.afterGarden?'Chapter One — Reunion at a Familiar House. Your place is saved.':'Your place is saved. You can continue from here.'}</p><button class="text-button" data-action="title">Back to the title ↗</button><button class="secondary" data-action="chapters">View chapters ↗</button></div>`:''}
+    ${last&&node.openingEnd?`<div class="opening-end"><span class="eyebrow">END OF THE CURRENT STORY</span><p>${node.chapterTwo?'Chapter Two’s opening is complete. Your place is saved; the rest of the chapter is still to come.':node.afterGarden?'Chapter One — Reunion at a Familiar House. Chapter Two is ready in Chapters.':'Your place is saved. You can continue from here.'}</p><button class="text-button" data-action="title">Back to the title ↗</button><button class="secondary" data-action="chapters">View chapters ↗</button></div>`:''}
     ${last&&node.ending&&!node.openingEnd?`<div class="chapter-end"><span class="eyebrow">END OF CHAPTER ONE</span><h2>A little less unfinished.</h2><p>Your summer is saved. The sunrise is planned, not yet fulfilled.</p><div><button class="primary" data-action="promises">Keep the list ↗</button><button class="secondary" data-action="title">Back to the title</button></div><small>Chapter two continues the sunrise promise. This build contains chapter one.</small></div>`:''}
     </div><div class="dialogue-footer"><nav class="dialogue-tools" aria-label="Game tools"><button data-action="history">History</button><button data-action="saves">Save / load</button><button data-action="settings">Settings</button><button data-action="promises">Promises</button>${hasRowanContact(state)?'<button data-action="sg">Phone</button>':''}<button data-action="title" aria-label="Return to title">Menu</button></nav>${!(last&&(node.choices||node.phone||node.ending))?'<button class="next-button" data-action="next" aria-label="Continue dialogue">Continue <span aria-hidden="true">→</span></button>':'<span class="small-flower" aria-hidden="true">✳</span>'}</div></section>
     <footer class="game-footer"><span>${escape(state.name)}’s summer <span class="footer-dot">·</span> <button data-action="relationship" aria-label="Relationship milestones">${escape(state.milestone)}</button></span><span>${state.phoneUnlocked?'<button data-action="phone">↗ Late-night messages</button>':'A story at your own pace'}</span><span class="save-indicator">${storageAvailable?'● Progress saved locally':'! Local saves unavailable'}</span></footer></div></main>`;
   mountGame(gameHTML,`${node.place}:${node.time}`,cg?`cg:${cg.src}`:`sprite:${portrait||'none'}:${node.time}`);
+  const gameScreen=app.querySelector('.game-screen');
+  gameScreen.classList.toggle('dream-waking-sequence',['c2Calling','c2Blackout','c2Wake'].includes(state.node));
+  gameScreen.classList.toggle('dream-blackout',!!node.blackout);
   const morningMessages=$('.morning-phone');
   if(morningMessages){morningMessages.scrollTop=morningMessages.scrollHeight;morningMessages.onclick=e=>e.stopPropagation();}
   bind();
@@ -232,10 +246,10 @@ function drawSaveJournal(){
     const data=read(key),valid=validSave(data?.state,story);
     const saved=valid?data.state:null,node=saved&&story[saved.node],line=saved&&visibleLines(node,saved)[saved.line];
     const date=new Date(data?.date);
-    return {key,number:String(i).padStart(2,'0'),label:i?'Moment '+String(i).padStart(2,'0'):'Autosave',exists:!!data,valid,
+    return {key,chapter:valid?(story[saved.node].chapter||1):1,number:String(i).padStart(2,'0'),label:i?'Moment '+String(i).padStart(2,'0'):'Autosave',exists:!!data,valid,
       title:node?.title.replace(/^\d+\s*\/\s*/,''),name:saved?.name,
       date:valid&&!Number.isNaN(date.getTime())?date.toLocaleString(undefined,{month:'short',day:'numeric',year:'numeric',hour:'numeric',minute:'2-digit'}):'Date unknown',
-      excerpt:line?interpolate(line.text,saved):'A quiet place in your summer.',preview:valid?savePreview(saved):''};
+      excerpt:line?display(line.text,saved):'A quiet place in your summer.',preview:valid?savePreview(saved):''};
   });
   shell('Saved moments',saveJournal({entries,page:savePage,mode:saveMode,selected:saveSelection,canSave:!!state&&screen==='game',confirmKey:saveConfirmKey}),'saves-modal');
 }
@@ -264,7 +278,7 @@ function drawModal(){
     if(!state||!story[state.node]?.letter){closeModal();return;}
     rowansLetter.forEach((text,i)=>{const id='letter:'+state.node+':'+i;if(!state.history.some(h=>h.id===id))state.history.push({id,speaker:'Rowan · letter',text:interpolate(text,state)});});
     state.flags.letterRead=true;autoSave();
-    shell('A letter from Ro',`<article class="letter-paper"><p class="letter-date">Written just after Rowan’s twenty-first birthday · a few months before Lola passed away</p>${rowansLetter.map(text=>`<p>${escape(interpolate(text,state))}</p>`).join('')}<p class="letter-drawing" aria-label="A small boat drawn beneath Rowan’s name">⛵</p></article><button class="secondary" data-action="close">Fold the letter</button>`,'letter-modal');return;
+    shell('A letter from Ro',`<article class="letter-paper"><p class="letter-date">Written just after Rowan’s twenty-first birthday · a few months before Lola passed away</p>${rowansLetter.map(text=>`<p>${escape(display(text))}</p>`).join('')}<p class="letter-drawing" aria-label="A small boat drawn beneath Rowan’s name">⛵</p></article><button class="secondary" data-action="close">Fold the letter</button>`,'letter-modal');return;
   }
 
   if(modal==='love-interests'){
@@ -277,15 +291,15 @@ function drawModal(){
     document.querySelectorAll('[data-preview]').forEach(button=>button.onclick=()=>{const key=button.dataset.preview;$('#cast-sprite').src=manifest.portraits.Rowan[key];$('#cast-sprite').alt=`Rowan, ${key} expression.`;document.querySelectorAll('[data-preview]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));});
     document.querySelectorAll('[data-location]').forEach(button=>button.onclick=()=>{$('.cast-art').style.backgroundImage=`url('${manifest.backgrounds[button.dataset.location]}')`;});
   }
-  if(modal==='new')shell('A name to come home to',`<p class="muted">You’re ${protagonistAge}. It’s been years since your last proper summer here.<br>The rest is yours to remember.</p><form id="new-form"><label>Your name<input name="name" maxlength="24" value="Alex" required autocomplete="off"></label><fieldset><legend>Pronouns</legend><div class="pronouns"><label><input type="radio" name="pronouns" value="they" checked> they / them</label><label><input type="radio" name="pronouns" value="she"> she / her</label><label><input type="radio" name="pronouns" value="he"> he / him</label></div></fieldset><p class="small-note">Friendship, romance, and taking your time are all welcome.<br>${read('-auto')?'Starting replaces the autosave. Manual save slots stay safe.':'Progress saves automatically in this browser.'}</p><button class="primary" type="submit">Open the gate ↗</button></form>`);
+  if(modal==='new')shell('A name to come home to',`<p class="muted">You’re ${protagonistAge}. It’s been years since your last proper summer here.<br>The rest is yours to remember.</p><form id="new-form">${languageField('new-language')}<label>Your name<input name="name" maxlength="24" value="Alex" required autocomplete="off"></label><fieldset><legend>Pronouns</legend><div class="pronouns"><label><input type="radio" name="pronouns" value="they" checked> they / them</label><label><input type="radio" name="pronouns" value="she"> she / her</label><label><input type="radio" name="pronouns" value="he"> he / him</label></div></fieldset><p class="small-note">Friendship, romance, and taking your time are all welcome.<br>${read('-auto')?'Starting replaces the autosave. Manual save slots stay safe.':'Progress saves automatically in this browser.'}</p><button class="primary" type="submit">Open the gate ↗</button></form>`);
   if(modal==='promises'){
     const found=state?.promiseFound;
     shell('Before we get boring',`<div class="journal"><div class="journal-date">A summer, years ago <span>in green ink</span></div>${found?`<ol class="promise-list">${promises.map((p,i)=>`<li><span class="promise-check ${i===0&&state.sunrise==='planned'?'planned':''}">${i===0&&state.sunrise==='planned'?'◷':'○'}</span><div>${p}${i===0?`<small>${state.sunrise==='planned'?`Tomorrow · 4:40 at the gate · ${escape(state.flags.ritual||'a flask')}<br>Planned — still waiting for the sunrise.`:'Not yet begun.'}</small>`:'<small>For another day.</small>'}</div></li>`).join('')}</ol><p class="handwritten">A promise isn’t a trap.</p>`:'<p class="empty-state">Some things are waiting in the drawers.<br>You haven’t found the list yet.</p>'}</div>`);
   }
-  if(modal==='history')shell('The things we said',`<div class="history-list">${state?.history.length?state.history.map(h=>`<article><strong>${escape(h.speaker==='You'?state.name:h.speaker||'—')}</strong><p>${escape(h.text)}</p></article>`).join(''):'<p>No dialogue yet. Begin your summer first.</p>'}</div>`);
+  if(modal==='history')shell('The things we said',`<div class="history-list">${state?.history.length?state.history.map(h=>`<article><strong>${escape(h.speaker==='You'?state.name:h.speaker||'—')}</strong><p>${escape(translateRecorded(h.text,state))}</p></article>`).join(''):'<p>No dialogue yet. Begin your summer first.</p>'}</div>`);
   if(modal==='saves'){drawSaveJournal();return;}
-  if(modal==='settings')shell('Make yourself comfortable',`<div class="settings-list"><label>Text speed <span id="speed-label">${settings.speed===0?'Instant':settings.speed+' letters / second'}</span><input id="speed" aria-label="Text speed, zero is instant" type="range" min="0" max="80" step="8" value="${settings.speed}"></label><label class="toggle-row"><span>Reduced motion<small>Also displays dialogue instantly.</small></span><input id="motion" type="checkbox" ${!settings.motion?'checked':''}></label><label class="toggle-row"><span>Music & ambience<small>Your scene soundtrack and ambience. Off by default.</small></span><input id="sound" type="checkbox" ${settings.sound?'checked':''}></label><label>Audio volume<input id="volume" aria-label="Audio volume" type="range" min="0" max="1" step=".05" value="${settings.volume}"></label></div><div class="controls-note"><strong>At your own pace</strong><p>Space / Enter: reveal or advance · 1–4: choose a response<br>H: history · P: promises · S: save / load · Esc: close a panel<br>Tab and Shift+Tab move between controls. There are no timed choices.</p></div><button class="secondary" data-action="memories">Review saved chat memories</button>`);
-  if(modal==='about')shell('A summer worth taking slowly',`<p>A story about an old guesthouse, unfinished promises, and choosing how to come back to someone.</p><p>Original story, interface, and synthesized ambience created for this project. Rowan’s official design is your original illustration, with matching generated expressions and illustrated backgrounds. Both Rowan and the protagonist are 23.</p><p><strong>New games play the revised opening through the reunion, Rowan’s letter, and the garden reunion on day two.</strong> Existing saves retain the earlier chapter draft. Later scenes have not yet been adapted to the new continuity.</p><p class="muted">Reading time varies. Includes grief, bereavement, controlling parents, and the destruction of personal letters. All romantic characters are adults. Nothing is timed.</p><p class="small-note">The default phone is a scripted demo, not live AI. No messages leave this device in demo mode. Local progress stays in this browser.</p>`);
+  if(modal==='settings')shell('Make yourself comfortable',`<div class="settings-list"><div class="language-setting">${languageField()}</div><label>Text speed <span id="speed-label">${settings.speed===0?'Instant':settings.speed+' letters / second'}</span><input id="speed" aria-label="Text speed, zero is instant" type="range" min="0" max="80" step="8" value="${settings.speed}"></label><label class="toggle-row"><span>Reduced motion<small>Also displays dialogue instantly.</small></span><input id="motion" type="checkbox" ${!settings.motion?'checked':''}></label><label class="toggle-row"><span>Music & ambience<small>Your scene soundtrack and ambience. Off by default.</small></span><input id="sound" type="checkbox" ${settings.sound?'checked':''}></label><label>Audio volume<input id="volume" aria-label="Audio volume" type="range" min="0" max="1" step=".05" value="${settings.volume}"></label></div><div class="controls-note"><strong>At your own pace</strong><p>Space / Enter: reveal or advance · 1–4: choose a response<br>H: history · P: promises · S: save / load · Esc: close a panel<br>Tab and Shift+Tab move between controls. There are no timed choices.</p></div><button class="secondary" data-action="memories">Review saved chat memories</button>`);
+  if(modal==='about')shell('A summer worth coming back to',`<div class="about-story-layout"><aside class="about-rowan"><svg viewBox="335 132 270 435" role="img" aria-label="Chibi Rowan smiling and waving with a yellow envelope" overflow="hidden"><image href="assets/chapters/affinity-sheet.png" width="1536" height="1024"/></svg><p>Same skies.<br>A little closer, one day at a time.</p></aside><div class="about-story-copy"><p class="about-lead">An old house. A childhood friend. A summer with room to begin again.</p><p>At twenty-three, you return to Saint Luis and Lola’s familiar house. Rowan is here too—with shared memories, a yellow-envelope promise, and years of things you never quite got to say.</p><p><strong>Chapter 1 · Reunion at a familiar house</strong><br>Follow the journey home, remember the letters that once connected you, and settle into the small moments of being together again: breakfast, a little gardening, and conversations on the porch as day turns to evening.</p><p>Choose what to share, what to ask, and how close to let Rowan become. Friendship, the possibility of romance, and taking your time all have a place here.</p><p class="about-status">Chapter 1 and the opening of Chapter 2 are playable. Chapter 2 begins with a nightmare about city life, a thought-clearing mini-game, and Rowan checking on you. The rest of Chapter 2 and Chapters 3–5 are still to come.</p></div></div><footer class="about-details"><p>Rowan’s original character design is by the creator, with generated supporting illustrations. Rowan and the protagonist are both adults, aged 23.</p><p>Content notes: grief, bereavement, controlling parents, destroyed personal letters, nightmares, and academic pressure. Complete each nightmare mini-game to continue; you can pause and resume.</p><p>Progress is saved in this browser. The default phone uses scripted replies; no messages leave your device in demo mode.</p></footer>`);
   if(modal==='relationship')shell('Becoming familiar',`<p>Trust grows through shared moments and honest choices. It isn’t a score. Friendship and romance have the same room to grow.</p><ol class="milestone-list">${milestones.map(m=>`<li><strong>${m.name}${state?.milestone===m.name?' · now':''}</strong><p>${m.unlock}</p></li>`).join('')}</ol><p class="small-note">Chapter one ends at Familiar. Later milestones await future chapters. Skipping chat, disagreeing respectfully, or needing space never takes trust away.</p>`);
   if(modal==='memories')memoryModal();
   if(modal==='phone')phoneModal();
@@ -294,8 +308,9 @@ function drawModal(){
   bindForms();
 }
 function bindForms(){
-  $('#new-form')?.addEventListener('submit',e=>{e.preventDefault();const form=new FormData(e.target);$('.modal-layer').remove();start(form.get('name'),form.get('pronouns'));enterAudio();});
+  $('#new-form')?.addEventListener('submit',e=>{e.preventDefault();const form=new FormData(e.target);settings.language=normalizeLanguage(form.get('language'));setLanguage(settings.language);write('-settings',settings);$('.modal-layer').remove();start(form.get('name'),form.get('pronouns'));enterAudio();});
   const saveSettings=()=>{write('-settings',settings);document.documentElement.classList.toggle('reduced-motion',!settings.motion);};
+  $('#language')?.addEventListener('change',e=>{settings.language=normalizeLanguage(e.target.value);setLanguage(settings.language);saveSettings();stopTyping();render();if(typing){stopTyping();$('#dialogue-text').textContent=fullText;}modal='settings';drawModal();$('#language')?.focus();});
   $('#speed')?.addEventListener('input',e=>{settings.speed=Number(e.target.value);$('#speed-label').textContent=settings.speed===0?'Instant':settings.speed+' letters / second';saveSettings();});
   $('#motion')?.addEventListener('change',e=>{settings.motion=!e.target.checked;saveSettings();});
   $('#sound')?.addEventListener('change',e=>{settings.sound=e.target.checked;enterAudio();saveSettings();});
@@ -371,10 +386,17 @@ function bind(root=app){
   root.querySelectorAll('[data-forget]').forEach(el=>el.addEventListener('click',()=>{const removed=state.memories.splice(Number(el.dataset.forget),1)[0];for(const key of manualSaveKeys){const save=read(key);if(validSave(save?.state,story)){save.state.memories=save.state.memories.filter(m=>m.value!==removed.value);write(key,save);}}autoSave();drawModal();}));
 }
 function action(type){
+  if(type==='chapter-two'){
+    const current=state||read('-auto')?.state;
+    if(!validSave(current,story)||!chapterComplete(current,story))return;
+    state=structuredClone(current);closeModal();screen='game';
+    if(!story[state.node].chapterTwo){state.flags.chapterOneComplete=true;state.completed=false;enter('c2Start');}
+    render();return;
+  }
   if(type==='chapter-resume'){
     const current=state||read('-auto')?.state;
     if(chapterComplete(current,story)){
-      const lines=current.history.filter(h=>!h.id.startsWith('choice:'));
+      const lines=current.history.filter(h=>!h.id.startsWith('choice:')&&!h.id.startsWith('c2'));
       shell('Chapter 1 · Your memories',`<p>Your saved choices and relationship remain unchanged.</p><div class="chapter-memories">${lines.map(h=>`<p><strong>${escape(h.speaker==='You'?current.name:h.speaker)}</strong> ${escape(h.text)}</p>`).join('')}</div><button class="secondary" data-action="chapters">Back to chapters</button>`);
     }else if(state){closeModal();screen='game';render();}else load('-auto');
     return;
@@ -402,7 +424,7 @@ function action(type){
   openModal(type);
 }
 document.addEventListener('keydown',e=>{
-  if(screen==='game'&&state&&story[state.node]?.minigame)return;
+  if(screen==='game'&&state&&(story[state.node]?.minigame||story[state.node]?.nightmare))return;
   if(modal){
     if(e.key==='Escape'){e.preventDefault();closeModal();return;}
     if(e.key==='Tab'){

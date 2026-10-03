@@ -17,63 +17,96 @@ Then Rowan’s voice, too low for me to make out the words.
 Thought|He’s still here.
 `,{choices:[option('Call out to Rowan.','d2Call',{eveningChoice:'call'}),option('Just go to sleep.','d2SleepEarly',{eveningChoice:'sleep'})]}),
 d2Call:evening('One more thing',`
-You|Rowan!
-Footsteps cross the floor below. Then the stairs. Quickly.
-Rowan appears in the doorway, one hand against the frame.~concerned
-Rowan|Yeah? Everything okay?
-You|Yeah. Everything’s fine.
-He catches his breath.
-You|Did you run?
-Rowan|You shouted.
-You|I called your name.
-Rowan|Loudly.~playful
-A smile slips out before I can stop it.
-He’s still watching me, waiting to find out what I need.
-Thought|For once, I don’t want to pretend I called him over for something else.
-`,{rowan:true,choices:[option('Open my arms.','d2Hug',{bedroomAffection:'hug'}),option('“I missed you.”','d2Missed',{bedroomAffection:'words'})]}),
+You|Rowan?
+Footsteps cross the room below. He appears in the doorway, slightly out of breath.~concerned
+Rowan|What happened?
+You|Nothing. Did you run?
+Rowan|You called.
+You|That usually works at walking speed.
+He looks back toward the stairs.~embarrassed
+Rowan|Right.
+His hand stays on the doorframe.
+Rowan|What did you need?
+`,{rowan:true,choices:[option('“Stay a little?”','d2StayCompany',{bedroomAffection:'company'}),option('“I missed you.”','d2Missed',{bedroomAffection:'words'}),option('Open my arms.','d2Hug',{bedroomAffection:'hug'}),option('“Where does Lola keep the extra bedding?”','d2Bedding',{bedroomAffection:'bedding'})]}),
+d2StayCompany:evening('Stay a little',`
+You|Stay a little?
+Rowan|Yeah.~smile
+He answers quickly, then points to the chair beside the desk.
+Rowan|Here?
+I nod. He moves a stack of folded towels before sitting.
+Rowan|Good. I was losing an argument with the downstairs cupboard.~playful
+You|Does it still refuse to close?
+Rowan|Only when someone’s watching.
+For a while, we talk about the house.
+It is easier than deciding where to begin with everything else.
+`,{rowan:true,next:'d2Goodnight'}),
 d2Hug:evening('A familiar embrace',`
 I stand and open my arms.
-For a second, Rowan just looks at me. Then his expression softens.
-You|I missed you. Sobra.
+Rowan steps toward me, then stops.~concerned
+Rowan|Are you sure?
+You|Ro.
 He crosses the room. His arms close around me.
-Then my feet leave the floor.
-You|Rowan—!
-He laughs, surprised at himself, and sets me down again.
+The hug is firmer than I expected. My heels nearly leave the floor.
+You|Still need those.
+He sets me down immediately.~embarrassed
 Rowan|Sorry.
-You|Since when could you do that?
-Rowan|Since you started packing your entire life into one bag.
-You|So you’re complaining?
-Rowan|Didn’t say that.
-He’s still holding me. I let myself settle against him.
-Earlier, on the porch, I kept thinking about what I should say. What he might ask. How much I could explain.
-Right now, I can feel his breathing slow. Mine follows.
-Thought|I’m here. Really here.
-When I lean back, his eyes are wet.
-He gives a small, embarrassed laugh.
-Rowan|I had so many things I wanted to ask you.
-My stomach tightens.
-You|Rowan, I—
-Rowan|Hey. They can wait.
-He loosens his arms.
-Rowan|I’m glad you’re here, {name}.
-That makes it harder to look at him.
-Thought|There’s so much I wish had happened differently. So much he still doesn’t know.
-You|I don’t know where to start.
-Rowan|You don’t have to start tonight.
-He lets me go, his hands falling to his sides.
-Rowan|Whenever you feel ready.
-`,{next:'d2Goodnight'}),
+You|You’re a little taller than eleven-year-old you.
+Rowan|You noticed.~smile
+My laugh catches halfway. Neither of us moves.
+`,{rowan:true,choices:[option('Hold him a little longer.','d2HugLonger'),option('Step back with a smile.','d2HugRelease')]}),
+d2HugLonger:evening('A little longer',`
+I hold him a little longer. His breathing slows against my shoulder.
+When I loosen my arms, he lets me go.
+You|Thanks, Ro.
+Rowan|Yeah. Anytime.~smile
+`,{rowan:true,next:'d2Goodnight'}),
+d2HugRelease:evening('A familiar smile',`
+I step back with a smile. He lets me go immediately.
+Rowan brushes a crease from his sleeve.~embarrassed
+You|Better than your old headlocks.
+Rowan|I’ve been practicing my manners.~playful
+`,{rowan:true,next:'d2Goodnight'}),
 d2Missed:evening('I missed you',`
 You|I missed you.
-It comes out quieter than I intended.
-Rowan’s smile fades for a moment. More like he wants to be sure he heard me.
-You|I know I haven’t really said it properly.
-Rowan|You just did.
-Rowan|I missed you, too.
-I look down, smiling at the floor.
-Thought|After everything I practiced on the way here, that was all it took.
-Thought|Four words. The room feels a little less unfamiliar.
-`,{next:'d2Goodnight'}),
+He looks down at the floor between us.~sad
+Rowan|I missed you too.
+His thumb catches a loose thread on his sleeve.
+Rowan|I was angry for a while.
+You|With me?
+Rowan|Sometimes.
+He looks up.
+Rowan|I didn’t know what had happened. I kept making up answers.
+`,{rowan:true,choices:[option('“I want to tell you. Just not all tonight.”','d2NotTonight'),option('“You can ask me something.”','d2AskSomething')]}),
+d2NotTonight:evening('Not all tonight',`
+You|I want to tell you. Just not all tonight.
+Rowan|Okay.~concerned
+He takes a breath.
+Rowan|I’ll probably ask badly when I do.
+You|I might answer badly.
+A small smile returns.~smile
+Rowan|We’ve done that before.
+`,{rowan:true,next:'d2Goodnight'}),
+d2AskSomething:evening('One question',`
+You|You can ask me something.
+Rowan|Did you ever want to come back?~concerned
+You|Yes.
+He nods, still watching me.
+You|That part was never the problem.
+Rowan|Okay.~smile
+This time, he sounds like he believes it.
+`,{rowan:true,next:'d2Goodnight'}),
+d2Bedding:evening('Very reliable service',`
+You|Where does Lola keep the extra bedding?
+Rowan|Top of the wardrobe. Left side.~neutral
+He glances at the open drawer.
+Rowan|Unless I put it on the right.
+You|Very reliable service.
+Rowan|You get what you pay for.~playful
+He brings me a blanket.
+You|Thanks. I think I’ll unpack a little more.
+Rowan|I’ll be downstairs.~smile
+He leaves the door as he found it.
+`,{rowan:true,next:'d2FallingAsleep'}),
 d2Goodnight:evening('Good night, sunshine',`
 I cover my mouth as a yawn interrupts the silence.~smile
 Rowan|Okay. That’s my cue.

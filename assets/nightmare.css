@@ -1,0 +1,22 @@
+.nightmare-screen{position:fixed;inset:0;background:#20202d url('cg/chapter-two/nightmare.webp') center/cover;color:#fff6e5;font-family:Georgia,serif;isolation:isolate}.nightmare-shade{position:absolute;inset:0;background:linear-gradient(#11132988,transparent 35%,#121421a8);z-index:-1}.nightmare-screen header,.nightmare-screen footer{position:absolute;left:4%;right:4%;display:flex;align-items:center;justify-content:space-between;gap:18px;z-index:3}.nightmare-screen header{top:4%;font-size:12px;letter-spacing:.15em}.nightmare-screen footer{bottom:4%;letter-spacing:0}.nightmare-screen button:not(.thought-cloud){background:#f1e5cf;color:#243e58;border:1px solid #b4a184;border-radius:4px;padding:12px 18px;font-family:Georgia,serif;cursor:pointer}.nightmare-screen footer div{display:flex;gap:12px}.nightmare-screen small{display:block;font:12px/1.5 sans-serif;margin-top:8px}.thought-field{position:absolute;inset:13% 3% 20%}.thought-cloud{position:absolute;left:var(--x);top:var(--y);transform:translate(-50%,-50%);width:clamp(125px,21vw,330px);min-height:110px;padding:30px 20px;border:0;border-radius:47% 58% 44% 54%;color:#fff5e4;background:radial-gradient(ellipse,#242334 25%,#51425dbd 55%,#77718435 72%,transparent 76%);filter:drop-shadow(0 0 17px #a490b96b);font:italic clamp(17px,2vw,28px)/1.25 Georgia,serif;cursor:pointer;animation:thought-drift 7s ease-in-out infinite alternate;animation-delay:var(--delay)}.thought-cloud:hover{filter:drop-shadow(0 0 22px #e2d4e49c)}.nightmare-screen button:focus-visible{outline:3px solid #f6df9b;outline-offset:5px}.thought-cloud:disabled{opacity:1;cursor:default}.overwhelming{background:radial-gradient(ellipse,#2a233953,transparent)}.still .thought-cloud,.paused .thought-cloud{animation:none}@keyframes thought-drift{from{transform:translate(-50%,-50%) scale(.95)}to{transform:translate(-45%,-42%) scale(1.06)}}@media(max-width:600px){.nightmare-screen footer{flex-direction:column;align-items:stretch;bottom:3%;gap:4px}.nightmare-screen footer div{justify-content:space-between}.nightmare-screen header{top:3%;font-size:9px}.thought-field{inset:15% 4% 30%}.thought-cloud{min-height:85px;padding:20px 10px}.nightmare-screen footer p{margin:6px 0}.nightmare-screen small{font-size:10px}}@media(prefers-reduced-motion:reduce){.thought-cloud{animation:none}}
+.chapter-folder-name{position:absolute;z-index:2;left:44%;top:68%;transform:rotate(3deg);padding:3px 12px;color:#322a28;background:#e1d2b8c9;font:italic clamp(12px,1.5vw,22px) Georgia,serif;pointer-events:none}
+
+/* Distort only the painted cloud, keeping its accessible text crisp. */
+.thought-cloud{background:none;filter:none;isolation:isolate;scale:var(--approach,1)}
+.thought-cloud::before{content:"";position:absolute;inset:-8px -12px;z-index:-1;background:radial-gradient(ellipse at 35% 45%,#252433 5%,#494052df 36%,#8b73998c 59%,transparent 75%),radial-gradient(ellipse at 65% 55%,#242230 8%,#7365829c 52%,transparent 74%);filter:url(#dream-cloud-texture);border-radius:48% 60% 45% 57%;box-shadow:0 0 28px #82718e44}
+.thought-cloud span{text-shadow:0 2px 5px #171020}
+.thought-cloud:hover{filter:none}.thought-cloud:hover::before{box-shadow:0 0 30px #d5bfdf77}
+.cloud-release{position:absolute;transform:translate(-50%,-50%);font:italic clamp(17px,2vw,28px) Georgia,serif;color:#ede1da;pointer-events:none;animation:cloud-release .65s ease-out forwards;text-align:center}
+@keyframes cloud-release{to{opacity:0;filter:blur(9px);transform:translate(-50%,-65%) scale(1.18)}}
+.still .cloud-release{animation-duration:.15s}@media(prefers-reduced-motion:reduce){.cloud-release{animation-duration:.15s}}
+
+.nightmare-screen .thought-cloud:enabled:active{transform:translate(-50%,-50%)}
+
+.nightmare-screen.corridor-dream{background-image:url('cg/chapter-two/sevi-hallway-v4.webp')}
+
+.nightmare-screen.meeting-dream{background-image:url('cg/chapter-two/sevi-assignment.webp')}
+.game-screen.dream-waking-sequence{background:#080a10}
+.dream-waking-sequence .scene-backdrops,.dream-waking-sequence .scene-art{transition:opacity .6s ease-in-out}
+.dream-blackout .scene-backdrops,.dream-blackout .scene-art{opacity:0}
+.reduced-motion .dream-waking-sequence .scene-backdrops,.reduced-motion .dream-waking-sequence .scene-art{transition:none}
+@media(prefers-reduced-motion:reduce){.dream-waking-sequence .scene-backdrops,.dream-waking-sequence .scene-art{transition:none}}

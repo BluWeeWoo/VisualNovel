@@ -7,11 +7,11 @@ import {cgAt} from '../src/staging.js';
 import {openingAudioCue} from '../src/opening-audio.js';
 import {morningPhone} from '../src/morning-phone.js';
 import {beginGarden,pullWeed as attempt,finishGarden} from '../assets/garden-game.js';
-test('All 432 day-two routes finish after breakfast and gardening, preserving optional attraction',()=>{
+test('All 1008 day-two routes finish after breakfast and gardening, preserving optional attraction',()=>{
  const covered=new Set();let count=0;
- for(let notice=0;notice<3;notice++)for(let mode=0;mode<3;mode++)for(let evening=0;evening<3;evening++)for(let phone=0;phone<2;phone++)for(let route=0;route<2;route++)for(let greet=0;greet<4;greet++){
+ for(let notice=0;notice<3;notice++)for(let mode=0;mode<3;mode++)for(let evening=0;evening<7;evening++)for(let phone=0;phone<2;phone++)for(let route=0;route<2;route++)for(let greet=0;greet<4;greet++){
   const s=freshState('Kai','they');s.node='d2Settling';let hugged=false,read=false,finished=false;
-  const choices={d2Settling:evening===2?1:0,d2Call:evening,d2Morning:phone,d2GetUp:route,d2Garden:greet,d2Reveal:notice,gChallenge:mode};
+  const choices={d2Settling:evening===6?1:0,d2Call:[0,1,1,2,2,3,0][evening],d2Missed:evening===2?1:0,d2Hug:evening===4?1:0,d2Morning:phone,d2GetUp:route,d2Garden:greet,d2Reveal:notice,gChallenge:mode};
   let breakfast=false;
   for(let step=0;step<60;step++){
    const n=story[s.node];covered.add(s.node);
@@ -26,11 +26,11 @@ test('All 432 day-two routes finish after breakfast and gardening, preserving op
    if(s.node==='gAfter'){assert.equal(n.next,'aWater');assert.ok(!n.ending);finished=true;break;}
    if(n.choices)applyChoice(s,n.choices[choices[s.node]]);else {s.node=n.next;s.line=0;}
   }
-  assert.ok(finished);assert.equal(hugged,evening===0);assert.equal(read,phone===1);
+  assert.ok(finished);assert.equal(hugged,evening===3||evening===4);assert.equal(read,phone===1);
   assert.equal(s.milestone,'Reacquainted');assert.equal(s.promiseFound,false);count++;
-  assert.equal(s.flags.rowanAffection,mode===2?-1:1);
+  assert.equal(s.flags.rowanAffection,mode===2?0:1);
  }
- assert.equal(count,432);assert.equal(covered.size,Object.keys(dayTwo).length);
+ assert.equal(count,1008);assert.equal(covered.size,Object.keys(dayTwo).length);
 });
 test('Old ending resumes without losing name, choices or reading position',()=>{
  const s=freshState('Mika','she');s.node='rLetterLaterAfter';s.line=4;s.completed=true;s.flags.letterTiming='now';

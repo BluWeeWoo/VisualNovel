@@ -15,7 +15,7 @@ export const promises = [
   'Leave town together someday.'
 ];
 export function freshState(name = 'Alex', pronouns = 'they') {
-  return { version: VERSION, storyRevision: 5, name: name.trim().slice(0, 24) || 'Alex', pronouns,
+  return { version: VERSION, storyRevision: 6, seviSceneRevision: 3, name: name.trim().slice(0, 24) || 'Alex', pronouns,
     node: 'journey', line: 0, flags: {letterTiming:'later'}, history: [], chat: [], chatTurns: 0,
     chatDone: false, promiseFound: false, sunrise: 'unstarted', milestone: 'Reacquainted',
     memories: [], completed: false, startedAt: Date.now() };
@@ -148,7 +148,7 @@ export function nextStoryNode(story,state){
  return story[state.node].next;
 }
 const revisionFourPositions={"journey":{"indices":[0,1,2,3,4,5,6,7,8,9,10,12,13,14,15,16,16,17,22,19,20,21,22,23,24,25,32,27,28,28,30,31,32,33,34,35,36,37,38,39],"conditions":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]},"driver":{"indices":[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,25],"conditions":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]},"neighborVisit":{"indices":[0,1,2,3,4,5,6,7,8,9,10,11,12],"conditions":[null,null,null,null,null,null,null,null,null,null,null,null,null]},"rNormal":{"indices":[0,1,2,4,5],"conditions":[null,null,null,null,null]},"rShocked":{"indices":[0,1,2,3,4,5],"conditions":[null,null,null,null,null,null]},"rEmotion":{"indices":[4,5],"conditions":[null,null]},"rCry":{"indices":[0,1,2,3,4,6,7,8,9,10,11,12,13,14,15],"conditions":[null,null,null,["reunionBoundary","hug"],null,null,null,null,null,null,["reunionBoundary","hug"],["reunionBoundary","space"],null,null,null]},"rHold":{"indices":[0,1,2,2,3,4,3,5],"conditions":[null,null,["reunionBoundary","hug"],null,null,null,null,null]},"rCatchup":{"indices":[0,1,2,3,4,5,6,7,8,9,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,29],"conditions":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]},"rContact":{"indices":[0,1,2,4,3,4,5,9],"conditions":[null,null,null,null,null,null,null,null]},"rBusy":{"indices":[0,4,2,4,6,8],"conditions":[null,null,null,null,null,null]},"rNumber":{"indices":[0,1,1,4,6],"conditions":[null,null,null,null,null]},"rLater":{"indices":[0,2,1,5],"conditions":[null,null,null,null]},"rExchange":{"indices":[0,1,2,3,3,4,4,5,5,7,7,7],"conditions":[null,null,null,null,null,null,null,null,null,null,null,null]},"rLetterPromise":{"indices":[0,1,1,1,2,2,4,5,4,4,5,5,7,6,7,7,8,9,9,9,5,12,11,14,12,12,13,13,14,18,8,15,16,6,17,17,18,18,19,18,19],"conditions":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]},"rPorchEnvelopes":{"indices":[0,1,1,3,2,5,3,4,4,5,5,6,6,4,7],"conditions":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]},"rYellowPromise":{"indices":[0,1,2,3,4,5,6,7,9,10,9,1,13,14],"conditions":[null,null,null,null,null,null,null,null,null,null,null,null,null,null]},"rLetterYears":{"indices":[0,1,3,4,5,7,8],"conditions":[null,null,null,null,null,null,null]},"rPush":{"indices":[2,1,2,3,4,5,6,7,8],"conditions":[null,null,null,null,null,null,null,null,null]},"rQuiet":{"indices":[1,1,2,3,4,7,7,8],"conditions":[null,null,null,null,null,null,null,null]},"rLetters":{"indices":[7,8,35,4,5,10,11,12,12,11,1,15,16,17,2,21,20,21,22,32,24,26,27,28,21,24,30,29,34,8,37,38],"conditions":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]},"rBurning":{"indices":[0,1,2,3,4,5,5,6,12,7,8,10,11,12,13,13,14,15],"conditions":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]},"rReturn":{"indices":[0,1,17,3,3,4,6,7,18,5,6,7,8,9,10,11,12,17,19,20,21,3,21,22,23,24,25,26],"conditions":[null,null,null,null,null,null,null,null,null,null,null,["greeting","shocked"],["greeting","oblivious"],["greeting","excited"],["greeting","normal"],null,null,null,null,null,null,null,null,null,null,null,null,null]},"rHelpBags":{"indices":[0,1,2,2,3,5,2,5],"conditions":[null,null,null,null,null,null,null,null]},"rInside":{"indices":[0,1,2,5,7,8,10,12,14,15],"conditions":[null,null,null,null,null,null,null,null,null,null]},"rWater":{"indices":[0,1,3,2,1,2,3,4,5,6,7,8,9,10,11],"conditions":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]}};
-export function migrateStorySave(s,story){
+function migrateRevisionFive(s,story){
  if(!s || s.version!==VERSION || !story[s.node] || !Array.isArray(s.history) || !s.flags)return s;
  // The former ending is now a normal scene; preserve its exact reading position.
  if(['rLetterLaterAfter','gAfter'].includes(s.node)&&story[s.node].next)s.completed=false;
@@ -181,4 +181,56 @@ export function migrateStorySave(s,story){
  }).filter((h,i,all)=>all.findIndex(x=>x.id===h.id)===i);
  s.storyRevision=5;
  return refreshAuthoredHistory(s,story);
+}
+
+// Revision six keeps old saves on their selected route through the revised scenes.
+export function migrateStorySave(s,story){
+ if(!s || s.version!==VERSION || !Array.isArray(s.history) || !s.flags)return s;
+ if((s.seviSceneRevision||0)<3){
+  const removed=new Set(['c2TaskList','c2Responsibility','c2Lead','c2Support','c2Withdraw']);
+  if(removed.has(s.node)){s.node='c2Confrontation';s.line=0;}
+  else if(s.node.startsWith('c2')&&story[s.node]){
+   const old=s.history.find(h=>h.id===`${s.node}:${s.line}`);
+   const exact=old?visibleLines(story[s.node],s).findIndex(l=>interpolate(l.text,s)===old.text):-1;
+   s.line=exact>=0?exact:0;
+  }
+  // Preserve read text instead of replacing old dialogue with unrelated revised lines.
+  s.history=s.history.map(h=>{
+   const match=/^(c2[^:]+):(\d+)$/.exec(h.id);if(!match)return h;
+   const node=story[match[1]],index=node?visibleLines(node,s).findIndex(l=>interpolate(l.text,s)===h.text):-1;
+   return {...h,id:index>=0?`${match[1]}:${index}`:`chapterTwoV1:${h.id}`};
+  });
+  if((s.seviSceneRevision||0)<2&&/^c2Wave[123]$/.test(s.node))delete s.flags['nightmareWave'+s.node.at(-1)];
+  s.seviSceneRevision=3;
+ }
+ if(!story[s.node])return s;
+ const revision=s.storyRevision||0;
+ const original={node:s.node,line:s.line,history:s.history.map(h=>({...h}))};
+ migrateRevisionFive(s,story);
+ if(revision>=6)return s;
+ const affected=id=>['d2Call','d2Hug','d2Missed','aWater','aNews','aPorch'].includes(id)||/^aTopic\d+_lola_(yes|quiet)$/.test(id);
+ const position=(node,index,text)=>{
+  let target=node,line=index;
+  // The second half of Lola's account now follows a separate consent choice.
+  if(/^aTopic\d+_lola_yes$/.test(node)&&index>=28){target=node.replace(/yes$/,'details');line=index-28;}
+  if(node==='aPorch'&&index>=5){target='aPorchQuestions';line=index-5;}
+  const available=visibleLines(story[target],s);
+  const exact=text?available.findIndex(l=>interpolate(l.text,s)===text):-1;
+  return [target,exact>=0?exact:Math.max(0,Math.min(line,available.length-1))];
+ };
+ if(affected(original.node)){
+  const text=original.history.find(h=>h.id===`${original.node}:${original.line}`)?.text;
+  [s.node,s.line]=position(original.node,original.line,text);
+ }
+ // Keep already-read wording when a line was removed rather than substituting unrelated dialogue.
+ s.history=s.history.map(h=>{
+  const split=h.id.lastIndexOf(':'),node=h.id.slice(0,split),index=Number(h.id.slice(split+1));
+  if(!affected(node)||!Number.isInteger(index))return h;
+  const old=original.history.find(entry=>entry.id===h.id)||h;
+  const [target,line]=position(node,index,old.text);
+  const current=visibleLines(story[target],s)[line];
+  return interpolate(current.text,s)===old.text?{...old,id:`${target}:${line}`}:{...old,id:`revision5:${old.id}`};
+ });
+ s.storyRevision=6;
+ return s;
 }
