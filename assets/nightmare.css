@@ -21,3 +21,7 @@
 .reduced-motion .dream-waking-sequence .scene-backdrops,.reduced-motion .dream-waking-sequence .scene-art{transition:none}
 @media(prefers-reduced-motion:reduce){.dream-waking-sequence .scene-backdrops,.dream-waking-sequence .scene-art{transition:none}}
 .nightmare-screen.empty-corridor-dream{background-image:url('cg/chapter-two/empty-hallway.png')}
+
+/* Reduced Motion also removes cloud approach scaling, including OS changes mid-scene. */
+.still .thought-cloud,.reduced-motion .thought-cloud{scale:1;animation:none}
+@media(prefers-reduced-motion:reduce){.thought-cloud{scale:1;animation:none}}

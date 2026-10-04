@@ -36,7 +36,7 @@ export function createSceneEffects({bump=()=>()=>{}}={}){
  let host,overlay,ambient='',key='',animations=[],cancelSound=()=>{},last;
  const seen=new Set();
  function cancel(){animations.forEach(a=>a.cancel());animations=[];cancelSound();cancelSound=()=>{};}
- function stop(){cancel();overlay?.remove();overlay=null;host=null;ambient='';}
+ function stop(){cancel();for(const target of host?.querySelectorAll('.scene-backdrops,.scene-art')||[])for(const animation of target.getAnimations?.({subtree:true})||[]){try{animation.finish();}catch{animation.cancel();}}overlay?.remove();overlay=null;host=null;ambient='';}
  function update(context){
   last=context;
   const {root,id,node,text,run,line,motion,sound,volume,suppress=false}=context;
@@ -44,7 +44,8 @@ export function createSceneEffects({bump=()=>()=>{}}={}){
   const onceKey=`${run}:${id}:${['letter','warm'].includes(cue.action)?cue.action:line}`;
   const fresh=!seen.has(onceKey);seen.add(onceKey);
   if(host!==root||key!==nextKey){cancel();key=nextKey;}
-  if(!root||!motion||document.hidden){stop();return;}
+  if(!root||document.hidden){stop();return;}
+  if(!motion){stop();if(fresh&&!suppress&&cue.action==='bump'&&sound)cancelSound=bump(volume);return;}
   if(host!==root||ambient!==cue.ambient){
    overlay?.remove();host=root;ambient=cue.ambient;
    overlay=document.createElement('div');overlay.className=`scene-atmosphere ${ambient}`;overlay.setAttribute('aria-hidden','true');

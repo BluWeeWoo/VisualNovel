@@ -22,7 +22,7 @@ test('Effects cancel on exit, never replay after a menu, and suppress loaded rea
  fx.stop();assert.equal(cancels,2);assert.equal(soundStops,1);assert.ok(removed);
  fx.resume();assert.equal(starts,2);
  fx.update({...context,run:2,suppress:true});assert.equal(starts,2);
- fx.update({...context,run:3,motion:false});assert.equal(starts,2);assert.equal(sounds,1);
+ fx.update({...context,run:3,motion:false});assert.equal(starts,2);assert.equal(sounds,2);
  fx.dispose();
  }finally{globalThis.document=prior;}
 });
