@@ -23,5 +23,5 @@ test('all future chapters remain disabled and only one affinity portrait renders
  assert.equal((html.match(/<button disabled/g)||[]).length,4);
  assert.equal((html.match(/class="affinity-art"/g)||[]).length,1);
  assert.match(html,/Continue chapter/);
- assert.match(chapterMenu(freshState(),true),/Revisit chapter/);
+ assert.match(chapterMenu(freshState(),true),/Read chapter memories/);
 });

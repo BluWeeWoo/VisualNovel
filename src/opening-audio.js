@@ -114,6 +114,23 @@ export function createSoundtrackPlayer({makeAudio=src=>new Audio(src),now=()=>pe
  }
  return {update,tick};
 }
+// Short, low-passed contact sound; independent of soundtrack progression.
+export function playSoftBump(volume=.35){
+ const Context=globalThis.AudioContext||globalThis.webkitAudioContext;
+ if(!Context||volume<=0)return ()=>{};
+ const context=new Context();let cancelled=false,source;
+ const stop=()=>{if(cancelled)return;cancelled=true;try{source?.stop();}catch{}void context.close().catch(()=>{});};
+ void context.resume().then(()=>{
+  if(cancelled)return;
+  const buffer=context.createBuffer(1,Math.ceil(context.sampleRate*.12),context.sampleRate),data=buffer.getChannelData(0);
+  for(let i=0;i<data.length;i++)data[i]=(Math.random()*2-1)*(1-i/data.length);
+  source=context.createBufferSource();source.buffer=buffer;
+  const filter=context.createBiquadFilter();filter.type='lowpass';filter.frequency.value=180;
+  const gain=context.createGain();gain.gain.setValueAtTime(0,context.currentTime);gain.gain.linearRampToValueAtTime(Math.min(1,volume)*.16,context.currentTime+.012);gain.gain.exponentialRampToValueAtTime(.0001,context.currentTime+.12);
+  source.connect(filter).connect(gain).connect(context.destination);source.onended=stop;source.start();
+ }).catch(stop);
+ return stop;
+}
 let player;
 export function setOpeningAudio(cue,volume,onError){
  if(!player&&!cue.layers.length)return;

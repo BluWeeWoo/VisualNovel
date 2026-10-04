@@ -9,8 +9,9 @@ import {openingAudioCue,tracks} from '../src/opening-audio.js';
 import {cgAt} from '../src/staging.js';
 
 test('Nightmare settings remain continuous and waking passes through darkness',()=>{
- for(const id of ['c2CloudIntro','c2Wave1','c2Wave1After','c2Wave3'])assert.equal(story[id].place,'c2-confrontation');
+ for(const id of ['c2CloudIntro','c2Wave1','c2Wave1After'])assert.equal(story[id].place,'c2-confrontation');
  for(const id of ['c2Wave2','c2Wave2After'])assert.equal(story[id].place,'c2-assignment');
+ for(const id of ['c2Hall','c2Wave3','c2Calling','c2Blackout'])assert.equal(story[id].place,'c2-empty-hallway');
  assert.equal(story.c2Calling.next,'c2Blackout');
  assert.equal(story.c2Blackout.blackout,true);assert.equal(story.c2Blackout.next,'c2Wake');
  const s=freshState();s.seviSceneRevision=2;s.node='c2Wave2';
@@ -103,5 +104,5 @@ test('Removed committee choices migrate safely; revised script keeps withdrawal 
   assert.equal(story[node],undefined);
  }
  assert.ok(!story.c2Confrontation.choices);assert.ok(story.c2Explain.lines.some(l=>l.text.includes('He said okay')));
- assert.equal(story.c2Wave3.place,'c2-confrontation');assert.equal(story.c2SmallStep.choices[1].set.morningStep,'bed');
+ assert.equal(story.c2Wave3.place,'c2-empty-hallway');assert.equal(story.c2SmallStep.choices[1].set.morningStep,'bed');
 });

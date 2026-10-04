@@ -23,10 +23,13 @@ export function clearThought(progress,wave,id){
  return true;
 }
 export function mountNightmare(root,state,{wave,motion,save,done,menu}){
+ motion=motion&&!matchMedia('(prefers-reduced-motion: reduce)').matches;
  const progress=nightmareProgress(state,wave);
  let timer;
  let stopped=false,paused=false,last=performance.now(),lastSaved=Math.floor(progress.elapsed);
- root.innerHTML=`<main class="nightmare-screen ${motion?'':'still'} ${wave===2?'meeting-dream':'corridor-dream'}" aria-label="Nightmare: wave ${wave}"><svg width="0" height="0" aria-hidden="true"><defs><filter id="dream-cloud-texture" x="-40%" y="-70%" width="180%" height="240%"><feTurbulence type="fractalNoise" baseFrequency=".025" numOctaves="4" seed="7" result="noise"/><feDisplacementMap in="SourceGraphic" in2="noise" scale="52"/><feGaussianBlur stdDeviation="3"/></filter></defs></svg><div class="nightmare-shade"></div><header><span>CHAPTER TWO · A RESTLESS SLEEP</span><button type="button" class="dream-pause">Pause</button></header><div class="thought-field" role="group" aria-label="Thoughts to let go"></div><footer><p class="dream-instruction">Clear each thought to continue.<small>Tab to select · Enter or Space to release · No score or penalty</small></p><div><button class="dream-menu">Save &amp; menu</button></div></footer><p class="sr-only dream-status" role="status" aria-live="polite"></p></main>`;
+ root.innerHTML=`<main class="nightmare-screen ${motion?'':'still'} ${wave===2?'meeting-dream':wave===3?'empty-corridor-dream':'corridor-dream'}" aria-label="Nightmare: wave ${wave}"><svg width="0" height="0" aria-hidden="true"><defs><filter id="dream-cloud-texture" x="-40%" y="-70%" width="180%" height="240%"><feTurbulence type="fractalNoise" baseFrequency=".025" numOctaves="4" seed="7" result="noise"/><feDisplacementMap in="SourceGraphic" in2="noise" scale="52"/><feGaussianBlur stdDeviation="3"/></filter></defs></svg><div class="nightmare-shade"></div><div class="scene-atmosphere dream" aria-hidden="true"></div><header><span>CHAPTER TWO · A RESTLESS SLEEP</span><button type="button" class="dream-pause">Pause</button></header><div class="thought-field" role="group" aria-label="Thoughts to let go"></div><footer><p class="dream-instruction">Clear each thought to continue.<small>Tab to select · Enter or Space to release · No score or penalty</small></p><div><button class="dream-menu">Save &amp; menu</button></div></footer><p class="sr-only dream-status" role="status" aria-live="polite"></p></main>`;
+ const visibility=()=>root.querySelector('.nightmare-screen')?.classList.toggle('fx-hidden',document.hidden);
+ document.addEventListener('visibilitychange',visibility);
  const field=root.querySelector('.thought-field'),status=root.querySelector('.dream-status'),pause=root.querySelector('.dream-pause');
  const finish=(outcome=nightmareOutcome(progress,wave))=>{if(stopped||!nightmareOutcome(progress,wave))return;stopped=true;clearInterval(timer);finishNightmare(state,wave,outcome||'overwhelmed');save();done();};
  const blockHeldKey=e=>{if((e.key===' '||e.key==='Enter')&&e.repeat){e.preventDefault();e.stopPropagation();}};
@@ -42,13 +45,15 @@ export function mountNightmare(root,state,{wave,motion,save,done,menu}){
   const count=cloudCount(wave,progress.elapsed);
   const overwhelming=wave===3&&progress.elapsed>=9;
   field.classList.toggle('overwhelming',overwhelming);
+  root.querySelector('.scene-atmosphere').classList.toggle('intense',overwhelming);
   field.style.setProperty('--approach',1);
   if(overwhelming&&!announced){announced=true;status.textContent=translate('The voices crowd together. The dream will continue on its own.');root.querySelector('.dream-instruction').firstChild.textContent=translate('The voices crowd together. The dream will pass.');}
   for(let i=0;i<count;i++){
    if(progress.cleared.includes(i)&&!overwhelming)continue;
    let b=field.querySelector(`[data-cloud="${i}"]`);
    if(!b){b=document.createElement('button');b.type='button';b.dataset.cloud=i;b.className='thought-cloud';const label=document.createElement('span');label.textContent=translate(waveWords[wave][i%waveWords[wave].length]);b.append(label);b.style.setProperty('--x',positions[i][0]+'%');b.style.setProperty('--y',positions[i][1]+'%');b.style.setProperty('--delay',(-i*.7)+'s');b.setAttribute('aria-label','Let go: '+b.textContent);field.append(b);
-    b.onclick=()=>{if(paused||stopped||!clearThought(progress,wave,i))return;const focused=document.activeElement===b;const fading=document.createElement('span');fading.className='cloud-release';fading.style.left=positions[i][0]+'%';fading.style.top=positions[i][1]+'%';fading.textContent=b.textContent;fading.setAttribute('aria-hidden','true');field.append(fading);if(!motion)fading.remove();fading.addEventListener('animationend',()=>fading.remove(),{once:true});b.remove();save();if(nightmareOutcome(progress,wave)==='clear'){finish('clear');return;}if(focused)(field.querySelector('button:not(:disabled)')||pause).focus();};
+    b.onclick=()=>{if(paused||stopped||!clearThought(progress,wave,i))return;const focused=document.activeElement===b;const fading=document.createElement('span');fading.className='cloud-release';fading.style.left=positions[i][0]+'%';fading.style.top=positions[i][1]+'%';fading.textContent=b.textContent;fading.setAttribute('aria-hidden','true');field.append(fading);if(!motion)fading.remove();else fading.addEventListener('animationend',()=>fading.remove(),{once:true});b.remove();save();if(nightmareOutcome(progress,wave)==='clear'){finish('clear');return;}if(focused)(field.querySelector('button:not(:disabled)')||pause).focus();};
+
    }
    const age=Math.max(0,progress.elapsed-i*({1:2,2:1.3,3:.65}[wave]));
    b.style.setProperty('--approach',motion?1+Math.min(age/({1:30,2:18,3:8}[wave]),1)*.7:1);
@@ -65,5 +70,5 @@ export function mountNightmare(root,state,{wave,motion,save,done,menu}){
   if(Math.floor(progress.elapsed)!==lastSaved){lastSaved=Math.floor(progress.elapsed);save();}
  },150);
  field.querySelector('button')?.focus();
- return ()=>{stopped=true;clearInterval(timer);root.removeEventListener('keydown',blockHeldKey);};
+ return ()=>{stopped=true;clearInterval(timer);root.removeEventListener('keydown',blockHeldKey);document.removeEventListener('visibilitychange',visibility);};
 }

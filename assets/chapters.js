@@ -20,7 +20,7 @@ export function chapterMenu(state,complete){
   const cards=chapterTitles.map((title,i)=>{
     const unlocked=i===0||(i===1&&complete);
     let control;
-    if(i===0)control=`<span class="chapter-status">${complete?'✿ Completed':state?'In progress':'Ready to begin'}</span><button data-action="${state?'chapter-resume':'new'}">${complete?'Revisit chapter':state?'Continue chapter':'Begin chapter'} →</button>`;
+    if(i===0)control=`<span class="chapter-status">${complete?'✿ Completed':state?'In progress':'Ready to begin'}</span><button data-action="${state?'chapter-resume':'new'}">${complete?'Read chapter memories':state?'Continue chapter':'Begin chapter'} →</button>`;
     else if(unlocked)control=`<span class="chapter-status">${state?.node==='c2End'?'Opening read':inTwo?'In progress':'Opening available'}</span><button data-action="chapter-two">${inTwo?'Continue chapter':'Begin chapter'} →</button><small>Chapter opening · More to come</small>`;
     else control=`<button disabled aria-label="Chapter ${i+1} locked">Locked</button><small>${i===1?'Complete Chapter 1 to begin':'Coming in a future update'}</small>`;
     const picture=i===1&&complete?'<img class="chapter-thumb" src="assets/cg/chapter-two/nightmare.webp" alt="A restless sleep" style="width:100%;height:100%;object-fit:cover">':art('assets/chapters/chapter-reference.png',pictures[i],'','chapter-thumb');

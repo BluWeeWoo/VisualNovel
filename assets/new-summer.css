@@ -1,0 +1,54 @@
+.modal-layer:has(.new-summer-modal){padding:0;background:#493e31;overflow:hidden;backdrop-filter:none}
+.modal.new-summer-modal{position:fixed;inset:0;width:100%;height:100%;max-width:none;max-height:none;padding:0;border:0;border-radius:0;background:none;overflow:hidden;box-shadow:none;color:#193c57}
+.new-summer-modal>.modal-header{display:none}
+.summer-canvas{position:absolute;left:50%;top:50%;width:1672px;height:941px;transform-origin:center;background:url('new-summer-reference.png') center/100% 100%;font:22px/1.35 Georgia,serif}
+.summer-form{position:absolute;left:481px;top:238px;width:893px;height:640px;padding:0 13px;background:#f2e7d5 url('journal-paper.svg');box-shadow:0 0 15px 14px #f2e7d5;margin:0}
+.summer-columns{display:grid;grid-template-columns:416px 1fr;gap:36px;height:495px}
+.summer-columns>section+section{border-left:1px solid #83949a88;padding-left:35px}
+.summer-canvas h2{font:34px/1.2 Georgia,serif;border-bottom:1px solid #85959d;margin:0 0 15px;padding-bottom:6px;color:#193c57}
+.summer-canvas h3{font:22px Georgia,serif;margin:0 0 9px;padding-bottom:5px;border-bottom:1px solid #b6ab98}
+.summer-canvas label{font:21px/1.3 Georgia,serif;display:block;margin:0;color:#193c57}
+.summer-canvas input:not([type=radio]):not([type=checkbox]){width:100%;height:46px;border:1px solid #a3a19a;background:#f8f2e899;border-radius:6px;padding:9px 15px;font:22px Georgia,serif;color:#193c57;margin:5px 0 0}
+.summer-canvas fieldset{border:0;padding:0;margin:20px 0 0;min-width:0}
+.summer-canvas legend{font:22px Georgia,serif;margin-bottom:9px;padding:0}
+.summer-options{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:9px 12px}
+.summer-options label,.portrait-row label{min-height:46px;display:flex;align-items:center;gap:11px;border:1px solid #b2a997;border-radius:7px;padding:10px;font-size:18px;cursor:pointer;white-space:normal}
+.summer-canvas input[type=radio],.summer-canvas input[type=checkbox]{appearance:auto;width:23px;height:23px;accent-color:#24688c;margin:0;flex-shrink:0}
+.summer-options label:has(:checked),.portrait-row label:has(:checked){background:#b9cfdd80;border-color:#759db7}
+.summer-canvas .summer-hint{font:italic 18px/1.3 Georgia,serif;color:#617487;margin:8px 0 0}
+.summer-canvas .summer-language{margin-top:32px}
+.portrait-row{display:flex;gap:24px;align-items:center}
+.summer-portrait{width:165px;height:152px;flex-shrink:0}
+.summer-portrait svg,.summer-keepsake svg{width:100%;height:100%;display:block}
+.portrait-row fieldset{margin:0;display:grid;gap:7px}
+.portrait-row label{font-size:20px;border-color:transparent;padding:9px}
+.summer-dialogue{margin-top:13px;padding:8px 15px;border:1px solid #c4b69e;border-radius:5px}
+.summer-dialogue p{display:grid;grid-template-columns:70px 1fr;gap:14px;margin:5px 0;font:18px/1.25 Georgia,serif}
+.summer-dialogue p span+span{border-left:1px solid #b3a791;padding-left:16px}
+.summer-keepsake{height:160px;width:390px;margin:0 0 0 -15px}
+.summer-footer{border-top:1px solid #879b9e;text-align:center;padding-top:8px}
+.summer-summary{font:20px Georgia,serif;margin:0 0 18px}
+.summer-actions{display:flex;justify-content:center;gap:28px}
+.summer-canvas button{font:23px Georgia,serif;border:1px solid #9a7951;border-radius:5px;color:#234862;background:#eadcc5 url('menu-driftwood.svg') center/100% 100%;padding:14px 30px;box-shadow:0 3px 3px #4b34232b;cursor:pointer}
+.summer-actions .summer-back{min-width:200px;background-color:#b58b60}
+.summer-actions .summer-begin,.summer-actions .confirm-summer{background-color:#355c71;background-blend-mode:multiply;color:#fff7e6;min-width:280px}
+.summer-canvas button:hover{filter:brightness(1.08)}
+.summer-canvas :focus-visible{outline:3px solid #3979a0;outline-offset:4px}
+.summer-footer>.summer-hint{font-size:16px;margin-top:14px}
+.summer-canvas .custom-edit{font:16px Georgia,serif;padding:4px 10px;margin-top:5px}
+.summer-canvas:has(.custom-edit:not([hidden])) .summer-language{margin-top:12px}
+.summer-review{position:absolute;left:485px;top:240px;width:884px;min-height:615px;padding:40px;background:#f4e9d7 url('journal-paper.svg');box-shadow:0 0 18px 18px #f4e9d7;border:1px solid #a5b1ac}
+.summer-review[hidden],.summer-canvas [hidden]{display:none!important}
+.summer-review p{font:23px/1.5 Georgia,serif;margin:25px 0}
+.summer-review .summer-actions{margin-top:45px}
+.custom-pronoun-form{display:grid;grid-template-columns:1fr 1fr;gap:14px 20px}
+.custom-pronoun-form .agreement{display:flex;align-items:center;gap:9px;font-size:18px}
+.custom-pronoun-form button{margin-top:12px}
+
+.reduced-motion .summer-form{animation:none}
+
+.summer-options label{font-size:17px;gap:8px;padding:8px}
+.summer-canvas #summer-name{font:22px Georgia,serif}
+
+.summer-canvas .summer-preview-note{font:italic 14px/1.3 Georgia,serif;margin:-8px 0 8px;color:#617487}
+.summer-preview .summer-keepsake{height:145px}

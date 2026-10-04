@@ -1,0 +1,23 @@
+.scene-atmosphere{position:absolute;inset:0;z-index:-1;pointer-events:none;overflow:hidden;contain:paint}
+.scene-atmosphere.dream:before,.scene-atmosphere.dream:after{content:"";position:absolute;inset:-4%;background:radial-gradient(ellipse at center,transparent 48%,#27203455 85%,#21172c99);filter:blur(10px);animation:dream-edge 14s ease-in-out infinite alternate}
+.scene-atmosphere.dream:after{background:radial-gradient(ellipse at 0% 30%,#75618040,transparent 38%),radial-gradient(ellipse at 100% 65%,#56456450,transparent 35%);animation-duration:12s;animation-direction:alternate-reverse}
+.scene-atmosphere.intense:before{animation-duration:8s}.scene-atmosphere.sun-wash{background:#f4cf82;opacity:0}
+.scene-atmosphere.ember{background:linear-gradient(transparent 65%,#ef9c2510);animation:ember-light 3s ease-in-out infinite alternate}
+.scene-atmosphere i{position:absolute;left:calc(8% + var(--i)*15%);top:12%;animation:summer-dust calc(14s + var(--i)*.8s) linear infinite;animation-delay:calc(var(--i)*-3s);width:3px;height:3px;border-radius:50%;background:#fff2c5;opacity:.35}
+.scene-atmosphere.leaves i{width:9px;height:4px;background:#92966b66;left:calc(3% + var(--i)*45%);animation-duration:12s}
+.scene-atmosphere.rain i{width:1px;height:70px;background:linear-gradient(transparent,#dce8ed55);left:calc(4% + var(--i)*44%);animation:summer-rain 2s linear infinite;animation-delay:calc(var(--i)*-.6s)}
+@keyframes dream-edge{from{transform:translate(-.5%,-.4%) scale(1);opacity:.85}to{transform:translate(.5%,.4%) scale(1.025);opacity:1}}
+@keyframes summer-dust{from{transform:translate(0,0);opacity:0}25%{opacity:.35}75%{opacity:.25}to{transform:translate(24px,180px);opacity:0}}
+@keyframes summer-rain{from{transform:translate(0,-100px);opacity:0}30%{opacity:.35}to{transform:translate(-35px,350px);opacity:0}}
+@keyframes ember-light{from{opacity:.3}to{opacity:.6}}
+.game-screen:has(.scene-atmosphere.bus) .scene-backdrops{animation:bus-idle 6s ease-in-out infinite}
+@keyframes bus-idle{0%,100%{transform:translate(0)}50%{transform:translate(1px,1px)}}
+.nightmare-screen.paused .scene-atmosphere:before,.nightmare-screen.paused .scene-atmosphere:after{animation-play-state:paused}
+.nightmare-screen .scene-atmosphere{z-index:1}.nightmare-screen .scene-atmosphere.intense:before{animation-duration:6s}
+.game-screen button{transition:background-color 120ms,box-shadow 120ms,translate 120ms}.game-screen button:active{translate:0 1px}
+.reduced-motion .scene-atmosphere{display:none}.reduced-motion .game-screen button{transition:none;translate:none}
+@media(prefers-reduced-motion:reduce){.scene-atmosphere{display:none}.game-screen button{transition:none;translate:none}}
+
+.nightmare-screen.still .scene-atmosphere{display:none}
+.nightmare-screen.fx-hidden *,.nightmare-screen.fx-hidden *:before,.nightmare-screen.fx-hidden *:after{animation-play-state:paused!important}
+.thought-field{z-index:2}

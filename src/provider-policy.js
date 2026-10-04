@@ -1,3 +1,4 @@
+import {validCustomPronouns} from '../assets/player-identity.js';
 import {rowan, protagonistAge} from './characters.js';
 export const character = {
   ...rowan,
@@ -15,7 +16,8 @@ export const character = {
 const allowedChoices={boundary:['warm','slow','space'],hideout:['the linen cupboard','under the kitchen table','the garden shed'],treasure:['a blue marble','an old bus ticket','a dragon-shaped shell'],nickname:['Captain','Professor','Trouble'],outlook:['company','humor','independent'],support:['listen','challenge','practical'],ritual:['tea','coffee','cocoa'],relationship:['friendship','open','undecided']};
 export function normalizeContext(input={}) {
   return {chapter:1, milestone:'Familiar', name:typeof input.name==='string'?input.name.slice(0,24):'Alex',
-    pronouns:['they','he','she'].includes(input.pronouns)?input.pronouns:'they',
+    pronouns:input.pronouns==='custom'&&validCustomPronouns(input.customPronouns)?'custom':['they','he','she'].includes(input.pronouns)?input.pronouns:'they',
+    ...(input.pronouns==='custom'&&validCustomPronouns(input.customPronouns)?{customPronouns:input.customPronouns}:{}),
     choices:Object.fromEntries(Object.entries(allowedChoices).filter(([key,values])=>values.includes(input.choices?.[key])).map(([key])=>[key,input.choices[key]])),
     memories:Array.isArray(input.memories)?input.memories.filter(m=>m?.key==='player-approved note' && typeof m.value==='string').slice(0,8).map(m=>({key:m.key,value:m.value.slice(0,120)})):[],
     messages:Array.isArray(input.messages)?input.messages.filter(m=>['player','rowan'].includes(m?.role)&&typeof m.text==='string').slice(-10).map(m=>({role:m.role,text:m.text.slice(0,900)})):[],

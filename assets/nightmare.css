@@ -20,3 +20,4 @@
 .dream-blackout .scene-backdrops,.dream-blackout .scene-art{opacity:0}
 .reduced-motion .dream-waking-sequence .scene-backdrops,.reduced-motion .dream-waking-sequence .scene-art{transition:none}
 @media(prefers-reduced-motion:reduce){.dream-waking-sequence .scene-backdrops,.dream-waking-sequence .scene-art{transition:none}}
+.nightmare-screen.empty-corridor-dream{background-image:url('cg/chapter-two/empty-hallway.png')}

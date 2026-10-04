@@ -1,3 +1,7 @@
+import {createSceneEffects} from '../assets/scene-effects.js';
+import {playSoftBump} from './opening-audio.js';
+import {playSummerTransition,transitionActive} from '../assets/summer-transitions.js';
+import {mountNewSummer} from '../assets/new-summer.js';
 import {translate,translateRecorded,setLanguage,normalizeLanguage,languageField} from '../assets/story-language.js';
 import {mountNightmare} from '../assets/nightmare.js';
 import {chapterMenu,chapterComplete} from '../assets/chapters.js';
@@ -7,8 +11,7 @@ import {rowansLetter} from './continuation.js';
 import {phoneCue,hasRowanContact,phoneBody,phoneIdentity} from './phone-ui.js';
 import {story} from './story.js';
 import {freshState, interpolate, applyChoice, validSave, visibleLines, promises, milestones, refreshAuthoredHistory, migrateStorySave, nextStoryNode} from './engine.js';
-import {rowan, protagonistAge} from './characters.js';
-import {spriteAt, expressions, cgAt} from './staging.js';
+import {spriteAt, cgAt} from './staging.js';
 import {scriptedReply, requestReply, suggestions} from './chat.js';
 import {setAudio} from './audio.js';
 import {setOpeningAudio, openingAudioCue, menuAudioCue} from './opening-audio.js';
@@ -18,6 +21,16 @@ import {saveJournal,journalPages} from '../assets/save-journal.js';
 
 const $=s=>document.querySelector(s);
 const app=$('#app');
+const sceneEffects=createSceneEffects({bump:playSoftBump});
+let suppressSceneCue=false;
+function refreshSceneEffects(){
+ if(screen!=='game'||!state||modal||transitionActive()){sceneEffects.stop();return;}
+ const node=story[state.node],line=nodeLines()[state.line];
+ sceneEffects.update({root:app.querySelector('.game-screen'),id:state.node,node,text:line?.text||'',line:state.line,run:state.startedAt,motion:settings.motion&&!matchMedia('(prefers-reduced-motion: reduce)').matches,sound:settings.sound&&audioUnlocked,volume:settings.volume,suppress:suppressSceneCue});
+ suppressSceneCue=false;
+}
+document.addEventListener('visibilitychange',()=>{if(document.hidden)sceneEffects.stop();else{ suppressSceneCue=true;refreshSceneEffects();}});
+matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change',()=>{sceneEffects.stop();suppressSceneCue=true;refreshSceneEffects();});
 let gardenCleanup=null;
 const escape=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const storageKey='our-summer-v1';
@@ -54,8 +67,8 @@ function record(line){
   if(!state.history.some(h=>h.id===id))state.history.push({id,speaker:line.speaker||'',text});
   if(cgAt(story,state))syncGallery();
 }
-function start(name,pronouns){presentedPhone='';presentedLetter='';state=freshState(name,pronouns);screen='game';modal=null;enter(state.node);render();}
-function load(slot){presentedPhone='';presentedLetter='';const saved=read(slot);if(!validSave(saved?.state,story)){toast('This save is missing or incompatible.');return;}
+function start(name,pronouns,profile){sceneEffects.reset();presentedPhone='';presentedLetter='';state=freshState(name,pronouns,profile);screen='game';modal=null;enter(state.node);render();}
+function load(slot){sceneEffects.stop();suppressSceneCue=true;presentedPhone='';presentedLetter='';const saved=read(slot);if(!validSave(saved?.state,story)){toast('This save is missing or incompatible.');return;}
   state=refreshAuthoredHistory(structuredClone(saved.state),story);screen='game';modal=null;busy=false;error='';draft='';enterAudio();render();toast('Summer resumed.');}
 let audioUnlocked=false;
 function enterAudio(){
@@ -70,7 +83,7 @@ function unlockAudio(){if(audioUnlocked)return;audioUnlocked=true;enterAudio();}
 document.addEventListener('pointerdown',unlockAudio,{once:true});
 document.addEventListener('keydown',unlockAudio,{once:true});
 function advance(){
-  if(screen!=='game'||modal||busy||story[state.node]?.nightmare)return;
+  if(transitionActive()||screen!=='game'||modal||busy||story[state.node]?.nightmare)return;
   if(typing){stopTyping();$('#dialogue-text').textContent=fullText;return;}
   const node=story[state.node],all=nodeLines();
   if(state.line<all.length-1){state.line++;autoSave();renderGame();return;}
@@ -101,13 +114,13 @@ function title(){
     <h1>Our Summer,<br><em>Unfinished</em><span class="title-period">.</span></h1>
     <div class="title-actions"><button class="primary" data-action="${resume?'continue':'new'}">${resume?'Continue your summer':'Begin your summer'} <span aria-hidden="true">↗</span></button>
     ${resume?'<button class="text-button" data-action="new">Start a new summer</button>':''}
-    <div class="title-secondary"><button data-action="saves">Saved moments</button><span>·</span><button data-action="settings">Settings</button><span>·</span><button data-action="love-interests">Love Interests</button><span>·</span><button data-action="about">About</button></div></div>
+    <div class="title-secondary"><button data-action="saves">Saved moments</button><span>·</span><button data-action="settings">Settings &amp; Accessibility</button><span>·</span><button data-action="love-interests">Love Interests</button><span>·</span><button data-action="about">About</button></div></div>
     <p class="content-note">A gentle story about returning, remembering, and finding room.<br>Includes bereavement, a difficult home life, and being away.</p></section>
     <aside class="postcard" aria-hidden="true"><span>Summerhouse, late June</span><small>the blue door still sticks a little</small></aside>
-    <footer class="title-footer"><span>01 <i></i> THE HOUSE WITH THE BLUE DOOR</span><span>Take your time. There’s no wrong way to feel.</span><button data-action="accessibility">Reading & accessibility ↗</button></footer></main>`;
+    <footer class="title-footer"><span>01 <i></i> THE HOUSE WITH THE BLUE DOOR</span><span>Take your time. There’s no wrong way to feel.</span></footer></main>`;
   bind();
 }
-function render(){if(screen==='title'){gardenCleanup?.();gardenCleanup=null;}stopTyping();enterAudio();document.documentElement.classList.toggle('reduced-motion',!settings.motion);if(screen==='title')title();else renderGame();}
+function render(){if(screen==='title'){sceneEffects.stop();gardenCleanup?.();gardenCleanup=null;}stopTyping();enterAudio();document.documentElement.classList.toggle('reduced-motion',!settings.motion);if(screen==='title')title();else renderGame();}
 // Keep visual DOM alive across dialogue renders. Decode replacements before fading
 // them in, and discard stale loads if the player advances quickly.
 async function updateVisual(host,html,key){
@@ -123,9 +136,11 @@ async function updateVisual(host,html,key){
   try{await Promise.all(images.map(image=>image.decode()));}catch{if(host._revision===revision)host.dataset.visualKey='';return;}
   if(host._revision!==revision||!host.isConnected)return;
   const previous=[...host.children];host.append(layer);
-  const motion=settings.motion&&!matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const motion=settings.motion&&!matchMedia('(prefers-reduced-motion: reduce)').matches&&(typeof modal==='undefined'||!modal);
+  const entering=layer.querySelectorAll('.character-stage').length>0&&!previous.some(old=>old.querySelectorAll('.character-stage').length);
+  if(motion&&entering&&!previous.length)layer.animate([{opacity:0,transform:'translateY(5px)'},{opacity:1,transform:'translateY(0)'}],{duration:420,easing:'ease-out'});
   if(motion&&previous.length){
-    const fades=[layer.animate([{opacity:0},{opacity:1}],{duration:420,easing:'ease-in-out'})];
+    const fades=[layer.animate([{opacity:0,...(entering?{transform:'translateY(5px)'}:{})},{opacity:1,...(entering?{transform:'translateY(0)'}:{})}],{duration:420,easing:'ease-in-out'})];
     for(const old of previous)fades.push(old.animate([{opacity:1},{opacity:0}],{duration:420,easing:'ease-in-out',fill:'forwards'}));
     await Promise.all(fades.map(fade=>fade.finished.catch(()=>{})));
   }
@@ -155,12 +170,12 @@ function renderGame(){
   stopTyping();
   gardenCleanup?.();gardenCleanup=null;
   const nightmareNode=story[state.node];
-  if(nightmareNode.nightmare){
+  if(nightmareNode.nightmare){sceneEffects.stop();
     enterAudio();
     gardenCleanup=mountNightmare(app,state,{wave:nightmareNode.nightmare,motion:settings.motion,save:autoSave,done:()=>{enter(nightmareNode.next);renderGame();},menu:()=>{screen='title';render();}});
     return;
   }
-  if(story[state.node].minigame){
+  if(story[state.node].minigame){sceneEffects.stop();
     enterAudio();
     gardenCleanup=mountGarden(app,state,{save:autoSave,motion:settings.motion,sound:settings.sound,volume:settings.volume,done:()=>{enter('gResult');renderGame();},menu:()=>{screen='title';render();}});
     return;
@@ -184,11 +199,12 @@ function renderGame(){
     <div class="dialogue-copy"><p class="dialogue-reserve" aria-hidden="true">${escape(displayText)}</p><p id="dialogue-text" aria-live="off"></p></div><span class="sr-only dialogue-status" role="status">${escape(cue?.message?displayText:(line.speaker?line.speaker+': ':'')+display(line.text))}</span>
     <div class="dialogue-extras">${morningPhone(node,state)}${node.letter?'<button class="secondary" data-action="letter">Read Rowan’s letter ↗</button>':''}${last&&node.choices?`<div class="choices" aria-label="Choose your response">${node.choices.map((c,i)=>`<button data-choice="${i}"><span class="choice-number">${i+1}</span>${escape(display(c.text))}<span class="choice-arrow" aria-hidden="true">↗</span></button>`).join('')}</div>`:''}
     ${last&&node.phone?'<div class="phone-invitation"><p>A short late-night conversation · up to 4 messages<br><small>An early preview. Open conversations unlock at Close in future chapters.</small></p><button class="primary" data-action="phone">Open your phone ↗</button><button class="text-button" data-action="skip-chat">Save your words for morning</button></div>':''}
-    ${last&&node.openingEnd?`<div class="opening-end"><span class="eyebrow">END OF THE CURRENT STORY</span><p>${node.chapterTwo?'Chapter Two’s opening is complete. Your place is saved; the rest of the chapter is still to come.':node.afterGarden?'Chapter One — Reunion at a Familiar House. Chapter Two is ready in Chapters.':'Your place is saved. You can continue from here.'}</p><button class="text-button" data-action="title">Back to the title ↗</button><button class="secondary" data-action="chapters">View chapters ↗</button></div>`:''}
-    ${last&&node.ending&&!node.openingEnd?`<div class="chapter-end"><span class="eyebrow">END OF CHAPTER ONE</span><h2>A little less unfinished.</h2><p>Your summer is saved. The sunrise is planned, not yet fulfilled.</p><div><button class="primary" data-action="promises">Keep the list ↗</button><button class="secondary" data-action="title">Back to the title</button></div><small>Chapter two continues the sunrise promise. This build contains chapter one.</small></div>`:''}
-    </div><div class="dialogue-footer"><nav class="dialogue-tools" aria-label="Game tools"><button data-action="history">History</button><button data-action="saves">Save / load</button><button data-action="settings">Settings</button><button data-action="promises">Promises</button>${hasRowanContact(state)?'<button data-action="sg">Phone</button>':''}<button data-action="title" aria-label="Return to title">Menu</button></nav>${!(last&&(node.choices||node.phone||node.ending))?'<button class="next-button" data-action="next" aria-label="Continue dialogue">Continue <span aria-hidden="true">→</span></button>':'<span class="small-flower" aria-hidden="true">✳</span>'}</div></section>
+    ${last&&node.openingEnd?`<div class="opening-end"><span class="eyebrow">END OF THE CURRENT STORY</span><p>${node.chapterTwo?'Chapter Two’s opening is complete. Your place is saved; the rest of the chapter is still to come.':node.afterGarden?'Chapter One — Reunion at a Familiar House. Chapter Two is ready in Chapters.':'Your place is saved. You can continue from here.'}</p><button class="text-button" data-action="title">Back to the title ↗</button>${state.node==='aEnd'?'<button class="secondary" data-action="chapters">View chapters ↗</button>':`<button class="secondary" data-action="chapter-finish">${node.chapterTwo?'Keep this moment':'Close this chapter'} ↗</button>`}</div>`:''}
+    ${last&&node.ending&&!node.openingEnd?`<div class="chapter-end"><span class="eyebrow">END OF CHAPTER ONE</span><h2>A little less unfinished.</h2><p>Your summer is saved. The sunrise is planned, not yet fulfilled.</p><div><button class="primary" data-action="promises">Keep the list ↗</button><button class="secondary" data-action="title">Back to the title</button></div><small>Chapter 1 and the opening of Chapter 2 are playable. This ending belongs to an earlier story draft.</small></div>`:''}
+    </div><div class="dialogue-footer"><nav class="dialogue-tools" aria-label="Game tools"><button data-action="history">History</button><button data-action="saves">Save / load</button><button data-action="settings">Settings &amp; Accessibility</button><button data-action="promises">Promises</button>${hasRowanContact(state)?'<button data-action="sg">Phone</button>':''}<button data-action="title" aria-label="Return to title">Menu</button></nav>${!(last&&(node.choices||node.phone||node.ending))?'<button class="next-button" data-action="next" aria-label="Continue dialogue">Continue <span aria-hidden="true">→</span></button>':'<span class="small-flower" aria-hidden="true">✳</span>'}</div></section>
     <footer class="game-footer"><span>${escape(state.name)}’s summer <span class="footer-dot">·</span> <button data-action="relationship" aria-label="Relationship milestones">${escape(state.milestone)}</button></span><span>${state.phoneUnlocked?'<button data-action="phone">↗ Late-night messages</button>':'A story at your own pace'}</span><span class="save-indicator">${storageAvailable?'● Progress saved locally':'! Local saves unavailable'}</span></footer></div></main>`;
   mountGame(gameHTML,`${node.place}:${node.time}`,cg?`cg:${cg.src}`:`sprite:${portrait||'none'}:${node.time}`);
+  refreshSceneEffects();
   const gameScreen=app.querySelector('.game-screen');
   gameScreen.classList.toggle('dream-waking-sequence',['c2Calling','c2Blackout','c2Wake'].includes(state.node));
   gameScreen.classList.toggle('dream-blackout',!!node.blackout);
@@ -200,15 +216,18 @@ function renderGame(){
   if(settings.speed===0||!settings.motion||last&&(node.choices||node.phone||node.ending)){textNode.textContent=fullText;}
   else {textNode.textContent='';typing=true;timerIndex=0;timer=setInterval(()=>{timerIndex+=2;textNode.textContent=fullText.slice(0,timerIndex);if(timerIndex>=fullText.length)stopTyping();},1000/settings.speed);}
   $('.dialogue-card').onclick=e=>{if(!e.target.closest('button,input,textarea'))advance();};
-  const endKey=String(state.startedAt)+':'+state.node;
-  if(state.node==='aEnd'&&last&&presentedChapterEnd!==endKey){presentedChapterEnd=endKey;autoSave();openModal('chapters');}
+  const chapterEndKey=String(state.startedAt)+':'+state.node;
+  if(state.node==='aEnd'&&last&&presentedChapterEnd!==chapterEndKey){
+    presentedChapterEnd=chapterEndKey;
+    action('chapter-finish');
+  }
   const cueKey=state.node+':'+state.line;
   if(node.letter&&presentedLetter!==state.node&&(state.node==='rLetterNow'||state.flags.letterTiming==='later')&&last){presentedLetter=state.node;openModal('letter');}
   if(cue&&presentedPhone!==cueKey){presentedPhone=cueKey;phonePage=cue.page;openModal('story-phone');}
 }
 let previousFocus;
 let presentedPhone='',phonePage='contact',presentedLetter='',presentedChapterEnd='';
-function openModal(kind){
+function openModal(kind){sceneEffects.stop();
   if(!document.activeElement?.closest('.modal-layer'))previousFocus=document.activeElement;
   if(typing){stopTyping();$('#dialogue-text').textContent=fullText;}
   if(kind==='saves'){
@@ -217,7 +236,7 @@ function openModal(kind){
   }
   modal=kind;drawModal();
 }
-function closeModal(){if(busy)return;const layer=$('.modal-layer');if(layer?.querySelector('.sg-device,.phone-modal,.letter-paper')&&settings.motion&&!matchMedia('(prefers-reduced-motion: reduce)').matches){layer.style.pointerEvents='none';layer.animate([{opacity:1},{opacity:0}],{duration:160}).finished.catch(()=>{}).then(()=>layer.remove());}else layer?.remove();modal=null;error='';if(screen==='title'&&Boolean($('.seaglass-menu'))!==matchMedia('(min-width: 1051px)').matches){render();return;}if(previousFocus?.isConnected&&!previousFocus.closest('.modal-layer'))previousFocus.focus();else $('.next-button')?.focus();}
+function closeModal(){if(busy)return;const layer=$('.modal-layer');if(layer?.querySelector('.sg-device,.phone-modal,.letter-paper')&&settings.motion&&!matchMedia('(prefers-reduced-motion: reduce)').matches){layer.style.pointerEvents='none';layer.animate([{opacity:1},{opacity:0}],{duration:160}).finished.catch(()=>{}).then(()=>layer.remove());}else layer?.remove();modal=null;error='';suppressSceneCue=true;refreshSceneEffects();if(screen==='title'&&Boolean($('.seaglass-menu'))!==matchMedia('(min-width: 1051px)').matches){render();return;}if(previousFocus?.isConnected&&!previousFocus.closest('.modal-layer'))previousFocus.focus();else $('.next-button')?.focus();}
 function shell(title,body,extra=''){
   const existing=$('.modal-layer');
   const reuse=extra==='saves-modal'&&existing?.querySelector('.saves-modal');
@@ -286,29 +305,24 @@ function drawModal(){
     mountGallery($('.li-modal'),{manifest,unlocks:syncGallery(),onClose:closeModal});
     return;
   }
-  if(modal==='cast'){
-    shell('Rowan',`<p class="cast-bio">${rowan.age} · ${rowan.pronouns} · your childhood friend<br><span>Warm, a little guarded, and still terrible at defending his chips.</span></p><div class="cast-art" style="background-image:url('${escape(manifest.backgrounds.exterior)}')"><img id="cast-sprite" src="${escape(manifest.portraits.Rowan.neutral)}" alt="Rowan, neutral expression." width="1254" height="1254"></div><div class="cast-options" aria-label="Expression previews">${[...expressions,'book'].map(key=>`<button class="secondary" data-preview="${key}" aria-pressed="${key==='neutral'}">${{smile:'Warm smile',playful:'Teasing',embarrassed:'Blushing',sad:'Quiet grief',book:'With book',neutral:'Neutral',concerned:'Concerned',surprised:'Surprised'}[key]}</button>`).join('')}</div><div class="cast-locations" aria-label="Background previews">${Object.keys(manifest.backgrounds).map(key=>`<button class="text-button" data-location="${key}">${{exterior:'Guesthouse',living:'Living room',bedroom:'Bedroom',street:'Seaside street',pier:'Old pier'}[key]||key}</button>`).join('')}</div><p class="small-note">Official character design and original illustration by you. Additional expressions and backgrounds created from your reference.</p>`,'cast-modal');
-    document.querySelectorAll('[data-preview]').forEach(button=>button.onclick=()=>{const key=button.dataset.preview;$('#cast-sprite').src=manifest.portraits.Rowan[key];$('#cast-sprite').alt=`Rowan, ${key} expression.`;document.querySelectorAll('[data-preview]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));});
-    document.querySelectorAll('[data-location]').forEach(button=>button.onclick=()=>{$('.cast-art').style.backgroundImage=`url('${manifest.backgrounds[button.dataset.location]}')`;});
-  }
-  if(modal==='new')shell('A name to come home to',`<p class="muted">You’re ${protagonistAge}. It’s been years since your last proper summer here.<br>The rest is yours to remember.</p><form id="new-form">${languageField('new-language')}<label>Your name<input name="name" maxlength="24" value="Alex" required autocomplete="off"></label><fieldset><legend>Pronouns</legend><div class="pronouns"><label><input type="radio" name="pronouns" value="they" checked> they / them</label><label><input type="radio" name="pronouns" value="she"> she / her</label><label><input type="radio" name="pronouns" value="he"> he / him</label></div></fieldset><p class="small-note">Friendship, romance, and taking your time are all welcome.<br>${read('-auto')?'Starting replaces the autosave. Manual save slots stay safe.':'Progress saves automatically in this browser.'}</p><button class="primary" type="submit">Open the gate ↗</button></form>`);
+  if(modal==='new'){shell('Before your summer begins','','new-summer-modal');mountNewSummer($('.new-summer-modal'),{onBack:closeModal,hasSave:!!read('-auto'),onBegin:profile=>{playSummerTransition({kind:'new',language:profile.language,motion:settings.motion,reveal:()=>{settings.language=normalizeLanguage(profile.language);setLanguage(settings.language);write('-settings',settings);$('.modal-layer')?.remove();start(profile.name,profile.pronouns,profile);enterAudio();}});}});return;}
   if(modal==='promises'){
     const found=state?.promiseFound;
     shell('Before we get boring',`<div class="journal"><div class="journal-date">A summer, years ago <span>in green ink</span></div>${found?`<ol class="promise-list">${promises.map((p,i)=>`<li><span class="promise-check ${i===0&&state.sunrise==='planned'?'planned':''}">${i===0&&state.sunrise==='planned'?'◷':'○'}</span><div>${p}${i===0?`<small>${state.sunrise==='planned'?`Tomorrow · 4:40 at the gate · ${escape(state.flags.ritual||'a flask')}<br>Planned — still waiting for the sunrise.`:'Not yet begun.'}</small>`:'<small>For another day.</small>'}</div></li>`).join('')}</ol><p class="handwritten">A promise isn’t a trap.</p>`:'<p class="empty-state">Some things are waiting in the drawers.<br>You haven’t found the list yet.</p>'}</div>`);
   }
   if(modal==='history')shell('The things we said',`<div class="history-list">${state?.history.length?state.history.map(h=>`<article><strong>${escape(h.speaker==='You'?state.name:h.speaker||'—')}</strong><p>${escape(translateRecorded(h.text,state))}</p></article>`).join(''):'<p>No dialogue yet. Begin your summer first.</p>'}</div>`);
   if(modal==='saves'){drawSaveJournal();return;}
-  if(modal==='settings')shell('Make yourself comfortable',`<div class="settings-list"><div class="language-setting">${languageField()}</div><label>Text speed <span id="speed-label">${settings.speed===0?'Instant':settings.speed+' letters / second'}</span><input id="speed" aria-label="Text speed, zero is instant" type="range" min="0" max="80" step="8" value="${settings.speed}"></label><label class="toggle-row"><span>Reduced motion<small>Also displays dialogue instantly.</small></span><input id="motion" type="checkbox" ${!settings.motion?'checked':''}></label><label class="toggle-row"><span>Music & ambience<small>Your scene soundtrack and ambience. Off by default.</small></span><input id="sound" type="checkbox" ${settings.sound?'checked':''}></label><label>Audio volume<input id="volume" aria-label="Audio volume" type="range" min="0" max="1" step=".05" value="${settings.volume}"></label></div><div class="controls-note"><strong>At your own pace</strong><p>Space / Enter: reveal or advance · 1–4: choose a response<br>H: history · P: promises · S: save / load · Esc: close a panel<br>Tab and Shift+Tab move between controls. There are no timed choices.</p></div><button class="secondary" data-action="memories">Review saved chat memories</button>`);
-  if(modal==='about')shell('A summer worth coming back to',`<div class="about-story-layout"><aside class="about-rowan"><svg viewBox="335 132 270 435" role="img" aria-label="Chibi Rowan smiling and waving with a yellow envelope" overflow="hidden"><image href="assets/chapters/affinity-sheet.png" width="1536" height="1024"/></svg><p>Same skies.<br>A little closer, one day at a time.</p></aside><div class="about-story-copy"><p class="about-lead">An old house. A childhood friend. A summer with room to begin again.</p><p>At twenty-three, you return to Saint Luis and Lola’s familiar house. Rowan is here too—with shared memories, a yellow-envelope promise, and years of things you never quite got to say.</p><p><strong>Chapter 1 · Reunion at a familiar house</strong><br>Follow the journey home, remember the letters that once connected you, and settle into the small moments of being together again: breakfast, a little gardening, and conversations on the porch as day turns to evening.</p><p>Choose what to share, what to ask, and how close to let Rowan become. Friendship, the possibility of romance, and taking your time all have a place here.</p><p class="about-status">Chapter 1 and the opening of Chapter 2 are playable. Chapter 2 begins with a nightmare about city life, a thought-clearing mini-game, and Rowan checking on you. The rest of Chapter 2 and Chapters 3–5 are still to come.</p></div></div><footer class="about-details"><p>Rowan’s original character design is by the creator, with generated supporting illustrations. Rowan and the protagonist are both adults, aged 23.</p><p>Content notes: grief, bereavement, controlling parents, destroyed personal letters, nightmares, and academic pressure. Complete each nightmare mini-game to continue; you can pause and resume.</p><p>Progress is saved in this browser. The default phone uses scripted replies; no messages leave your device in demo mode.</p></footer>`);
+  if(modal==='settings')shell('Make yourself comfortable',`<div class="settings-list"><div class="language-setting">${languageField()}</div><label>Text speed <span id="speed-label">${settings.speed===0?'Instant':settings.speed+' letters / second'}</span><input id="speed" aria-label="Text speed, zero is instant" type="range" min="0" max="80" step="8" value="${settings.speed}"></label><label class="toggle-row"><span>Reduced motion<small>Also displays dialogue instantly.</small></span><input id="motion" type="checkbox" ${!settings.motion?'checked':''}></label><label class="toggle-row"><span>Music & ambience<small>Your scene soundtrack and ambience. Off by default.</small></span><input id="sound" type="checkbox" ${settings.sound?'checked':''}></label><label>Audio volume<input id="volume" aria-label="Audio volume" type="range" min="0" max="1" step=".05" value="${settings.volume}"></label></div><div class="controls-note"><strong>At your own pace</strong><p>Space / Enter: reveal or advance · 1–4: choose a response<br>H: history · P: promises · S: save / load · Esc: close a panel<br>Tab and Shift+Tab move between controls. There are no timed choices.</p></div>${state?.phoneUnlocked?'<button class="secondary" data-action="memories">Review saved chat memories (legacy saves)</button>':''}`);
+  if(modal==='about')shell('A summer worth coming back to',`<div class="about-story-layout"><aside class="about-rowan"><svg viewBox="335 132 270 435" role="img" aria-label="Chibi Rowan smiling and waving with a yellow envelope" overflow="hidden"><image href="assets/chapters/affinity-sheet.png" width="1536" height="1024"/></svg><p>Same skies.<br>A little closer, one day at a time.</p></aside><div class="about-story-copy"><p class="about-lead">An old house. A childhood friend. A summer with room to begin again.</p><p>At twenty-three, you return to Saint Luis and Lola’s familiar house. Rowan is here too—with shared memories, a yellow-envelope promise, and years of things you never quite got to say.</p><p><strong>Chapter 1 · Reunion at a familiar house</strong><br>Follow the journey home, remember the letters that once connected you, and settle into the small moments of being together again: breakfast, a little gardening, and conversations on the porch as day turns to evening.</p><p>Choose what to share, what to ask, and how close to let Rowan become. Friendship, the possibility of romance, and taking your time all have a place here.</p><p class="about-status">Chapter 1 and the opening of Chapter 2 are playable. Chapter 2 begins with a nightmare about city life, a thought-clearing mini-game, and Rowan checking on you. The rest of Chapter 2 and Chapters 3–5 are still to come.</p></div></div><footer class="about-details"><p>Rowan’s original character design is by the creator, with generated supporting illustrations. Rowan and the protagonist are both adults, aged 23.</p><p>Content notes: grief, bereavement, controlling parents, destroyed personal letters, nightmares, and academic pressure. Complete each nightmare mini-game to continue; you can pause and resume.</p><p>Progress is saved in this browser. Phone conversations in the current story are written as part of the script.</p></footer>`);
   if(modal==='relationship')shell('Becoming familiar',`<p>Trust grows through shared moments and honest choices. It isn’t a score. Friendship and romance have the same room to grow.</p><ol class="milestone-list">${milestones.map(m=>`<li><strong>${m.name}${state?.milestone===m.name?' · now':''}</strong><p>${m.unlock}</p></li>`).join('')}</ol><p class="small-note">Chapter one ends at Familiar. Later milestones await future chapters. Skipping chat, disagreeing respectfully, or needing space never takes trust away.</p>`);
-  if(modal==='memories')memoryModal();
+  if(modal==='memories'){if(state?.phoneUnlocked)memoryModal();else closeModal();}
   if(modal==='phone')phoneModal();
   if(modal==='story-phone')storyPhoneModal();
   if(modal==='history') {const history=$('.history-list');history.scrollTop=history.scrollHeight;}
   bindForms();
 }
 function bindForms(){
-  $('#new-form')?.addEventListener('submit',e=>{e.preventDefault();const form=new FormData(e.target);settings.language=normalizeLanguage(form.get('language'));setLanguage(settings.language);write('-settings',settings);$('.modal-layer').remove();start(form.get('name'),form.get('pronouns'));enterAudio();});
+
   const saveSettings=()=>{write('-settings',settings);document.documentElement.classList.toggle('reduced-motion',!settings.motion);};
   $('#language')?.addEventListener('change',e=>{settings.language=normalizeLanguage(e.target.value);setLanguage(settings.language);saveSettings();stopTyping();render();if(typing){stopTyping();$('#dialogue-text').textContent=fullText;}modal='settings';drawModal();$('#language')?.focus();});
   $('#speed')?.addEventListener('input',e=>{settings.speed=Number(e.target.value);$('#speed-label').textContent=settings.speed===0?'Instant':settings.speed+' letters / second';saveSettings();});
@@ -386,6 +400,13 @@ function bind(root=app){
   root.querySelectorAll('[data-forget]').forEach(el=>el.addEventListener('click',()=>{const removed=state.memories.splice(Number(el.dataset.forget),1)[0];for(const key of manualSaveKeys){const save=read(key);if(validSave(save?.state,story)){save.state.memories=save.state.memories.filter(m=>m.value!==removed.value);write(key,save);}}autoSave();drawModal();}));
 }
 function action(type){
+  if(transitionActive())return;
+  if(type==='chapter-finish'){sceneEffects.stop();
+    const node=story[state?.node];
+    if(!node?.ending||state.line<nodeLines().length-1)return;
+    autoSave();
+    playSummerTransition({kind:'chapter',chapter:node.chapter||1,partial:!!node.chapterTwo,language:settings.language,motion:settings.motion,reveal:()=>openModal('chapters')});return;
+  }
   if(type==='chapter-two'){
     const current=state||read('-auto')?.state;
     if(!validSave(current,story)||!chapterComplete(current,story))return;
@@ -397,7 +418,7 @@ function action(type){
     const current=state||read('-auto')?.state;
     if(chapterComplete(current,story)){
       const lines=current.history.filter(h=>!h.id.startsWith('choice:')&&!h.id.startsWith('c2'));
-      shell('Chapter 1 · Your memories',`<p>Your saved choices and relationship remain unchanged.</p><div class="chapter-memories">${lines.map(h=>`<p><strong>${escape(h.speaker==='You'?current.name:h.speaker)}</strong> ${escape(h.text)}</p>`).join('')}</div><button class="secondary" data-action="chapters">Back to chapters</button>`);
+      shell('Chapter 1 · Your memories',`<p>Your saved choices and relationship remain unchanged.</p><div class="chapter-memories">${lines.map(h=>`<p><strong>${escape(h.speaker==='You'?current.name:h.speaker)}</strong> ${escape(translateRecorded(h.text,current))}</p>`).join('')}</div><button class="secondary" data-action="chapters">Back to chapters</button>`);
     }else if(state){closeModal();screen='game';render();}else load('-auto');
     return;
   }
@@ -424,11 +445,12 @@ function action(type){
   openModal(type);
 }
 document.addEventListener('keydown',e=>{
+  if(transitionActive())return;
   if(screen==='game'&&state&&(story[state.node]?.minigame||story[state.node]?.nightmare))return;
   if(modal){
     if(e.key==='Escape'){e.preventDefault();closeModal();return;}
     if(e.key==='Tab'){
-      const focusable=[...document.querySelectorAll('.modal button:not([disabled]),.modal input:not([disabled]),.modal textarea:not([disabled])')];
+      const focusable=[...document.querySelectorAll('.modal button:not([disabled]),.modal input:not([disabled]),.modal textarea:not([disabled]),.modal select:not([disabled])')].filter(el=>!el.closest('[inert]')&&el.getClientRects().length);
       const first=focusable[0],last=focusable.at(-1);
       if(e.shiftKey&&document.activeElement===first){e.preventDefault();last?.focus();}
       else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first?.focus();}

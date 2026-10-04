@@ -1,10 +1,11 @@
+import {pronounForms,validCustomPronouns} from '../assets/player-identity.js';
 import {gardenAffection,validGarden} from '../assets/garden-game.js';
 export const VERSION = 1;
 export const milestones = [
   {name:'Reacquainted', unlock:'Authored choices establish boundaries and shared childhood.'},
-  {name:'Familiar', unlock:'Optional scenes and personal questions; chapter one offers a four-message texting preview.'},
-  {name:'Trusted', unlock:'Short free-text conversations at authored moments in later chapters.'},
-  {name:'Close', unlock:'Open late-night conversations between later chapters.'},
+  {name:'Familiar', unlock:'Shared time, personal questions, and the small routines of Chapter 1.'},
+  {name:'Trusted', unlock:'A later relationship stage, reserved for future story content.'},
+  {name:'Close', unlock:'A deeper connection, reserved for future story content.'},
   {name:'Committed', unlock:'Explicitly chosen friendship or romance scenes, rituals, and remembered details.'}
 ];
 export const promises = [
@@ -14,17 +15,18 @@ export const promises = [
   'Take a trip with no planned destination.',
   'Leave town together someday.'
 ];
-export function freshState(name = 'Alex', pronouns = 'they') {
+export function freshState(name = 'Alex', pronouns = 'they', profile = {}) {
   return { version: VERSION, storyRevision: 6, seviSceneRevision: 3, name: name.trim().slice(0, 24) || 'Alex', pronouns,
+    gender:profile.gender||({he:'male',she:'female',they:'non-binary'}[pronouns]||'custom'),portrait:profile.portrait==='none'?'none':'silhouette',
+    ...(pronouns==='custom'&&validCustomPronouns(profile.customPronouns)?{customPronouns:{...profile.customPronouns}}:{}),
     node: 'journey', line: 0, flags: {letterTiming:'later'}, history: [], chat: [], chatTurns: 0,
     chatDone: false, promiseFound: false, sunrise: 'unstarted', milestone: 'Reacquainted',
     memories: [], completed: false, startedAt: Date.now() };
 }
 export function interpolate(text, state) {
-  const forms = {they: ['they','them','their'], she: ['she','her','her'], he: ['he','him','his']};
-  const p = forms[state.pronouns] || forms.they;
-  return text.replace(/\{(name|subject|object|possessive|hideout|hideoutPlace|treasure|nickname)\}/g, (_, key) =>
-    ({name: state.name, subject:p[0], object:p[1], possessive:p[2],
+  const p = pronounForms(state);
+  return text.replace(/\{(name|subject|object|possessive|possessivePronoun|reflexive|be|have|hideout|hideoutPlace|treasure|nickname)\}/g, (_, key) =>
+    ({name: state.name, ...p, be:p.plural?'are':'is', have:p.plural?'have':'has',
       hideout: state.flags.hideout || 'the linen cupboard',
       hideoutPlace: state.flags.hideout==='under the kitchen table'?'under the kitchen table':'in '+(state.flags.hideout||'the linen cupboard'),
       treasure: state.flags.treasure || 'a blue marble',
@@ -40,7 +42,7 @@ export function applyChoice(state, choice) {
 }
 export function validSave(s, story) {
   return !!(s && s.version === VERSION && typeof s.name === 'string' && s.name.length <= 24 &&
-    ['they','she','he'].includes(s.pronouns) && story[s.node] && Number.isInteger(s.line) && s.line >= 0 &&
+    (['they','she','he'].includes(s.pronouns)||(s.pronouns==='custom'&&validCustomPronouns(s.customPronouns))) && story[s.node] && Number.isInteger(s.line) && s.line >= 0 &&
     s.flags && typeof s.flags === 'object' && !Array.isArray(s.flags) &&
     (s.garden===undefined||validGarden(s.garden)) &&
     s.line < visibleLines(story[s.node],s).length &&
@@ -54,7 +56,7 @@ export function visibleLines(node, state) {
   return node.lines.filter(line => !line.if || state.flags[line.if[0]] === line.if[1]);
 }
 export function chatContext(s) {
-  return {chapter: 1, milestone: s.milestone, name: s.name, pronouns:s.pronouns,
+  return {chapter: 1, milestone: s.milestone, name: s.name, pronouns:s.pronouns,...(s.pronouns==='custom'?{customPronouns:s.customPronouns}:{}),
     choices: Object.fromEntries(['boundary','hideout','treasure','nickname','outlook','support','ritual','relationship'].filter(k => s.flags[k]).map(k=>[k,s.flags[k]])),
     memories:s.memories.slice(0,8), messages:s.chat.slice(-10), turns:s.chatTurns};
 }

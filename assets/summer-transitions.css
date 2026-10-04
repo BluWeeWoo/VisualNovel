@@ -1,0 +1,37 @@
+.summer-transition{position:fixed;inset:0;z-index:10000;overflow:hidden;display:grid;place-items:center;background:#e8d8b9 url('journal-paper.svg');color:#294b61;isolation:isolate;animation:summer-veil-in .45s ease-out}
+.summer-transition::before{content:'';position:absolute;inset:0;background:linear-gradient(115deg,#fff8dfd9,transparent 60%),url('backgrounds/menu-seaglass.png') center/cover;opacity:.22;z-index:-2;filter:blur(5px)}
+.transition-light{position:absolute;inset:-50%;pointer-events:none;background:linear-gradient(115deg,transparent 40%,#fff9d883 49%,transparent 58%);animation:summer-light 3.4s ease-in-out both;z-index:-1}
+.transition-keepsake{position:relative;width:min(520px,65vw);height:350px;perspective:1200px}
+.transition-postcard{position:absolute;inset:0;background:#fff3d9 url('journal-paper.svg');border:9px solid #f9edcf;outline:1px solid #b9a787;box-shadow:0 12px 30px #5a412b33;text-align:center;padding:40px 24px 25px;transform:rotate(-2deg);z-index:2}
+.transition-postcard h2{font:italic 36px/1.2 Georgia,serif;margin:24px 0 15px;color:#23455f}
+.transition-postcard p{font:italic 21px/1.5 Georgia,serif;max-width:330px;margin:0 auto}
+.transition-eyebrow{font:11px/1.5 'Segoe UI',sans-serif;letter-spacing:3px;display:block;position:relative;z-index:1}
+.transition-postmark{position:absolute;right:12px;top:12px;border:1px solid #55748288;border-radius:50%;width:80px;height:80px;padding-top:21px;font:10px/1.6 Georgia,serif;letter-spacing:2px;transform:rotate(15deg);opacity:.45}
+.transition-signature{display:block;font:italic 25px Georgia,serif;text-align:right;margin:20px 20px 0}
+.transition-envelope{position:absolute;left:-6%;right:-6%;bottom:-120px;height:270px;border-radius:4px}
+.envelope-back{background:#c99a38;border:1px solid #af7c28;box-shadow:0 15px 30px #76511b44;z-index:0}
+.envelope-back::after{content:"";position:absolute;left:5%;right:5%;top:5px;height:18px;border-radius:50%;background:#79511c66;box-shadow:0 3px 7px #69461633}
+.envelope-front{background:linear-gradient(150deg,transparent 49.7%,#c9983455 50%,transparent 50.4%),linear-gradient(30deg,transparent 49.7%,#c9983444 50%,transparent 50.4%),linear-gradient(30deg,#edc96b,#e0b14c);clip-path:polygon(0 0,5% 0,50% 25%,95% 0,100% 0,100% 100%,0 100%);border:1px solid #af7c28;z-index:3}
+.envelope-flap{background:#ecc56a;clip-path:polygon(0 0,100% 0,50% 62%);transform-origin:top;animation:summer-open-flap .8s .35s ease-in-out both;z-index:5}
+.envelope-boat{position:absolute;bottom:20px;left:28px;width:90px;height:64px;color:#496779;transform:rotate(-5deg);opacity:.85}
+.summer-departure .transition-postcard{height:250px;bottom:auto;padding:24px 22px 18px;box-sizing:border-box;transform-origin:top center;animation:summer-letter-rise 1.7s 1.2s cubic-bezier(.2,.65,.3,1) both,summer-letter-front 1.7s 1.2s step-end both}
+.summer-departure .transition-postcard h2{font-size:29px;margin:16px 0 12px}
+.summer-departure .transition-postcard p{font-size:19px;line-height:1.4}
+.summer-departure .transition-signature{font-size:22px;margin:12px 12px 0}
+.summer-departure .transition-photo{display:none}
+.summer-memory .transition-envelope{display:none}
+.summer-memory .transition-keepsake{height:420px;animation:summer-postcard-settle 1.25s ease-out both}
+.summer-memory .transition-postcard{padding-top:22px;background:#f8edd5 url('journal-paper.svg')}
+.summer-memory .transition-photo{height:150px;margin-top:15px;border:5px solid #fff5df;background:url('backgrounds/menu-seaglass.png') center 55%/cover;box-shadow:0 2px 5px #63492e33}
+.summer-memory .transition-postcard h2{font-size:29px;margin:16px 0 10px}
+.summer-memory .transition-postcard p{font-size:18px}
+.summer-memory .transition-signature{display:none}
+.transition-skip{position:absolute;bottom:6vh;right:6vw;font:18px Georgia,serif;color:#294b61;background:#faf0d8;border:1px solid #b39b77;border-radius:3px;padding:12px 24px;cursor:pointer}
+.transition-skip:focus-visible{outline:3px solid #547f98;outline-offset:5px}
+@keyframes summer-veil-in{from{opacity:0}to{opacity:1}}
+@keyframes summer-light{from{transform:translateX(-20%)}to{transform:translateX(20%)}}
+@keyframes summer-open-flap{0%{transform:rotateX(0);z-index:5}50%{z-index:5}100%{transform:rotateX(180deg);z-index:1}}
+@keyframes summer-letter-rise{0%{transform:translateY(210px) rotate(0)}75%{transform:translateY(-75px) rotate(0)}100%{transform:translateY(-45px) rotate(-2deg)}}
+@keyframes summer-letter-front{0%{z-index:2}75%,100%{z-index:4}}
+@keyframes summer-postcard-settle{from{opacity:0;transform:translateY(65px) rotate(6deg) scale(.95)}to{opacity:1;transform:translateY(0) rotate(0) scale(1)}}
+@media(prefers-reduced-motion:reduce){.summer-transition,.summer-transition *{animation:none!important}}

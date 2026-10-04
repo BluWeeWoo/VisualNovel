@@ -8,7 +8,7 @@ export function desktopMenu(resume){
       <p class="seaglass-kicker">SUMMERHOUSE · CHAPTERS ONE & TWO</p>
       <h1 id="summer-title">Our Summer,<br><em>Unfinished</em></h1>
       <nav class="seaglass-actions" aria-label="Main menu">${buttons.map(([action,label])=>`<button class="plank" data-action="${action}"><span>${label}</span></button>`).join('')}</nav>
-      <nav class="seaglass-utilities" aria-label="Menu options"><button data-action="settings">Settings</button><span aria-hidden="true">·</span><button data-action="about">About</button><span aria-hidden="true">·</span><button data-action="accessibility">Accessibility</button></nav>
+      <nav class="seaglass-utilities" aria-label="Menu options"><button data-action="settings">Settings &amp; Accessibility</button><span aria-hidden="true">·</span><button data-action="about">About</button></nav>
     </section>
     <p class="seaglass-location">Summerhouse, late June</p>
   </main>`;

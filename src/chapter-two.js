@@ -297,7 +297,7 @@ He says it without making me ask.
 Thought|He’s trying to reassure me.
 Thought|Why can’t I feel better?
 `,{next:'c2Hall'}),
-c2Hall:corridor('The voices follow',`
+c2Hall:scene('The voices follow',`
 I step into the corridor.
 His voice follows me.
 Sevi’s voice|We’re okay.
@@ -315,7 +315,7 @@ Dad’s voice|Why are you making this difficult?
 Mom’s voice|People are counting on you.
 Thought|I already told you.
 Thought|Why doesn’t saying it make it stop?
-`,{next:'c2Wave3'}),
+`,{place:'c2-empty-hallway',next:'c2Wave3'}),
 c2Wave1After:scene('A moment between dreams',`
 @wave1-clear|The last words dissolve before I can read them again.
 @wave1-clear|Thought|Just forget it.
@@ -356,7 +356,7 @@ c2Wave2After:scene('A message to send',`
 I type: “Can we talk? I don’t think I can be committee lead.”
 His reply appears before I remember pressing send.
 `,{place:'c2-assignment',next:'c2Confrontation'}),
-c2Wave3:scene('No room to answer',`The voices crowd together.`,{place:'c2-confrontation',nightmare:3,next:'c2Calling'}),
+c2Wave3:scene('No room to answer',`The voices crowd together.`,{place:'c2-empty-hallway',nightmare:3,next:'c2Calling'}),
 c2Calling:scene('A voice outside the dream',`
 Thought|I can’t—
 You|Stop.
@@ -370,10 +370,10 @@ Rowan — distant|{name}. Hey.
 The bell thins into the steady hum of a fan.
 The corridor disappears.
 Rowan — distant|{name}!
-`,{place:'c2-confrontation',music:null,next:'c2Blackout'}),
+`,{place:'c2-empty-hallway',music:null,next:'c2Blackout'}),
 c2Blackout:scene('Between sleeping and waking',`
 For a moment, there is only darkness and the sound of my breathing.
-`,{place:'c2-confrontation',blackout:true,music:null,next:'c2Wake'}),
+`,{place:'c2-empty-hallway',blackout:true,music:null,next:'c2Wake'}),
 c2Wake:room('Past noon',`
 I open my eyes with a breath that catches in my throat.
 The ceiling is wrong. The light is wrong.
