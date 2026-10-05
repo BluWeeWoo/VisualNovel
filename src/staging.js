@@ -1,3 +1,5 @@
+import {lineVisible} from './line-visibility.js';
+import {chapterTwoAfternoon} from './chapter-two-afternoon.js';
 import {chapterTwo} from './chapter-two.js';
 import {afterGarden} from './after-garden.js';
 // Authored direction: no keyword-based expression guessing.
@@ -31,10 +33,10 @@ export const cgCues={
  kitchen:{key:'third-cup',from:'His hand stops'},
  plan:{key:'beginning',from:'We can aim'}
 };
-for(const [id,node] of Object.entries({...afterGarden,...chapterTwo}))if(node.cgCue)cgCues[id]=node.cgCue;
+for(const [id,node] of Object.entries({...afterGarden,...chapterTwo,...chapterTwoAfternoon}))if(node.cgCue)cgCues[id]=node.cgCue;
 export function cgAt(story,state){
  const cue=story[state.node]?.cgCue||cgCues[state.node];if(!cue)return null;
- const lines=story[state.node].lines.filter(l=>!l.if||state.flags[l.if[0]]===l.if[1]);
+ const lines=story[state.node].lines.filter(l=>lineVisible(l,state.flags));
  const start=lines.findIndex(l=>l.text.includes(cue.from));
  const end=cue.until?lines.findIndex(l=>l.text.includes(cue.until)):lines.length;
  return start>=0&&state.line>=start&&state.line<end?cue.key:null;
@@ -65,13 +67,13 @@ export function spriteAt(story,state){
  const node=story[state.node];
  if(node.continuation){
   if(!node.rowan)return null;
-  const lines=node.lines.filter(l=>!l.if||state.flags[l.if[0]]===l.if[1]);
+  const lines=node.lines.filter(l=>lineVisible(l,state.flags));
   let expression='neutral';
   for(let i=0;i<=state.line;i++)if(lines[i]?.expression)expression=lines[i].expression;
   return {expression,pose:'ordinary',key:expression,...(node.childhood?{character:'RowanChild'}:{})};
  }
  if(!(state.node in defaults))return null;
- const lines=node.lines.filter(l=>!l.if||state.flags[l.if[0]]===l.if[1]);
+ const lines=node.lines.filter(l=>lineVisible(l,state.flags));
  if(state.node==='arrival' && state.line<6)return null;
  let expression=defaults[state.node],pose='ordinary';
  for(let i=0;i<=state.line;i++)for(const [fragment,next,nextPose] of directions[state.node]||[]){if(lines[i]?.text.includes(fragment)){expression=next;if(nextPose)pose=nextPose;}}

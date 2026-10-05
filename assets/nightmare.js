@@ -13,7 +13,7 @@ export function nightmareProgress(state,wave){
  const key='nightmareWave'+wave,old=state.flags[key];
  if(!old||!Number.isFinite(old.elapsed)||old.elapsed<0||!Array.isArray(old.cleared))state.flags[key]={elapsed:0,cleared:[]};
  const progress=state.flags[key];
- if(wave===3&&progress.cleared.length>=3&&!Number.isFinite(progress.endingElapsed))progress.endingElapsed=0;
+ if(wave===3&&progress.cleared.length>=10&&!Number.isFinite(progress.endingElapsed))progress.endingElapsed=0;
  return progress;
 }
 export function nightmareOutcome(progress,wave){
@@ -30,7 +30,7 @@ export function tickNightmare(progress,wave,seconds){
 export function clearThought(progress,wave,id){
  if((wave===3&&(Number.isFinite(progress.endingElapsed)||progress.cleared.includes(id)))||!Number.isInteger(id)||id<0||id>=cloudCount(wave,progress.elapsed))return false;
  if(!progress.cleared.includes(id))progress.cleared.push(id);
- if(wave===3&&progress.cleared.length===3)progress.endingElapsed=0;
+ if(wave===3&&progress.cleared.length===10)progress.endingElapsed=0;
  return true;
 }
 export function mountNightmare(root,state,{wave,motion,save,done,menu,endingAudio}){
@@ -46,8 +46,8 @@ export function mountNightmare(root,state,{wave,motion,save,done,menu,endingAudi
  const blockHeldKey=e=>{if((e.key===' '||e.key==='Enter')&&e.repeat){e.preventDefault();e.stopPropagation();}};
  root.addEventListener('keydown',blockHeldKey);
  delete state.flags.nightmareSkip;
- if(wave===3&&progress.cleared.length<3)progress.elapsed=Math.min(progress.elapsed,8.9);
- if(wave===3)root.querySelector('.dream-instruction').firstChild.textContent='Release three thoughts. Keep going until the dream passes.';
+ if(wave===3&&progress.cleared.length<10)progress.elapsed=Math.min(progress.elapsed,8.9);
+ if(wave===3)root.querySelector('.dream-instruction').firstChild.textContent='Release all ten thoughts. Keep going until the dream passes.';
  root.querySelector('.dream-menu').onclick=()=>{save();menu();};
  pause.onclick=()=>{paused=!paused;pause.textContent=translate(paused?'Resume':'Pause');root.querySelector('main').classList.toggle('paused',paused);last=performance.now();endingAudio?.pause(paused||document.hidden);};
  const positions=[[19,22],[72,18],[44,46],[17,71],[77,70],[49,15],[78,43],[42,76],[18,47],[61,62],[61,30],[34,30]];

@@ -30,10 +30,17 @@
     "c2-city": "assets/cg/chapter-two/nightmare.webp",
     "c2-school": "assets/cg/chapter-two/classroom.webp",
     "c2-assignment": "assets/cg/chapter-two/sevi-assignment.webp",
-    "c2-empty-hallway": "assets/cg/chapter-two/empty-hallway.png",
+    "c2-empty-hallway": "assets/cg/chapter-two/empty-hallway.webp",
     "c2-confrontation": "assets/cg/chapter-two/sevi-hallway-v4.webp",
     "c2-rest": "assets/cg/chapter-two/rest.webp",
-    "c2-meeting": "assets/cg/chapter-two/sevi-meeting.webp"
+    "c2-meeting": "assets/cg/chapter-two/sevi-meeting.webp",
+    "summer-lunch": "assets/cg/chapter-two/lunch.webp",
+    "summer-solo-garden": "assets/cg/chapter-two/solo-garden.webp",
+    "summer-television": "assets/cg/chapter-two/television.webp",
+    "summer-workshop": "assets/cg/chapter-two/workshop.webp",
+    "summer-grave": "assets/cg/chapter-two/grave-solo.webp",
+    "summer-mayumi": "assets/cg/chapter-two/mayumi.webp",
+    "summer-news": "assets/cg/chapter-two/television-news.webp"
   },
   "portraits": {
     "Rowan": {
@@ -175,11 +182,11 @@
       "alt": "A distorted city bedroom in MC’s nightmare, with an impossibly distant closed door."
     },
     "c2-waking": {
-      "src": "assets/cg/chapter-two/waking.webp",
+      "src": "assets/cg/chapter-two/waking-clean.webp",
       "alt": "Rowan stands worried beside the bed as MC wakes in Saint Luis."
     },
     "c2-company": {
-      "src": "assets/cg/chapter-two/company.webp",
+      "src": "assets/cg/chapter-two/company-clean.webp",
       "alt": "Rowan listens quietly from a chair beside the bed, wearing matte trousers and white sneakers."
     },
     "c2-rest": {
@@ -201,6 +208,34 @@
     "c2-sevi-meeting": {
       "src": "assets/cg/chapter-two/sevi-meeting.webp",
       "alt": "Sevi stands beside the meeting-room table, notebook in hand and eyes obscured by the nightmare."
+    },
+    "summer-lunch": {
+      "src": "assets/cg/chapter-two/lunch.webp",
+      "alt": "Rowan shares fried tilapia, tomatoes and rice at Lola’s kitchen table."
+    },
+    "summer-solo-garden": {
+      "src": "assets/cg/chapter-two/solo-garden.webp",
+      "alt": "An empty sunlit garden, with gloves and a bucket ready beside the steps."
+    },
+    "summer-television": {
+      "src": "assets/cg/chapter-two/television.webp",
+      "alt": "A quiet afternoon in the living room with the television on."
+    },
+    "summer-workshop": {
+      "src": "assets/cg/chapter-two/workshop.webp",
+      "alt": "Rowan inspects a handmade table in Mang Nestor’s workshop."
+    },
+    "summer-grave": {
+      "src": "assets/cg/chapter-two/grave-solo.webp",
+      "alt": "Flowers beside Lola’s grave under a shady tree."
+    },
+    "summer-mayumi": {
+      "src": "assets/cg/chapter-two/mayumi.webp",
+      "alt": "Mayumi and Rowan talk across the kitchen table."
+    },
+    "summer-news": {
+      "src": "assets/cg/chapter-two/television-news.webp",
+      "alt": "Mayor Sanchez appears in a local news report on the living room television."
     }
   }
 }

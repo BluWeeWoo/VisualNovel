@@ -11,7 +11,7 @@ test('Both characters are 23; Rowan is he/him and player choices remain availabl
  assert.equal(rowan.timeline.lastVisit,'twelve years ago');assert.equal(rowan.timeline.lolaDiedYearsAgo,2);
  for(const p of ['he','she','they'])assert.equal(freshState('Alex',p).pronouns,p);
  const prose=Object.values(story).flatMap(n=>n.lines).map(l=>l.text).join(' ');
- assert.doesNotMatch(prose,/twenty-five|twenty-six|were he|He charge|he have|he are/);
+ assert.doesNotMatch(prose,/twenty-five|twenty-six|were he\b|He charge\b|he have\b|he are\b/);
 });
 test('All expression cues match authored text and every expression is used',()=>{
  const seen=new Set();

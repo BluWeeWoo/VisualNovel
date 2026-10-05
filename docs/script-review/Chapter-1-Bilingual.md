@@ -49,7 +49,7 @@ Narration has no speaker label. MC’s silent thoughts are italicized. Spoken di
 | journey:28 | Lola’s house needs cleaning. A few things probably need fixing. | Lola’s house needs cleaning. A few things probably need fixing. |
 | journey:29 | *I can do that.* | *I can do that.* |
 | journey:30 | *Sweep a floor. Fix a window. Get some sleep.* | *Sweep a floor. Fix a window. Get some sleep.* |
-| journey:31 | *That was the plan.* | *That was the plan.* |
+| journey:31 | *That was the plan.* | *Ok may plan na.* |
 | journey:32 | I look back toward the baywalk. | I look back toward the baywalk. |
 | journey:33 | *What am I going to say if I see Rowan?* | *What am I going to say if I see Rowan?* |
 | journey:34 | *Sorry I stopped calling?* | *Sorry I stopped calling?* |
@@ -76,14 +76,14 @@ Narration has no speaker label. MC’s silent thoughts are italicized. Spoken di
 | busBump:4 | I sit on the floor for a moment. My hip hurts, and my bag is still caught around my wrist. | I sit on the floor for a moment. My hip hurts, and my bag is still caught around my wrist. |
 | busBump:5 | **Stranger:** Sorry! Sorry. My son’s already getting off. | **Stranger:** Sorry! Pababa na kasi ’yung anak ko. |
 | busBump:6 | He looks toward the front of the bus. | He looks toward the front of the bus. |
-| busBump:7 | **Stranger:** I need to catch him. | **Stranger:** Kailangan ko siyang habulin. |
+| busBump:7 | **Stranger:** I need to catch him. | **Stranger:** Baka may mangyari sakanya. |
 
 ### Player choices
 
 **Choice 1 [busBump:choice:0]**
 
 - English: “It’s fine. Go.”
-- Taglish: “Okay lang. Sige na.”
+- Taglish: “Okay lang po.”
 
 [Continue at: bumpKind. Saved choice / relationship flags: {"strangerResponse":"kind"}.]
 
@@ -116,7 +116,7 @@ Narration has no speaker label. MC’s silent thoughts are italicized. Spoken di
 
 | Line / direction | English | Taglish |
 |---|---|---|
-| bumpKind:0 | **MC:** It’s fine. Go. | **MC:** Okay lang. Sige na. |
+| bumpKind:0 | **MC:** It’s fine. Go. | **MC:** Okay lang po. |
 | bumpKind:1 | My hip still hurts, but he’s clearly in a hurry. | My hip still hurts, but he’s clearly in a hurry. |
 | bumpKind:2 | **Stranger:** Thank you. Sorry again. | **Stranger:** Thank you. Sorry talaga. |
 | bumpKind:3 | He hurries past the other passengers toward the exit. | He hurries past the other passengers toward the exit. |
@@ -133,7 +133,7 @@ Narration has no speaker label. MC’s silent thoughts are italicized. Spoken di
 |---|---|---|
 | bumpGlare:0 | I glare at him from the floor. | I glare at him from the floor. |
 | bumpGlare:1 | He looks uncomfortable. | He looks uncomfortable. |
-| bumpGlare:2 | **Stranger:** Sorry. | **Stranger:** Sorry. |
+| bumpGlare:2 | **Stranger:** Sorry. | **Stranger:** Sorry talaga. |
 | bumpGlare:3 | He leaves before I can say anything. | He leaves before I can say anything. |
 
 **Next:** wallet.
@@ -176,12 +176,12 @@ Narration has no speaker label. MC’s silent thoughts are italicized. Spoken di
 | Line / direction | English | Taglish |
 |---|---|---|
 | wallet:0 | I brush the dirt off my clothes. | I brush the dirt off my clothes. |
-| wallet:1 | **MC:** Great start. | **MC:** Ang ganda ng simula. |
+| wallet:1 | **MC:** Great start. | **MC:**  Minamalas nga naman |
 | wallet:2 | I check that I still have my bag and phone. Then I reach for my wallet. | I check that I still have my bag and phone. Then I reach for my wallet. |
 | wallet:3 | I check both back pockets. | I check both back pockets. |
 | wallet:4 | They’re empty. | They’re empty. |
 | wallet:5 | I search the seat, the floor underneath it, and the aisle. | I search the seat, the floor underneath it, and the aisle. |
-| wallet:6 | **MC:** No. Come on. | **MC:** Hala. Please naman. |
+| wallet:6 | **MC:** No. Come on. | **MC:** Hala. shet, where is it. |
 | wallet:7 | My wallet is gone. | My wallet is gone. |
 | wallet:8 | I look toward the exit. The man is gone too. | I look toward the exit. The man is gone too. |
 | wallet:9 | *Did he take it when he bumped into me? Was there even a child with him?* | *Did he take it when he bumped into me? Was there even a child with him?* |
@@ -191,7 +191,7 @@ Narration has no speaker label. MC’s silent thoughts are italicized. Spoken di
 | wallet:13 | But I needed that cash to pay for the ride to Lola’s house. | But I needed that cash to pay for the ride to Lola’s house. |
 | wallet:14 | Through the windshield, I can see the road toward town. | Through the windshield, I can see the road toward town. |
 | wallet:15 | The nearest ATM is in town, too far to walk with my bag. Lola’s house is the other way. | The nearest ATM is in town, too far to walk with my bag. Lola’s house is the other way. |
-| wallet:16 | **MC:** Just my luck. | **MC:** Napakamalas naman. |
+| wallet:16 | **MC:** Just my luck. | **MC:** Kinakarma naba ako. |
 | wallet:17 | I hold onto my bag and try to think of what to do. | I hold onto my bag and try to think of what to do. |
 | wallet:18 | Then I remember that some buses pass through Santiago Street, near Lola’s house. | Then I remember that some buses pass through Santiago Street, near Lola’s house. |
 | wallet:19 | *Maybe this one does. I should ask.* | *Maybe this one does. I should ask.* |
@@ -219,7 +219,7 @@ Narration has no speaker label. MC’s silent thoughts are italicized. Spoken di
 | driver:10 | **MC:** Is there an extra fare? Because— | **MC:** May dagdag po ba? Kasi— |
 | driver:11 | **Driver:** Take a seat. I won’t charge you extra. | **Driver:** Upo ka na. Hindi na kita sisingilin. |
 | driver:12 | Before I can explain, he points toward where I fell. | Before I can explain, he points toward where I fell. |
-| driver:13 | **Driver:** I saw someone bump into you. Did you lose something? | **Driver:** Nakita kong nabangga ka. May nawala? |
+| driver:13 | **Driver:** I saw someone bump into you. Did you lose something? | **Driver:** Nakita kong may nakabangga sayo. May nawala? |
 | driver:14 | **MC:** My wallet, sir. | **MC:** Wallet ko po. |
 | driver:15 | The driver sighs. | The driver sighs. |
 | driver:16 | **Driver:** All right. I’ll drop you off at Santiago. | **Driver:** Hay. Sige. Sa Santiago kita ibababa. |
@@ -245,8 +245,8 @@ Narration has no speaker label. MC’s silent thoughts are italicized. Spoken di
 
 | Line / direction | English | Taglish |
 |---|---|---|
-| hill:0 | **MC:** Here, please. Thank you! | **MC:** Dito na po. Thank you! |
-| hill:1 | **Driver:** Take care. | **Driver:** Ingat. |
+| hill:0 | **MC:** Just here, please. Thank you! | **MC:** Dito na po. Thank you! |
+| hill:1 | **Driver:** Take care. | **Driver:** Ingat ka ah. |
 | hill:2 | I wait until the bus has gone. Then I turn toward the hill. | I wait until the bus has gone. Then I turn toward the hill. |
 | hill:3 | It looks smaller. | It looks smaller. |
 | hill:4 | My legs disagree almost immediately. | My legs disagree almost immediately. |
@@ -313,7 +313,7 @@ Narration has no speaker label. MC’s silent thoughts are italicized. Spoken di
 | hillHold:0 | I look down at my shoes. One breath. Then another. | I look down at my shoes. One breath. Then another. |
 | hillHold:1 | *Not here.* | *Not here.* |
 | hillHold:2 | *I want to get inside first. Put my things down. Have a door I can close.* | *I want to get inside first. Put my things down. Have a door I can close.* |
-| hillHold:3 | **MC:** Just a little farther. | **MC:** Konti na lang. |
+| hillHold:3 | **MC:** Just a little farther. | **MC:** malapit na. |
 | hillHold:4 | I loosen my grip on the handle and keep walking. | I loosen my grip on the handle and keep walking. |
 
 **Next:** otherDoor.
@@ -338,7 +338,7 @@ Narration has no speaker label. MC’s silent thoughts are italicized. Spoken di
 | otherDoor:9 | *What if he opens the door?* | *What if he opens the door?* |
 | otherDoor:10 | *What if he looks happy to see me?* | *What if he looks happy to see me?* |
 | otherDoor:11 | *Somehow, I haven’t prepared for that either.* | *Somehow, I haven’t prepared for that either.* |
-| otherDoor:12 | **MC:** I can say hello. | **MC:** Kaya ko namang mag-hello. |
+| otherDoor:12 | **MC:** I can say hello. | **MC:** Kaya ko namang mag-hello lang. |
 | otherDoor:13 | **MC:** In theory. | **MC:** In theory. |
 
 ### Player choices
@@ -503,12 +503,12 @@ Narration has no speaker label. MC’s silent thoughts are italicized. Spoken di
 
 | Line / direction | English | Taglish |
 |---|---|---|
-| rNormal:0 | **MC:** Hey, Rowan. It’s good to see you. | **MC:** Hey, Rowan. Buti nakita kita. |
+| rNormal:0 | **MC:** Hey, Rowan. It’s good to see you. | **MC:** Hey, Rowan. Musta na. |
 | rNormal:1 — Expression: smile | I manage a smile. | I manage a smile. |
-| rNormal:2 | **Rowan:** Hey. You’re— | **Rowan:** Hey. You’re— |
+| rNormal:2 | **Rowan:** Hey. You’re— | **Rowan:** Oy. You’re— |
 | rNormal:3 | He lets out a breath. | He lets out a breath. |
 | rNormal:4 | **Rowan:** Sorry. Hi. | **Rowan:** Sorry. Hi. |
-| rNormal:5 | **Rowan:** It’s really good to see you. | **Rowan:** Ang saya lang na nandito ka na. |
+| rNormal:5 | **Rowan:** It’s really good to see you. | **Rowan:** Kamusta kana. |
 
 **Next:** rHugAsk.
 
@@ -522,13 +522,13 @@ Narration has no speaker label. MC’s silent thoughts are italicized. Spoken di
 
 | Line / direction | English | Taglish |
 |---|---|---|
-| rExcited:0 | **MC:** Rowan! I missed you. | **MC:** Rowan! Na-miss kita. |
+| rExcited:0 | **MC:** Rowan! I missed you. | **MC:** Rowan!!! Na-miss kita. |
 | rExcited:1 — Expression: smile | That comes out much more easily than I expected. | That comes out much more easily than I expected. |
 | rExcited:2 | His face lights up. | His face lights up. |
-| rExcited:3 | **Rowan:** I missed you too. | **Rowan:** Na-miss din kita. |
-| rExcited:4 | **Rowan:** You could’ve warned me. I would’ve— | **Rowan:** Nagpasabi ka sana. I would’ve— |
+| rExcited:3 | **Rowan:** I missed you too. | **Rowan:** Na-miss din kita sobra. |
+| rExcited:4 | **Rowan:** You could’ve warned me. I would’ve— | **Rowan:** Nagsabi ka sana bigla bigla ka naman. I would’ve— |
 | rExcited:5 | He glances at the tools. | He glances at the tools. |
-| rExcited:6 — Expression: playful | **Rowan:** Put the hammer away, at least. | **Rowan:** Naitabi ko man lang ’yung martilyo. |
+| rExcited:6 — Expression: playful | **Rowan:** Oh wait i'll put the hammer away, at least. | **Rowan:** Ay wait maitabi muna ’yung martilyo. |
 
 **Next:** rHugAsk.
 
@@ -542,12 +542,12 @@ Narration has no speaker label. MC’s silent thoughts are italicized. Spoken di
 
 | Line / direction | English | Taglish |
 |---|---|---|
-| rShocked:0 | **MC:** Rowan? You’re still alive? | **MC:** Rowan? Buhay ka pa? |
+| rShocked:0 | **MC:** Rowan? You’re still alive? | **MC:** Uy, Rowan? Buhay ka pa? |
 | rShocked:1 — Expression: playful | *There were so many better things I could have said.* | *There were so many better things I could have said.* |
 | rShocked:2 | He looks down at himself. | He looks down at himself. |
 | rShocked:3 | **Rowan:** Were you expecting a ghost? | **Rowan:** Multo ba ’yung ine-expect mo? |
-| rShocked:4 | **MC:** No. I don’t know why I said that. | **MC:** Hindi. Ewan ko kung bakit ’yon ang nasabi ko. |
-| rShocked:5 | **Rowan:** I’m choosing to take that as “nice to see you.” | **Rowan:** I’ll take that as “nice to see you” na lang. |
+| rShocked:4 | **MC:** No. I don’t know why I said that. | **MC:**  Ewan ko kung bakit ’yon ang nasabi ko. |
+| rShocked:5 | **Rowan:** I’ll take that as “nice to see you.” | **Rowan:** I’ll take that as “nice to see you” na lang. |
 
 **Next:** rHugAsk.
 
@@ -564,7 +564,7 @@ Narration has no speaker label. MC’s silent thoughts are italicized. Spoken di
 | rOblivious:0 — Expression: surprised | **MC:** Sorry. Who are you? | **MC:** Sorry. Sino ka? |
 | rOblivious:1 | *I know it’s him. I just need another second.* | *I know it’s him. I just need another second.* |
 | rOblivious:2 — Expression: concerned | His smile falters. | His smile falters. |
-| rOblivious:3 | **Rowan:** It’s Rowan. | **Rowan:** Si Rowan ’to. |
+| rOblivious:3 | **Rowan:** It’s Rowan. | **Rowan:**  Rowan ’to. |
 | rOblivious:4 | **MC:** I know. Sorry. That was a terrible joke. | **MC:** Alam ko. Sorry, ang pangit ng joke. |
 | rOblivious:5 — Expression: neutral | He watches me for a moment. | He watches me for a moment. |
 | rOblivious:6 | **Rowan:** Don’t do that. I nearly believed you. | **Rowan:** Huwag naman gano’n. Muntik na akong maniwala. |

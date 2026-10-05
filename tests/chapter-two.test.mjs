@@ -20,11 +20,15 @@ test('Third ending builds clouds individually and restores the same density',()=
  assert.equal(permanentCloudCount(nightmareProgress(structuredClone(state),3).endingElapsed),14);
 });
 
-test('Third clear starts eight-second ending, locks rapid input and resumes saved time',()=>{
+test('Tenth clear starts eight-second ending, locks rapid input and resumes saved time',()=>{
  const s=freshState();s.flags.rowanAffection=9;const p=nightmareProgress(s,3);
  for(let i=0;i<4;i++)tickNightmare(p,3,1);
  assert.equal(clearThought(p,3,0),true);assert.equal(clearThought(p,3,0),false);
- clearThought(p,3,1);clearThought(p,3,2);assert.equal(p.endingElapsed,0);
+ clearThought(p,3,1);clearThought(p,3,2);assert.equal(p.endingElapsed,undefined);
+ for(let i=0;i<10;i++)tickNightmare(p,3,1);
+ assert.equal(nightmareOutcome(p,3),null);
+ for(let id=3;id<9;id++)clearThought(p,3,id);
+ assert.equal(p.endingElapsed,undefined);clearThought(p,3,9);assert.equal(p.endingElapsed,0);
  for(let i=0;i<100;i++)assert.equal(clearThought(p,3,i%7),false);
  for(let i=0;i<2;i++)assert.equal(tickNightmare(p,3,1),false);
  assert.equal(p.endingElapsed,2);
@@ -36,9 +40,10 @@ test('Third clear starts eight-second ending, locks rapid input and resumes save
  assert.equal(restored.flags.rowanAffection,9);
 });
 
-test('Legacy third-wave saves enter the full ending without resetting other flags',()=>{
+test('Legacy third-wave saves preserve clears and an ending already in progress',()=>{
  const s=freshState();s.flags.nightmareWave3={elapsed:12,cleared:[0,1,2]};s.flags.seviDescription='rival';
- assert.equal(nightmareProgress(s,3).endingElapsed,0);assert.equal(s.flags.seviDescription,'rival');
+ assert.equal(nightmareProgress(s,3).endingElapsed,undefined);assert.equal(s.flags.seviDescription,'rival');
+ s.flags.nightmareWave3.endingElapsed=4;assert.equal(nightmareProgress(s,3).endingElapsed,4);
  for(const wave of [1,2]){const p=nightmareProgress(s,wave);tickNightmare(p,wave,1);assert.equal(p.endingElapsed,undefined);}
 });
 
@@ -55,7 +60,7 @@ test('Nightmare settings remain continuous and waking passes through darkness',(
  assert.deepEqual(s.flags,flags);assert.equal(s.seviSceneRevision,3);assert.ok(validSave(s,story));
 });
 
-test('Every Chapter Two choice reaches the partial ending with boundaries and saves intact',()=>{
+test('Every nightmare and recovery choice reaches the afternoon bridge with boundaries and saves intact',()=>{
  const seen=new Set();let endings=0;
  function walk(s,depth=0){
   assert.ok(depth<40);seen.add(s.node);const n=story[s.node];
@@ -63,7 +68,7 @@ test('Every Chapter Two choice reaches the partial ending with boundaries and sa
    s.line=i;assert.ok(validSave(structuredClone(s),story),s.node);assert.doesNotMatch(interpolate(l.text,s),/\{name\}/);
    for(const layer of openingAudioCue(n,s).layers)assert.ok(tracks[layer.key]);
   }
-  if(n.ending){assert.equal(s.node,'c2End');assert.equal(s.flags.rowanAffection,6);assert.equal(s.milestone,'Trusted');endings++;return;}
+  if(s.node==='c2End'){assert.equal(n.next,'c2Lunch');assert.equal(s.flags.rowanAffection,6);assert.equal(s.milestone,'Trusted');endings++;return;}
   if(n.choices)for(const choice of n.choices){const next=structuredClone(s);applyChoice(next,choice);walk(next,depth+1);}
   else {s.node=n.next;s.line=0;walk(s,depth+1);}
  }
@@ -82,7 +87,7 @@ test('Nightmare progress resumes, requires interaction, and cannot change affini
   const restored=structuredClone(s);assert.deepEqual(nightmareProgress(restored,wave),p);
   let finished=false;for(let i=0;i<waveDurations[wave];i++)finished=tickNightmare(p,wave,1);
   assert.equal(finished,false);assert.equal(s.flags.rowanAffection,9);
-  for(let id=0;id<(wave===3?3:10);id++)clearThought(p,wave,id);
+  for(let id=0;id<10;id++)clearThought(p,wave,id);
   for(let i=0;i<20;i++)tickNightmare(p,wave,1);
   assert.equal(nightmareOutcome(p,wave),wave===3?'overwhelmed':'clear');
   if(wave===3)assert.equal(clearThought(p,wave,9),false);

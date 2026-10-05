@@ -2,9 +2,17 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {existsSync} from 'node:fs';
 import {story} from '../src/story.js';
-import {openingAudioCue,menuAudioCue,tracks,createSoundtrackPlayer,createNightmareEndingAudio} from '../src/opening-audio.js';
+import {openingAudioCue,menuAudioCue,tracks,createSoundtrackPlayer,createNightmareEndingAudio,nightmareAudioContinues} from '../src/opening-audio.js';
 const at=(node,fragment)=>openingAudioCue(story[node],{node,line:fragment?story[node].lines.findIndex(l=>l.text.includes(fragment)):0});
 const keys=c=>c.layers.map(l=>l.key);
+
+test('Eerie audio carries through calling and blackout, then normal music returns at waking',()=>{
+ for(const id of ['c2Wave3','c2Calling','c2Blackout'])assert.equal(nightmareAudioContinues(id),true);
+ for(const id of ['c2Wave1','c2Wave2','c2Wake','c2WakeChoice',undefined])assert.equal(nightmareAudioContinues(id),false);
+ for(const id of ['c2Calling','c2Blackout'])assert.deepEqual(keys(at(id)),[]);
+ for(const id of ['c2Wake','c2WakeChoice'])assert.deepEqual(keys(at(id)),['back-together','outdoors']);
+ assert.equal(at('c2Okay').layers[0].key,'letters');
+});
 
 test('Ending silence belongs only to third wave',()=>{
  const state={flags:{nightmareWave3:{endingElapsed:1}}};
@@ -22,7 +30,8 @@ test('Third-wave audio respects mute, starts impact once, pauses and disposes',(
  const muted=createNightmareEndingAudio({enabled:false,makeContext:()=>{throw Error('Muted must not create audio');},duck:()=>ducked++});
  muted.silence();muted.surge();muted.dispose();assert.equal(ducked,2);
  const audio=createNightmareEndingAudio({enabled:true,volume:.2,makeContext:()=>context});
- assert.equal(gain.value,.096);audio.surge();audio.surge();assert.equal(sources.length,2);
+ assert.equal(gain.value,.096);audio.surge();audio.surge(false);audio.surge(false);assert.equal(sources.length,2);
+ audio.volume(.5);assert.equal(gain.value,.24);audio.volume(0);assert.equal(gain.value,0);
  audio.pause(true);assert.equal(context.state,'suspended');audio.pause(false);assert.equal(context.state,'running');
  audio.pause(true);audio.dispose();audio.dispose();audio.surge();assert.equal(stops,2);assert.equal(closed,1);
  const restored=createNightmareEndingAudio({enabled:true,makeContext:()=>context});restored.surge(false);assert.equal(sources.length,3);restored.pause(true);restored.dispose();

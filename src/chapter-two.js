@@ -554,7 +554,7 @@ There is no reason I have to stand up this second.
 c2End:room('The rest of today',`
 Thought|Okay, Saint Luis.
 Thought|Let’s see what the rest of today looks like.
-`,{place:'c2-rest',music:'back-together',ending:true,openingEnd:true,cgCue:{key:'c2-rest',from:'Okay, Saint Luis.'}})
+`,{place:'c2-rest',music:'back-together',next:'c2Lunch',cgCue:{key:'c2-rest',from:'Okay, Saint Luis.'}})
 };
 
 // Conditional dialogue follows earlier authored choices; it never awards attraction.

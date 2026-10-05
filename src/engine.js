@@ -1,3 +1,4 @@
+import {lineVisible} from './line-visibility.js';
 import {pronounForms,validCustomPronouns} from '../assets/player-identity.js';
 import {gardenAffection,validGarden} from '../assets/garden-game.js';
 export const VERSION = 1;
@@ -16,7 +17,7 @@ export const promises = [
   'Leave town together someday.'
 ];
 export function freshState(name = 'Alex', pronouns = 'they', profile = {}) {
-  return { version: VERSION, storyRevision: 6, seviSceneRevision: 3, name: name.trim().slice(0, 24) || 'Alex', pronouns,
+  return { version: VERSION, storyRevision: 6, seviSceneRevision: 3, carpentryRevision: 1, name: name.trim().slice(0, 24) || 'Alex', pronouns,
     gender:profile.gender||({he:'male',she:'female',they:'non-binary'}[pronouns]||'custom'),portrait:profile.portrait==='none'?'none':'silhouette',
     ...(pronouns==='custom'&&validCustomPronouns(profile.customPronouns)?{customPronouns:{...profile.customPronouns}}:{}),
     node: 'journey', line: 0, flags: {letterTiming:'later'}, history: [], chat: [], chatTurns: 0,
@@ -53,7 +54,7 @@ export function validSave(s, story) {
     Number.isInteger(s.chatTurns) && s.chatTurns >= 0 && s.chatTurns <= 4);
 }
 export function visibleLines(node, state) {
-  return node.lines.filter(line => !line.if || state.flags[line.if[0]] === line.if[1]);
+  return node.lines.filter(line => lineVisible(line,state.flags));
 }
 export function chatContext(s) {
   return {chapter: 1, milestone: s.milestone, name: s.name, pronouns:s.pronouns,...(s.pronouns==='custom'?{customPronouns:s.customPronouns}:{}),
@@ -187,6 +188,24 @@ function migrateRevisionFive(s,story){
 
 // Revision six keeps old saves on their selected route through the revised scenes.
 export function migrateStorySave(s,story){
+ if(s?.version===VERSION&&s.flags&&Array.isArray(s.history)&&!s.carpentryRevision){
+  const changed=id=>/^aTopic\d+_rowan_start$/.test(id);
+  if(changed(s.node)&&story[s.node]){
+   const old=s.history.find(h=>h.id===s.node+':'+s.line);
+   const index=old?story[s.node].lines.findIndex(l=>interpolate(l.text,s)===old.text):-1;
+   s.line=index>=0?index:Math.min(s.line,story[s.node].lines.length-1);
+  }
+  s.history=s.history.map(h=>{
+   const cut=h.id.lastIndexOf(':'),id=h.id.slice(0,cut);
+   if(!changed(id)&&!h.id.startsWith('letter:'))return h;
+   if(h.id.startsWith('letter:'))return {...h,id:'carpentryV0:'+h.id};
+   const index=story[id]?.lines.findIndex(l=>interpolate(l.text,s)===h.text)??-1;
+   return {...h,id:index>=0?id+':'+index:'carpentryV0:'+h.id};
+  });
+  if(s.node==='c2End')s.completed=false;
+  s.carpentryRevision=1;
+ }
+
  if(!s || s.version!==VERSION || !Array.isArray(s.history) || !s.flags)return s;
  if((s.seviSceneRevision||0)<3){
   const removed=new Set(['c2TaskList','c2Responsibility','c2Lead','c2Support','c2Withdraw']);

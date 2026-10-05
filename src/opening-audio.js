@@ -1,3 +1,4 @@
+import {lineVisible} from './line-visibility.js';
 // Approved soundtrack. Cues follow reading position, not elapsed time.
 const base='assets/audio/soundtrack/';
 export const tracks={
@@ -22,9 +23,15 @@ const cue=(keys,fade=3)=>({layers:keys.map(key=>typeof key==='string'?{key}:key)
 export const menuAudioCue=()=>cue(['menu'],2);
 export function openingAudioCue(node,state){
  if(!node?.opening)return cue([], .35);
+ if(node.afternoon){
+  const layers=node.music?[{key:node.music,level:state.node==='c2TVNews'?.12:state.node==='c2Family'?.18:.26}]:[];
+  layers.push({key:'outdoors',level:node.soloGarden||['c2WaitGarden','c2GardenAfter','c2WaitRest'].includes(state.node)?.18:.07});
+  return cue(layers,2.5);
+ }
  if(node.chapterTwo){
   if(node.nightmare===3&&Number.isFinite(state.flags?.nightmareWave3?.endingElapsed))return cue([],.2);
-  const layers=node.music?[{key:node.music,level:.24}]:[];
+  const music=node.music||(node.place==='d2-bedroom-morning'?'back-together':null);
+  const layers=music?[{key:music,level:.24}]:[];
   if(!node.place.startsWith('c2-')||node.place==='c2-rest')layers.push({key:'outdoors',level:.08});
   return cue(layers,2);
  }
@@ -38,7 +45,7 @@ export function openingAudioCue(node,state){
  if(node.continuation){
   const key=node.music==='reunion'?'reunion-new':node.music;
   const layers=key?[key]:[];
-  const lines=node.lines.filter(l=>!l.if||state.flags?.[l.if[0]]===l.if[1]);
+  const lines=node.lines.filter(l=>lineVisible(l,state.flags));
   const text=lines[state.line]?.text||'';
   if(node.time==='night')layers.push('rain');
   else if(node.childhood||node.place!=='living')layers.push({key:'outdoors',level:.18});
@@ -138,7 +145,8 @@ export function setOpeningAudio(cue,volume,onError){
  player??=createSoundtrackPlayer({onError});player.update(cue,volume);
 }
 
-// Owned only by wave three. A short noise impact followed by a quiet pulsing drone.
+export const nightmareAudioContinues=id=>['c2Wave3','c2Calling','c2Blackout'].includes(id);
+// Begins in wave three and continues until waking. The app owns its lifetime.
 export function createNightmareEndingAudio({enabled=false,volume=.35,duck=()=>{},makeContext=()=>new (globalThis.AudioContext||globalThis.webkitAudioContext)()}={}){
  let context,master,disposed=false,started=false,held=false,closeTimer;
  const sources=[];
@@ -156,11 +164,17 @@ export function createNightmareEndingAudio({enabled=false,volume=.35,duck=()=>{}
   for(let i=0;i<data.length;i++){
    const t=i/context.sampleRate;noise=(noise+(Math.random()*2-1)*.06)/1.06;
    const beat=t%1,pulse=Math.exp(-beat*32)+.55*Math.exp(-Math.max(0,beat-.19)*40)*(beat>=.19);
-   data[i]=impact?(noise*2+Math.sin(2*Math.PI*(72*t-18*t*t))*.5)*Math.exp(-t*6)*Math.min(1,t/.008):noise*.35+Math.sin(2*Math.PI*43*t)*(.08+pulse*.25);
+   // Detuned minor/cluster tones sit above the sub-bass so laptop speakers carry
+   // the eerie music too. Slow beating creates movement without a loud jump.
+   const pad=(Math.sin(2*Math.PI*146.75*t)+Math.sin(2*Math.PI*147.5*t)+Math.sin(2*Math.PI*174.5*t)+Math.sin(2*Math.PI*207.75*t))*.105;
+   const bell=Math.sin(2*Math.PI*(t<2?587.25:622.25)*t)*Math.exp(-(t%2)*2.6)*.18;
+   const edge=Math.min(1,t/.035,(duration-t)/.035);
+   data[i]=impact?(noise*2+Math.sin(2*Math.PI*(72*t-18*t*t))*.5)*Math.exp(-t*6)*Math.min(1,t/.008):(pad*(.8+.2*Math.cos(Math.PI*t))+bell+noise*.2+Math.sin(2*Math.PI*86*t)*(.08+pulse*.2))*edge;
   }
   const source=context.createBufferSource();source.buffer=buffer;source.loop=!impact;source.connect(master);sources.push(source);source.start();
  }
  return {
+  volume(value){if(master&&!disposed)master.gain.value=Math.max(0,Math.min(1,Number(value)||0))*.48;},
   silence(){if(!disposed)duck();},
   surge(impact=true){
    if(disposed||started)return;started=true;duck();if(!context)return;

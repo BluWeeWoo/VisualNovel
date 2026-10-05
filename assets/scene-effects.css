@@ -32,3 +32,12 @@
 .nightmare-screen.still .scene-atmosphere{display:none}
 .nightmare-screen.fx-hidden *,.nightmare-screen.fx-hidden *:before,.nightmare-screen.fx-hidden *:after{animation-play-state:paused!important}
 .thought-field{z-index:2}
+
+/* Dialogue smoke stays outside a clear oval around the CG. Feather every
+   texture edge so drifting layers never reveal their rectangular bounds. */
+.game-screen .scene-atmosphere.dream{mask-image:radial-gradient(ellipse at 50% 44%,transparent 43%,#0008 68%,#000 88%)}
+.game-screen .scene-atmosphere.dream:before,.game-screen .scene-atmosphere.dream:after{content:none}
+.game-screen .dream-smoke{top:-16%;bottom:-16%;width:32%;border-radius:50%;mask-image:radial-gradient(ellipse at 45% 22%,#000 12%,#000c 32%,transparent 62%),radial-gradient(ellipse at 50% 65%,#000 15%,#000b 35%,transparent 65%);background-image:radial-gradient(ellipse at 42% 30%,#0e0b17a6,transparent 65%),url('dream-smoke.svg');background-size:100% 100%;}
+.game-screen .smoke-left{left:-12%}
+.game-screen .smoke-right{right:-12%}
+.game-screen .smoke-low{top:auto;bottom:-28%;left:-8%;width:116%;height:50%;border-radius:50%;mask-image:radial-gradient(ellipse at 20% 55%,#000 8%,#000a 30%,transparent 59%),radial-gradient(ellipse at 80% 55%,#000 8%,#000a 30%,transparent 59%);background-repeat:no-repeat;background-size:100% 100%}

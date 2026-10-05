@@ -2,9 +2,9 @@ import http from 'node:http';
 import {readFile} from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
-import {buildProviderRequest, guardReply, normalizeContext} from './src/provider-policy.js';
+import {buildProviderRequest, guardReply, normalizeContext} from '../src/provider-policy.js';
 
-const root = path.dirname(fileURLToPath(import.meta.url));
+const root = path.resolve('.');
 // Optional local configuration; never served by the static route.
 try {
   const env = await readFile(path.join(root,'.env'),'utf8');
@@ -55,7 +55,7 @@ export const server = http.createServer(async(req,res)=>{
   try {pathname=decodeURIComponent(url.pathname);} catch{return send(res,400,{error:'Invalid path'});}
   const relative=pathname==='/'?'index.html':pathname.slice(1);
   const publicFile=relative==='index.html'||relative==='styles.css'||/^src\/(app|chapter-two-afternoon|carpentry-setup|line-visibility|chapter-two|after-garden|phone-ui|morning-phone|day-two|engine|story|continuation|opening|opening-audio|chat|audio|characters|staging)\.js$/.test(relative)||/^assets\/[a-zA-Z0-9_./-]+$/.test(relative);
-  const target=path.resolve(root,relative);
+  const target=path.resolve(root,relative==='index.html'?'tmp/afternoon-preview.html':relative);
   if(!publicFile || !target.startsWith(root+path.sep) || relative.split('/').includes('..')) return send(res,404,{error:'Not found'});
   try {const bytes=await readFile(target);res.writeHead(200,{'Content-Type':mime[path.extname(target)]||'application/octet-stream'});res.end(req.method==='HEAD'?undefined:bytes);}
   catch {send(res,404,{error:'Not found'});}

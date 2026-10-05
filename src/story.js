@@ -1,3 +1,5 @@
+import {chapterTwoAfternoon} from './chapter-two-afternoon.js';
+import {repairedDoor,apprenticeshipConversation} from './carpentry-setup.js';
 import {chapterTwo} from './chapter-two.js';
 import {afterGarden} from './after-garden.js';
 import {continuation} from './continuation.js';
@@ -20,7 +22,9 @@ delete story.recognition.ending; delete story.recognition.openingEnd; story.reco
 Object.assign(story, afterGarden);
 delete story.gAfter.ending; delete story.gAfter.openingEnd; story.gAfter.next='aWater';
 
-Object.assign(story, chapterTwo);
+Object.assign(story, chapterTwo, chapterTwoAfternoon);
+story.rCatchup.lines.push(...repairedDoor);
+for(const [id,node] of Object.entries(story))if(/^aTopic\d+_rowan_start$/.test(id))node.lines=apprenticeshipConversation.map(l=>({...l}));
 // Chapter menu handles the transition; preserve Chapter One's ending and old saves.
 story.aEnd.next='c2Start';
 
