@@ -14,7 +14,7 @@ import {freshState, interpolate, applyChoice, validSave, visibleLines, promises,
 import {spriteAt, cgAt} from './staging.js';
 import {scriptedReply, requestReply, suggestions} from './chat.js';
 import {setAudio} from './audio.js';
-import {setOpeningAudio, openingAudioCue, menuAudioCue} from './opening-audio.js';
+import {setOpeningAudio, openingAudioCue, menuAudioCue, createNightmareEndingAudio} from './opening-audio.js';
 import {desktopMenu} from '../assets/desktop-menu.js';
 import {galleryUnlocks,mountGallery} from '../assets/love-interests.js';
 import {saveJournal,journalPages} from '../assets/save-journal.js';
@@ -121,8 +121,8 @@ function title(){
   bind();
 }
 function render(){if(screen==='title'){sceneEffects.stop();gardenCleanup?.();gardenCleanup=null;}stopTyping();enterAudio();document.documentElement.classList.toggle('reduced-motion',!settings.motion);if(screen==='title')title();else renderGame();}
-// Keep visual DOM alive across dialogue renders. Decode replacements before fading
-// them in, and discard stale loads if the player advances quickly.
+// Keep visual DOM alive across dialogue renders. Decode replacements first;
+// expression changes stay opaque, while scene artwork can fade in.
 async function updateVisual(host,html,key){
   if(host.dataset.visualKey===key)return;
   host.dataset.visualKey=key;
@@ -135,7 +135,21 @@ async function updateVisual(host,html,key){
   }
   try{await Promise.all(images.map(image=>image.decode()));}catch{if(host._revision===revision)host.dataset.visualKey='';return;}
   if(host._revision!==revision||!host.isConnected)return;
-  const previous=[...host.children];host.append(layer);
+  const previous=[...host.children];
+  const current=previous.at(-1);
+  const currentSprite=current?.querySelector('.character-stage');
+  const nextSprite=layer.querySelector('.character-stage');
+  if(currentSprite&&nextSprite){
+    // Crossfading two transparent sprites makes even their shared silhouette
+    // briefly translucent. Swap the decoded expression on the existing image.
+    const currentImage=currentSprite.querySelector('img'),nextImage=nextSprite.querySelector('img');
+    current.getAnimations().forEach(animation=>animation.cancel());
+    for(const name of ['class','data-expression','data-pose'])currentSprite.setAttribute(name,nextSprite.getAttribute(name));
+    for(const name of ['src','alt','width','height'])currentImage.setAttribute(name,nextImage.getAttribute(name));
+    previous.filter(old=>old!==current).forEach(old=>old.remove());
+    return;
+  }
+  host.append(layer);
   const motion=settings.motion&&!matchMedia('(prefers-reduced-motion: reduce)').matches&&(typeof modal==='undefined'||!modal);
   const entering=layer.querySelectorAll('.character-stage').length>0&&!previous.some(old=>old.querySelectorAll('.character-stage').length);
   if(motion&&entering&&!previous.length)layer.animate([{opacity:0,transform:'translateY(5px)'},{opacity:1,transform:'translateY(0)'}],{duration:420,easing:'ease-out'});
@@ -172,7 +186,8 @@ function renderGame(){
   const nightmareNode=story[state.node];
   if(nightmareNode.nightmare){sceneEffects.stop();
     enterAudio();
-    gardenCleanup=mountNightmare(app,state,{wave:nightmareNode.nightmare,motion:settings.motion,save:autoSave,done:()=>{enter(nightmareNode.next);renderGame();},menu:()=>{screen='title';render();}});
+    const endingAudio=nightmareNode.nightmare===3?createNightmareEndingAudio({enabled:settings.sound&&audioUnlocked,volume:settings.volume,duck:()=>setOpeningAudio({layers:[],fade:.2},settings.volume)}):undefined;
+    gardenCleanup=mountNightmare(app,state,{wave:nightmareNode.nightmare,motion:settings.motion,endingAudio,save:autoSave,done:()=>{enter(nightmareNode.next);renderGame();},menu:()=>{screen='title';render();}});
     return;
   }
   if(story[state.node].minigame){sceneEffects.stop();

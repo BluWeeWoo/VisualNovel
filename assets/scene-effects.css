@@ -1,6 +1,16 @@
 .scene-atmosphere{position:absolute;inset:0;z-index:-1;pointer-events:none;overflow:hidden;contain:paint}
 .scene-atmosphere.dream:before,.scene-atmosphere.dream:after{content:"";position:absolute;inset:-4%;background:radial-gradient(ellipse at center,transparent 48%,#27203455 85%,#21172c99);filter:blur(10px);animation:dream-edge 14s ease-in-out infinite alternate}
 .scene-atmosphere.dream:after{background:radial-gradient(ellipse at 0% 30%,#75618040,transparent 38%),radial-gradient(ellipse at 100% 65%,#56456450,transparent 35%);animation-duration:12s;animation-direction:alternate-reverse}
+/* Static, textured smoke is composited in moving layers rather than repainting
+   a full-screen turbulence filter every frame. The centre stays unobscured. */
+.dream-smoke{position:absolute;top:-14%;bottom:-14%;width:37%;pointer-events:none;background:url('dream-smoke.svg') center/100% 100% no-repeat;mask-image:linear-gradient(90deg,#000 10%,#000c 43%,transparent 100%);transform-origin:30% 60%;opacity:.7;will-change:transform,opacity;animation:smoke-curl-left 17s ease-in-out infinite alternate}
+.smoke-left{left:-8%;animation-delay:-5s}
+.smoke-right{right:-8%;rotate:180deg;animation-name:smoke-curl-right;animation-duration:21s;animation-delay:-13s}
+.smoke-low{top:auto;bottom:-21%;left:-8%;width:116%;height:48%;opacity:.35;mask-image:linear-gradient(0deg,#000 0%,#0008 35%,transparent 88%);background-size:65% 180%;background-repeat:repeat-x;animation:smoke-curl-low 24s ease-in-out -9s infinite alternate}
+.scene-atmosphere.intense .dream-smoke{animation-duration:12s}.scene-atmosphere.intense .smoke-right{animation-duration:15s}.scene-atmosphere.intense .smoke-low{animation-duration:19s}
+@keyframes smoke-curl-left{0%{transform:translate3d(-2%,3%,0) rotate(-2deg) scale(1.02);opacity:.57}50%{transform:translate3d(4%,-2%,0) rotate(1deg) scale(1.08);opacity:.8}100%{transform:translate3d(8%,-7%,0) rotate(3deg) scale(1.03);opacity:.64}}
+@keyframes smoke-curl-right{0%{transform:translate3d(3%,-4%,0) rotate(2deg) scale(1.07);opacity:.75}50%{transform:translate3d(-3%,1%,0) rotate(-1deg) scale(1.02);opacity:.55}100%{transform:translate3d(-7%,6%,0) rotate(-3deg) scale(1.09);opacity:.78}}
+@keyframes smoke-curl-low{0%{transform:translate3d(-3%,6%,0) scale(1.02);opacity:.28}50%{transform:translate3d(0,-3%,0) scale(1.06);opacity:.43}100%{transform:translate3d(3%,-8%,0) scale(1.02);opacity:.32}}
 .scene-atmosphere.intense:before{animation-duration:8s}.scene-atmosphere.sun-wash{background:#f4cf82;opacity:0}
 .scene-atmosphere.ember{background:linear-gradient(transparent 65%,#ef9c2510);animation:ember-light 3s ease-in-out infinite alternate}
 .scene-atmosphere i{position:absolute;left:calc(8% + var(--i)*15%);top:12%;animation:summer-dust calc(14s + var(--i)*.8s) linear infinite;animation-delay:calc(var(--i)*-3s);width:3px;height:3px;border-radius:50%;background:#fff2c5;opacity:.35}
@@ -13,6 +23,7 @@
 .game-screen:has(.scene-atmosphere.bus) .scene-backdrops{animation:bus-idle 6s ease-in-out infinite}
 @keyframes bus-idle{0%,100%{transform:translate(0)}50%{transform:translate(1px,1px)}}
 .nightmare-screen.paused .scene-atmosphere:before,.nightmare-screen.paused .scene-atmosphere:after{animation-play-state:paused}
+.nightmare-screen.paused .dream-smoke{animation-play-state:paused}
 .nightmare-screen .scene-atmosphere{z-index:1}.nightmare-screen .scene-atmosphere.intense:before{animation-duration:6s}
 .game-screen button{transition:background-color 120ms,box-shadow 120ms,translate 120ms}.game-screen button:active{translate:0 1px}
 .reduced-motion .scene-atmosphere{display:none}.reduced-motion .game-screen button{transition:none;translate:none}

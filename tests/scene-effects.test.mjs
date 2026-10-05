@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {sceneCue,createSceneEffects,motions} from '../assets/scene-effects.js';
+import {sceneCue,createSceneEffects,motions,dreamSmoke} from '../assets/scene-effects.js';
 import {story} from '../src/story.js';
 test('Authored action cues exist in the script and never mutate it',()=>{
  const before=JSON.stringify(story),found=new Set();
@@ -24,5 +24,31 @@ test('Effects cancel on exit, never replay after a menu, and suppress loaded rea
  fx.update({...context,run:2,suppress:true});assert.equal(starts,2);
  fx.update({...context,run:3,motion:false});assert.equal(starts,2);assert.equal(sounds,2);
  fx.dispose();
+ }finally{globalThis.document=prior;}
+});
+
+test('Nightmare smoke stays mounted between dialogue lines and stops with motion disabled',()=>{
+ const prior=globalThis.document,children=[];
+ globalThis.document={hidden:false,createElement:()=>({setAttribute(){},remove(){const i=children.indexOf(this);if(i>=0)children.splice(i,1);}})};
+ try{
+  const root={append:element=>children.push(element),querySelectorAll:()=>[]};
+  const fx=createSceneEffects();
+  const context={root,id:'c2Classroom',node:{place:'c2-school'},text:'',run:1,line:0,motion:true,sound:false};
+  fx.update(context);
+  assert.equal(children.length,1);
+  const overlay=children[0];
+  assert.equal(overlay.innerHTML,dreamSmoke());
+  assert.match(overlay.innerHTML,/smoke-left/);
+  assert.match(overlay.innerHTML,/smoke-right/);
+  assert.match(overlay.innerHTML,/smoke-low/);
+  fx.update({...context,line:1});
+  assert.equal(children[0],overlay);
+  fx.update({...context,line:2,motion:false});
+  assert.equal(children.length,0);
+  fx.update({...context,line:3});
+  assert.equal(children.length,1);
+  fx.update({...context,id:'c2Wake',node:{place:'c2-rest'},line:0});
+  assert.notEqual(children[0]?.innerHTML,dreamSmoke());
+  fx.dispose();assert.equal(children.length,0);
  }finally{globalThis.document=prior;}
 });

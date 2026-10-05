@@ -23,6 +23,7 @@ export const menuAudioCue=()=>cue(['menu'],2);
 export function openingAudioCue(node,state){
  if(!node?.opening)return cue([], .35);
  if(node.chapterTwo){
+  if(node.nightmare===3&&Number.isFinite(state.flags?.nightmareWave3?.endingElapsed))return cue([],.2);
   const layers=node.music?[{key:node.music,level:.24}]:[];
   if(!node.place.startsWith('c2-')||node.place==='c2-rest')layers.push({key:'outdoors',level:.08});
   return cue(layers,2);
@@ -135,4 +136,44 @@ let player;
 export function setOpeningAudio(cue,volume,onError){
  if(!player&&!cue.layers.length)return;
  player??=createSoundtrackPlayer({onError});player.update(cue,volume);
+}
+
+// Owned only by wave three. A short noise impact followed by a quiet pulsing drone.
+export function createNightmareEndingAudio({enabled=false,volume=.35,duck=()=>{},makeContext=()=>new (globalThis.AudioContext||globalThis.webkitAudioContext)()}={}){
+ let context,master,disposed=false,started=false,held=false,closeTimer;
+ const sources=[];
+ const level=enabled?Math.max(0,Math.min(1,Number(volume)||0)):0;
+ function prepare(){
+  if(context||!level||disposed)return;
+  try{context=makeContext();master=context.createGain();master.gain.value=level*.48;master.connect(context.destination);}catch{context=null;}
+ }
+ // Prime during the player's interaction; do not rely on a delayed autoplay grant.
+ prepare();
+ if(context)void context.resume().catch(()=>{});
+ function sound(impact){
+  const duration=impact?1.1:4,buffer=context.createBuffer(1,Math.ceil(context.sampleRate*duration),context.sampleRate),data=buffer.getChannelData(0);
+  let noise=0;
+  for(let i=0;i<data.length;i++){
+   const t=i/context.sampleRate;noise=(noise+(Math.random()*2-1)*.06)/1.06;
+   const beat=t%1,pulse=Math.exp(-beat*32)+.55*Math.exp(-Math.max(0,beat-.19)*40)*(beat>=.19);
+   data[i]=impact?(noise*2+Math.sin(2*Math.PI*(72*t-18*t*t))*.5)*Math.exp(-t*6)*Math.min(1,t/.008):noise*.35+Math.sin(2*Math.PI*43*t)*(.08+pulse*.25);
+  }
+  const source=context.createBufferSource();source.buffer=buffer;source.loop=!impact;source.connect(master);sources.push(source);source.start();
+ }
+ return {
+  silence(){if(!disposed)duck();},
+  surge(impact=true){
+   if(disposed||started)return;started=true;duck();if(!context)return;
+   if(impact)sound(true);sound(false);
+   if(held)void context.suspend().catch(()=>{});
+  },
+  pause(value){held=value;if(context&&!disposed)void (value?context.suspend():context.resume()).catch(()=>{});},
+  dispose(){
+   if(disposed)return;disposed=true;if(!context)return;
+   const close=()=>{clearTimeout(closeTimer);for(const source of sources){try{source.stop();source.disconnect();}catch{}}master.disconnect();void context.close().catch(()=>{});};
+   if(held||context.state==='suspended'){close();return;}
+   master.gain.cancelScheduledValues(context.currentTime);master.gain.setValueAtTime(master.gain.value,context.currentTime);master.gain.linearRampToValueAtTime(0,context.currentTime+.45);
+   closeTimer=setTimeout(close,500);
+  }
+ };
 }

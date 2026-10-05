@@ -2,9 +2,31 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {existsSync} from 'node:fs';
 import {story} from '../src/story.js';
-import {openingAudioCue,menuAudioCue,tracks,createSoundtrackPlayer} from '../src/opening-audio.js';
+import {openingAudioCue,menuAudioCue,tracks,createSoundtrackPlayer,createNightmareEndingAudio} from '../src/opening-audio.js';
 const at=(node,fragment)=>openingAudioCue(story[node],{node,line:fragment?story[node].lines.findIndex(l=>l.text.includes(fragment)):0});
 const keys=c=>c.layers.map(l=>l.key);
+
+test('Ending silence belongs only to third wave',()=>{
+ const state={flags:{nightmareWave3:{endingElapsed:1}}};
+ for(const wave of [1,2])assert.ok(openingAudioCue(story['c2Wave'+wave],state).layers.length);
+ assert.deepEqual(openingAudioCue(story.c2Wave3,state).layers,[]);
+});
+
+test('Third-wave audio respects mute, starts impact once, pauses and disposes',()=>{
+ let ducked=0,closed=0,stops=0;const sources=[];
+ const gain={value:0,cancelScheduledValues(){},setValueAtTime(){},linearRampToValueAtTime(){}};
+ const context={sampleRate:100,currentTime:0,state:'running',destination:{},
+ createGain:()=>({gain,connect(){},disconnect(){}}),createBuffer:(n,length)=>({getChannelData:()=>new Float32Array(length)}),
+ createBufferSource:()=>{const s={connect(){},disconnect(){},start(){},stop(){stops++;}};sources.push(s);return s;},
+ resume(){this.state='running';return Promise.resolve();},suspend(){this.state='suspended';return Promise.resolve();},close(){closed++;return Promise.resolve();}};
+ const muted=createNightmareEndingAudio({enabled:false,makeContext:()=>{throw Error('Muted must not create audio');},duck:()=>ducked++});
+ muted.silence();muted.surge();muted.dispose();assert.equal(ducked,2);
+ const audio=createNightmareEndingAudio({enabled:true,volume:.2,makeContext:()=>context});
+ assert.equal(gain.value,.096);audio.surge();audio.surge();assert.equal(sources.length,2);
+ audio.pause(true);assert.equal(context.state,'suspended');audio.pause(false);assert.equal(context.state,'running');
+ audio.pause(true);audio.dispose();audio.dispose();audio.surge();assert.equal(stops,2);assert.equal(closed,1);
+ const restored=createNightmareEndingAudio({enabled:true,makeContext:()=>context});restored.surge(false);assert.equal(sources.length,3);restored.pause(true);restored.dispose();
+});
 test('Approved cues follow exact authored lines and both branches',()=>{
  assert.deepEqual(keys(at('journey')),['bus']);
  assert.deepEqual(keys(at('journey','The sea appears')),['arrival']);

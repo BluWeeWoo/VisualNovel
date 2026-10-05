@@ -22,6 +22,25 @@
 @media(prefers-reduced-motion:reduce){.dream-waking-sequence .scene-backdrops,.dream-waking-sequence .scene-art{transition:none}}
 .nightmare-screen.empty-corridor-dream{background-image:url('cg/chapter-two/empty-hallway.png')}
 
+/* These ending effects belong exclusively to the third nightmare. */
+.empty-corridor-dream.third-ending .scene-atmosphere{display:none}
+.empty-corridor-dream.third-ending .dream-instruction{display:none}
+.empty-corridor-dream.third-surge{animation:third-impact .42s ease-out;}
+.empty-corridor-dream.third-surge::before{content:"";position:absolute;inset:0;z-index:-2;background:inherit;transform:scale(1.02);animation:third-camera 5s ease-out both}
+.empty-corridor-dream.third-surge::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:2;background:radial-gradient(ellipse,transparent 28%,#09061199 78%,#07050ddb);animation:third-dark-flash .35s ease-out}
+.third-surge .thought-field{inset:0;overflow:hidden}
+.third-surge .permanent-cloud{width:clamp(170px,29vw,460px);min-height:26vh;box-sizing:border-box;display:flex;align-items:center;justify-content:center;font-size:clamp(14px,1.5vw,22px);cursor:default;pointer-events:none;animation:third-cloud-pulse 2.8s ease-in-out infinite alternate;animation-delay:var(--delay);color:#e0d7e2}
+.third-surge .permanent-cloud::before{background:radial-gradient(ellipse,#090711 20%,#1c1428ed 48%,#31243f99 65%,transparent 76%)}
+.third-surge.surge-restored,.third-surge.surge-restored::after{animation:none}
+.third-surge.paused,.third-surge.paused::before,.third-surge.paused::after,.third-surge.paused .permanent-cloud,.third-surge.fx-hidden,.third-surge.fx-hidden::before,.third-surge.fx-hidden::after,.third-surge.fx-hidden .permanent-cloud{animation-play-state:paused}
+@keyframes third-impact{0%,100%{translate:0}20%{translate:-4px 2px}40%{translate:4px -2px}65%{translate:-2px 1px}}
+@keyframes third-dark-flash{from{background-color:#090611c9}to{background-color:transparent}}
+@keyframes third-camera{from{transform:scale(1)}to{transform:scale(1.02)}}
+@keyframes third-cloud-pulse{from{transform:translate(-50%,-50%) scale(.97)}to{transform:translate(-50%,-47%) scale(1.08)}}
+.third-surge.still,.third-surge.still::before,.third-surge.still::after,.third-surge.still .permanent-cloud{animation:none;transform:none;translate:none}
+.third-surge.still .permanent-cloud{transform:translate(-50%,-50%)}
+@media(prefers-reduced-motion:reduce){.third-surge,.third-surge::before,.third-surge::after,.third-surge .permanent-cloud{animation:none!important;translate:none}.third-surge::before{transform:none}.third-surge .permanent-cloud{transform:translate(-50%,-50%)}}
+
 /* Reduced Motion also removes cloud approach scaling, including OS changes mid-scene. */
 .still .thought-cloud,.reduced-motion .thought-cloud{scale:1;animation:none}
 @media(prefers-reduced-motion:reduce){.thought-cloud{scale:1;animation:none}}

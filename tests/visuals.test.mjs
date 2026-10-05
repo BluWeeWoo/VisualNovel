@@ -29,11 +29,24 @@ const updateSource=source.slice(source.indexOf('async function updateVisual('),s
 function fixture(motion=false){
  const decodes=new Map(),animations=[];
  const host={dataset:{},children:[],isConnected:true,append(layer){this.children.push(layer);}};
- const document={createElement(){return {
-  innerHTML:'',querySelectorAll(selector){return selector==='img'?[{decode:()=>decodes.get(this.innerHTML)||Promise.resolve()}]:[];},
-  animate(frames,options){animations.push(options);return {finished:Promise.resolve()};},
-  remove(){host.children=host.children.filter(child=>child!==this);}
- };}};
+ const element=attributes=>({getAttribute:name=>attributes[name],setAttribute:(name,value)=>attributes[name]=value});
+ const document={createElement(){
+  let html='',sprite=null;const running=[];
+  return {
+   get innerHTML(){return html;},set innerHTML(value){
+    html=value;
+    if(value.startsWith('sprite:')){
+     const image={...element({src:value,alt:value,width:'1024',height:'1536'}),decode:()=>decodes.get(value)||Promise.resolve()};
+     sprite={...element({class:'character-stage day','data-expression':value.slice(7),'data-pose':'ordinary'}),querySelector:selector=>selector==='img'?image:null};
+    }
+   },
+   querySelector:selector=>selector==='.character-stage'?sprite:null,
+   querySelectorAll(selector){return selector==='img'?[sprite?sprite.querySelector('img'):{decode:()=>decodes.get(html)||Promise.resolve()}]:selector==='.character-stage'&&sprite?[sprite]:[];},
+   animate(frames,options){animations.push(options);const animation={finished:Promise.resolve(),cancel(){animation.cancelled=true;}};running.push(animation);return animation;},
+   getAnimations:()=>running,
+   remove(){host.children=host.children.filter(child=>child!==this);}
+  };
+ }};
  const context=vm.createContext({document,settings:{motion},matchMedia:()=>({matches:false}),Image:class{}});
  vm.runInContext(updateSource,context);
  return {host,decodes,animations,update:(html,key)=>context.updateVisual(host,html,key)};
@@ -54,4 +67,38 @@ test('Visual replacements crossfade with motion and swap directly with reduced m
   const f=fixture(motion);await f.update('a','a');await f.update('b','b');
   assert.equal(f.host.children.length,1);assert.equal(f.animations.length,motion?2:0);
  }
+});
+
+test('Rowan changes expressions on the same image without a body fade or re-entry animation',async()=>{
+ for(const motion of [false,true]){
+  const f=fixture(motion);await f.update('sprite:neutral','neutral');
+  const layer=f.host.children[0],stage=layer.querySelector('.character-stage'),image=stage.querySelector('img');
+  const initialAnimations=f.animations.length;
+  for(const expression of ['smile','concerned','neutral']){
+   await f.update('sprite:'+expression,expression);
+   assert.equal(f.host.children.length,1);
+   assert.equal(f.host.children[0],layer);
+   assert.equal(layer.querySelector('.character-stage'),stage);
+   assert.equal(stage.querySelector('img'),image);
+   assert.equal(image.getAttribute('src'),'sprite:'+expression);
+   assert.equal(image.getAttribute('alt'),'sprite:'+expression);
+   assert.equal(stage.getAttribute('data-expression'),expression);
+   assert.equal(f.animations.length,initialAnimations);
+  }
+ }
+});
+
+test('A pending or failed expression keeps Rowan visible and cannot overwrite a newer expression',async()=>{
+ const f=fixture(true);await f.update('sprite:neutral','neutral');
+ const image=f.host.children[0].querySelector('.character-stage').querySelector('img');
+ let finish;f.decodes.set('sprite:slow',new Promise(resolve=>finish=resolve));
+ const pending=f.update('sprite:slow','slow');
+ assert.equal(image.getAttribute('src'),'sprite:neutral');
+ await f.update('sprite:smile','smile');finish();await pending;
+ assert.equal(image.getAttribute('src'),'sprite:smile');
+ f.decodes.set('sprite:broken',Promise.reject(new Error('Decode failed')));
+ await f.update('sprite:broken','broken');
+ assert.equal(image.getAttribute('src'),'sprite:smile');
+ assert.equal(f.host.children.length,1);
+ assert.equal(f.host.dataset.visualKey,'');
 });

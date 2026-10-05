@@ -4,9 +4,43 @@ import {story} from '../src/story.js';
 import {chapterTwo} from '../src/chapter-two.js';
 import {freshState,validSave,applyChoice,visibleLines,interpolate,migrateStorySave} from '../src/engine.js';
 import {chapterMenu,chapterComplete} from '../assets/chapters.js';
-import {nightmareProgress,tickNightmare,clearThought,waveDurations,cloudCount,nightmareOutcome,finishNightmare} from '../assets/nightmare.js';
+import {nightmareProgress,tickNightmare,clearThought,waveDurations,cloudCount,nightmareOutcome,finishNightmare,permanentCloudCount} from '../assets/nightmare.js';
 import {openingAudioCue,tracks} from '../src/opening-audio.js';
 import {cgAt} from '../src/staging.js';
+
+test('Third ending builds clouds individually and restores the same density',()=>{
+ assert.equal(permanentCloudCount(2.999),0);
+ assert.equal(permanentCloudCount(3),1);
+ assert.equal(permanentCloudCount(3.08),2);
+ assert.equal(permanentCloudCount(3.16),3);
+ assert.equal(permanentCloudCount(4),14);
+ assert.equal(permanentCloudCount(5.2),30);
+ assert.equal(permanentCloudCount(7.9),30);
+ const state={flags:{nightmareWave3:{elapsed:4,cleared:[0,1,2],endingElapsed:4}}};
+ assert.equal(permanentCloudCount(nightmareProgress(structuredClone(state),3).endingElapsed),14);
+});
+
+test('Third clear starts eight-second ending, locks rapid input and resumes saved time',()=>{
+ const s=freshState();s.flags.rowanAffection=9;const p=nightmareProgress(s,3);
+ for(let i=0;i<4;i++)tickNightmare(p,3,1);
+ assert.equal(clearThought(p,3,0),true);assert.equal(clearThought(p,3,0),false);
+ clearThought(p,3,1);clearThought(p,3,2);assert.equal(p.endingElapsed,0);
+ for(let i=0;i<100;i++)assert.equal(clearThought(p,3,i%7),false);
+ for(let i=0;i<2;i++)assert.equal(tickNightmare(p,3,1),false);
+ assert.equal(p.endingElapsed,2);
+ const restored=structuredClone(s),resumed=nightmareProgress(restored,3);
+ assert.equal(resumed.endingElapsed,2);assert.equal(tickNightmare(resumed,3,1),false);
+ assert.equal(resumed.endingElapsed,3);
+ for(let i=0;i<4;i++)assert.equal(tickNightmare(resumed,3,1),false);
+ assert.equal(tickNightmare(resumed,3,1),true);assert.equal(nightmareOutcome(resumed,3),'overwhelmed');
+ assert.equal(restored.flags.rowanAffection,9);
+});
+
+test('Legacy third-wave saves enter the full ending without resetting other flags',()=>{
+ const s=freshState();s.flags.nightmareWave3={elapsed:12,cleared:[0,1,2]};s.flags.seviDescription='rival';
+ assert.equal(nightmareProgress(s,3).endingElapsed,0);assert.equal(s.flags.seviDescription,'rival');
+ for(const wave of [1,2]){const p=nightmareProgress(s,wave);tickNightmare(p,wave,1);assert.equal(p.endingElapsed,undefined);}
+});
 
 test('Nightmare settings remain continuous and waking passes through darkness',()=>{
  for(const id of ['c2CloudIntro','c2Wave1','c2Wave1After'])assert.equal(story[id].place,'c2-confrontation');

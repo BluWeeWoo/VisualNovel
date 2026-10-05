@@ -1,4 +1,7 @@
 // Presentation only: cues use the original script, independently of translation.
+export function dreamSmoke(){
+ return '<span class="dream-smoke smoke-left"></span><span class="dream-smoke smoke-right"></span><span class="dream-smoke smoke-low"></span>';
+}
 export function sceneCue(id,node,text=''){
  let ambient='';
  if(node.place?.startsWith('c2-')&&!['c2Blackout','c2Wake'].includes(id)&&node.place!=='c2-rest')ambient=['c2Hall','c2CloudIntro'].includes(id)?'dream intense':'dream';
@@ -49,6 +52,7 @@ export function createSceneEffects({bump=()=>()=>{}}={}){
   if(host!==root||ambient!==cue.ambient){
    overlay?.remove();host=root;ambient=cue.ambient;
    overlay=document.createElement('div');overlay.className=`scene-atmosphere ${ambient}`;overlay.setAttribute('aria-hidden','true');
+   if(ambient.startsWith('dream'))overlay.innerHTML=dreamSmoke();
    if(['dust','leaves','rain'].includes(ambient))overlay.innerHTML=Array.from({length:ambient==='dust'?6:3},(_,i)=>`<i style="--i:${i}"></i>`).join('');
    root.append(overlay);
   }
