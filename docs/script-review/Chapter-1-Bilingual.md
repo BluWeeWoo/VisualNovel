@@ -528,7 +528,7 @@ Narration has no speaker label. MC’s silent thoughts are italicized. Spoken di
 | rExcited:3 | **Rowan:** I missed you too. | **Rowan:** Na-miss din kita sobra. |
 | rExcited:4 | **Rowan:** You could’ve warned me. I would’ve— | **Rowan:** Nagsabi ka sana bigla bigla ka naman. I would’ve— |
 | rExcited:5 | He glances at the tools. | He glances at the tools. |
-| rExcited:6 — Expression: playful | **Rowan:** Oh wait i'll put the hammer away, at least. | **Rowan:** Ay wait maitabi muna ’yung martilyo. |
+| rExcited:6 — Expression: playful | **Rowan:** Oh wait i'll put the hammer away, at least. | **Rowan:** Ay wait maitabi muna ’yung martilyo haha. |
 
 **Next:** rHugAsk.
 
@@ -564,7 +564,7 @@ Narration has no speaker label. MC’s silent thoughts are italicized. Spoken di
 | rOblivious:0 — Expression: surprised | **MC:** Sorry. Who are you? | **MC:** Sorry. Sino ka? |
 | rOblivious:1 | *I know it’s him. I just need another second.* | *I know it’s him. I just need another second.* |
 | rOblivious:2 — Expression: concerned | His smile falters. | His smile falters. |
-| rOblivious:3 | **Rowan:** It’s Rowan. | **Rowan:**  Rowan ’to. |
+| rOblivious:3 | **Rowan:** It’s Rowan. | **Rowan:** Si Rowan. |
 | rOblivious:4 | **MC:** I know. Sorry. That was a terrible joke. | **MC:** Alam ko. Sorry, ang pangit ng joke. |
 | rOblivious:5 — Expression: neutral | He watches me for a moment. | He watches me for a moment. |
 | rOblivious:6 | **Rowan:** Don’t do that. I nearly believed you. | **Rowan:** Huwag naman gano’n. Muntik na akong maniwala. |
@@ -589,7 +589,7 @@ Narration has no speaker label. MC’s silent thoughts are italicized. Spoken di
 | rHugAsk:3 | **Rowan:** You really came back. | **Rowan:** Bumalik ka talaga. |
 | rHugAsk:4 | **MC:** Yeah. | **MC:** Yeah. |
 | rHugAsk:5 — Expression: embarrassed | He takes two quick steps toward me, then catches himself reaching out. | He takes two quick steps toward me, then catches himself reaching out. |
-| rHugAsk:6 | **Rowan:** Can I? | **Rowan:** Puwede? |
+| rHugAsk:6 | **Rowan:** Can I? | **Rowan:** OK, lang ba? |
 
 ### Player choices
 
@@ -658,13 +658,13 @@ Narration has no speaker label. MC’s silent thoughts are italicized. Spoken di
 | rHug:0 — Expression: smile | He wraps his arms around me. | He wraps his arms around me. |
 | rHug:1 | For a moment, I stand there with my bag still hanging from one hand. | For a moment, I stand there with my bag still hanging from one hand. |
 | rHug:2 | Then I hug him back. | Then I hug him back. |
-| rHug:3 | **Rowan:** I missed you. | **Rowan:** Na-miss kita. |
+| rHug:3 | **Rowan:** I missed you. | **Rowan:** Na-miss talaga kita. |
 | rHug:4 | His voice is deeper now. | His voice is deeper now. |
 | rHug:5 | The way he holds me is familiar. | The way he holds me is familiar. |
 | rHug:6 | He rocks us gently once, then laughs under his breath. | He rocks us gently once, then laughs under his breath. |
 | rHug:7 | **Rowan:** Sorry. I’ve wanted to do that for a while. | **Rowan:** Sorry. Ang tagal ko nang gustong gawin ’yon. |
-| rHug:8 | **MC:** Hug me? | **MC:** Hug me? |
-| rHug:9 | **Rowan:** See you. The hug too. | **Rowan:** Makita ka. Saka ’yung hug. |
+| rHug:8 | **MC:** Hug me? | **MC:** Yakapin ako? |
+| rHug:9 | **Rowan:** See you. The hug too. | **Rowan:** Makita ka. Saka ’yung yakap syemprel. |
 | rHug:10 | *I thought he might be angry. I had answers ready for that.* | *I thought he might be angry. I had answers ready for that.* |
 | rHug:11 | *I wasn’t ready for this.* | *I wasn’t ready for this.* |
 
@@ -681,13 +681,13 @@ Narration has no speaker label. MC’s silent thoughts are italicized. Spoken di
 | Line / direction | English | Taglish |
 |---|---|---|
 | rSpace:0 | **MC:** Give me a second? | **MC:** Teka lang, ha? |
-| rSpace:1 — Expression: neutral | **Rowan:** Of course. | **Rowan:** Of course. |
+| rSpace:1 — Expression: neutral | **Rowan:** Of course. | **Rowan:** geh lang. |
 | rSpace:2 | He lowers his arms and gives me some room. | He lowers his arms and gives me some room. |
 | rSpace:3 | He stays beside me without trying again. | He stays beside me without trying again. |
-| rSpace:4 — Expression: smile | **Rowan:** I missed you. | **Rowan:** Na-miss kita. |
-| rSpace:5 | **Rowan:** I have about twenty questions. | **Rowan:** Mga twenty questions ’yung nasa isip ko. |
+| rSpace:4 — Expression: smile | **Rowan:** I missed you. | **Rowan:** Na-miss kita sobra. |
+| rSpace:5 | **Rowan:** I have about twenty questions. | **Rowan:** Mga twenty questions ’ang meron ako. |
 | rSpace:6 | **MC:** Only twenty? | **MC:** Twenty lang? |
-| rSpace:7 — Expression: playful | **Rowan:** I’m cutting it down. They can wait. | **Rowan:** Binawasan ko na. Puwede namang mamaya. |
+| rSpace:7 — Expression: playful | **Rowan:** I’m cutting it down. of course. | **Rowan:** Binawasan ko na. malamang. |
 | rSpace:8 | I look down at the porch. | I look down at the porch. |
 | rSpace:9 | *I thought he might be angry. I had answers ready for that.* | *I thought he might be angry. I had answers ready for that.* |
 | rSpace:10 | *I wasn’t ready for him to be patient.* | *I wasn’t ready for him to be patient.* |
@@ -769,7 +769,7 @@ Narration has no speaker label. MC’s silent thoughts are italicized. Spoken di
 | rHold:0 — Expression: concerned | I look past his shoulder and take a slow breath. | I look past his shoulder and take a slow breath. |
 | rHold:1 | Then another. | Then another. |
 | rHold:2 — Only if reunionBoundary = "hug" | He lets go, but stays nearby. | He lets go, but stays nearby. |
-| rHold:3 — Expression: neutral | **Rowan:** We’ll get you sitting down in a minute. | **Rowan:** Pauupuin na kita. Sandali na lang. |
+| rHold:3 — Expression: neutral | **Rowan:** Sorry I’ll let sit down in a minute. | **Rowan:** Pauupuin na nga kita. kaunti na lang. |
 | rHold:4 | **MC:** Please. | **MC:** Please. |
 | rHold:5 | I’m grateful he leaves it there. | I’m grateful he leaves it there. |
 
@@ -813,7 +813,7 @@ Narration has no speaker label. MC’s silent thoughts are italicized. Spoken di
 | rCatchup:25 | **MC:** I think so. My cards were in my bag, at least. | **MC:** Mukhang gano’n. Buti nasa bag ko ’yung cards. |
 | rCatchup:26 | **Rowan:** Do you need anything? | **Rowan:** May kailangan ka ba? |
 | rCatchup:27 | **MC:** I’m okay for now. The driver helped me get here. | **MC:** Okay pa naman. Tinulungan ako ng driver makarating dito. |
-| rCatchup:28 | **Rowan:** If that changes, tell me. | **Rowan:** Sabihin mo lang kung may kailangan ka. |
+| rCatchup:28 | **Rowan:** If that changes, tell me. | **Rowan:** Wag ka mahiya mag sabi kung may kailangan ka ah. |
 | rCatchup:29 | He nods, though he still looks concerned. | He nods, though he still looks concerned. |
 
 **Next:** rContact.
@@ -832,11 +832,11 @@ Narration has no speaker label. MC’s silent thoughts are italicized. Spoken di
 | rContact:1 | Rowan turns a screwdriver in his hand. | Rowan turns a screwdriver in his hand. |
 | rContact:2 | **Rowan:** Can I ask you something? | **Rowan:** Puwede akong magtanong? |
 | rContact:3 | **MC:** Yeah? | **MC:** Yeah? |
-| rContact:4 — Expression: concerned | **Rowan:** Why didn’t you contact me? | **Rowan:** Bakit hindi ka nag-contact sa ’kin? |
+| rContact:4 — Expression: concerned | **Rowan:** Why didn’t you contact me? | **Rowan:** Bakit di mo man lang ako kinontact? |
 | rContact:5 | My hand tightens around my bag strap. | My hand tightens around my bag strap. |
-| rContact:6 | **Rowan:** I tried the old number. Then the account I had for you disappeared. | **Rowan:** Tinawagan ko ’yung old number. Tapos nawala rin ’yung account mo. |
+| rContact:6 | **Rowan:** I tried the old number. Then your account had disappeared. | **Rowan:** Tinawagan ko ’yung old number. Tapos nawala rin ’yung account mo. |
 | rContact:7 | **Rowan:** I left my number with your parents when they came back. | **Rowan:** Iniwan ko ’yung number ko sa parents mo noong bumalik sila. |
-| rContact:8 — Expression: sad | **Rowan:** After a while, I thought you didn’t want to hear from me. | **Rowan:** Eventually, akala ko ayaw mo nang makarinig mula sa ’kin. |
+| rContact:8 — Expression: sad | **Rowan:** After a while, I thought you didn’t want to hear from me. | **Rowan:** Eventually, akala ko ayaw mo na ako kausapin. |
 | rContact:9 | *That’s the part I was afraid of.* | *That’s the part I was afraid of.* |
 
 ### Player choices
@@ -876,7 +876,7 @@ Narration has no speaker label. MC’s silent thoughts are italicized. Spoken di
 | rBusy:1 | **Rowan:** Oh. | **Rowan:** Oh. |
 | rBusy:2 | **MC:** There’s a lot I haven’t told you. | **MC:** Ang dami ko pang hindi nasasabi sa ’yo. |
 | rBusy:3 | He puts the screwdriver down. | He puts the screwdriver down. |
-| rBusy:4 | **Rowan:** I wish I’d known. | **Rowan:** Sana nalaman ko. |
+| rBusy:4 | **Rowan:** I wish I’d known. | **Rowan:** Sana alaman ko naman. |
 | rBusy:5 | **MC:** I know. | **MC:** I know. |
 | rBusy:6 | **Rowan:** You don’t have to explain all of it now. | **Rowan:** Hindi mo kailangang i-explain lahat ngayon. |
 | rBusy:7 — Expression: sad | His voice softens. | His voice softens. |
@@ -937,7 +937,7 @@ Narration has no speaker label. MC’s silent thoughts are italicized. Spoken di
 | rExchange:0 — Expression: neutral | He takes out his phone. | He takes out his phone. |
 | rExchange:1 | **Rowan:** Do you want my number now? | **Rowan:** Gusto mo, ibigay ko na ’yung number ko? |
 | rExchange:2 | **MC:** Yeah. | **MC:** Yeah. |
-| rExchange:3 — Expression: smile | **Rowan:** And my SG account. Backup plan. | **Rowan:** Saka ’yung SG account ko. Para may backup. |
+| rExchange:3 — Expression: smile | **Rowan:** And my SG account. for Backup. | **Rowan:** Saka ’yung SG account ko. Para sure na. |
 | rExchange:4 | I reach for my phone. | I reach for my phone. |
 | rExchange:5 | We used to have a backup plan for calls, too. | We used to have a backup plan for calls, too. |
 | rExchange:6 | Letters. | Letters. |
@@ -963,7 +963,7 @@ Narration has no speaker label. MC’s silent thoughts are italicized. Spoken di
 | rLetterPromise:3 | **MC:** Yeah. | **MC:** Yeah. |
 | rLetterPromise:4 | He picks at a loose thread on his shorts. | He picks at a loose thread on his shorts. |
 | rLetterPromise:5 — Expression: sad | **Rowan:** I thought we had more time. | **Rowan:** Akala ko mas matagal pa. |
-| rLetterPromise:6 | **Lola (off-screen):** You can still call when your parents are free. And you can write. | **Lola (off-screen):** Puwede pa rin kayong magtawagan kapag libre ang parents mo. Saka puwede kayong magsulatan. |
+| rLetterPromise:6 | **Lola (off-screen):** You can still call when your parents are free. And you can write. | **Lola (off-screen):** Puwede pa rin kayong magtawagan kapag libre ang parents nyo. Saka puwede kayong magsulatan. |
 | rLetterPromise:7 — Expression: surprised | **Rowan:** Actual letters? | **Rowan:** As in, letters talaga? |
 | rLetterPromise:8 | **Lola (off-screen):** I have paper and pens. Your parents can carry them when they visit. I’ll help you send yours, Rowan. | **Lola (off-screen):** May papel at ballpen ako. Puwedeng dalhin ng parents mo kapag bumisita sila. Tutulungan kitang ipadala ang sa ’yo, Rowan. |
 | rLetterPromise:9 | **MC:** Calling would be faster. | **MC:** Mas mabilis naman kung tatawag. |
