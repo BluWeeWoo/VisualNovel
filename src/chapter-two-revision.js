@@ -8450,6 +8450,22 @@ const nodes={
 };
 export function reviseChapterTwo(story){
  Object.assign(story,structuredClone(nodes));
+ // Keep the original topics; after each, offer only subjects not yet discussed.
+ const topics=story.c2FamilyArrival.choices;
+ topics.forEach((choice,i)=>{
+  choice.set={...choice.set,['mayumiTopic'+i]:true};
+  story[choice.next].mayumiTopic=i;
+ });
+ for(let mask=1;mask<16;mask++){
+  story['c2MayumiTopics'+mask]={...story.c2TalkHouse,
+   place:'c2-painted-living-night',time:'night',
+   lines:[{speaker:'',text:mask===15?'It feels good to catch up with Tita.':'There’s more I could tell Tita, if I want to.',kind:'thought'}],
+   choices:[...topics.filter((_,i)=>!(mask&(1<<i))).map(c=>({...structuredClone(c),set:{...c.set,...Object.fromEntries([0,1,2,3].filter(i=>mask&(1<<i)).map(i=>['mayumiTopic'+i,true]))}})),
+    {text:'That’s all for now, Tita.',next:'c2Family',set:{}}],
+   next:undefined
+  };
+  delete story['c2MayumiTopics'+mask].mayumiTopic;
+ }
  story.c2Workshop.cgCue={key:'c2-review-nestor',from:'Without missing a beat',until:'So, did Rowan'};
  for(const [id,node] of Object.entries(nodes))if(node.cgCue)approvedChapterTwoCues[id]=node.cgCue;
  approvedChapterTwoCues.c2Workshop=story.c2Workshop.cgCue;

@@ -144,6 +144,12 @@ function migrateRevisionFour(s,story){
 
 // Old saves keep their route through the flashback they already entered.
 export function nextStoryNode(story,state){
+ if(Number.isInteger(story[state.node].mayumiTopic)){
+  // Include the current topic for saves made before repeatable conversation existed.
+  const current=story[state.node].mayumiTopic;
+  const mask=[0,1,2,3].reduce((bits,i)=>bits|((i===current||state.flags['mayumiTopic'+i])?1<<i:0),0);
+  return 'c2MayumiTopics'+mask;
+ }
  if(story[state.node].activityReturn)return 'c2Activities'+(Number(state.flags.c2Activities)||0);
  if(story[state.node].graveArrival&&state.flags.graveTogether!==true)return 'c2Grave';
  if(story[state.node].graveDeparture&&state.flags.afternoonRoute==='market')return 'c2Groceries';
