@@ -1,4 +1,6 @@
 import {chapterTwoAfternoon} from './chapter-two-afternoon.js';
+import {reviseChapterTwo} from './chapter-two-revision.js';
+import {extendChapterTwo} from './chapter-two-father.js';
 import {repairedDoor,apprenticeshipConversation} from './carpentry-setup.js';
 import {chapterTwo} from './chapter-two.js';
 import {afterGarden} from './after-garden.js';
@@ -27,6 +29,8 @@ story.rCatchup.lines.push(...repairedDoor);
 for(const [id,node] of Object.entries(story))if(/^aTopic\d+_rowan_start$/.test(id))node.lines=apprenticeshipConversation.map(l=>({...l}));
 // Chapter menu handles the transition; preserve Chapter One's ending and old saves.
 story.aEnd.next='c2Start';
+reviseChapterTwo(story);
+extendChapterTwo(story);
 
 // Presentation metadata only: unlabelled rows narrate; Thought| marks silent MC thought.
 // Named rows remain spoken. Written messages retain their existing phone/note presentation.

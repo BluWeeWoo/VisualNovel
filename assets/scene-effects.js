@@ -4,7 +4,7 @@ export function dreamSmoke(){
 }
 export function sceneCue(id,node,text=''){
  let ambient='';
- if(node.place?.startsWith('c2-')&&!['c2Blackout','c2Wake'].includes(id)&&node.place!=='c2-rest')ambient=['c2Hall','c2CloudIntro'].includes(id)?'dream intense':'dream';
+ if(node.place?.startsWith('c2-')&&!node.place.startsWith('c2-painted-')&&!node.place.startsWith('c2-father-')&&!['c2Blackout','c2Wake'].includes(id)&&node.place!=='c2-rest')ambient=['c2Hall','c2CloudIntro'].includes(id)?'dream intense':'dream';
  else if(node.audio==='bus')ambient='bus';
  else if(id==='rLanding')ambient='rain';
  else if(id==='rBurning')ambient='ember';
@@ -14,12 +14,12 @@ export function sceneCue(id,node,text=''){
  if(id==='busBump'&&text.includes('A man bumps into me.'))action='bump';
  else if((id==='journey'&&text.startsWith('The sea appears'))||(id==='hill'&&text.startsWith('I can see his house')))action='pan';
  else if(id==='rHug'&&text.startsWith('He rocks us gently once'))action='sway';
- else if(id==='c2Calling'&&text==='The corridor tilts.')action='tilt';
- else if(id==='c2Wake'&&text.startsWith('The blue edge of the curtain'))action='focus';
+ else if(id==='c2Calling'&&text==='Warm daylight appears at the edges of the room.')action='tilt';
+ else if(id==='c2Wake'&&text.startsWith('I wake with a breath that catches in my throat.'))action='focus';
  else if(id==='d2Poke'&&text.startsWith('Rowan goes still.'))action='react';
  else if(id==='d2Scare'&&text==='AH—!')action='recoil';
  else if(id==='rYellowPromise'&&text==='I’ll write first.')action='letter';
- else if((id==='rLetterPromise'&&text==='I was eleven. We were leaving at the end of the week.')||(id==='c2Curtains'&&text==='I pull the curtain farther aside.'))action='warm';
+ else if((id==='rLetterPromise'&&text==='I was eleven. We were leaving at the end of the week.')||(id==='c2Curtains'&&text.startsWith('I draw them apart.')))action='warm';
  else if((id==='rReturn'&&text==='It’s Rowan.')||(id==='aBedroom'&&text==='My phone lights up with one more message.')||(id==='c2Wave2After'&&text==='My phone lights up beside the folder.'))action='phone';
  return {ambient,action};
 }

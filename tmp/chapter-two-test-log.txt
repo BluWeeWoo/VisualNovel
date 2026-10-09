@@ -1,0 +1,449 @@
+
+> our-summer-unfinished@0.1.0 test
+> node --test tests/*.test.mjs
+
+✔ Every after-garden branch saves, terminates and preserves relationship state (8306.9815ms)
+✔ Topic menus prevent repeat conversations and permit stopping after one topic (0.1776ms)
+✔ Existing garden-ending saves continue without moving their reading position (1.1127ms)
+✔ Porch illustrations and night messages appear only at their authored moments (0.4062ms)
+✖ Every afternoon route and channel sequence reaches the real chapter ending (10.5537ms)
+✔ Solo gardening saves tugs, supports early exit, and cannot change the first round or relationships (4.8616ms)
+✖ Solo activities exclude Rowan and news follows his return; reveal remembers the chosen route (7.7414ms)
+✔ New scenes have real art/music assets, and solo activities use ambience without a rival (92.3764ms)
+✔ Old endpoint and ambition saves retain progress, prior choices, relationship, and historical text (1.6023ms)
+✖ All CGs appear only inside their authored cue windows without changing saves (55.6468ms)
+✔ All event illustrations are optimized WebP with accessible descriptions (365.461ms)
+✔ Third ending builds clouds individually and restores the same density (5.4592ms)
+✖ Tenth clear starts eight-second ending, locks rapid input and resumes saved time (2.4215ms)
+✔ Legacy third-wave saves preserve clears and an ending already in progress (0.3076ms)
+✖ Nightmare settings remain continuous and waking passes through darkness (0.4864ms)
+✔ Every nightmare and recovery choice reaches the afternoon bridge with boundaries and saves intact (253.2794ms)
+✔ Chapter Two unlocks from old completed saves without resetting them; future chapters stay locked (2.8318ms)
+✖ Nightmare progress resumes, requires interaction, and cannot change affinity (0.9574ms)
+✔ Privacy branches never show seated Rowan CG and Sevi’s confrontations use their separate settings (0.3284ms)
+✖ Sevi interest beats require the earlier explicit response; ordinary scenes stay platonic (5.7359ms)
+✔ Legacy confrontation saves remain valid without changing relationships or archived history (0.9977ms)
+✖ Ten gradual clouds have distinct outcomes and never block story progression (1.2458ms)
+✖ Removed committee choices migrate safely; revised script keeps withdrawal fixed (0.7084ms)
+✔ affinity follows saved milestones without mutating progress (6.6422ms)
+✔ chapter completion requires reaching the actual final line (0.2763ms)
+✔ all future chapters remain disabled and only one affinity portrait renders (0.6542ms)
+✔ Childhood uses all six approved sprites, no adult portraits or present-day phone (71.503ms)
+✔ Twelve-year separation is consistent and family reveal stays out of Chapter One (6.0211ms)
+✔ Existing phone-reading saves migrate to the same message exactly once (10.1112ms)
+✔ All 5184 continuation routes preserve boundaries, save positions and the authored ending (19477.4149ms)
+✔ Existing recognition saves can continue without losing the saved line (0.2046ms)
+✔ Reunion music is fixed by scene; one-shot phone cue occurs only on its authored text (0.6798ms)
+✔ All 1008 day-two routes finish after breakfast and gardening, preserving optional attraction (2260.7066ms)
+✔ Old ending resumes without losing name, choices or reading position (0.8116ms)
+✔ Phone shows only messages read so far, with the correct sender (0.4008ms)
+✔ Every story line has an explicit presentation kind without changing its speaker (5.9659ms)
+✔ Silent thoughts, physical actions and spoken MC lines remain distinct (3.4834ms)
+✔ The same dialogue panel keeps empty silent nameplates and italicizes only thoughts (12.9684ms)
+✔ Gallery does not reveal future CGs or mutate progress; exact viewed history migrates (3.8882ms)
+✖ Every CG unlocks only at its cue, including branch-specific illustrations (15.2954ms)
+✔ Catalog preserves character order, Sevi artwork ownership, and asset references (75.8465ms)
+✔ Sevi story art retains unlocks and is excluded from Rowan without changing other entries (0.8009ms)
+✔ Every weed requires its assigned 2–5 clicks, with attempts preserved across saves (3.732ms)
+✔ Wide garden art is exclusive to minigame, dialogue uses the close Rowan CG (6.1552ms)
+✔ Wins, losses, ties and untimed play award equal affection once (0.6183ms)
+✔ Declining preserves affection and trust without blocking the ending (0.2402ms)
+✔ An unfinished round survives save/load with scores, remaining time and weeds intact (0.4474ms)
+✔ Old garden-ending saves resume at the new choice (0.6567ms)
+✔ English and Taglish selection changes presentation, not state or artwork cues (10.6202ms)
+✔ All playable branches and choices remain printable in either language (83.7192ms)
+✔ English removes Filipino clauses; Taglish keeps shared narration in English (0.2484ms)
+✔ Letters, history, phones and nightmare words follow selected language (1.3813ms)
+✔ Reading choices persist and select the correct living-room response (2.6239ms)
+✔ Letter is authored at twenty-one while Lola is alive; flashback phone remains hidden (0.439ms)
+✔ Old burning and ending saves remain valid, migrate once, and can continue (1.3053ms)
+✔ All 16 opening routes preserve choices and saves, reach recognition without premature later unlocks (1261.0568ms)
+✔ Opening keeps PDF chronology, editable identity, and no invented resolution (0.4774ms)
+✔ Authored phone moments open the correct screen without changing story state (2.571ms)
+✔ Seaglass cannot show future messages or unlock free chat (2.2179ms)
+✔ Fictional profile, messages and feed are escaped and remain presentation only (0.9911ms)
+✔ Present-day Seaglass stays unavailable inside the two-years-earlier flashback (0.2639ms)
+✔ Custom pronouns survive saves and reach story references and chat context (12.1316ms)
+✔ Existing pronoun saves remain valid and identity never changes relationship flags (0.4811ms)
+✔ Porch CG ends before envelopes; yellow CG follows selection and all choices rejoin without relationship changes (19.604ms)
+✔ Every pre-revision porch save maps to a valid moment and preserves player data exactly once (26.1532ms)
+✔ Porch responses retain the chosen wording after save migration (0.441ms)
+✔ New playthrough reaches the house before the rainy flashback and returns to water (5.8713ms)
+✔ Revision-four saves complete the old order without repeating the flashback or losing choices (10.2926ms)
+✔ Childhood reply shapes the present-day phone without revealing future messages (1.8051ms)
+✔ Revision six resumes rewritten scenes and preserves player data exactly once (57.117ms)
+✔ Unchanged lines and completed chapter saves keep their positions (1.4784ms)
+✔ Garden dialogue respects declining and preserves existing affection (0.4059ms)
+✔ Both characters are 23; Rowan is he/him and player choices remain available (4.2543ms)
+✖ All expression cues match authored text and every expression is used (130.8692ms)
+✔ Book pose is present in sorting, absent in outdoor scenes and night texting (0.3657ms)
+✔ Existing saves retain choices while old authored pronouns are refreshed (1.221ms)
+✔ All ten approved sprite PNGs share canvas and RGBA transparency format (84.9709ms)
+✔ All nineteen existing manual saves are reachable exactly once, with autosave separate (3.6672ms)
+✔ Empty saves cannot load, and title-screen saves cannot overwrite progress (0.5816ms)
+✔ A selected memory renders its actual details safely and only enables the matching action (0.5279ms)
+✔ Replacing a save requires confirmation and a failed write never reports success (2.5879ms)
+✔ Changing save pages keeps the existing dialog layer mounted (5.0314ms)
+✖ Authored action cues exist in the script and never mutate it (14.6115ms)
+✔ Effects cancel on exit, never replay after a menu, and suppress loaded reactions (1.6797ms)
+✔ Nightmare smoke stays mounted between dialogue lines and stops with motion disabled (1.1069ms)
+✖ Server serves game but protects secrets and spoiler documents; offline API is explicit (315.0198ms)
+✖ Configured adapter receives bounded context and a server-side key; errors retry safely (251.5357ms)
+✔ Eerie audio carries through calling and blackout, then normal music returns at waking (2.8202ms)
+✔ Ending silence belongs only to third wave (0.3154ms)
+✔ Third-wave audio respects mute, starts impact once, pauses and disposes (3.0093ms)
+✔ Approved cues follow exact authored lines and both branches (20.9116ms)
+✔ Menu theme persists across menu updates and fades into story audio (11.7989ms)
+✔ Next and volume changes preserve playback; scene changes crossfade and retire old audio (2.8825ms)
+✔ Music repeats with overlap; hammer never loops and stops at the call (2.5643ms)
+✔ Mute releases all audio; errors report once and sound toggle retries (0.5323ms)
+✖ All nodes reachable; all exits exist; no story cycles (7.0155ms)
+✔ Every branch renders, persists, and reaches the ending (2208.5428ms)
+✔ Boundary, respectful disagreement, friendship and skipped detour cost no trust (36.6714ms)
+✔ All three childhood memory variants return later (116.0833ms)
+✔ Chosen pronouns render in the photograph inscription (0.2982ms)
+✔ Malformed and stale saves are rejected (0.2687ms)
+✔ Preview cannot grant trust, promises, or authored relationship changes (42.069ms)
+✖ Every referenced original asset is present (5.3356ms)
+✔ Reduced motion proceeds once and blocks duplicate starts until the handoff completes (2.0116ms)
+✔ A failed handoff releases the transition lock (0.5407ms)
+✔ Chapter Two opening is not presented as a completed chapter (0.3736ms)
+✔ Dialogue updates keep the panel, text node and unchanged controls mounted (2.7762ms)
+✔ Rebinding persistent Next button never accumulates advance handlers (1.4071ms)
+✔ Unchanged artwork keeps its mounted layer across dialogue updates (2.1184ms)
+✔ Pending images keep old artwork visible; stale loads cannot replace newer scenes (1.3134ms)
+✔ Visual replacements crossfade with motion and swap directly with reduced motion (3.1649ms)
+✔ Rowan changes expressions on the same image without a body fade or re-entry animation (2.8926ms)
+✔ A pending or failed expression keeps Rowan visible and cannot overwrite a newer expression (1.7544ms)
+ℹ tests 113
+ℹ suites 0
+ℹ pass 97
+ℹ fail 16
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 19830.0434
+
+✖ failing tests:
+
+test at tests\afternoon.test.mjs:12:1
+✖ Every afternoon route and channel sequence reaches the real chapter ending (10.5537ms)
+  AssertionError [ERR_ASSERTION]: c2GardenAfter
+      at walk (file:///C:/Users/prinz/OneDrive/%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88/Summer%20Visual%20Novel/tests/afternoon.test.mjs:15:10)
+      at walk (file:///C:/Users/prinz/OneDrive/%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88/Summer%20Visual%20Novel/tests/afternoon.test.mjs:23:165)
+      at walk (file:///C:/Users/prinz/OneDrive/%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88/Summer%20Visual%20Novel/tests/afternoon.test.mjs:25:35)
+      at walk (file:///C:/Users/prinz/OneDrive/%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88/Summer%20Visual%20Novel/tests/afternoon.test.mjs:24:53)
+      at walk (file:///C:/Users/prinz/OneDrive/%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88/Summer%20Visual%20Novel/tests/afternoon.test.mjs:25:35)
+      at walk (file:///C:/Users/prinz/OneDrive/%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88/Summer%20Visual%20Novel/tests/afternoon.test.mjs:25:35)
+      at walk (file:///C:/Users/prinz/OneDrive/%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88/Summer%20Visual%20Novel/tests/afternoon.test.mjs:23:165)
+      at walk (file:///C:/Users/prinz/OneDrive/%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88/Summer%20Visual%20Novel/tests/afternoon.test.mjs:25:35)
+      at walk (file:///C:/Users/prinz/OneDrive/%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88/Summer%20Visual%20Novel/tests/afternoon.test.mjs:24:53)
+      at walk (file:///C:/Users/prinz/OneDrive/%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88/Summer%20Visual%20Novel/tests/afternoon.test.mjs:25:35) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests\afternoon.test.mjs:42:1
+✖ Solo activities exclude Rowan and news follows his return; reveal remembers the chosen route (7.7414ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(story.c2TVNews.lines.some(l=>l.text==='Your mayor seems pretty good.'))
+  
+      at TestContext.<anonymous> (file:///C:/Users/prinz/OneDrive/%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88/Summer%20Visual%20Novel/tests/afternoon.test.mjs:46:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests\cg.test.mjs:8:1
+✖ All CGs appear only inside their authored cue windows without changing saves (55.6468ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(scene.lines.some(l=>l.text.includes(cue.from)))
+  
+      at TestContext.<anonymous> (file:///C:/Users/prinz/OneDrive/%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88/Summer%20Visual%20Novel/tests/cg.test.mjs:14:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests\chapter-two.test.mjs:23:1
+✖ Tenth clear starts eight-second ending, locks rapid input and resumes saved time (2.4215ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  5 !== undefined
+  
+      at TestContext.<anonymous> (file:///C:/Users/prinz/OneDrive/%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88/Summer%20Visual%20Novel/tests/chapter-two.test.mjs:31:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 5,
+    expected: undefined,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\chapter-two.test.mjs:50:1
+✖ Nightmare settings remain continuous and waking passes through darkness (0.4864ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'c2-city'
+  - 'c2-confrontation'
+         ^
+  
+      at TestContext.<anonymous> (file:///C:/Users/prinz/OneDrive/%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88/Summer%20Visual%20Novel/tests/chapter-two.test.mjs:51:67)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'c2-city',
+    expected: 'c2-confrontation',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\chapter-two.test.mjs:84:1
+✖ Nightmare progress resumes, requires interaction, and cannot change affinity (0.9574ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///C:/Users/prinz/OneDrive/%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88/Summer%20Visual%20Novel/tests/chapter-two.test.mjs:89:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\chapter-two.test.mjs:101:1
+✖ Sevi interest beats require the earlier explicit response; ordinary scenes stay platonic (5.7359ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(visibleLines(story.c2CorridorAfter,s).some(l=>l.text==='Will you be in the library later?'))
+  
+      at TestContext.<anonymous> (file:///C:/Users/prinz/OneDrive/%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88/Summer%20Visual%20Novel/tests/chapter-two.test.mjs:108:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests\chapter-two.test.mjs:120:1
+✖ Ten gradual clouds have distinct outcomes and never block story progression (1.2458ms)
+  AssertionError [ERR_ASSERTION]: Expected "actual" to be strictly unequal to:
+  
+  'For a few seconds, the noise eases. Just let me stay here for a minute. Something lands on the desk in front of me. A folder.'
+      at TestContext.<anonymous> (file:///C:/Users/prinz/OneDrive/%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88/Summer%20Visual%20Novel/tests/chapter-two.test.mjs:135:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'For a few seconds, the noise eases. Just let me stay here for a minute. Something lands on the desk in front of me. A folder.',
+    expected: 'For a few seconds, the noise eases. Just let me stay here for a minute. Something lands on the desk in front of me. A folder.',
+    operator: 'notStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests\chapter-two.test.mjs:139:1
+✖ Removed committee choices migrate safely; revised script keeps withdrawal fixed (0.7084ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(story.c2Explain.lines.some(l=>l.text.includes('He said okay')))
+  
+      at TestContext.<anonymous> (file:///C:/Users/prinz/OneDrive/%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88/Summer%20Visual%20Novel/tests/chapter-two.test.mjs:145:51)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests\gallery.test.mjs:24:1
+✖ Every CG unlocks only at its cue, including branch-specific illustrations (15.2954ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(!galleryUnlocks(story,manifest,[state]).includes(cue.key))
+  
+      at TestContext.<anonymous> (file:///C:/Users/prinz/OneDrive/%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88/Summer%20Visual%20Novel/tests/gallery.test.mjs:31:41)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests\rowan.test.mjs:16:1
+✖ All expression cues match authored text and every expression is used (130.8692ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+  -   'annoyed',
+      'concerned',
+      'embarrassed',
+      'neutral',
+      'playful',
+      'sad',
+  
+      at TestContext.<anonymous> (file:///C:/Users/prinz/OneDrive/%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88/Summer%20Visual%20Novel/tests/rowan.test.mjs:23:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 'concerned', 'embarrassed', 'neutral', 'playful', 'sad', 'smile', 'surprised' ],
+    expected: [ 'annoyed', 'concerned', 'embarrassed', 'neutral', 'playful', 'sad', 'smile', 'surprised' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests\scene-effects.test.mjs:5:1
+✖ Authored action cues exist in the script and never mutate it (14.6115ms)
+  AssertionError [ERR_ASSERTION]: Missing script cue: tilt
+      at TestContext.<anonymous> (file:///C:/Users/prinz/OneDrive/%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88/Summer%20Visual%20Novel/tests/scene-effects.test.mjs:8:50)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests\server.test.mjs:11:1
+✖ Server serves game but protects secrets and spoiler documents; offline API is explicit (315.0198ms)
+  [TypeError: fetch failed] {
+    [cause]: Error: connect EACCES 127.0.0.1:4187
+        at TCPConnectWrap.afterConnect [as oncomplete] (node:net:2017:16) {
+      errno: -4092,
+      code: 'EACCES',
+      syscall: 'connect',
+      address: '127.0.0.1',
+      port: 4187
+    }
+  }
+
+test at tests\server.test.mjs:31:1
+✖ Configured adapter receives bounded context and a server-side key; errors retry safely (251.5357ms)
+  [TypeError: fetch failed] {
+    [cause]: Error: connect EACCES 127.0.0.1:4188
+        at TCPConnectWrap.afterConnect [as oncomplete] (node:net:2017:16) {
+      errno: -4092,
+      code: 'EACCES',
+      syscall: 'connect',
+      address: '127.0.0.1',
+      port: 4188
+    }
+  }
+
+test at tests\story.test.mjs:24:1
+✖ All nodes reachable; all exits exist; no story cycles (7.0155ms)
+  AssertionError [ERR_ASSERTION]: Cycle: c2Activities0
+      at walk (file:///C:/Users/prinz/OneDrive/%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88/Summer%20Visual%20Novel/tests/story.test.mjs:26:65)
+      at walk (file:///C:/Users/prinz/OneDrive/%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88/Summer%20Visual%20Novel/tests/story.test.mjs:27:166)
+      at walk (file:///C:/Users/prinz/OneDrive/%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88/Summer%20Visual%20Novel/tests/story.test.mjs:27:166)
+      at walk (file:///C:/Users/prinz/OneDrive/%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88/Summer%20Visual%20Novel/tests/story.test.mjs:27:166)
+      at walk (file:///C:/Users/prinz/OneDrive/%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88/Summer%20Visual%20Novel/tests/story.test.mjs:27:166)
+      at walk (file:///C:/Users/prinz/OneDrive/%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88/Summer%20Visual%20Novel/tests/story.test.mjs:27:166)
+      at walk (file:///C:/Users/prinz/OneDrive/%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88/Summer%20Visual%20Novel/tests/story.test.mjs:27:166)
+      at walk (file:///C:/Users/prinz/OneDrive/%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88/Summer%20Visual%20Novel/tests/story.test.mjs:27:166)
+      at walk (file:///C:/Users/prinz/OneDrive/%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88/Summer%20Visual%20Novel/tests/story.test.mjs:27:166)
+      at walk (file:///C:/Users/prinz/OneDrive/%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88/Summer%20Visual%20Novel/tests/story.test.mjs:27:166) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests\story.test.mjs:63:1
+✖ Every referenced original asset is present (5.3356ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(manifest.backgrounds[n.place])
+  
+      at TestContext.<anonymous> (file:///C:/Users/prinz/OneDrive/%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88/Summer%20Visual%20Novel/tests/story.test.mjs:65:46)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

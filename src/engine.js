@@ -17,7 +17,7 @@ export const promises = [
   'Leave town together someday.'
 ];
 export function freshState(name = 'Alex', pronouns = 'they', profile = {}) {
-  return { version: VERSION, storyRevision: 6, seviSceneRevision: 3, carpentryRevision: 1, name: name.trim().slice(0, 24) || 'Alex', pronouns,
+  return { version: VERSION, storyRevision: 6, seviSceneRevision: 3, carpentryRevision: 1, chapterTwoRevision: 2, name: name.trim().slice(0, 24) || 'Alex', pronouns,
     gender:profile.gender||({he:'male',she:'female',they:'non-binary'}[pronouns]||'custom'),portrait:profile.portrait==='none'?'none':'silhouette',
     ...(pronouns==='custom'&&validCustomPronouns(profile.customPronouns)?{customPronouns:{...profile.customPronouns}}:{}),
     node: 'journey', line: 0, flags: {letterTiming:'later'}, history: [], chat: [], chatTurns: 0,
@@ -26,8 +26,8 @@ export function freshState(name = 'Alex', pronouns = 'they', profile = {}) {
 }
 export function interpolate(text, state) {
   const p = pronounForms(state);
-  return text.replace(/\{(name|subject|object|possessive|possessivePronoun|reflexive|be|have|hideout|hideoutPlace|treasure|nickname)\}/g, (_, key) =>
-    ({name: state.name, ...p, be:p.plural?'are':'is', have:p.plural?'have':'has',
+  return text.replace(/\{(name|subject|object|possessive|possessivePronoun|reflexive|be|have|hideout|hideoutPlace|treasure|nickname|appearancePraise)\}/g, (_, key) =>
+    ({name: state.name, appearancePraise:state.gender==='male'?'Ang gwapo mo na.':state.gender==='female'?'Ang ganda mo na.':'You look wonderful.', ...p, be:p.plural?'are':'is', have:p.plural?'have':'has',
       hideout: state.flags.hideout || 'the linen cupboard',
       hideoutPlace: state.flags.hideout==='under the kitchen table'?'under the kitchen table':'in '+(state.flags.hideout||'the linen cupboard'),
       treasure: state.flags.treasure || 'a blue marble',
@@ -144,6 +144,9 @@ function migrateRevisionFour(s,story){
 
 // Old saves keep their route through the flashback they already entered.
 export function nextStoryNode(story,state){
+ if(story[state.node].activityReturn)return 'c2Activities'+(Number(state.flags.c2Activities)||0);
+ if(story[state.node].graveArrival&&state.flags.graveTogether!==true)return 'c2Grave';
+ if(story[state.node].graveDeparture&&state.flags.afternoonRoute==='market')return 'c2Groceries';
  if(state.flags.legacyReunionOrder){
   if(state.node==='rAfterEnvelope')return 'rReturn';
   if(state.node==='rInside')return 'rWater';
@@ -188,6 +191,7 @@ function migrateRevisionFive(s,story){
 
 // Revision six keeps old saves on their selected route through the revised scenes.
 export function migrateStorySave(s,story){
+ if(s?.node==='c2NewEnding'&&story.c2NewEnding.next)s.completed=false;
  if(s?.version===VERSION&&s.flags&&Array.isArray(s.history)&&!s.carpentryRevision){
   const changed=id=>/^aTopic\d+_rowan_start$/.test(id);
   if(changed(s.node)&&story[s.node]){
@@ -225,6 +229,15 @@ export function migrateStorySave(s,story){
   s.seviSceneRevision=3;
  }
  if(!story[s.node])return s;
+ if((s.chapterTwoRevision||0)<2){
+  if(s.node.startsWith('c2'))s.line=Math.max(0,Math.min(s.line,visibleLines(story[s.node],s).length-1));
+  s.history=s.history.map(h=>{
+   const match=/^(c2[^:]+):(\d+)$/.exec(h.id);if(!match)return h;
+   const index=story[match[1]]?visibleLines(story[match[1]],s).findIndex(l=>interpolate(l.text,s)===h.text):-1;
+   return {...h,id:index>=0?match[1]+':'+index:'chapterTwoPrevious:'+h.id};
+  });
+  s.chapterTwoRevision=2;
+ }
  const revision=s.storyRevision||0;
  const original={node:s.node,line:s.line,history:s.history.map(h=>({...h}))};
  migrateRevisionFive(s,story);

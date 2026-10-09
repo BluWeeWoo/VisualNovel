@@ -18,7 +18,7 @@ test('All expression cues match authored text and every expression is used',()=>
  for(const [id,node] of Object.entries(story)){
    for(const [fragment] of directions[id]||[])assert.ok(node.lines.some(l=>l.text.includes(fragment)),`${id}: ${fragment}`);
    const s=freshState();s.node=id;
-   for(let line=0;line<visibleLines(node,s).length;line++){s.line=line;const sprite=spriteAt(story,s);if(sprite)seen.add(sprite.expression);}
+   for(let line=0;line<visibleLines(node,s).length;line++){s.line=line;const sprite=spriteAt(story,s);if(sprite&&sprite.character!=='Mayumi')seen.add(sprite.expression);}
  }
  assert.deepEqual([...seen].sort(),expressions.slice().sort());
 });

@@ -11,7 +11,8 @@ import {rowansLetter} from './continuation.js';
 import {phoneCue,hasRowanContact,phoneBody,phoneIdentity} from './phone-ui.js';
 import {story} from './story.js';
 import {freshState, interpolate, applyChoice, validSave, visibleLines, promises, milestones, refreshAuthoredHistory, migrateStorySave, nextStoryNode} from './engine.js';
-import {spriteAt, cgAt} from './staging.js';
+import {spriteAt, spritesAt, cgAt, sceneAt} from './staging.js';
+import {lunchCGKeys} from './lunch-art.js';
 import {scriptedReply, requestReply, suggestions} from './chat.js';
 import {setAudio} from './audio.js';
 import {setOpeningAudio, openingAudioCue, menuAudioCue, createNightmareEndingAudio, nightmareAudioContinues} from './opening-audio.js';
@@ -104,7 +105,7 @@ function choose(index){const node=story[state.node],opt=node.choices?.[index];if
   const text=interpolate(opt.text,state);
   state.history.push({id:`choice:${state.node}`,speaker:state.name,text});
   applyChoice(state,opt);enter(state.node);renderGame();}
-function bg(place,time){const url=manifest.backgroundVariants?.[place]?.[time]||manifest.backgrounds[place]||`assets/backgrounds/${place}.svg`;return `<div class="backdrop ${time} ${(place.startsWith('manila-')||place.startsWith('d2-'))?'painted-light':''}" style="background-image:url('${escape(url)}')" aria-hidden="true"></div><div class="paper-grain" aria-hidden="true"></div>`;}
+function bg(place,time){const url=manifest.backgroundVariants?.[place]?.[time]||manifest.backgrounds[place]||`assets/backgrounds/${place}.svg`;return `<div class="backdrop ${time} ${(place.startsWith('manila-')||place.startsWith('d2-')||place.startsWith('c2-painted-'))?'painted-light':''}" style="background-image:url('${escape(url)}')" aria-hidden="true"></div><div class="paper-grain" aria-hidden="true"></div>`;}
 function brand(){return '<span class="brand-mark" aria-hidden="true">☼</span><span class="brand-name">SUMMERHOUSE<br><small>A place to come back to</small></span>';}
 function iconButton(action,label,symbol){return `<button class="tool" data-action="${action}" aria-label="${label}" title="${label}"><span aria-hidden="true">${symbol}</span><span>${label}</span></button>`;}
 function title(){
@@ -133,6 +134,15 @@ function title(){
 function render(){if(screen==='title'){sceneEffects.stop();gardenCleanup?.();gardenCleanup=null;}stopTyping();enterAudio();document.documentElement.classList.toggle('reduced-motion',!settings.motion);if(screen==='title')title();else renderGame();}
 // Keep visual DOM alive across dialogue renders. Decode replacements first;
 // expression changes stay opaque, while scene artwork can fade in.
+const lunchPreloads=new Map();
+function preloadLunchArt(){
+ for(const key of lunchCGKeys){
+  const src=manifest.cgs?.[key]?.src;
+  if(!src||lunchPreloads.has(src))continue;
+  const image=new Image();image.src=src;lunchPreloads.set(src,image);
+  image.decode().catch(()=>lunchPreloads.delete(src));
+ }
+}
 async function updateVisual(host,html,key){
   if(host.dataset.visualKey===key)return;
   host.dataset.visualKey=key;
@@ -150,12 +160,18 @@ async function updateVisual(host,html,key){
   const currentSprite=current?.querySelector('.character-stage');
   const nextSprite=layer.querySelector('.character-stage');
   if(currentSprite&&nextSprite){
-    // Crossfading two transparent sprites makes even their shared silhouette
-    // briefly translucent. Swap the decoded expression on the existing image.
-    const currentImage=currentSprite.querySelector('img'),nextImage=nextSprite.querySelector('img');
     current.getAnimations().forEach(animation=>animation.cancel());
-    for(const name of ['class','data-expression','data-pose'])currentSprite.setAttribute(name,nextSprite.getAttribute(name));
-    for(const name of ['src','alt','width','height'])currentImage.setAttribute(name,nextImage.getAttribute(name));
+    const existing=new Map([...current.querySelectorAll('.character-stage')].map(el=>[el.getAttribute('data-character'),el]));
+    for(const next of layer.querySelectorAll('.character-stage')){
+      const old=existing.get(next.getAttribute('data-character'));
+      if(old){
+        for(const name of ['class','data-expression','data-pose'])old.setAttribute(name,next.getAttribute(name));
+        const image=old.querySelector('img'),replacement=next.querySelector('img');
+        for(const name of ['src','alt','width','height'])if(image.getAttribute(name)!==replacement.getAttribute(name))image.setAttribute(name,replacement.getAttribute(name));
+        existing.delete(next.getAttribute('data-character'));
+      }else current.append(next);
+    }
+    existing.forEach(el=>el.remove());
     previous.filter(old=>old!==current).forEach(old=>old.remove());
     return;
   }
@@ -207,18 +223,20 @@ function renderGame(){
     gardenCleanup=mountGarden(app,state,{save:autoSave,motion:settings.motion,sound:settings.sound,volume:settings.volume,solo:!!story[state.node].soloGarden,done:()=>{enter(story[state.node].soloGarden?story[state.node].next:'gResult');renderGame();},menu:()=>{screen='title';render();}});
     return;
   }
-  const node=story[state.node],all=nodeLines(),line=all[Math.min(state.line,all.length-1)];
+  const node=sceneAt(story,state),all=nodeLines(),line=all[Math.min(state.line,all.length-1)];
   if(!line){toast('This scene could not be loaded.');return;}
   record(line);autoSave();enterAudio();
   const last=state.line>=all.length-1;
   const cue=phoneCue(story,state);
   const displayText=cue?.message?(line.speaker==='You · text'?'I send him a message.':'A message from Rowan lights up your phone.'):display(line.text);
-  const staging=spriteAt(story,state);
+  const cast=spritesAt(story,state);
+  const staging=cast[0];
   const portrait=staging&&manifest.portraits[staging.character||'Rowan']?.[staging.key];
   const cg=manifest.cgs?.[cgAt(story,state)];
+  if(['c2Lunch','c2LunchMeal','c2Wait','c2Market','c2AloneGrave'].includes(state.node))preloadLunchArt();
   const gameHTML=`<main class="game-screen"><div class="scene-backdrops">${bg(node.place,node.time)}</div>
     <div class="scene-art" aria-label="Scene illustration">
-    ${cg?`<img class="event-cg" src="${escape(cg.src)}" width="1536" height="1024" alt="${escape(cg.alt)}" fetchpriority="high" decoding="async">`:portrait?`<aside class="character-stage ${node.time}${node.childhood?' childhood':''}" data-expression="${staging.expression}" data-pose="${staging.pose}"><img src="${escape(portrait)}" width="${manifest.spriteCanvas.width}" height="${manifest.spriteCanvas.height}" alt="Rowan${node.childhood?', age eleven':''}, ${staging.expression}${staging.pose==='book'?', holding an illustrated book':''}." fetchpriority="high"></aside>`:''}
+    ${cg?`<img class="event-cg" src="${escape(cg.src)}" width="1672" height="941" alt="${escape(cg.alt)}" fetchpriority="high" decoding="async">`:cast.map(actor=>{const src=manifest.portraits[actor.character||'Rowan']?.[actor.key];return src?`<aside class="character-stage ${node.time}${node.childhood?' childhood':''}${actor.slot?' cast-'+actor.slot:''}" data-character="${actor.character||'Rowan'}" data-expression="${actor.expression}" data-pose="${actor.pose}"><img src="${escape(src)}" width="${manifest.spriteCanvas.width}" height="${manifest.spriteCanvas.height}" alt="${actor.character||'Rowan'}, ${actor.expression}" fetchpriority="high"></aside>`:'';}).join('')}
     </div>
     <div class="scene-bottom">
     <section class="dialogue-card ${cue?.message?'narration':line.kind|| (line.speaker?'spoken':'narration')}" aria-label="Story dialogue">
@@ -230,7 +248,7 @@ function renderGame(){
     ${last&&node.ending&&!node.openingEnd?`<div class="chapter-end"><span class="eyebrow">END OF CHAPTER ONE</span><h2>A little less unfinished.</h2><p>Your summer is saved. The sunrise is planned, not yet fulfilled.</p><div><button class="primary" data-action="promises">Keep the list ↗</button><button class="secondary" data-action="title">Back to the title</button></div><small>Chapters 1 and 2 are playable. This ending belongs to an earlier story draft.</small></div>`:''}
     </div><div class="dialogue-footer"><nav class="dialogue-tools" aria-label="Game tools"><button data-action="history">History</button><button data-action="saves">Save / load</button><button data-action="settings">Settings &amp; Accessibility</button><button data-action="promises">Promises</button>${hasRowanContact(state)?'<button data-action="sg">Phone</button>':''}<button data-action="title" aria-label="Return to title">Menu</button></nav>${!(last&&(node.choices||node.phone||node.ending))?'<button class="next-button" data-action="next" aria-label="Continue dialogue">Continue <span aria-hidden="true">→</span></button>':'<span class="small-flower" aria-hidden="true">✳</span>'}</div></section>
     <footer class="game-footer"><span>${escape(state.name)}’s summer <span class="footer-dot">·</span> <button data-action="relationship" aria-label="Relationship milestones">${escape(state.milestone)}</button></span><span>${state.phoneUnlocked?'<button data-action="phone">↗ Late-night messages</button>':'A story at your own pace'}</span><span class="save-indicator">${storageAvailable?'● Progress saved locally':'! Local saves unavailable'}</span></footer></div></main>`;
-  mountGame(gameHTML,`${node.place}:${node.time}`,cg?`cg:${cg.src}`:`sprite:${portrait||'none'}:${node.time}`);
+  mountGame(gameHTML,`${node.place}:${node.time}`,cg?`cg:${cg.src}`:`sprite:${cast.map(a=>(a.character||'Rowan')+':'+a.key+':'+(a.slot||'')).join('|')}:${node.time}`);
   refreshSceneEffects();
   const gameScreen=app.querySelector('.game-screen');
   gameScreen.classList.toggle('dream-waking-sequence',['c2Calling','c2Blackout','c2Wake'].includes(state.node));
@@ -281,11 +299,11 @@ function shell(title,body,extra=''){
   else (layer.querySelector('input:not([type=range]),textarea')||layer.querySelector('button:not([disabled])'))?.focus();
 }
 function savePreview(saved){
-  const node=story[saved.node];
+  const node=sceneAt(story,saved);
   const background=manifest.backgroundVariants?.[node.place]?.[node.time]||manifest.backgrounds[node.place]||`assets/backgrounds/${node.place}.svg`;
   const cg=manifest.cgs?.[cgAt(story,saved)],sprite=spriteAt(story,saved);
-  const portrait=!cg&&sprite&&manifest.portraits[sprite.character||'Rowan']?.[sprite.key];
-  return `<span class="save-preview" role="img" aria-label="${escape(node.title)} — scene preview"><img class="save-background ${escape(node.time)} ${node.place.startsWith('manila-')?'painted-light':''}" src="${escape(background)}" alt="" loading="lazy">${cg?`<img class="save-cg" src="${escape(cg.src)}" alt="" loading="lazy">`:portrait?`<img class="save-portrait" src="${escape(portrait)}" alt="" loading="lazy">`:''}</span>`;
+  const portraits=cg?'':spritesAt(story,saved).map(actor=>{const src=manifest.portraits[actor.character||'Rowan']?.[actor.key];return src?'<img class="save-portrait" '+(actor.slot?'style="left:'+ (actor.slot==='left'?'32':'70')+'%;right:auto;transform:translateX(-50%)" ':'')+'src="'+escape(src)+'" alt="" loading="lazy">':'';}).join('');
+  return `<span class="save-preview" role="img" aria-label="${escape(node.title)} — scene preview"><img class="save-background ${escape(node.time)} ${(node.place.startsWith('manila-')||node.place.startsWith('c2-painted-'))?'painted-light':''}" src="${escape(background)}" alt="" loading="lazy">${cg?`<img class="save-cg" src="${escape(cg.src)}" alt="" loading="lazy">`:portraits}</span>`;
 }
 function drawSaveJournal(){
   const entries=saveKeys.map((key,i)=>{

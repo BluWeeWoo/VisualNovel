@@ -1,0 +1,5 @@
+Built-in image-generation tool. Preview only.
+
+Mayumi: Preserve established mature identity, brown eyes, brown low bun, cream embroidered blouse, sage tiered skirt, jewelry, sandals and full-body silhouette. Match the approved Rowan reference’s fine warm-brown linework and restrained drawn shading. Transparent background, no cropping, neutral reusable lighting. Use Mayumi’s existing neutral sprite as identity reference and Rowan’s upgraded neutral sprite as style reference.
+
+Dinner: Edit the dinner-interrupted CG using the approved Rowan sprite and proposed Mayumi sprite as references. Match character face and fabric rendering to one illustrator’s drawn VN style, preserving different identities and ages. Preserve table, bread, glasses, plants, room, nighttime light, perspective, gestures, expressions and composition. Do not unnecessarily enlarge the already naturally seated Mayumi.

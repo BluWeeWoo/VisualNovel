@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {story} from '../src/story.js';
 import {chapterTwoAfternoon} from '../src/chapter-two-afternoon.js';
-import {freshState,applyChoice,visibleLines,validSave,migrateStorySave} from '../src/engine.js';
+import {freshState,applyChoice,visibleLines,validSave,migrateStorySave,nextStoryNode} from '../src/engine.js';
 import {beginGarden,beginSoloGarden,pullWeed,finishSoloGarden} from '../assets/garden-game.js';
 import {openingAudioCue,tracks} from '../src/opening-audio.js';
 import {sceneCue} from '../assets/scene-effects.js';
@@ -12,20 +12,20 @@ import {spriteAt,cgAt} from '../src/staging.js';
 test('Every afternoon route and channel sequence reaches the real chapter ending',()=>{
  const seen=new Set();let endings=0;
  function walk(s,depth=0){
-  assert.ok(depth<32,s.node);const node=story[s.node];assert.ok(node,s.node);seen.add(s.node);
+  assert.ok(depth<65,s.node);const node=story[s.node];assert.ok(node,s.node);seen.add(s.node);
   const text=visibleLines(node,s);assert.ok(text.length,s.node);
   for(let i=0;i<text.length;i++){
    s.line=i;assert.ok(validSave(structuredClone(s),story),s.node);
    assert.doesNotMatch(text[i].text,/Proposed|Branches rejoin|\*\*|\[If|\[MC name\]|script direction/);
    assert.notEqual(sceneCue(s.node,node,text[i].text).ambient,'dream');
   }
-  if(node.ending){assert.equal(s.node,'c2NewEnding');assert.equal(s.flags.rowanAffection,7);assert.equal(s.milestone,'Trusted');endings++;return;}
+  if(node.ending){assert.equal(s.node,'c2FatherPresent');assert.equal(s.flags.rowanAffection,7);assert.equal(s.milestone,'Trusted');endings++;return;}
   if(node.soloGarden){for(const outcome of ['cleared','stopped']){const next=structuredClone(s);next.flags.soloGardenResult=outcome;next.node=node.next;next.line=0;walk(next,depth+1);}return;}
   if(node.choices){for(const choice of node.choices)walk(applyChoice(structuredClone(s),choice),depth+1);}
-  else {s.node=node.next;s.line=0;walk(s,depth+1);}
+  else {s.node=nextStoryNode(story,s);s.line=0;walk(s,depth+1);}
  }
  for(const known of [undefined,true]){const s=freshState();s.node='c2Lunch';s.flags.rowanAffection=7;s.flags.porchTopic_rowan=known;s.milestone='Trusted';walk(s);}
- assert.equal(seen.size,Object.keys(chapterTwoAfternoon).length);assert.ok(endings>=40);
+ for(const id of ['c2Clothes','c2Flowers','c2Groceries','c2FamilyArrival'])assert.ok([...seen].some(n=>n.startsWith(id)),id);assert.ok(endings>=40);
 });
 
 test('Solo gardening saves tugs, supports early exit, and cannot change the first round or relationships',()=>{
@@ -43,9 +43,9 @@ test('Solo activities exclude Rowan and news follows his return; reveal remember
  const s=freshState();for(const id of ['c2WaitGarden','c2SoloGarden','c2GardenAfter','c2WaitTV','c2WaitRest']){s.node=id;assert.equal(spriteAt(story,s),null);}
  assert.equal(story.c2TVReturn.next,'c2TVNews');
  assert.ok(story.c2TVReturn.lines.some(l=>l.text.includes('Rowan comes through the door')));
- assert.ok(story.c2TVNews.lines.some(l=>l.text==='Your mayor seems pretty good.'));
+ assert.ok(story.c2TVNews.lines.some(l=>l.text==='Your “new” mayor seems pretty good.'));
  const dialogue=flags=>visibleLines(story.c2Family,{flags}).map(l=>l.text).join('\n');
- assert.match(dialogue({afternoonActivity:'tv',workshopVisited:false}),/The one on TV earlier/);
+ assert.doesNotMatch(dialogue({afternoonActivity:'tv',workshopVisited:false}),/The one on TV earlier/);
  assert.doesNotMatch(dialogue({afternoonActivity:'garden',workshopVisited:false}),/The one on TV earlier/);
  assert.doesNotMatch(visibleLines(story.c2Grave,{flags:{graveTogether:false}}).map(l=>l.text).join('\n'),/Want some time|walk home together/);
 });

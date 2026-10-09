@@ -20,24 +20,14 @@ test('Third ending builds clouds individually and restores the same density',()=
  assert.equal(permanentCloudCount(nightmareProgress(structuredClone(state),3).endingElapsed),14);
 });
 
-test('Tenth clear starts eight-second ending, locks rapid input and resumes saved time',()=>{
+test('Final nightmare ends on its own and resumes saved time without a failure penalty',()=>{
  const s=freshState();s.flags.rowanAffection=9;const p=nightmareProgress(s,3);
- for(let i=0;i<4;i++)tickNightmare(p,3,1);
- assert.equal(clearThought(p,3,0),true);assert.equal(clearThought(p,3,0),false);
- clearThought(p,3,1);clearThought(p,3,2);assert.equal(p.endingElapsed,undefined);
  for(let i=0;i<10;i++)tickNightmare(p,3,1);
- assert.equal(nightmareOutcome(p,3),null);
- for(let id=3;id<9;id++)clearThought(p,3,id);
- assert.equal(p.endingElapsed,undefined);clearThought(p,3,9);assert.equal(p.endingElapsed,0);
- for(let i=0;i<100;i++)assert.equal(clearThought(p,3,i%7),false);
- for(let i=0;i<2;i++)assert.equal(tickNightmare(p,3,1),false);
- assert.equal(p.endingElapsed,2);
+ assert.ok(Number.isFinite(p.endingElapsed));
  const restored=structuredClone(s),resumed=nightmareProgress(restored,3);
- assert.equal(resumed.endingElapsed,2);assert.equal(tickNightmare(resumed,3,1),false);
- assert.equal(resumed.endingElapsed,3);
- for(let i=0;i<4;i++)assert.equal(tickNightmare(resumed,3,1),false);
- assert.equal(tickNightmare(resumed,3,1),true);assert.equal(nightmareOutcome(resumed,3),'overwhelmed');
- assert.equal(restored.flags.rowanAffection,9);
+ for(let i=0;i<8;i++)tickNightmare(resumed,3,1);
+ assert.equal(nightmareOutcome(resumed,3),'overwhelmed');
+ assert.equal(clearThought(resumed,3,0),false);assert.equal(restored.flags.rowanAffection,9);
 });
 
 test('Legacy third-wave saves preserve clears and an ending already in progress',()=>{
@@ -48,7 +38,7 @@ test('Legacy third-wave saves preserve clears and an ending already in progress'
 });
 
 test('Nightmare settings remain continuous and waking passes through darkness',()=>{
- for(const id of ['c2CloudIntro','c2Wave1','c2Wave1After'])assert.equal(story[id].place,'c2-confrontation');
+ for(const id of ['c2CloudIntro','c2Wave1','c2Wave1After'])assert.equal(story[id].place,'c2-city');
  for(const id of ['c2Wave2','c2Wave2After'])assert.equal(story[id].place,'c2-assignment');
  for(const id of ['c2Hall','c2Wave3','c2Calling','c2Blackout'])assert.equal(story[id].place,'c2-empty-hallway');
  assert.equal(story.c2Calling.next,'c2Blackout');
@@ -81,18 +71,16 @@ test('Chapter Two unlocks from old completed saves without resetting them; futur
  const html=chapterMenu(s,true);assert.match(html,/data-action="chapter-two"/);assert.equal((html.match(/<button disabled/g)||[]).length,3);
  assert.equal(chapterMenu(freshState(),false).includes('data-action="chapter-two"'),false);
 });
-test('Nightmare progress resumes, requires interaction, and cannot change affinity',()=>{
+test('Nightmare progress resumes and all waves are time-bounded without changing affinity',()=>{
  for(const wave of [1,2,3]){
-  const s=freshState();s.flags.rowanAffection=9;const p=nightmareProgress(s,wave);tickNightmare(p,wave,1);clearThought(p,wave,0);
-  const restored=structuredClone(s);assert.deepEqual(nightmareProgress(restored,wave),p);
-  let finished=false;for(let i=0;i<waveDurations[wave];i++)finished=tickNightmare(p,wave,1);
-  assert.equal(finished,false);assert.equal(s.flags.rowanAffection,9);
-  for(let id=0;id<10;id++)clearThought(p,wave,id);
-  for(let i=0;i<20;i++)tickNightmare(p,wave,1);
-  assert.equal(nightmareOutcome(p,wave),wave===3?'overwhelmed':'clear');
-  if(wave===3)assert.equal(clearThought(p,wave,9),false);
+  const s=freshState();s.flags.rowanAffection=9;const p=nightmareProgress(s,wave);
+  tickNightmare(p,wave,1);clearThought(p,wave,0);
+  assert.deepEqual(nightmareProgress(structuredClone(s),wave),p);
+  for(let i=0;i<40;i++)tickNightmare(p,wave,1);
+  assert.equal(nightmareOutcome(p,wave),'overwhelmed');assert.equal(s.flags.rowanAffection,9);
  }
 });
+
 test('Privacy branches never show seated Rowan CG and Sevi’s confrontations use their separate settings',()=>{
  const s=freshState();for(const id of ['c2Alone','c2Silent']){s.node=id;for(let i=0;i<story[id].lines.length;i++){s.line=i;assert.equal(cgAt(story,s),null);}}
  assert.equal(cgAt(story,{...s,node:'c2Confrontation',line:0}),'c2-sevi-meeting');assert.equal(cgAt(story,{...s,node:'c2Corridor',line:0}),'c2-sevi-confrontation');assert.equal(story.c2Wake.music,null);
@@ -106,7 +94,7 @@ test('Sevi interest beats require the earlier explicit response; ordinary scenes
  }
  s.flags.seviDescription='something';
  assert.ok(visibleLines(story.c2CorridorAfter,s).some(l=>l.text==='Will you be in the library later?'));
- assert.ok(visibleLines(story.c2MeetingAfter,s).some(l=>l.text==='You can still sit with me sa library. Kahit wala ka na sa committee.'));
+ assert.ok(visibleLines(story.c2MeetingAfter,s).some(l=>l.text==='I still have to be Top 1.'));
  assert.ok(story.c2Corridor.lines.filter(l=>l.kind==='thought').every(l=>l.speaker===''));
 });
 test('Legacy confrontation saves remain valid without changing relationships or archived history',()=>{
@@ -142,6 +130,6 @@ test('Removed committee choices migrate safely; revised script keeps withdrawal 
   migrateStorySave(s,story);assert.equal(s.node,'c2Confrontation');assert.ok(validSave(s,story));assert.equal(s.flags.rowanAffection,7);
   assert.equal(story[node],undefined);
  }
- assert.ok(!story.c2Confrontation.choices);assert.ok(story.c2Explain.lines.some(l=>l.text.includes('He said okay')));
+ assert.ok(!story.c2Confrontation.choices);assert.ok(story.c2Explain.lines.some(l=>l.text.includes('Still asked.')));
  assert.equal(story.c2Wave3.place,'c2-empty-hallway');assert.equal(story.c2SmallStep.choices[1].set.morningStep,'bed');
 });

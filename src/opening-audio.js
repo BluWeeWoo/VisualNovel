@@ -30,7 +30,7 @@ export function openingAudioCue(node,state){
  }
  if(node.chapterTwo){
   if(node.nightmare===3&&Number.isFinite(state.flags?.nightmareWave3?.endingElapsed))return cue([],.2);
-  const music=node.music||(node.place==='d2-bedroom-morning'?'back-together':null);
+  const music=Object.hasOwn(node,'music')?node.music:(node.place==='d2-bedroom-morning'?'back-together':null);
   const layers=music?[{key:music,level:.24}]:[];
   if(!node.place.startsWith('c2-')||node.place==='c2-rest')layers.push({key:'outdoors',level:.08});
   return cue(layers,2);

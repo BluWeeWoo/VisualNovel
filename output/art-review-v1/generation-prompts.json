@@ -1,0 +1,91 @@
+{
+  "tool": "Built-in image_gen",
+  "status": "Preview only — not integrated",
+  "entries": [
+    {
+      "name": "mayumi-neutral",
+      "prompt": "Use case: identity-preserve. ONE full-body game sprite, Mayumi, neutral attentive face, hands loosely together at waist. Reference is character identity only. Exactly preserve her Filipino woman age forties face, brown low bun, cream embroidered blouse with lace sleeves, sage skirt, jewelry and brown sandals, mature proportions, painterly anime VN style. 1024x1536 portrait, entire body and sandals visible, hair top at y35 and soles at y1495, centered stable scale. CRITICAL clean isolated cutout on fully transparent background: all pixels outside the silhouette completely transparent, NO glow, NO halo, NO gradient, NO shadow behind body, NO backdrop. Opaque character interior. Polished hands/anatomy. No text, no scene, no extra character.",
+      "source": "C:\\Users\\prinz\\.codex\\generated_images\\01a0c545-9957-74e2-9837-620a54291f61\\exec-8cc5901c-abd9-46ed-aff8-2616ce694373.png"
+    },
+    {
+      "name": "mayumi-warm-smile",
+      "prompt": "Use case: identity-preserve. ONE full-body game sprite, Mayumi, warm welcoming smile, right forearm gently extended with open hand. Reference is character identity only. Exactly preserve her Filipino woman age forties face, brown low bun, cream embroidered blouse with lace sleeves, sage skirt, jewelry and brown sandals, mature proportions, painterly anime VN style. 1024x1536 portrait, entire body and sandals visible, hair top at y35 and soles at y1495, centered stable scale. CRITICAL clean isolated cutout on fully transparent background: all pixels outside the silhouette completely transparent, NO glow, NO halo, NO gradient, NO shadow behind body, NO backdrop. Opaque character interior. Polished hands/anatomy. No text, no scene, no extra character.",
+      "source": "C:\\Users\\prinz\\.codex\\generated_images\\01a0c545-9957-74e2-9837-620a54291f61\\exec-4f70d481-383e-4a49-b4d0-b0db65a2c22b.png"
+    },
+    {
+      "name": "mayumi-concerned",
+      "prompt": "Use case: identity-preserve. ONE full-body game sprite, Mayumi, concerned softly knitted brows, hands gathered near waist and very slight forward lean. Reference is character identity only. Exactly preserve her Filipino woman age forties face, brown low bun, cream embroidered blouse with lace sleeves, sage skirt, jewelry and brown sandals, mature proportions, painterly anime VN style. 1024x1536 portrait, entire body and sandals visible, hair top at y35 and soles at y1495, centered stable scale. CRITICAL clean isolated cutout on fully transparent background: all pixels outside the silhouette completely transparent, NO glow, NO halo, NO gradient, NO shadow behind body, NO backdrop. Opaque character interior. Polished hands/anatomy. No text, no scene, no extra character.",
+      "source": "C:\\Users\\prinz\\.codex\\generated_images\\01a0c545-9957-74e2-9837-620a54291f61\\exec-601c3fa9-dc00-49e4-b5a4-ce625a9a5b9a.png"
+    },
+    {
+      "name": "mayumi-surprised",
+      "prompt": "Use case: identity-preserve. ONE full-body game sprite, Mayumi, moderately surprised widened eyes, lips gently parted, right hand slightly raised. Reference is character identity only. Exactly preserve her Filipino woman age forties face, brown low bun, cream embroidered blouse with lace sleeves, sage skirt, jewelry and brown sandals, mature proportions, painterly anime VN style. 1024x1536 portrait, entire body and sandals visible, hair top at y35 and soles at y1495, centered stable scale. CRITICAL clean isolated cutout on fully transparent background: all pixels outside the silhouette completely transparent, NO glow, NO halo, NO gradient, NO shadow behind body, NO backdrop. Opaque character interior. Polished hands/anatomy. No text, no scene, no extra character.",
+      "source": "C:\\Users\\prinz\\.codex\\generated_images\\01a0c545-9957-74e2-9837-620a54291f61\\exec-9f1e75d8-dab7-4005-8ac7-b4bc5e33b5f8.png"
+    },
+    {
+      "name": "mayumi-sad",
+      "prompt": "Use case: identity-preserve. ONE full-body game sprite, Mayumi, quiet sadness with lowered gaze and relaxed shoulders, hands loosely folded. Reference is character identity only. Exactly preserve her Filipino woman age forties face, brown low bun, cream embroidered blouse with lace sleeves, sage skirt, jewelry and brown sandals, mature proportions, painterly anime VN style. 1024x1536 portrait, entire body and sandals visible, hair top at y35 and soles at y1495, centered stable scale. CRITICAL clean isolated cutout on fully transparent background: all pixels outside the silhouette completely transparent, NO glow, NO halo, NO gradient, NO shadow behind body, NO backdrop. Opaque character interior. Polished hands/anatomy. No text, no scene, no extra character.",
+      "source": "C:\\Users\\prinz\\.codex\\generated_images\\01a0c545-9957-74e2-9837-620a54291f61\\exec-5d1c355b-bf0c-4a96-8d3f-687f7adb805e.png"
+    },
+    {
+      "name": "mayumi-serious",
+      "prompt": "Use case identity-preserve. ONE full-body transparent game sprite of the same Mayumi, Filipino woman in her forties. Calm serious face, closed mouth no smile, upright stance, hands resting one over the other. Keep exact face, brown low bun, cream embroidered blouse, sage long skirt, jewelry, brown sandals, proportions, painterly anime style. 1024x1536 entire body with margins, no cropping. True alpha outside silhouette, no background, no glow. Match reference scale.",
+      "source": "C:\\Users\\prinz\\.codex\\generated_images\\01a0c545-9957-74e2-9837-620a54291f61\\exec-5b809052-ff0a-4952-bb02-ab8f30264a62.png"
+    },
+    {
+      "name": "mayumi-teasing",
+      "prompt": "Use case: identity-preserve. ONE full-body game sprite, Mayumi, gently teasing small knowing smile, tiny head tilt, open-handed gesture near waist. Reference is character identity only. Exactly preserve her Filipino woman age forties face, brown low bun, cream embroidered blouse with lace sleeves, sage skirt, jewelry and brown sandals, mature proportions, painterly anime VN style. 1024x1536 portrait, entire body and sandals visible, hair top at y35 and soles at y1495, centered stable scale. CRITICAL clean isolated cutout on fully transparent background: all pixels outside the silhouette completely transparent, NO glow, NO halo, NO gradient, NO shadow behind body, NO backdrop. Opaque character interior. Polished hands/anatomy. No text, no scene, no extra character.",
+      "source": "C:\\Users\\prinz\\.codex\\generated_images\\01a0c545-9957-74e2-9837-620a54291f61\\exec-7513df7b-a6cd-45cb-b792-9b26dd0865e6.png"
+    },
+    {
+      "name": "town-late-afternoon",
+      "prompt": "Use case style-transfer and lighting-weather. Polish this exact Saint Luis waterfront VN background. Preserve camera, perspective, composition, LEFT shop facades and awnings, RIGHT seawall, harbor boats, lighthouse and far hills in exactly same positions. Richer polished painterly anime VN illustration, warm lived-in nostalgic coastal summer, improved fine textures and foliage, subtle shop goods. LATE AFTERNOON golden sunlight and long shadows, blue sky. No characters or text, no new landmarks or drastic architecture changes. Landscape same framing/aspect as reference.",
+      "source": "C:\\Users\\prinz\\.codex\\generated_images\\01a0c545-9957-74e2-9837-620a54291f61\\exec-2d038e13-0364-4a45-9b75-f281a81d8c41.png"
+    },
+    {
+      "name": "town-sunset",
+      "prompt": "Use case: lighting-weather. Edit this exact reference image ONLY to change time of day. SUNSET: low orange sunlight, peach and pink sky, softened long shadows, warm horizon. Keep exact camera, composition, perspective, object geometry, landmarks, weather and polished painterly anime visual novel style. Same landscape aspect ratio as reference. No text, no UI, no new people or objects. Matching continuity variation, not a redesigned location.",
+      "source": "C:\\Users\\prinz\\.codex\\generated_images\\01a0c545-9957-74e2-9837-620a54291f61\\exec-066174c8-ad89-4985-acf0-f9f3dce7a394.png"
+    },
+    {
+      "name": "town-early-evening",
+      "prompt": "Use case: lighting-weather. Edit this exact reference image ONLY to change time of day. EARLY EVENING blue hour: lavender blue sky, thin lingering peach horizon, no direct sunlight, shop windows and streetlamps glowing warmly. Keep exact camera, composition, perspective, object geometry, landmarks, weather and polished painterly anime visual novel style. Same landscape aspect ratio as reference. No text, no UI, no new people or objects. Matching continuity variation, not a redesigned location.",
+      "source": "C:\\Users\\prinz\\.codex\\generated_images\\01a0c545-9957-74e2-9837-620a54291f61\\exec-b6fc6030-df3a-46ff-b380-4f6caee3f52e.png"
+    },
+    {
+      "name": "town-night",
+      "prompt": "Use case: lighting-weather. Edit this exact reference image ONLY to change time of day. NIGHT: deep blue evening sky, no sunset orange and no sunlight, warm illuminated shop windows and streetlights, cool blue sea and hills. Readable atmosphere, not excessively dark. Keep exact camera, composition, perspective, object geometry, landmarks, weather and polished painterly anime visual novel style. Same landscape aspect ratio as reference. No text, no UI, no new people or objects. Matching continuity variation, not a redesigned location.",
+      "source": "C:\\Users\\prinz\\.codex\\generated_images\\01a0c545-9957-74e2-9837-620a54291f61\\exec-0260245a-fddc-45f4-8310-112494304104.png"
+    },
+    {
+      "name": "grave-late-afternoon",
+      "prompt": "Use case lighting-weather. Edit this exact grave background to LATE AFTERNOON around 4pm, NOT sunset. Preserve exact composition, graves, flowers, trees, boats and hills. Sky stays BLUE with white clouds, NO orange/pink sunset sky and NO visible sun near horizon. Sun is offscreen high to the right, warm soft GOLDEN sunlight with longer tree shadows than noon. Rich painterly VN style identical to reference. No text or characters. Same 1672x941 landscape framing.",
+      "source": "C:\\Users\\prinz\\.codex\\generated_images\\01a0c545-9957-74e2-9837-620a54291f61\\exec-81dab0b1-4941-4caf-a1eb-c3a7ad12d710.png"
+    },
+    {
+      "name": "grave-sunset",
+      "prompt": "Use case: lighting-weather. Edit this exact reference image ONLY to change time of day. SUNSET: lower warm orange light from the same direction, peach sky, lengthening soft shadows. Keep every flower and grave in exactly the same position. Keep exact camera, composition, perspective, object geometry, landmarks, weather and polished painterly anime visual novel style. Same landscape aspect ratio as reference. No text, no UI, no new people or objects. Matching continuity variation, not a redesigned location.",
+      "source": "C:\\Users\\prinz\\.codex\\generated_images\\01a0c545-9957-74e2-9837-620a54291f61\\exec-4f49c64b-aed7-422f-839e-dbbf0ae5f821.png"
+    },
+    {
+      "name": "porch-early-evening",
+      "prompt": "Use case: lighting-weather. Edit this exact reference image ONLY to change time of day. EARLY EVENING blue hour: lavender blue sky with faint warm horizon, no direct daylight. Existing hanging porch lamp lit warmly. Preserve blue door, bench, tools, plants, boats and all positions. No gate, no characters. Keep exact camera, composition, perspective, object geometry, landmarks, weather and polished painterly anime visual novel style. Same landscape aspect ratio as reference. No text, no UI, no new people or objects. Matching continuity variation, not a redesigned location.",
+      "source": "C:\\Users\\prinz\\.codex\\generated_images\\01a0c545-9957-74e2-9837-620a54291f61\\exec-383ada1c-538d-45bf-bef3-34f3cbacccf4.png"
+    },
+    {
+      "name": "porch-night",
+      "prompt": "Use case: lighting-weather. Edit this exact reference image ONLY to change time of day. NIGHT: deep blue sky and cool blue harbor, distant illuminated windows. Existing hanging porch lamp casts warm light. Preserve blue door, bench, tools, plants, boats and all positions. No gate, no characters. Keep exact camera, composition, perspective, object geometry, landmarks, weather and polished painterly anime visual novel style. Same landscape aspect ratio as reference. No text, no UI, no new people or objects. Matching continuity variation, not a redesigned location.",
+      "source": "C:\\Users\\prinz\\.codex\\generated_images\\01a0c545-9957-74e2-9837-620a54291f61\\exec-cfbb420c-d8a8-4562-a355-ab80ac720e65.png"
+    },
+    {
+      "name": "living-night",
+      "prompt": "Use case: lighting-weather. Edit this exact reference image ONLY to change time of day. NIGHT INTERIOR: warm practical lamplight indoors, cool deep blue night through every window, distant town lights, NO direct sunlight or sun rays on floor. Preserve all furniture, rug, props, window positions. Keep exact camera, composition, perspective, object geometry, landmarks, weather and polished painterly anime visual novel style. Same landscape aspect ratio as reference. No text, no UI, no new people or objects. Matching continuity variation, not a redesigned location.",
+      "source": "C:\\Users\\prinz\\.codex\\generated_images\\01a0c545-9957-74e2-9837-620a54291f61\\exec-55d32915-7591-4628-9e14-472cf966692f.png"
+    },
+    {
+      "name": "family-night",
+      "prompt": "Use case: lighting-weather. Edit this exact reference image ONLY to change time of day. NIGHT INTERIOR: warm indoor lamplight on Mayumi and Rowan, deep blue nighttime sky and town lights through windows, no sunlight. ABSOLUTELY preserve both characters' exact faces, expressions, hairstyles, clothing, seating positions, gestures, body proportions, table, bread bag, glasses, and all objects. Keep exact camera, composition, perspective, object geometry, landmarks, weather and polished painterly anime visual novel style. Same landscape aspect ratio as reference. No text, no UI, no new people or objects. Matching continuity variation, not a redesigned location.",
+      "source": "C:\\Users\\prinz\\.codex\\generated_images\\01a0c545-9957-74e2-9837-620a54291f61\\exec-6f20cc33-9eef-40f5-96ec-8c66d6debf29.png"
+    }
+  ]
+}

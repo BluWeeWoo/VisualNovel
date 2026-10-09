@@ -1,0 +1,153 @@
+
+> our-summer-unfinished@0.1.0 test
+> node --test tests/*.test.mjs
+
+✔ Every after-garden branch saves, terminates and preserves relationship state (7928.4075ms)
+✔ Topic menus prevent repeat conversations and permit stopping after one topic (0.1919ms)
+✔ Existing garden-ending saves continue without moving their reading position (1.011ms)
+✔ Porch illustrations and night messages appear only at their authored moments (0.3847ms)
+✔ Every afternoon route and channel sequence reaches the real chapter ending (4184.9041ms)
+✔ Solo gardening saves tugs, supports early exit, and cannot change the first round or relationships (1.2341ms)
+✔ Solo activities exclude Rowan and news follows his return; reveal remembers the chosen route (0.3598ms)
+✔ New scenes have real art/music assets, and solo activities use ambience without a rival (10.3592ms)
+✔ Old endpoint and ambition saves retain progress, prior choices, relationship, and historical text (1.1475ms)
+✔ All CGs appear only inside their authored cue windows without changing saves (55.7425ms)
+✔ All event illustrations are optimized WebP with accessible descriptions (103.9385ms)
+✔ Revised saves clamp shortened scenes and retain choices, relationships and read history (20.8696ms)
+✔ Solitude and grocery routes cannot accidentally put Rowan at a solo grave visit (0.3804ms)
+✔ Mayumi has her own sprite and the ending stops before revealing her son’s surname (0.8691ms)
+✔ Third ending builds clouds individually and restores the same density (1.4588ms)
+✔ Final nightmare ends on its own and resumes saved time without a failure penalty (0.6562ms)
+✔ Legacy third-wave saves preserve clears and an ending already in progress (0.2813ms)
+✔ Nightmare settings remain continuous and waking passes through darkness (1.7802ms)
+✔ Every nightmare and recovery choice reaches the afternoon bridge with boundaries and saves intact (204.9091ms)
+✔ Chapter Two unlocks from old completed saves without resetting them; future chapters stay locked (2.7966ms)
+✔ Nightmare progress resumes and all waves are time-bounded without changing affinity (0.8781ms)
+✔ Privacy branches never show seated Rowan CG and Sevi’s confrontations use their separate settings (0.3829ms)
+✔ Sevi interest beats require the earlier explicit response; ordinary scenes stay platonic (0.614ms)
+✔ Legacy confrontation saves remain valid without changing relationships or archived history (0.9529ms)
+✔ Ten gradual clouds have distinct outcomes and never block story progression (1.6071ms)
+✔ Removed committee choices migrate safely; revised script keeps withdrawal fixed (0.3383ms)
+✔ affinity follows saved milestones without mutating progress (2.549ms)
+✔ chapter completion requires reaching the actual final line (0.3796ms)
+✔ all future chapters remain disabled and only one affinity portrait renders (0.6231ms)
+✔ Childhood uses all six approved sprites, no adult portraits or present-day phone (26.368ms)
+✔ Twelve-year separation is consistent and family reveal stays out of Chapter One (2.1615ms)
+✔ Existing phone-reading saves migrate to the same message exactly once (11.2123ms)
+✔ All 5184 continuation routes preserve boundaries, save positions and the authored ending (19139.5986ms)
+✔ Existing recognition saves can continue without losing the saved line (0.1558ms)
+✔ Reunion music is fixed by scene; one-shot phone cue occurs only on its authored text (0.6769ms)
+✔ All 1008 day-two routes finish after breakfast and gardening, preserving optional attraction (2042.9899ms)
+✔ Old ending resumes without losing name, choices or reading position (0.5337ms)
+✔ Phone shows only messages read so far, with the correct sender (0.2765ms)
+✔ Every story line has an explicit presentation kind without changing its speaker (6.2536ms)
+✔ Silent thoughts, physical actions and spoken MC lines remain distinct (3.3886ms)
+✔ The same dialogue panel keeps empty silent nameplates and italicizes only thoughts (2.3791ms)
+✔ Gallery does not reveal future CGs or mutate progress; exact viewed history migrates (2.7215ms)
+✔ Every CG unlocks only at its cue, including branch-specific illustrations (2.3786ms)
+✔ Catalog preserves character order, Sevi artwork ownership, and asset references (11.466ms)
+✔ Sevi story art retains unlocks and is excluded from Rowan without changing other entries (0.5297ms)
+✔ Every weed requires its assigned 2–5 clicks, with attempts preserved across saves (3.4412ms)
+✔ Wide garden art is exclusive to minigame, dialogue uses the close Rowan CG (21.9122ms)
+✔ Wins, losses, ties and untimed play award equal affection once (0.8975ms)
+✔ Declining preserves affection and trust without blocking the ending (0.4904ms)
+✔ An unfinished round survives save/load with scores, remaining time and weeds intact (2.9367ms)
+✔ Old garden-ending saves resume at the new choice (0.6703ms)
+✔ English and Taglish selection changes presentation, not state or artwork cues (12.801ms)
+✔ All playable branches and choices remain printable in either language (68.8004ms)
+✔ English removes Filipino clauses; Taglish keeps shared narration in English (0.2074ms)
+✔ Letters, history, phones and nightmare words follow selected language (1.0281ms)
+✔ Reading choices persist and select the correct living-room response (1.717ms)
+✔ Letter is authored at twenty-one while Lola is alive; flashback phone remains hidden (1.2107ms)
+✔ Old burning and ending saves remain valid, migrate once, and can continue (1.3003ms)
+✔ All 16 opening routes preserve choices and saves, reach recognition without premature later unlocks (1201.3267ms)
+✔ Opening keeps PDF chronology, editable identity, and no invented resolution (0.4426ms)
+✔ Authored phone moments open the correct screen without changing story state (1.6335ms)
+✔ Seaglass cannot show future messages or unlock free chat (1.7961ms)
+✔ Fictional profile, messages and feed are escaped and remain presentation only (0.6258ms)
+✔ Present-day Seaglass stays unavailable inside the two-years-earlier flashback (0.2337ms)
+✔ Custom pronouns survive saves and reach story references and chat context (6.2848ms)
+✔ Existing pronoun saves remain valid and identity never changes relationship flags (0.4007ms)
+✔ Porch CG ends before envelopes; yellow CG follows selection and all choices rejoin without relationship changes (3.824ms)
+✔ Every pre-revision porch save maps to a valid moment and preserves player data exactly once (23.7519ms)
+✔ Porch responses retain the chosen wording after save migration (0.6682ms)
+✔ New playthrough reaches the house before the rainy flashback and returns to water (1.6283ms)
+✔ Revision-four saves complete the old order without repeating the flashback or losing choices (1.7493ms)
+✔ Childhood reply shapes the present-day phone without revealing future messages (1.4309ms)
+✔ Revision six resumes rewritten scenes and preserves player data exactly once (62.191ms)
+✔ Unchanged lines and completed chapter saves keep their positions (0.3369ms)
+✔ Garden dialogue respects declining and preserves existing affection (0.4522ms)
+✔ Both characters are 23; Rowan is he/him and player choices remain available (3.8411ms)
+✔ All expression cues match authored text and every expression is used (24.9596ms)
+✔ Book pose is present in sorting, absent in outdoor scenes and night texting (0.9623ms)
+✔ Existing saves retain choices while old authored pronouns are refreshed (1.0487ms)
+✔ All ten approved sprite PNGs share canvas and RGBA transparency format (49.1148ms)
+✔ All nineteen existing manual saves are reachable exactly once, with autosave separate (4.077ms)
+✔ Empty saves cannot load, and title-screen saves cannot overwrite progress (0.5422ms)
+✔ A selected memory renders its actual details safely and only enables the matching action (0.4722ms)
+✔ Replacing a save requires confirmation and a failed write never reports success (1.9351ms)
+✔ Changing save pages keeps the existing dialog layer mounted (4.1548ms)
+✔ Authored action cues exist in the script and never mutate it (15.6209ms)
+✔ Effects cancel on exit, never replay after a menu, and suppress loaded reactions (0.9873ms)
+✔ Nightmare smoke stays mounted between dialogue lines and stops with motion disabled (0.5971ms)
+✔ Server serves game but protects secrets and spoiler documents; offline API is explicit (494.7094ms)
+✔ Configured adapter receives bounded context and a server-side key; errors retry safely (1962.1625ms)
+✖ Eerie audio carries through calling and blackout, then normal music returns at waking (3.4304ms)
+✔ Ending silence belongs only to third wave (0.3825ms)
+✔ Third-wave audio respects mute, starts impact once, pauses and disposes (2.2582ms)
+✔ Approved cues follow exact authored lines and both branches (3.6757ms)
+✔ Menu theme persists across menu updates and fades into story audio (1.344ms)
+✔ Next and volume changes preserve playback; scene changes crossfade and retire old audio (0.4574ms)
+✔ Music repeats with overlap; hammer never loops and stops at the call (0.3564ms)
+✔ Mute releases all audio; errors report once and sound toggle retries (0.3214ms)
+✔ All nodes reachable; all exits exist; no story cycles (3.6868ms)
+✔ Every branch renders, persists, and reaches the ending (2087.7889ms)
+✔ Boundary, respectful disagreement, friendship and skipped detour cost no trust (53.888ms)
+✔ All three childhood memory variants return later (128.0921ms)
+✔ Chosen pronouns render in the photograph inscription (0.2742ms)
+✔ Malformed and stale saves are rejected (0.2497ms)
+✔ Preview cannot grant trust, promises, or authored relationship changes (38.3757ms)
+✔ Every referenced original asset is present (5.2367ms)
+✔ Reduced motion proceeds once and blocks duplicate starts until the handoff completes (2.4949ms)
+✔ A failed handoff releases the transition lock (0.5621ms)
+✔ Chapter Two opening is not presented as a completed chapter (0.3912ms)
+✔ Dialogue updates keep the panel, text node and unchanged controls mounted (4.0117ms)
+✔ Rebinding persistent Next button never accumulates advance handlers (1.8229ms)
+✔ Unchanged artwork keeps its mounted layer across dialogue updates (1.641ms)
+✔ Pending images keep old artwork visible; stale loads cannot replace newer scenes (2.1406ms)
+✔ Visual replacements crossfade with motion and swap directly with reduced motion (3.1983ms)
+✔ Rowan changes expressions on the same image without a body fade or re-entry animation (2.3997ms)
+✔ A pending or failed expression keeps Rowan visible and cannot overwrite a newer expression (1.6722ms)
+ℹ tests 116
+ℹ suites 0
+ℹ pass 115
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 19434.3211
+
+✖ failing tests:
+
+test at tests\soundtrack.test.mjs:9:1
+✖ Eerie audio carries through calling and blackout, then normal music returns at waking (3.4304ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+  -   'back-together',
+      'outdoors'
+    ]
+  
+      at TestContext.<anonymous> (file:///C:/Users/prinz/OneDrive/%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88/Summer%20Visual%20Novel/tests/soundtrack.test.mjs:13:51)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 'outdoors' ],
+    expected: [ 'back-together', 'outdoors' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

@@ -92,6 +92,10 @@
 /* Full-body Rowan uses a smaller figure within the same canvas than the old
    knee-cropped art. Compensate only on the story stage, not in the gallery. */
 .scene-art .character-stage:has(img[src*="/rowan-upgraded/"]){top:9.4svh;height:161.2svh;width:107.467svh}
+/* Match the approved conversation staging across Mayumi's expressions. */
+@media(min-width:651px){
+ .scene-art .character-stage[data-character="Mayumi"]{top:15svh;height:145svh;width:96.667svh}
+}
 .scene-art .event-cg{object-fit:contain;object-position:center;padding:8svh 0 10svh;background:#303540}
 .cast-art img{aspect-ratio:2/3}
 @media(max-width:650px){
@@ -266,6 +270,9 @@
 .morning-phone p{background:#e3ebe6;border-radius:12px;padding:9px 12px;margin:8px 0}
 @media(max-width:640px){.morning-phone{right:4vw;top:3vh;width:75vw;max-height:32vh;font-size:12px;padding:10px}}
 .save-background.painted-light { filter:none; }
+/* Preserve the artwork's original lighting; time-of-day art already supplies it. */
+.game-screen .scene-backdrops .backdrop::after { background:none; mix-blend-mode:normal; }
+.save-preview .save-background { filter:none; }
 /* Compact dialogue: reserve only the current sentence, keeping typing stable. */
 .dialogue-card { padding:15px 28px 10px; }
 .dialogue-top { margin-bottom:7px; }
@@ -421,6 +428,8 @@
   .dialogue-card .opening-end .text-button { padding-top:5px;padding-bottom:5px; }
 }
 .character-stage.night img { filter:brightness(.78) saturate(.8) drop-shadow(0 5px 9px #16243555); }
+.scene-art .character-stage.cast-left{left:32%}
+.scene-art .character-stage.cast-right{left:70%}
 
 /* The afternoon round has no rival imagery or score. */
 .solo-garden .weed-canvas{background-image:url('assets/cg/chapter-two/solo-garden.webp');background-size:cover}

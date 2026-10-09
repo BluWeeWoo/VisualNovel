@@ -6,11 +6,11 @@ import {openingAudioCue,menuAudioCue,tracks,createSoundtrackPlayer,createNightma
 const at=(node,fragment)=>openingAudioCue(story[node],{node,line:fragment?story[node].lines.findIndex(l=>l.text.includes(fragment)):0});
 const keys=c=>c.layers.map(l=>l.key);
 
-test('Eerie audio carries through calling and blackout, then normal music returns at waking',()=>{
+test('Eerie audio carries through calling and blackout, then waking begins with quiet ambience',()=>{
  for(const id of ['c2Wave3','c2Calling','c2Blackout'])assert.equal(nightmareAudioContinues(id),true);
  for(const id of ['c2Wave1','c2Wave2','c2Wake','c2WakeChoice',undefined])assert.equal(nightmareAudioContinues(id),false);
  for(const id of ['c2Calling','c2Blackout'])assert.deepEqual(keys(at(id)),[]);
- for(const id of ['c2Wake','c2WakeChoice'])assert.deepEqual(keys(at(id)),['back-together','outdoors']);
+ for(const id of ['c2Wake','c2WakeChoice'])assert.deepEqual(keys(at(id)),['outdoors']);
  assert.equal(at('c2Okay').layers[0].key,'letters');
 });
 

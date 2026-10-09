@@ -1,0 +1,5649 @@
+[
+  {
+    "path": "assets/backgrounds/backups/before-saint-luis-update/bedroom-illustrated.png",
+    "width": 1536,
+    "height": 1024,
+    "alpha_bounds": [
+      0,
+      0,
+      1536,
+      1024
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 0,
+    "status": "Archive only",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged. Backup retained unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/backgrounds/backups/before-saint-luis-update/living-illustrated.png",
+    "width": 1536,
+    "height": 1024,
+    "alpha_bounds": [
+      0,
+      0,
+      1536,
+      1024
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 1,
+    "status": "Archive only",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged. Backup retained unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/backgrounds/backups/before-saint-luis-update/menu-seaglass.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 2,
+    "status": "Archive only",
+    "review": "Rowan’s small menu figure has softer facial definition than the approved sprite. Match face/eye linework and cardigan motifs without enlarging him; the wide establishing composition is intentional. Backup retained unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/backgrounds/bedroom-illustrated.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json",
+      "assets/portraits/backups/rowan-before-approved-upgrade/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 3,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [
+      "manifest.backgrounds.bedroom"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/backgrounds/exterior-illustrated.png",
+    "width": 1536,
+    "height": 1024,
+    "alpha_bounds": [
+      0,
+      0,
+      1536,
+      1024
+    ],
+    "references": [
+      "assets/manifest.json",
+      "assets/portraits/backups/rowan-before-approved-upgrade/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 4,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [
+      "manifest.backgrounds.exterior"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/backgrounds/living-illustrated.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json",
+      "assets/portraits/backups/rowan-before-approved-upgrade/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 5,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [
+      "manifest.backgrounds.living"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/backgrounds/menu-seaglass.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/love-interests.js"
+    ],
+    "identical_to": null,
+    "tile": 6,
+    "status": "Minor style pass",
+    "review": "Rowan’s small menu figure has softer facial definition than the approved sprite. Match face/eye linework and cardigan motifs without enlarging him; the wide establishing composition is intentional.",
+    "usage": [
+      "Main menu and gallery",
+      "assets/love-interests.js"
+    ],
+    "proposed_target": "assets/character-consistency-v1/backgrounds/menu-seaglass.png"
+  },
+  {
+    "path": "assets/backgrounds/pier-day.png",
+    "width": 1536,
+    "height": 1024,
+    "alpha_bounds": [
+      0,
+      0,
+      1536,
+      1024
+    ],
+    "references": [
+      "src/phone-ui.js",
+      "assets/manifest.json",
+      "assets/portraits/backups/rowan-before-approved-upgrade/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 7,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [
+      "manifest.backgrounds.pier",
+      "src/phone-ui.js"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/backgrounds/pier-illustrated.png",
+    "width": 1536,
+    "height": 1024,
+    "alpha_bounds": [
+      0,
+      0,
+      1536,
+      1024
+    ],
+    "references": [
+      "assets/manifest.json",
+      "assets/portraits/backups/rowan-before-approved-upgrade/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 8,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [
+      "manifest.backgroundVariants.pier.dawn"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/backgrounds/street-illustrated.png",
+    "width": 1536,
+    "height": 1024,
+    "alpha_bounds": [
+      0,
+      0,
+      1536,
+      1024
+    ],
+    "references": [
+      "assets/manifest.json",
+      "assets/portraits/backups/rowan-before-approved-upgrade/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 9,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [
+      "manifest.backgrounds.street"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/after-garden/porch-night.webp",
+    "width": 1536,
+    "height": 1024,
+    "alpha_bounds": [
+      0,
+      0,
+      1536,
+      1024
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 10,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/after-garden/quiet.webp",
+    "width": 1536,
+    "height": 1024,
+    "alpha_bounds": [
+      0,
+      0,
+      1536,
+      1024
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 11,
+    "status": "Minor style pass",
+    "review": "Keep seated pose, daylight and porch composition. Match Rowan’s face contour, ash-brown hair and line/shadow treatment to the approved adult reference; do not erase warm sunlight. Unreferenced source/draft: retain it; apply the correction to the live version, not this historical file.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/after-garden/wave-outfit.webp",
+    "width": 1536,
+    "height": 1024,
+    "alpha_bounds": [
+      0,
+      0,
+      1536,
+      1024
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 12,
+    "status": "Keep",
+    "review": "Full-height farewell composition and proportions are coherent. Keep the current corrected door, long legs and evening lighting. No positioning correction required.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/after-garden/wave-v2.webp",
+    "width": 1536,
+    "height": 1024,
+    "alpha_bounds": [
+      0,
+      0,
+      1536,
+      1024
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 13,
+    "status": "Keep",
+    "review": "Full-height farewell composition and proportions are coherent. Keep the current corrected door, long legs and evening lighting. No positioning correction required.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/after-garden/wave.webp",
+    "width": 1536,
+    "height": 1024,
+    "alpha_bounds": [
+      0,
+      0,
+      1536,
+      1024
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 14,
+    "status": "Archive only",
+    "review": "Older farewell gives a shortened-leg impression behind the railing. Superseded by the full-height version; retain as backup, never reconnect.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/beginning.png",
+    "width": 1536,
+    "height": 1024,
+    "alpha_bounds": [
+      0,
+      0,
+      1536,
+      1024
+    ],
+    "references": [],
+    "identical_to": null,
+    "status": "Keep",
+    "review": "Drawn linework and adult identity are close to the approved Rowan reference. Preserve scene-specific expressions, soft smile, props and existing light. No redraw required.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/beginning.webp",
+    "width": 1536,
+    "height": 1024,
+    "alpha_bounds": [
+      0,
+      0,
+      1536,
+      1024
+    ],
+    "references": [
+      "assets/manifest.json",
+      "assets/portraits/backups/rowan-before-approved-upgrade/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 15,
+    "status": "Keep",
+    "review": "Drawn linework and adult identity are close to the approved Rowan reference. Preserve scene-specific expressions, soft smile, props and existing light. No redraw required.",
+    "usage": [
+      "manifest.cgs.beginning.src"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/classroom.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 16,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [
+      "manifest.backgrounds.c2-school",
+      "manifest.cgs.c2-classroom.src"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/company-clean.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "status": "Minor style pass",
+    "review": "Keep bedside camera/pose. Standardize Rowan’s jaw, eye rendering and cardigan line weight with the live adult sprite; retain the concerned expression and sunlit room. Unreferenced source/draft: retain it; apply the correction to the live version, not this historical file.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/company-clean.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 17,
+    "status": "Minor style pass",
+    "review": "Keep bedside camera/pose. Standardize Rowan’s jaw, eye rendering and cardigan line weight with the live adult sprite; retain the concerned expression and sunlit room.",
+    "usage": [
+      "manifest.cgs.c2-company.src"
+    ],
+    "proposed_target": "assets/character-consistency-v1/cg/chapter-two/company-clean.webp"
+  },
+  {
+    "path": "assets/cg/chapter-two/company.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 18,
+    "status": "Minor style pass",
+    "review": "Keep bedside camera/pose. Standardize Rowan’s jaw, eye rendering and cardigan line weight with the live adult sprite; retain the concerned expression and sunlit room. Unreferenced source/draft: retain it; apply the correction to the live version, not this historical file.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/continuity-v1/family-night.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "status": "Correct",
+    "review": "Mayumi’s smooth face and detailed fabric shading diverge from Rowan’s drawn style. Match both to the approved adult linework, keep her mature face and warm skin; the seated spacing is already appropriate. Preserve bread, glasses, night lighting (daylight in archived original). Unreferenced source/draft: retain it; apply the correction to the live version, not this historical file.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/continuity-v1/family-night.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 19,
+    "status": "Correct",
+    "review": "Mayumi’s smooth face and detailed fabric shading diverge from Rowan’s drawn style. Match both to the approved adult linework, keep her mature face and warm skin; the seated spacing is already appropriate. Preserve bread, glasses, night lighting (daylight in archived original).",
+    "usage": [
+      "manifest.cgs.summer-mayumi-night.src"
+    ],
+    "proposed_target": "assets/character-consistency-v1/cg/chapter-two/continuity-v1/family-night.webp"
+  },
+  {
+    "path": "assets/cg/chapter-two/continuity-v1/grave-late-afternoon.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 20,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [
+      "manifest.backgrounds.c2-painted-grave-late-afternoon"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/continuity-v1/grave-sunset.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 21,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [
+      "manifest.backgrounds.c2-painted-grave-sunset"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/continuity-v1/hill-early-evening.png",
+    "width": 1672,
+    "height": 940,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      940
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 22,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [
+      "manifest.backgrounds.c2-painted-hill-early-evening"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/continuity-v1/hill-houses-night.png",
+    "width": 1673,
+    "height": 940,
+    "alpha_bounds": [
+      0,
+      0,
+      1673,
+      940
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 23,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [
+      "manifest.backgrounds.c2-painted-hill-houses-night"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/continuity-v1/living-night.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 24,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [
+      "manifest.backgrounds.c2-painted-living-night"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/continuity-v1/porch-early-evening.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 25,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/continuity-v1/porch-night.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 26,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/continuity-v1/saint-luis-palengke.png",
+    "width": 1672,
+    "height": 940,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      940
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 27,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [
+      "manifest.backgrounds.c2-painted-saint-luis-palengke"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/empty-hallway.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/empty-hallway.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 28,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [
+      "manifest.backgrounds.c2-empty-hallway"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/father-continuation-v1/birthday.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 29,
+    "status": "Correct",
+    "review": "Match Mayumi and eighteen-year-old Rowan to the same drawn rendering. Preserve Rowan’s short school hair, white uniform, youthful proportions and birthday lighting. Keep Lola exactly as she is. All three seated sizes are already plausible.",
+    "usage": [
+      "manifest.cgs.c2-father-birthday.src"
+    ],
+    "proposed_target": "assets/character-consistency-v1/cg/chapter-two/father-continuation-v1/birthday.webp"
+  },
+  {
+    "path": "assets/cg/chapter-two/father-continuation-v1/cardigan-gifts.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 30,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [
+      "manifest.cgs.c2-father-cardigan-gifts.src"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/father-continuation-v1/dining-background.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 31,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [
+      "manifest.backgrounds.c2-father-dining-background"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/father-continuation-v1/dinner-interrupted.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 32,
+    "status": "Correct",
+    "review": "Mayumi’s smooth face and detailed fabric shading diverge from Rowan’s drawn style. Match both to the approved adult linework, keep her mature face and warm skin; the seated spacing is already appropriate. Preserve bread, glasses, night lighting (daylight in archived original).",
+    "usage": [
+      "manifest.cgs.c2-father-dinner-interrupted.src"
+    ],
+    "proposed_target": "assets/character-consistency-v1/cg/chapter-two/father-continuation-v1/dinner-interrupted.webp"
+  },
+  {
+    "path": "assets/cg/chapter-two/father-continuation-v1/father-reveal.webp",
+    "width": 1671,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1671,
+      941
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 33,
+    "status": "Correct",
+    "review": "Match only Mayumi’s linework/shading and restore her established sage skirt (the visible blue floral patch drifts from her design). Keep her tense face and position. Preserve Enrich, Lola, the corrected hands and doorway unchanged.",
+    "usage": [
+      "manifest.cgs.c2-father-father-reveal.src"
+    ],
+    "proposed_target": "assets/character-consistency-v1/cg/chapter-two/father-continuation-v1/father-reveal.webp"
+  },
+  {
+    "path": "assets/cg/chapter-two/father-continuation-v1/kitchen-honesty.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 34,
+    "status": "Minor style pass",
+    "review": "Match adult Rowan’s face and cardigan rendering to his reference. Keep his position beside the cabinet: the wider kitchen shot intentionally includes space between him and MC.",
+    "usage": [
+      "manifest.cgs.c2-father-kitchen-honesty.src"
+    ],
+    "proposed_target": "assets/character-consistency-v1/cg/chapter-two/father-continuation-v1/kitchen-honesty.webp"
+  },
+  {
+    "path": "assets/cg/chapter-two/father-continuation-v1/kitchen-night.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 35,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [
+      "manifest.backgrounds.c2-father-kitchen-night"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/father-continuation-v1/stair-background.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 36,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [
+      "manifest.backgrounds.c2-father-stair-background"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/flower-stall-v1.png",
+    "width": 1536,
+    "height": 1024,
+    "alpha_bounds": [
+      0,
+      0,
+      1536,
+      1024
+    ],
+    "references": [],
+    "identical_to": null,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/flower-stall-v1.webp",
+    "width": 1536,
+    "height": 1024,
+    "alpha_bounds": [
+      0,
+      0,
+      1536,
+      1024
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 37,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [
+      "manifest.backgrounds.summer-flowers",
+      "manifest.cgs.summer-flowers.src"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/grave-solo.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/grave-solo.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 38,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [
+      "manifest.backgrounds.summer-grave",
+      "manifest.cgs.summer-grave.src"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/lunch.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "status": "Minor style pass",
+    "review": "Match Rowan’s facial proportions, eye linework and hair rendering to his sprite. Keep seated posture, meal, room, daylight and table perspective unchanged. Unreferenced source/draft: retain it; apply the correction to the live version, not this historical file.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/lunch.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 39,
+    "status": "Minor style pass",
+    "review": "Match Rowan’s facial proportions, eye linework and hair rendering to his sprite. Keep seated posture, meal, room, daylight and table perspective unchanged.",
+    "usage": [
+      "manifest.backgrounds.summer-lunch",
+      "manifest.cgs.summer-lunch.src"
+    ],
+    "proposed_target": "assets/character-consistency-v1/cg/chapter-two/lunch.webp"
+  },
+  {
+    "path": "assets/cg/chapter-two/mayumi.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "status": "Correct",
+    "review": "Mayumi’s smooth face and detailed fabric shading diverge from Rowan’s drawn style. Match both to the approved adult linework, keep her mature face and warm skin; the seated spacing is already appropriate. Preserve bread, glasses, night lighting (daylight in archived original). Unreferenced source/draft: retain it; apply the correction to the live version, not this historical file.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/mayumi.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 40,
+    "status": "Correct",
+    "review": "Mayumi’s smooth face and detailed fabric shading diverge from Rowan’s drawn style. Match both to the approved adult linework, keep her mature face and warm skin; the seated spacing is already appropriate. Preserve bread, glasses, night lighting (daylight in archived original).",
+    "usage": [
+      "manifest.backgrounds.summer-mayumi",
+      "manifest.cgs.summer-mayumi.src"
+    ],
+    "proposed_target": "assets/character-consistency-v1/cg/chapter-two/mayumi.webp"
+  },
+  {
+    "path": "assets/cg/chapter-two/nightmare.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/chapters.js",
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 41,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [
+      "assets/chapters.js",
+      "manifest.backgrounds.c2-city",
+      "manifest.cgs.c2-nightmare.src"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/rest.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 42,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [
+      "manifest.backgrounds.c2-rest",
+      "manifest.cgs.c2-rest.src"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/scene-approved-v1/grave-alone-lilies.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/scene-approved-v1/grave-alone-lilies.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 43,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [
+      "manifest.backgrounds.c2-painted-review-grave-alone-lilies",
+      "manifest.cgs.c2-review-grave-alone-lilies.src"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/scene-approved-v1/grave-alone-orchids.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/scene-approved-v1/grave-alone-orchids.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 44,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [
+      "manifest.backgrounds.c2-painted-review-grave-alone-orchids",
+      "manifest.cgs.c2-review-grave-alone-orchids.src"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/scene-approved-v1/grave-alone-roses.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/scene-approved-v1/grave-alone-roses.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 45,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [
+      "manifest.backgrounds.c2-painted-review-grave-alone-roses",
+      "manifest.cgs.c2-review-grave-alone-roses.src"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/scene-approved-v1/grave-alone.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/scene-approved-v1/grave-alone.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 46,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [
+      "manifest.backgrounds.c2-painted-review-grave-alone",
+      "manifest.cgs.c2-review-grave-alone.src"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/scene-approved-v1/grave-comfort-lilies.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "status": "Minor style pass",
+    "review": "Use one consistent Rowan face/hair/linework correction across all four bouquet variants. Keep comfort versus standing poses, sad expression, golden light, flowers and grave unchanged; keep solo variants completely Rowan-free. Unreferenced source/draft: retain it; apply the correction to the live version, not this historical file.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/scene-approved-v1/grave-comfort-lilies.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 47,
+    "status": "Minor style pass",
+    "review": "Use one consistent Rowan face/hair/linework correction across all four bouquet variants. Keep comfort versus standing poses, sad expression, golden light, flowers and grave unchanged; keep solo variants completely Rowan-free.",
+    "usage": [
+      "manifest.backgrounds.c2-painted-review-grave-comfort-lilies",
+      "manifest.cgs.c2-review-grave-comfort-lilies.src"
+    ],
+    "proposed_target": "assets/character-consistency-v1/cg/chapter-two/scene-approved-v1/grave-comfort-lilies.webp"
+  },
+  {
+    "path": "assets/cg/chapter-two/scene-approved-v1/grave-comfort-orchids.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "status": "Minor style pass",
+    "review": "Use one consistent Rowan face/hair/linework correction across all four bouquet variants. Keep comfort versus standing poses, sad expression, golden light, flowers and grave unchanged; keep solo variants completely Rowan-free. Unreferenced source/draft: retain it; apply the correction to the live version, not this historical file.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/scene-approved-v1/grave-comfort-orchids.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 48,
+    "status": "Minor style pass",
+    "review": "Use one consistent Rowan face/hair/linework correction across all four bouquet variants. Keep comfort versus standing poses, sad expression, golden light, flowers and grave unchanged; keep solo variants completely Rowan-free.",
+    "usage": [
+      "manifest.backgrounds.c2-painted-review-grave-comfort-orchids",
+      "manifest.cgs.c2-review-grave-comfort-orchids.src"
+    ],
+    "proposed_target": "assets/character-consistency-v1/cg/chapter-two/scene-approved-v1/grave-comfort-orchids.webp"
+  },
+  {
+    "path": "assets/cg/chapter-two/scene-approved-v1/grave-comfort-roses.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "status": "Minor style pass",
+    "review": "Use one consistent Rowan face/hair/linework correction across all four bouquet variants. Keep comfort versus standing poses, sad expression, golden light, flowers and grave unchanged; keep solo variants completely Rowan-free. Unreferenced source/draft: retain it; apply the correction to the live version, not this historical file.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/scene-approved-v1/grave-comfort-roses.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 49,
+    "status": "Minor style pass",
+    "review": "Use one consistent Rowan face/hair/linework correction across all four bouquet variants. Keep comfort versus standing poses, sad expression, golden light, flowers and grave unchanged; keep solo variants completely Rowan-free.",
+    "usage": [
+      "manifest.backgrounds.c2-painted-review-grave-comfort-roses",
+      "manifest.cgs.c2-review-grave-comfort-roses.src"
+    ],
+    "proposed_target": "assets/character-consistency-v1/cg/chapter-two/scene-approved-v1/grave-comfort-roses.webp"
+  },
+  {
+    "path": "assets/cg/chapter-two/scene-approved-v1/grave-comfort.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "status": "Minor style pass",
+    "review": "Use one consistent Rowan face/hair/linework correction across all four bouquet variants. Keep comfort versus standing poses, sad expression, golden light, flowers and grave unchanged; keep solo variants completely Rowan-free. Unreferenced source/draft: retain it; apply the correction to the live version, not this historical file.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/scene-approved-v1/grave-comfort.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 50,
+    "status": "Minor style pass",
+    "review": "Use one consistent Rowan face/hair/linework correction across all four bouquet variants. Keep comfort versus standing poses, sad expression, golden light, flowers and grave unchanged; keep solo variants completely Rowan-free.",
+    "usage": [
+      "manifest.backgrounds.c2-painted-review-grave-comfort",
+      "manifest.cgs.c2-review-grave-comfort.src"
+    ],
+    "proposed_target": "assets/character-consistency-v1/cg/chapter-two/scene-approved-v1/grave-comfort.webp"
+  },
+  {
+    "path": "assets/cg/chapter-two/scene-approved-v1/grave-together-lilies.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "status": "Minor style pass",
+    "review": "Use one consistent Rowan face/hair/linework correction across all four bouquet variants. Keep comfort versus standing poses, sad expression, golden light, flowers and grave unchanged; keep solo variants completely Rowan-free. Unreferenced source/draft: retain it; apply the correction to the live version, not this historical file.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/scene-approved-v1/grave-together-lilies.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 51,
+    "status": "Minor style pass",
+    "review": "Use one consistent Rowan face/hair/linework correction across all four bouquet variants. Keep comfort versus standing poses, sad expression, golden light, flowers and grave unchanged; keep solo variants completely Rowan-free.",
+    "usage": [
+      "manifest.backgrounds.c2-painted-review-grave-together-lilies",
+      "manifest.cgs.c2-review-grave-together-lilies.src"
+    ],
+    "proposed_target": "assets/character-consistency-v1/cg/chapter-two/scene-approved-v1/grave-together-lilies.webp"
+  },
+  {
+    "path": "assets/cg/chapter-two/scene-approved-v1/grave-together-orchids.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "status": "Minor style pass",
+    "review": "Use one consistent Rowan face/hair/linework correction across all four bouquet variants. Keep comfort versus standing poses, sad expression, golden light, flowers and grave unchanged; keep solo variants completely Rowan-free. Unreferenced source/draft: retain it; apply the correction to the live version, not this historical file.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/scene-approved-v1/grave-together-orchids.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 52,
+    "status": "Minor style pass",
+    "review": "Use one consistent Rowan face/hair/linework correction across all four bouquet variants. Keep comfort versus standing poses, sad expression, golden light, flowers and grave unchanged; keep solo variants completely Rowan-free.",
+    "usage": [
+      "manifest.backgrounds.c2-painted-review-grave-together-orchids",
+      "manifest.cgs.c2-review-grave-together-orchids.src"
+    ],
+    "proposed_target": "assets/character-consistency-v1/cg/chapter-two/scene-approved-v1/grave-together-orchids.webp"
+  },
+  {
+    "path": "assets/cg/chapter-two/scene-approved-v1/grave-together-roses.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "status": "Minor style pass",
+    "review": "Use one consistent Rowan face/hair/linework correction across all four bouquet variants. Keep comfort versus standing poses, sad expression, golden light, flowers and grave unchanged; keep solo variants completely Rowan-free. Unreferenced source/draft: retain it; apply the correction to the live version, not this historical file.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/scene-approved-v1/grave-together-roses.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 53,
+    "status": "Minor style pass",
+    "review": "Use one consistent Rowan face/hair/linework correction across all four bouquet variants. Keep comfort versus standing poses, sad expression, golden light, flowers and grave unchanged; keep solo variants completely Rowan-free.",
+    "usage": [
+      "manifest.backgrounds.c2-painted-review-grave-together-roses",
+      "manifest.cgs.c2-review-grave-together-roses.src"
+    ],
+    "proposed_target": "assets/character-consistency-v1/cg/chapter-two/scene-approved-v1/grave-together-roses.webp"
+  },
+  {
+    "path": "assets/cg/chapter-two/scene-approved-v1/grave-together.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "status": "Minor style pass",
+    "review": "Use one consistent Rowan face/hair/linework correction across all four bouquet variants. Keep comfort versus standing poses, sad expression, golden light, flowers and grave unchanged; keep solo variants completely Rowan-free. Unreferenced source/draft: retain it; apply the correction to the live version, not this historical file.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/scene-approved-v1/grave-together.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 54,
+    "status": "Minor style pass",
+    "review": "Use one consistent Rowan face/hair/linework correction across all four bouquet variants. Keep comfort versus standing poses, sad expression, golden light, flowers and grave unchanged; keep solo variants completely Rowan-free.",
+    "usage": [
+      "manifest.backgrounds.c2-painted-review-grave-together",
+      "manifest.cgs.c2-review-grave-together.src"
+    ],
+    "proposed_target": "assets/character-consistency-v1/cg/chapter-two/scene-approved-v1/grave-together.webp"
+  },
+  {
+    "path": "assets/cg/chapter-two/scene-approved-v1/mayumi.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "status": "Minor style pass",
+    "review": "Match Mayumi’s hair, skin and blouse/skirt shading to the proposed sprite standard. Do not move her toward the camera: she must remain at the door, facing it, holding bread. Preserve the fixed door and porch lighting. Unreferenced source/draft: retain it; apply the correction to the live version, not this historical file.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/scene-approved-v1/mayumi.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 55,
+    "status": "Minor style pass",
+    "review": "Match Mayumi’s hair, skin and blouse/skirt shading to the proposed sprite standard. Do not move her toward the camera: she must remain at the door, facing it, holding bread. Preserve the fixed door and porch lighting. Unreferenced source/draft: retain it; apply the correction to the live version, not this historical file.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/scene-approved-v1/nestor.png",
+    "width": 1673,
+    "height": 940,
+    "alpha_bounds": [
+      0,
+      0,
+      1673,
+      940
+    ],
+    "references": [],
+    "identical_to": null,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/scene-approved-v1/nestor.webp",
+    "width": 1673,
+    "height": 940,
+    "alpha_bounds": [
+      0,
+      0,
+      1673,
+      940
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 56,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [
+      "manifest.backgrounds.c2-painted-review-nestor",
+      "manifest.cgs.c2-review-nestor.src"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/scene-approved-v1/workshop-empty.png",
+    "width": 1673,
+    "height": 940,
+    "alpha_bounds": [
+      0,
+      0,
+      1673,
+      940
+    ],
+    "references": [],
+    "identical_to": null,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/scene-approved-v1/workshop-empty.webp",
+    "width": 1673,
+    "height": 940,
+    "alpha_bounds": [
+      0,
+      0,
+      1673,
+      940
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 57,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [
+      "manifest.backgrounds.c2-painted-review-workshop-empty",
+      "manifest.cgs.c2-review-workshop-empty.src"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/sevi-assignment.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 58,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [
+      "manifest.backgrounds.c2-assignment",
+      "manifest.cgs.c2-sevi-assignment.src"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/sevi-confrontation.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 59,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/sevi-hallway-v2.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 60,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/sevi-hallway-v3.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 61,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/sevi-hallway-v4.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 62,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [
+      "manifest.backgrounds.c2-confrontation",
+      "manifest.cgs.c2-sevi-confrontation.src"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/sevi-meeting.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 63,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [
+      "manifest.backgrounds.c2-meeting",
+      "manifest.cgs.c2-sevi-meeting.src"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/solo-garden.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/solo-garden.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json",
+      "styles.css"
+    ],
+    "identical_to": null,
+    "tile": 64,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [
+      "manifest.backgrounds.summer-solo-garden",
+      "manifest.cgs.summer-solo-garden.src",
+      "styles.css"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/television-news-mayor-v2.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 65,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [
+      "manifest.backgrounds.summer-news",
+      "manifest.cgs.summer-news.src"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/television-news.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/television-news.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 66,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/television.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/television.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 67,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [
+      "manifest.backgrounds.summer-television",
+      "manifest.cgs.summer-television.src"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/waking-clean.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "status": "Minor style pass",
+    "review": "Keep bedside camera/pose. Standardize Rowan’s jaw, eye rendering and cardigan line weight with the live adult sprite; retain the concerned expression and sunlit room. Unreferenced source/draft: retain it; apply the correction to the live version, not this historical file.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/waking-clean.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 68,
+    "status": "Minor style pass",
+    "review": "Keep bedside camera/pose. Standardize Rowan’s jaw, eye rendering and cardigan line weight with the live adult sprite; retain the concerned expression and sunlit room.",
+    "usage": [
+      "manifest.cgs.c2-waking.src"
+    ],
+    "proposed_target": "assets/character-consistency-v1/cg/chapter-two/waking-clean.webp"
+  },
+  {
+    "path": "assets/cg/chapter-two/waking.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 69,
+    "status": "Minor style pass",
+    "review": "Keep bedside camera/pose. Standardize Rowan’s jaw, eye rendering and cardigan line weight with the live adult sprite; retain the concerned expression and sunlit room. Unreferenced source/draft: retain it; apply the correction to the live version, not this historical file.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/workshop.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "status": "Minor style pass",
+    "review": "Rowan-only facial/linework alignment if this gallery asset is retained. Preserve workshop action, Nestor, tools and environment exactly; do not alter the unrelated character. Unreferenced source/draft: retain it; apply the correction to the live version, not this historical file.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/chapter-two/workshop.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 70,
+    "status": "Minor style pass",
+    "review": "Rowan-only facial/linework alignment if this gallery asset is retained. Preserve workshop action, Nestor, tools and environment exactly; do not alter the unrelated character.",
+    "usage": [
+      "manifest.backgrounds.summer-workshop",
+      "manifest.cgs.summer-workshop.src"
+    ],
+    "proposed_target": "assets/character-consistency-v1/cg/chapter-two/workshop.webp"
+  },
+  {
+    "path": "assets/cg/day-two/bedroom-evening.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/day-two/bedroom-evening.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 71,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [
+      "manifest.backgrounds.d2-bedroom-evening"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/day-two/bedroom-hug.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "status": "Minor style pass",
+    "review": "Close views make Rowan’s broader/rounder eye and jaw rendering more noticeable. Match approved adult proportions while retaining affection, foreshortened arms, hair bun and existing lighting. Unreferenced source/draft: retain it; apply the correction to the live version, not this historical file.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/day-two/bedroom-hug.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 72,
+    "status": "Minor style pass",
+    "review": "Close views make Rowan’s broader/rounder eye and jaw rendering more noticeable. Match approved adult proportions while retaining affection, foreshortened arms, hair bun and existing lighting.",
+    "usage": [
+      "manifest.backgrounds.d2-bedroom-hug",
+      "manifest.cgs.d2-bedroom-hug.src"
+    ],
+    "proposed_target": "assets/character-consistency-v1/cg/day-two/bedroom-hug.webp"
+  },
+  {
+    "path": "assets/cg/day-two/bedroom-missed-you.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "status": "Minor style pass",
+    "review": "Close views make Rowan’s broader/rounder eye and jaw rendering more noticeable. Match approved adult proportions while retaining affection, foreshortened arms, hair bun and existing lighting. Unreferenced source/draft: retain it; apply the correction to the live version, not this historical file.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/day-two/bedroom-missed-you.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 73,
+    "status": "Minor style pass",
+    "review": "Close views make Rowan’s broader/rounder eye and jaw rendering more noticeable. Match approved adult proportions while retaining affection, foreshortened arms, hair bun and existing lighting.",
+    "usage": [
+      "manifest.backgrounds.d2-bedroom-missed-you",
+      "manifest.cgs.d2-bedroom-missed-you.src"
+    ],
+    "proposed_target": "assets/character-consistency-v1/cg/day-two/bedroom-missed-you.webp"
+  },
+  {
+    "path": "assets/cg/day-two/bedroom-morning.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/day-two/bedroom-morning.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 74,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [
+      "manifest.backgrounds.d2-bedroom-morning"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/day-two/bedroom-night.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/day-two/bedroom-night.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 75,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [
+      "manifest.backgrounds.d2-bedroom-night"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/day-two/breakfast.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/day-two/breakfast.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 76,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [
+      "manifest.backgrounds.d2-breakfast",
+      "manifest.cgs.d2-breakfast.src"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/day-two/garden-approach.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "status": "Keep",
+    "review": "Rear-view identity, hair and clothing are consistent enough. Preserve intentional camera distance and work pose. Historical shoe/outfit and old-door versions remain backups.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/day-two/garden-approach.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 77,
+    "status": "Keep",
+    "review": "Rear-view identity, hair and clothing are consistent enough. Preserve intentional camera distance and work pose. Historical shoe/outfit and old-door versions remain backups.",
+    "usage": [
+      "manifest.backgrounds.d2-garden-approach",
+      "manifest.cgs.d2-garden-approach.src"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/day-two/garden-hat-poke.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "status": "Minor style pass",
+    "review": "Align Rowan’s eye/jaw/hair linework with adult reference; retain gardening T-shirt, straw hat, bun, warm daylight and pose. Do not put him in a cardigan or reuse the minigame CG for normal dialogue. Unreferenced source/draft: retain it; apply the correction to the live version, not this historical file.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/day-two/garden-hat-poke.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 78,
+    "status": "Minor style pass",
+    "review": "Align Rowan’s eye/jaw/hair linework with adult reference; retain gardening T-shirt, straw hat, bun, warm daylight and pose. Do not put him in a cardigan or reuse the minigame CG for normal dialogue.",
+    "usage": [
+      "manifest.backgrounds.d2-garden-hat-poke",
+      "manifest.cgs.d2-garden-hat-poke.src"
+    ],
+    "proposed_target": "assets/character-consistency-v1/cg/day-two/garden-hat-poke.webp"
+  },
+  {
+    "path": "assets/cg/day-two/garden-reveal.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "status": "Minor style pass",
+    "review": "Align Rowan’s eye/jaw/hair linework with adult reference; retain gardening T-shirt, straw hat, bun, warm daylight and pose. Do not put him in a cardigan or reuse the minigame CG for normal dialogue. Unreferenced source/draft: retain it; apply the correction to the live version, not this historical file.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/day-two/garden-reveal.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 79,
+    "status": "Minor style pass",
+    "review": "Align Rowan’s eye/jaw/hair linework with adult reference; retain gardening T-shirt, straw hat, bun, warm daylight and pose. Do not put him in a cardigan or reuse the minigame CG for normal dialogue.",
+    "usage": [
+      "manifest.backgrounds.d2-garden-reveal",
+      "manifest.backgrounds.garden-rematch",
+      "manifest.cgs.d2-garden-reveal.src"
+    ],
+    "proposed_target": "assets/character-consistency-v1/cg/day-two/garden-reveal.webp"
+  },
+  {
+    "path": "assets/cg/day-two/garden-startled.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "status": "Minor style pass",
+    "review": "Align Rowan’s eye/jaw/hair linework with adult reference; retain gardening T-shirt, straw hat, bun, warm daylight and pose. Do not put him in a cardigan or reuse the minigame CG for normal dialogue. Unreferenced source/draft: retain it; apply the correction to the live version, not this historical file.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/day-two/garden-startled.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 80,
+    "status": "Minor style pass",
+    "review": "Align Rowan’s eye/jaw/hair linework with adult reference; retain gardening T-shirt, straw hat, bun, warm daylight and pose. Do not put him in a cardigan or reuse the minigame CG for normal dialogue.",
+    "usage": [
+      "manifest.backgrounds.d2-garden-startled",
+      "manifest.cgs.d2-garden-startled.src"
+    ],
+    "proposed_target": "assets/character-consistency-v1/cg/day-two/garden-startled.webp"
+  },
+  {
+    "path": "assets/cg/day-two/garden-whatcha.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "status": "Minor style pass",
+    "review": "Align Rowan’s eye/jaw/hair linework with adult reference; retain gardening T-shirt, straw hat, bun, warm daylight and pose. Do not put him in a cardigan or reuse the minigame CG for normal dialogue. Unreferenced source/draft: retain it; apply the correction to the live version, not this historical file.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/day-two/garden-whatcha.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 81,
+    "status": "Minor style pass",
+    "review": "Align Rowan’s eye/jaw/hair linework with adult reference; retain gardening T-shirt, straw hat, bun, warm daylight and pose. Do not put him in a cardigan or reuse the minigame CG for normal dialogue.",
+    "usage": [
+      "manifest.backgrounds.d2-garden-whatcha",
+      "manifest.cgs.d2-garden-whatcha.src"
+    ],
+    "proposed_target": "assets/character-consistency-v1/cg/day-two/garden-whatcha.webp"
+  },
+  {
+    "path": "assets/cg/day-two/window-garden.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "status": "Keep",
+    "review": "Rear-view identity, hair and clothing are consistent enough. Preserve intentional camera distance and work pose. Historical shoe/outfit and old-door versions remain backups.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/day-two/window-garden.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 82,
+    "status": "Keep",
+    "review": "Rear-view identity, hair and clothing are consistent enough. Preserve intentional camera distance and work pose. Historical shoe/outfit and old-door versions remain backups.",
+    "usage": [
+      "manifest.backgrounds.d2-window-garden",
+      "manifest.cgs.d2-window-garden.src"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/day-two-review/bedroom-evening.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": "assets/cg/day-two/bedroom-evening.png",
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/day-two-review/bedroom-hug.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": "assets/cg/day-two/bedroom-hug.png",
+    "status": "Minor style pass",
+    "review": "Close views make Rowan’s broader/rounder eye and jaw rendering more noticeable. Match approved adult proportions while retaining affection, foreshortened arms, hair bun and existing lighting. Unreferenced source/draft: retain it; apply the correction to the live version, not this historical file.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/day-two-review/bedroom-missed-you.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": "assets/cg/day-two/bedroom-missed-you.png",
+    "status": "Minor style pass",
+    "review": "Close views make Rowan’s broader/rounder eye and jaw rendering more noticeable. Match approved adult proportions while retaining affection, foreshortened arms, hair bun and existing lighting. Unreferenced source/draft: retain it; apply the correction to the live version, not this historical file.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/day-two-review/bedroom-morning.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": "assets/cg/day-two/bedroom-morning.png",
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/day-two-review/bedroom-night.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": "assets/cg/day-two/bedroom-night.png",
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/day-two-review/breakfast.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": "assets/cg/day-two/breakfast.png",
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/day-two-review/garden-approach.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": "assets/cg/day-two/garden-approach.png",
+    "status": "Keep",
+    "review": "Rear-view identity, hair and clothing are consistent enough. Preserve intentional camera distance and work pose. Historical shoe/outfit and old-door versions remain backups.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/day-two-review/garden-hat-poke.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 83,
+    "status": "Minor style pass",
+    "review": "Align Rowan’s eye/jaw/hair linework with adult reference; retain gardening T-shirt, straw hat, bun, warm daylight and pose. Do not put him in a cardigan or reuse the minigame CG for normal dialogue. Unreferenced source/draft: retain it; apply the correction to the live version, not this historical file.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/day-two-review/garden-reveal-v2.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 84,
+    "status": "Archive only",
+    "review": "Older tank-top garden alternatives differ from the implemented T-shirt continuity. Preserve as unused drafts; do not silently reintroduce them.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/day-two-review/garden-reveal-v3.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 85,
+    "status": "Archive only",
+    "review": "Older tank-top garden alternatives differ from the implemented T-shirt continuity. Preserve as unused drafts; do not silently reintroduce them.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/day-two-review/garden-reveal-v4.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 86,
+    "status": "Archive only",
+    "review": "Older tank-top garden alternatives differ from the implemented T-shirt continuity. Preserve as unused drafts; do not silently reintroduce them.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/day-two-review/garden-reveal-v5.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 87,
+    "status": "Archive only",
+    "review": "Older tank-top garden alternatives differ from the implemented T-shirt continuity. Preserve as unused drafts; do not silently reintroduce them.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/day-two-review/garden-reveal.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 88,
+    "status": "Minor style pass",
+    "review": "Align Rowan’s eye/jaw/hair linework with adult reference; retain gardening T-shirt, straw hat, bun, warm daylight and pose. Do not put him in a cardigan or reuse the minigame CG for normal dialogue. Unreferenced source/draft: retain it; apply the correction to the live version, not this historical file.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/day-two-review/garden-startled.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 89,
+    "status": "Minor style pass",
+    "review": "Align Rowan’s eye/jaw/hair linework with adult reference; retain gardening T-shirt, straw hat, bun, warm daylight and pose. Do not put him in a cardigan or reuse the minigame CG for normal dialogue. Unreferenced source/draft: retain it; apply the correction to the live version, not this historical file.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/day-two-review/garden-whatcha.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 90,
+    "status": "Minor style pass",
+    "review": "Align Rowan’s eye/jaw/hair linework with adult reference; retain gardening T-shirt, straw hat, bun, warm daylight and pose. Do not put him in a cardigan or reuse the minigame CG for normal dialogue. Unreferenced source/draft: retain it; apply the correction to the live version, not this historical file.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/day-two-review/window-garden.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": "assets/cg/day-two/window-garden.png",
+    "status": "Keep",
+    "review": "Rear-view identity, hair and clothing are consistent enough. Preserve intentional camera distance and work pose. Historical shoe/outfit and old-door versions remain backups.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/laughter.png",
+    "width": 1536,
+    "height": 1024,
+    "alpha_bounds": [
+      0,
+      0,
+      1536,
+      1024
+    ],
+    "references": [],
+    "identical_to": null,
+    "status": "Keep",
+    "review": "Drawn linework and adult identity are close to the approved Rowan reference. Preserve scene-specific expressions, soft smile, props and existing light. No redraw required.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/laughter.webp",
+    "width": 1536,
+    "height": 1024,
+    "alpha_bounds": [
+      0,
+      0,
+      1536,
+      1024
+    ],
+    "references": [
+      "assets/manifest.json",
+      "assets/portraits/backups/rowan-before-approved-upgrade/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 91,
+    "status": "Keep",
+    "review": "Drawn linework and adult identity are close to the approved Rowan reference. Preserve scene-specific expressions, soft smile, props and existing light. No redraw required.",
+    "usage": [
+      "manifest.cgs.laughter.src"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/opening/bus-interior.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/opening/bus-interior.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json",
+      "assets/portraits/backups/rowan-before-approved-upgrade/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 92,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [
+      "manifest.backgrounds.bus"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/opening/door-before-outfit.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 93,
+    "status": "Keep",
+    "review": "Rear-view identity, hair and clothing are consistent enough. Preserve intentional camera distance and work pose. Historical shoe/outfit and old-door versions remain backups.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/opening/door-before.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "status": "Keep",
+    "review": "Rear-view identity, hair and clothing are consistent enough. Preserve intentional camera distance and work pose. Historical shoe/outfit and old-door versions remain backups.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/opening/door-before.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/portraits/backups/rowan-before-approved-upgrade/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 94,
+    "status": "Keep",
+    "review": "Rear-view identity, hair and clothing are consistent enough. Preserve intentional camera distance and work pose. Historical shoe/outfit and old-door versions remain backups.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/opening/familiar-door-outfit.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 95,
+    "status": "Keep",
+    "review": "Recognition illustration retains established face, kneeling scale and clothing. Preserve the approved identity and corrected-door version; earlier door/outfit versions remain backups.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/opening/familiar-door.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "status": "Keep",
+    "review": "Recognition illustration retains established face, kneeling scale and clothing. Preserve the approved identity and corrected-door version; earlier door/outfit versions remain backups.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/opening/familiar-door.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/portraits/backups/rowan-before-approved-upgrade/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 96,
+    "status": "Keep",
+    "review": "Recognition illustration retains established face, kneeling scale and clothing. Preserve the approved identity and corrected-door version; earlier door/outfit versions remain backups.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/opening/hill-houses.png",
+    "width": 1672,
+    "height": 940,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      940
+    ],
+    "references": [],
+    "identical_to": null,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/opening/hill-houses.webp",
+    "width": 1672,
+    "height": 940,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      940
+    ],
+    "references": [
+      "assets/manifest.json",
+      "assets/portraits/backups/rowan-before-approved-upgrade/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 97,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [
+      "manifest.backgrounds.saint-luis",
+      "manifest.cgs.hill-houses.src"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/opening/way-back.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/opening/way-back.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json",
+      "assets/portraits/backups/rowan-before-approved-upgrade/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 98,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [
+      "manifest.cgs.way-back.src"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/porch-door-v2/door-repair.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 99,
+    "status": "Keep",
+    "review": "Rear-view identity, hair and clothing are consistent enough. Preserve intentional camera distance and work pose. Historical shoe/outfit and old-door versions remain backups.",
+    "usage": [
+      "manifest.backgrounds.repair"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/porch-door-v2/evening.webp",
+    "width": 1671,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1671,
+      941
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 100,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [
+      "manifest.backgrounds.c2-painted-porch-early-evening"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/porch-door-v2/hug.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 101,
+    "status": "Minor style pass",
+    "review": "Close views make Rowan’s broader/rounder eye and jaw rendering more noticeable. Match approved adult proportions while retaining affection, foreshortened arms, hair bun and existing lighting.",
+    "usage": [
+      "manifest.cgs.reunion-hug.src"
+    ],
+    "proposed_target": "assets/character-consistency-v1/cg/porch-door-v2/hug.webp"
+  },
+  {
+    "path": "assets/cg/porch-door-v2/legacy-reunion.webp",
+    "width": 1536,
+    "height": 1024,
+    "alpha_bounds": [
+      0,
+      0,
+      1536,
+      1024
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 102,
+    "status": "Keep",
+    "review": "Drawn linework and adult identity are close to the approved Rowan reference. Preserve scene-specific expressions, soft smile, props and existing light. No redraw required.",
+    "usage": [
+      "manifest.cgs.reunion.src"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/porch-door-v2/mayumi.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 103,
+    "status": "Minor style pass",
+    "review": "Match Mayumi’s hair, skin and blouse/skirt shading to the proposed sprite standard. Do not move her toward the camera: she must remain at the door, facing it, holding bread. Preserve the fixed door and porch lighting.",
+    "usage": [
+      "manifest.backgrounds.c2-painted-review-mayumi",
+      "manifest.cgs.c2-review-mayumi.src"
+    ],
+    "proposed_target": "assets/character-consistency-v1/cg/porch-door-v2/mayumi.webp"
+  },
+  {
+    "path": "assets/cg/porch-door-v2/night.webp",
+    "width": 1671,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1671,
+      941
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 104,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [
+      "manifest.backgrounds.c2-painted-porch-night",
+      "manifest.backgrounds.d2-porch-night"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/porch-door-v2/porch-day.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "src/phone-ui.js",
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 105,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [
+      "manifest.backgrounds.garden-bed",
+      "manifest.backgrounds.reunion-porch",
+      "src/phone-ui.js"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/porch-door-v2/quiet.webp",
+    "width": 1536,
+    "height": 1024,
+    "alpha_bounds": [
+      0,
+      0,
+      1536,
+      1024
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 106,
+    "status": "Minor style pass",
+    "review": "Keep seated pose, daylight and porch composition. Match Rowan’s face contour, ash-brown hair and line/shadow treatment to the approved adult reference; do not erase warm sunlight.",
+    "usage": [
+      "manifest.cgs.after-garden-quiet.src"
+    ],
+    "proposed_target": "assets/character-consistency-v1/cg/porch-door-v2/quiet.webp"
+  },
+  {
+    "path": "assets/cg/porch-door-v2/recognition.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 107,
+    "status": "Keep",
+    "review": "Recognition illustration retains established face, kneeling scale and clothing. Preserve the approved identity and corrected-door version; earlier door/outfit versions remain backups.",
+    "usage": [
+      "manifest.cgs.familiar-door.src"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/porch-door-v2/waiting.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 108,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [
+      "manifest.backgrounds.c2-painted-tricycle-stop"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/porch-door-v2/wave.webp",
+    "width": 1536,
+    "height": 1024,
+    "alpha_bounds": [
+      0,
+      0,
+      1536,
+      1024
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 109,
+    "status": "Keep",
+    "review": "Full-height farewell composition and proportions are coherent. Keep the current corrected door, long legs and evening lighting. No positioning correction required.",
+    "usage": [
+      "manifest.cgs.after-garden-wave.src"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/promises.png",
+    "width": 1536,
+    "height": 1024,
+    "alpha_bounds": [
+      0,
+      0,
+      1536,
+      1024
+    ],
+    "references": [],
+    "identical_to": null,
+    "status": "Keep",
+    "review": "Drawn linework and adult identity are close to the approved Rowan reference. Preserve scene-specific expressions, soft smile, props and existing light. No redraw required.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/promises.webp",
+    "width": 1536,
+    "height": 1024,
+    "alpha_bounds": [
+      0,
+      0,
+      1536,
+      1024
+    ],
+    "references": [
+      "assets/manifest.json",
+      "assets/portraits/backups/rowan-before-approved-upgrade/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 110,
+    "status": "Keep",
+    "review": "Drawn linework and adult identity are close to the approved Rowan reference. Preserve scene-specific expressions, soft smile, props and existing light. No redraw required.",
+    "usage": [
+      "manifest.cgs.promises.src"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/reunion/burning-letters.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/reunion/burning-letters.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json",
+      "assets/portraits/backups/rowan-before-approved-upgrade/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 111,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [
+      "manifest.cgs.burning-letters.src"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/reunion/hidden-letters.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/reunion/hidden-letters.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json",
+      "assets/portraits/backups/rowan-before-approved-upgrade/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 112,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [
+      "manifest.cgs.hidden-letters.src"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/reunion/manila-bedroom.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/reunion/manila-bedroom.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json",
+      "assets/portraits/backups/rowan-before-approved-upgrade/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 113,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [
+      "manifest.backgrounds.manila-bedroom"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/reunion/manila-landing.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/reunion/manila-landing.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json",
+      "assets/portraits/backups/rowan-before-approved-upgrade/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 114,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [
+      "manifest.backgrounds.manila-landing"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/reunion/manila-service.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/reunion/manila-service.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json",
+      "assets/portraits/backups/rowan-before-approved-upgrade/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 115,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [
+      "manifest.backgrounds.manila-service"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/reunion/porch-before-letters.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 116,
+    "status": "Keep",
+    "review": "Childhood proportions and short hair are intentional, not adult-design mistakes. Keep eleven-year-old Rowan distinct from eighteen- and twenty-three-year-old Rowan.",
+    "usage": [
+      "manifest.cgs.porch-before-letters.src"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/reunion/reunion-hug.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "status": "Minor style pass",
+    "review": "Close views make Rowan’s broader/rounder eye and jaw rendering more noticeable. Match approved adult proportions while retaining affection, foreshortened arms, hair bun and existing lighting. Unreferenced source/draft: retain it; apply the correction to the live version, not this historical file.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/reunion/reunion-hug.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/portraits/backups/rowan-before-approved-upgrade/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 117,
+    "status": "Minor style pass",
+    "review": "Close views make Rowan’s broader/rounder eye and jaw rendering more noticeable. Match approved adult proportions while retaining affection, foreshortened arms, hair bun and existing lighting. Unreferenced source/draft: retain it; apply the correction to the live version, not this historical file.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/reunion/reunion-porch.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/reunion/reunion-porch.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/portraits/backups/rowan-before-approved-upgrade/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 118,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/reunion/yellow-envelope-promise.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 119,
+    "status": "Keep",
+    "review": "Childhood proportions and short hair are intentional, not adult-design mistakes. Keep eleven-year-old Rowan distinct from eighteen- and twenty-three-year-old Rowan.",
+    "usage": [
+      "manifest.cgs.yellow-envelope-promise.src"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/reunion.png",
+    "width": 1536,
+    "height": 1024,
+    "alpha_bounds": [
+      0,
+      0,
+      1536,
+      1024
+    ],
+    "references": [],
+    "identical_to": null,
+    "status": "Keep",
+    "review": "Drawn linework and adult identity are close to the approved Rowan reference. Preserve scene-specific expressions, soft smile, props and existing light. No redraw required.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/reunion.webp",
+    "width": 1536,
+    "height": 1024,
+    "alpha_bounds": [
+      0,
+      0,
+      1536,
+      1024
+    ],
+    "references": [
+      "assets/portraits/backups/rowan-before-approved-upgrade/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 120,
+    "status": "Keep",
+    "review": "Drawn linework and adult identity are close to the approved Rowan reference. Preserve scene-specific expressions, soft smile, props and existing light. No redraw required.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/third-cup.png",
+    "width": 1536,
+    "height": 1024,
+    "alpha_bounds": [
+      0,
+      0,
+      1536,
+      1024
+    ],
+    "references": [],
+    "identical_to": null,
+    "status": "Keep",
+    "review": "Drawn linework and adult identity are close to the approved Rowan reference. Preserve scene-specific expressions, soft smile, props and existing light. No redraw required.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/cg/third-cup.webp",
+    "width": 1536,
+    "height": 1024,
+    "alpha_bounds": [
+      0,
+      0,
+      1536,
+      1024
+    ],
+    "references": [
+      "assets/manifest.json",
+      "assets/portraits/backups/rowan-before-approved-upgrade/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 121,
+    "status": "Keep",
+    "review": "Drawn linework and adult identity are close to the approved Rowan reference. Preserve scene-specific expressions, soft smile, props and existing light. No redraw required.",
+    "usage": [
+      "manifest.cgs.third-cup.src"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/chapters/affinity-sheet.png",
+    "width": 1536,
+    "height": 1024,
+    "alpha_bounds": [
+      0,
+      0,
+      1536,
+      1024
+    ],
+    "references": [
+      "src/app.js",
+      "assets/chapters.js"
+    ],
+    "identical_to": null,
+    "tile": 122,
+    "status": "Keep",
+    "review": "Chibi Rowan is an intentional menu illustration style. Preserve its simplified proportions and identity; do not force full-size adult anatomy onto the chibi artwork.",
+    "usage": [
+      "Chapter menu illustration/crops",
+      "assets/chapters.js",
+      "src/app.js"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/chapters/centered-menu-preview.png",
+    "width": 1280,
+    "height": 720,
+    "alpha_bounds": [
+      0,
+      0,
+      1280,
+      720
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 123,
+    "status": "Archive only",
+    "review": "Static UI reference/screenshot, not a new story CG. Preserve the historical preview. Future screenshots should be recaptured from approved assets rather than painting over UI or save text.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/chapters/chapter-reference.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/chapters.js"
+    ],
+    "identical_to": null,
+    "tile": 124,
+    "status": "Keep",
+    "review": "Chibi Rowan is an intentional menu illustration style. Preserve its simplified proportions and identity; do not force full-size adult anatomy onto the chibi artwork.",
+    "usage": [
+      "Chapter menu illustration/crops",
+      "assets/chapters.js"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/chapters/compact-menu-preview.png",
+    "width": 1280,
+    "height": 720,
+    "alpha_bounds": [
+      0,
+      0,
+      1280,
+      720
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 125,
+    "status": "Archive only",
+    "review": "Static UI reference/screenshot, not a new story CG. Preserve the historical preview. Future screenshots should be recaptured from approved assets rather than painting over UI or save text.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/chapters/implemented-preview.png",
+    "width": 1280,
+    "height": 720,
+    "alpha_bounds": [
+      0,
+      0,
+      1280,
+      720
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 126,
+    "status": "Archive only",
+    "review": "Static UI reference/screenshot, not a new story CG. Preserve the historical preview. Future screenshots should be recaptured from approved assets rather than painting over UI or save text.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/chapters/parchment-frame.png",
+    "width": 1983,
+    "height": 793,
+    "alpha_bounds": [
+      0,
+      0,
+      1983,
+      793
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 127,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/chapters/reference-matched-preview.png",
+    "width": 1280,
+    "height": 720,
+    "alpha_bounds": [
+      0,
+      0,
+      1280,
+      720
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 128,
+    "status": "Archive only",
+    "review": "Static UI reference/screenshot, not a new story CG. Preserve the historical preview. Future screenshots should be recaptured from approved assets rather than painting over UI or save text.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/chapters/roomier-saves-preview.png",
+    "width": 1280,
+    "height": 720,
+    "alpha_bounds": [
+      0,
+      0,
+      1280,
+      720
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 129,
+    "status": "Archive only",
+    "review": "Static UI reference/screenshot, not a new story CG. Preserve the historical preview. Future screenshots should be recaptured from approved assets rather than painting over UI or save text.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/chapters/save-pages-preview.png",
+    "width": 1280,
+    "height": 720,
+    "alpha_bounds": [
+      0,
+      0,
+      1280,
+      720
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 130,
+    "status": "Archive only",
+    "review": "Static UI reference/screenshot, not a new story CG. Preserve the historical preview. Future screenshots should be recaptured from approved assets rather than painting over UI or save text.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/gallery/rowan-expressions.webp",
+    "width": 1536,
+    "height": 1024,
+    "alpha_bounds": [
+      0,
+      0,
+      1536,
+      1024
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 131,
+    "status": "Keep",
+    "review": "Gallery drawing style is close to the approved adult sprite. Alternative outfits are explicitly concepts and should remain. Cropped hero/thumbnail sources must be checked whenever a source is replaced so an older duplicate does not remain visible.",
+    "usage": [
+      "Character gallery (including reference-sheet crops)"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/gallery/rowan-harbor.webp",
+    "width": 360,
+    "height": 1000,
+    "alpha_bounds": [
+      0,
+      0,
+      360,
+      1000
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 132,
+    "status": "Keep",
+    "review": "Gallery drawing style is close to the approved adult sprite. Alternative outfits are explicitly concepts and should remain. Cropped hero/thumbnail sources must be checked whenever a source is replaced so an older duplicate does not remain visible.",
+    "usage": [
+      "Character gallery (including reference-sheet crops)"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/gallery/rowan-outfits.webp",
+    "width": 1536,
+    "height": 1024,
+    "alpha_bounds": [
+      0,
+      0,
+      1536,
+      1024
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 133,
+    "status": "Keep",
+    "review": "Gallery drawing style is close to the approved adult sprite. Alternative outfits are explicitly concepts and should remain. Cropped hero/thumbnail sources must be checked whenever a source is replaced so an older duplicate does not remain visible.",
+    "usage": [
+      "Character gallery (including reference-sheet crops)"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/gallery/rowan-porch.webp",
+    "width": 365,
+    "height": 1000,
+    "alpha_bounds": [
+      0,
+      0,
+      365,
+      1000
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 134,
+    "status": "Keep",
+    "review": "Gallery drawing style is close to the approved adult sprite. Alternative outfits are explicitly concepts and should remain. Cropped hero/thumbnail sources must be checked whenever a source is replaced so an older duplicate does not remain visible.",
+    "usage": [
+      "Character gallery (including reference-sheet crops)"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/gallery/rowan-seaglass.webp",
+    "width": 340,
+    "height": 1000,
+    "alpha_bounds": [
+      0,
+      0,
+      340,
+      1000
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 135,
+    "status": "Keep",
+    "review": "Gallery drawing style is close to the approved adult sprite. Alternative outfits are explicitly concepts and should remain. Cropped hero/thumbnail sources must be checked whenever a source is replaced so an older duplicate does not remain visible.",
+    "usage": [
+      "Character gallery (including reference-sheet crops)"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/gallery/rowan-showcase-reference.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 136,
+    "status": "Keep",
+    "review": "Gallery drawing style is close to the approved adult sprite. Alternative outfits are explicitly concepts and should remain. Cropped hero/thumbnail sources must be checked whenever a source is replaced so an older duplicate does not remain visible.",
+    "usage": [
+      "Character gallery (including reference-sheet crops)"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/gallery/sevi-annoyed.webp",
+    "width": 384,
+    "height": 467,
+    "alpha_bounds": [
+      0,
+      0,
+      384,
+      467
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 137,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/gallery/sevi-confused.webp",
+    "width": 450,
+    "height": 447,
+    "alpha_bounds": [
+      0,
+      0,
+      450,
+      447
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 138,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/gallery/sevi-contrast.webp",
+    "width": 305,
+    "height": 1000,
+    "alpha_bounds": [
+      0,
+      0,
+      305,
+      1000
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 139,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/gallery/sevi-embarrassed.webp",
+    "width": 384,
+    "height": 467,
+    "alpha_bounds": [
+      0,
+      0,
+      384,
+      467
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 140,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/gallery/sevi-expressions.webp",
+    "width": 1536,
+    "height": 1024,
+    "alpha_bounds": [
+      0,
+      0,
+      1536,
+      1024
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 141,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/gallery/sevi-full.webp",
+    "width": 1024,
+    "height": 1536,
+    "alpha_bounds": [
+      0,
+      0,
+      1024,
+      1536
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 142,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/gallery/sevi-happy.webp",
+    "width": 384,
+    "height": 467,
+    "alpha_bounds": [
+      0,
+      0,
+      384,
+      467
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 143,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/gallery/sevi-monochrome.webp",
+    "width": 320,
+    "height": 1000,
+    "alpha_bounds": [
+      0,
+      0,
+      320,
+      1000
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 144,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/gallery/sevi-neutral.webp",
+    "width": 384,
+    "height": 467,
+    "alpha_bounds": [
+      0,
+      0,
+      384,
+      467
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 145,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/gallery/sevi-outfits.webp",
+    "width": 1536,
+    "height": 1024,
+    "alpha_bounds": [
+      0,
+      0,
+      1536,
+      1024
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 146,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/gallery/sevi-sad.webp",
+    "width": 430,
+    "height": 447,
+    "alpha_bounds": [
+      0,
+      0,
+      430,
+      447
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 147,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/gallery/sevi-showcase-reference.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 148,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/gallery/sevi-surprised.webp",
+    "width": 440,
+    "height": 447,
+    "alpha_bounds": [
+      0,
+      0,
+      440,
+      447
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 149,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/gallery/sevi-teaser.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 150,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/gallery/showcase-background.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 151,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/garden/rematch.webp",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "styles.css"
+    ],
+    "identical_to": null,
+    "tile": 152,
+    "status": "Minor style pass",
+    "review": "Align Rowan’s eye/jaw/hair linework with adult reference; retain gardening T-shirt, straw hat, bun, warm daylight and pose. Do not put him in a cardigan or reuse the minigame CG for normal dialogue.",
+    "usage": [
+      "Weed-pulling minigame",
+      "styles.css"
+    ],
+    "proposed_target": "assets/character-consistency-v1/garden/rematch.webp"
+  },
+  {
+    "path": "assets/journal-book.png",
+    "width": 1706,
+    "height": 922,
+    "alpha_bounds": [
+      0,
+      0,
+      1690,
+      908
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 153,
+    "status": "Out of scope",
+    "review": "No Rowan or Mayumi figure requiring correction. Preserve environment, unrelated character or interface artwork unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/new-summer-reference.png",
+    "width": 1672,
+    "height": 941,
+    "alpha_bounds": [
+      0,
+      0,
+      1672,
+      941
+    ],
+    "references": [
+      "assets/new-summer.js"
+    ],
+    "identical_to": null,
+    "tile": 154,
+    "status": "Archive only",
+    "review": "Static UI reference/screenshot, not a new story CG. Preserve the historical preview. Future screenshots should be recaptured from approved assets rather than painting over UI or save text.",
+    "usage": [
+      "assets/new-summer.js"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/portraits/backups/rowan-before-approved-upgrade/rowan-standing/book.png",
+    "width": 1024,
+    "height": 1536,
+    "alpha_bounds": [
+      51,
+      0,
+      944,
+      1536
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 155,
+    "status": "Archive only",
+    "review": "Superseded Rowan pose/eye/smile versions. Retain untouched backups; use current upgraded sprites as the live reference, not an older pupil or mouth variant. Backup retained unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/portraits/backups/rowan-before-approved-upgrade/rowan-standing/concerned.png",
+    "width": 1024,
+    "height": 1536,
+    "alpha_bounds": [
+      71,
+      0,
+      874,
+      1536
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 156,
+    "status": "Archive only",
+    "review": "Superseded Rowan pose/eye/smile versions. Retain untouched backups; use current upgraded sprites as the live reference, not an older pupil or mouth variant. Backup retained unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/portraits/backups/rowan-before-approved-upgrade/rowan-standing/embarrassed.png",
+    "width": 1024,
+    "height": 1536,
+    "alpha_bounds": [
+      0,
+      1,
+      944,
+      1536
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 157,
+    "status": "Archive only",
+    "review": "Superseded Rowan pose/eye/smile versions. Retain untouched backups; use current upgraded sprites as the live reference, not an older pupil or mouth variant. Backup retained unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/portraits/backups/rowan-before-approved-upgrade/rowan-standing/neutral.png",
+    "width": 1024,
+    "height": 1536,
+    "alpha_bounds": [
+      65,
+      0,
+      867,
+      1536
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 158,
+    "status": "Archive only",
+    "review": "Superseded Rowan pose/eye/smile versions. Retain untouched backups; use current upgraded sprites as the live reference, not an older pupil or mouth variant. Backup retained unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/portraits/backups/rowan-before-approved-upgrade/rowan-standing/playful-restored.png",
+    "width": 1024,
+    "height": 1536,
+    "alpha_bounds": [
+      0,
+      0,
+      944,
+      1536
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 159,
+    "status": "Archive only",
+    "review": "Superseded Rowan pose/eye/smile versions. Retain untouched backups; use current upgraded sprites as the live reference, not an older pupil or mouth variant. Backup retained unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/portraits/backups/rowan-before-approved-upgrade/rowan-standing/playful-soft.png",
+    "width": 1024,
+    "height": 1536,
+    "alpha_bounds": [
+      188,
+      0,
+      893,
+      1536
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 160,
+    "status": "Archive only",
+    "review": "Superseded Rowan pose/eye/smile versions. Retain untouched backups; use current upgraded sprites as the live reference, not an older pupil or mouth variant. Backup retained unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/portraits/backups/rowan-before-approved-upgrade/rowan-standing/playful.png",
+    "width": 1024,
+    "height": 1536,
+    "alpha_bounds": [
+      0,
+      0,
+      944,
+      1536
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 161,
+    "status": "Archive only",
+    "review": "Superseded Rowan pose/eye/smile versions. Retain untouched backups; use current upgraded sprites as the live reference, not an older pupil or mouth variant. Backup retained unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/portraits/backups/rowan-before-approved-upgrade/rowan-standing/sad.png",
+    "width": 1024,
+    "height": 1536,
+    "alpha_bounds": [
+      65,
+      0,
+      893,
+      1536
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 162,
+    "status": "Archive only",
+    "review": "Superseded Rowan pose/eye/smile versions. Retain untouched backups; use current upgraded sprites as the live reference, not an older pupil or mouth variant. Backup retained unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/portraits/backups/rowan-before-approved-upgrade/rowan-standing/smile.png",
+    "width": 1024,
+    "height": 1536,
+    "alpha_bounds": [
+      69,
+      0,
+      868,
+      1536
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 163,
+    "status": "Archive only",
+    "review": "Superseded Rowan pose/eye/smile versions. Retain untouched backups; use current upgraded sprites as the live reference, not an older pupil or mouth variant. Backup retained unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/portraits/backups/rowan-before-approved-upgrade/rowan-standing/surprised.png",
+    "width": 1024,
+    "height": 1536,
+    "alpha_bounds": [
+      71,
+      0,
+      868,
+      1536
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 164,
+    "status": "Archive only",
+    "review": "Superseded Rowan pose/eye/smile versions. Retain untouched backups; use current upgraded sprites as the live reference, not an older pupil or mouth variant. Backup retained unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/portraits/backups/rowan-before-direct-pupil-retouch/annoyed.png",
+    "width": 1024,
+    "height": 1536,
+    "alpha_bounds": [
+      65,
+      13,
+      962,
+      1522
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 165,
+    "status": "Archive only",
+    "review": "Superseded Rowan pose/eye/smile versions. Retain untouched backups; use current upgraded sprites as the live reference, not an older pupil or mouth variant. Backup retained unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/portraits/backups/rowan-before-direct-pupil-retouch/book.png",
+    "width": 1024,
+    "height": 1536,
+    "alpha_bounds": [
+      65,
+      13,
+      1010,
+      1523
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 166,
+    "status": "Archive only",
+    "review": "Superseded Rowan pose/eye/smile versions. Retain untouched backups; use current upgraded sprites as the live reference, not an older pupil or mouth variant. Backup retained unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/portraits/backups/rowan-before-direct-pupil-retouch/concerned.png",
+    "width": 1024,
+    "height": 1536,
+    "alpha_bounds": [
+      49,
+      13,
+      962,
+      1536
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 167,
+    "status": "Archive only",
+    "review": "Superseded Rowan pose/eye/smile versions. Retain untouched backups; use current upgraded sprites as the live reference, not an older pupil or mouth variant. Backup retained unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/portraits/backups/rowan-before-direct-pupil-retouch/confused.png",
+    "width": 1024,
+    "height": 1536,
+    "alpha_bounds": [
+      65,
+      0,
+      962,
+      1523
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 168,
+    "status": "Archive only",
+    "review": "Superseded Rowan pose/eye/smile versions. Retain untouched backups; use current upgraded sprites as the live reference, not an older pupil or mouth variant. Backup retained unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/portraits/backups/rowan-before-direct-pupil-retouch/embarrassed.png",
+    "width": 1024,
+    "height": 1536,
+    "alpha_bounds": [
+      49,
+      0,
+      962,
+      1523
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 169,
+    "status": "Archive only",
+    "review": "Superseded Rowan pose/eye/smile versions. Retain untouched backups; use current upgraded sprites as the live reference, not an older pupil or mouth variant. Backup retained unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/portraits/backups/rowan-before-direct-pupil-retouch/neutral.png",
+    "width": 1024,
+    "height": 1536,
+    "alpha_bounds": [
+      49,
+      13,
+      962,
+      1522
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 170,
+    "status": "Archive only",
+    "review": "Superseded Rowan pose/eye/smile versions. Retain untouched backups; use current upgraded sprites as the live reference, not an older pupil or mouth variant. Backup retained unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/portraits/backups/rowan-before-direct-pupil-retouch/playful.png",
+    "width": 1024,
+    "height": 1536,
+    "alpha_bounds": [
+      49,
+      12,
+      962,
+      1523
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 171,
+    "status": "Archive only",
+    "review": "Superseded Rowan pose/eye/smile versions. Retain untouched backups; use current upgraded sprites as the live reference, not an older pupil or mouth variant. Backup retained unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/portraits/backups/rowan-before-direct-pupil-retouch/sad.png",
+    "width": 1024,
+    "height": 1536,
+    "alpha_bounds": [
+      65,
+      10,
+      938,
+      1523
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 172,
+    "status": "Archive only",
+    "review": "Superseded Rowan pose/eye/smile versions. Retain untouched backups; use current upgraded sprites as the live reference, not an older pupil or mouth variant. Backup retained unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/portraits/backups/rowan-before-pupil-fix/neutral.png",
+    "width": 1024,
+    "height": 1536,
+    "alpha_bounds": [
+      65,
+      13,
+      758,
+      1522
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 173,
+    "status": "Archive only",
+    "review": "Superseded Rowan pose/eye/smile versions. Retain untouched backups; use current upgraded sprites as the live reference, not an older pupil or mouth variant. Backup retained unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/portraits/backups/rowan-happy-before-soft-smile/smile-soft-version.png",
+    "width": 1024,
+    "height": 1536,
+    "alpha_bounds": [
+      65,
+      10,
+      1010,
+      1522
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 174,
+    "status": "Archive only",
+    "review": "Superseded Rowan pose/eye/smile versions. Retain untouched backups; use current upgraded sprites as the live reference, not an older pupil or mouth variant. Backup retained unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/portraits/backups/rowan-happy-before-soft-smile/smile.png",
+    "width": 1024,
+    "height": 1536,
+    "alpha_bounds": [
+      65,
+      9,
+      964,
+      1536
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 175,
+    "status": "Archive only",
+    "review": "Superseded Rowan pose/eye/smile versions. Retain untouched backups; use current upgraded sprites as the live reference, not an older pupil or mouth variant. Backup retained unchanged.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/portraits/mayumi-neutral-v1.png",
+    "width": 1024,
+    "height": 1536,
+    "alpha_bounds": [
+      187,
+      0,
+      768,
+      1536
+    ],
+    "references": [],
+    "identical_to": null,
+    "status": "Archive only",
+    "review": "Older single Mayumi sprite has the same softer realistic rendering. Keep as source backup; new expressions should derive from the approved corrected master.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/portraits/mayumi-neutral-v1.webp",
+    "width": 1024,
+    "height": 1536,
+    "alpha_bounds": [
+      187,
+      0,
+      768,
+      1536
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 176,
+    "status": "Archive only",
+    "review": "Older single Mayumi sprite has the same softer realistic rendering. Keep as source backup; new expressions should derive from the approved corrected master.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/portraits/mayumi-v2/concerned.png",
+    "width": 1024,
+    "height": 1536,
+    "alpha_bounds": [
+      25,
+      0,
+      976,
+      1523
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 177,
+    "status": "Correct",
+    "review": "Redraw shading and face/fabric linework to match Rowan while preserving Mayumi’s age, brown eyes, bun, blouse, sage skirt, jewelry and each expression/pose. Keep complete transparent full-body canvas and consistent head/feet anchors. Separate stage-scale correction is also needed.",
+    "usage": [
+      "manifest.portraits.Mayumi.concerned"
+    ],
+    "proposed_target": "assets/portraits/mayumi-consistent-v1/concerned.png"
+  },
+  {
+    "path": "assets/portraits/mayumi-v2/neutral.png",
+    "width": 1024,
+    "height": 1536,
+    "alpha_bounds": [
+      185,
+      0,
+      998,
+      1536
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 178,
+    "status": "Correct",
+    "review": "Redraw shading and face/fabric linework to match Rowan while preserving Mayumi’s age, brown eyes, bun, blouse, sage skirt, jewelry and each expression/pose. Keep complete transparent full-body canvas and consistent head/feet anchors. Separate stage-scale correction is also needed.",
+    "usage": [
+      "manifest.portraits.Mayumi.neutral"
+    ],
+    "proposed_target": "assets/portraits/mayumi-consistent-v1/neutral.png"
+  },
+  {
+    "path": "assets/portraits/mayumi-v2/sad.png",
+    "width": 1024,
+    "height": 1536,
+    "alpha_bounds": [
+      0,
+      0,
+      1004,
+      1536
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 179,
+    "status": "Correct",
+    "review": "Redraw shading and face/fabric linework to match Rowan while preserving Mayumi’s age, brown eyes, bun, blouse, sage skirt, jewelry and each expression/pose. Keep complete transparent full-body canvas and consistent head/feet anchors. Separate stage-scale correction is also needed.",
+    "usage": [
+      "manifest.portraits.Mayumi.sad"
+    ],
+    "proposed_target": "assets/portraits/mayumi-consistent-v1/sad.png"
+  },
+  {
+    "path": "assets/portraits/mayumi-v2/serious.png",
+    "width": 1024,
+    "height": 1536,
+    "alpha_bounds": [
+      41,
+      0,
+      1002,
+      1536
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 180,
+    "status": "Correct",
+    "review": "Redraw shading and face/fabric linework to match Rowan while preserving Mayumi’s age, brown eyes, bun, blouse, sage skirt, jewelry and each expression/pose. Keep complete transparent full-body canvas and consistent head/feet anchors. Separate stage-scale correction is also needed.",
+    "usage": [
+      "manifest.portraits.Mayumi.serious"
+    ],
+    "proposed_target": "assets/portraits/mayumi-consistent-v1/serious.png"
+  },
+  {
+    "path": "assets/portraits/mayumi-v2/surprised.png",
+    "width": 1024,
+    "height": 1536,
+    "alpha_bounds": [
+      81,
+      0,
+      1004,
+      1536
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 181,
+    "status": "Correct",
+    "review": "Redraw shading and face/fabric linework to match Rowan while preserving Mayumi’s age, brown eyes, bun, blouse, sage skirt, jewelry and each expression/pose. Keep complete transparent full-body canvas and consistent head/feet anchors. Separate stage-scale correction is also needed.",
+    "usage": [
+      "manifest.portraits.Mayumi.surprised"
+    ],
+    "proposed_target": "assets/portraits/mayumi-consistent-v1/surprised.png"
+  },
+  {
+    "path": "assets/portraits/mayumi-v2/teasing.png",
+    "width": 1024,
+    "height": 1536,
+    "alpha_bounds": [
+      0,
+      0,
+      1010,
+      1536
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 182,
+    "status": "Correct",
+    "review": "Redraw shading and face/fabric linework to match Rowan while preserving Mayumi’s age, brown eyes, bun, blouse, sage skirt, jewelry and each expression/pose. Keep complete transparent full-body canvas and consistent head/feet anchors. Separate stage-scale correction is also needed.",
+    "usage": [
+      "manifest.portraits.Mayumi.teasing"
+    ],
+    "proposed_target": "assets/portraits/mayumi-consistent-v1/teasing.png"
+  },
+  {
+    "path": "assets/portraits/mayumi-v2/warm-smile.png",
+    "width": 1024,
+    "height": 1536,
+    "alpha_bounds": [
+      203,
+      0,
+      1024,
+      1536
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 183,
+    "status": "Correct",
+    "review": "Redraw shading and face/fabric linework to match Rowan while preserving Mayumi’s age, brown eyes, bun, blouse, sage skirt, jewelry and each expression/pose. Keep complete transparent full-body canvas and consistent head/feet anchors. Separate stage-scale correction is also needed.",
+    "usage": [
+      "manifest.portraits.Mayumi.warm-smile"
+    ],
+    "proposed_target": "assets/portraits/mayumi-consistent-v1/warm-smile.png"
+  },
+  {
+    "path": "assets/portraits/rowan/book.png",
+    "width": 1254,
+    "height": 1254,
+    "alpha_bounds": [
+      0,
+      0,
+      1254,
+      1254
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 184,
+    "status": "Archive only",
+    "review": "Original cropped Rowan expression set; retain as design/source history, not as the live full-body sprite set.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/portraits/rowan/concerned.png",
+    "width": 1254,
+    "height": 1254,
+    "alpha_bounds": [
+      0,
+      0,
+      1254,
+      1254
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 185,
+    "status": "Archive only",
+    "review": "Original cropped Rowan expression set; retain as design/source history, not as the live full-body sprite set.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/portraits/rowan/embarrassed.png",
+    "width": 1254,
+    "height": 1254,
+    "alpha_bounds": [
+      0,
+      0,
+      1254,
+      1254
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 186,
+    "status": "Archive only",
+    "review": "Original cropped Rowan expression set; retain as design/source history, not as the live full-body sprite set.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/portraits/rowan/neutral.png",
+    "width": 1254,
+    "height": 1254,
+    "alpha_bounds": [
+      39,
+      0,
+      1254,
+      1254
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 187,
+    "status": "Archive only",
+    "review": "Original cropped Rowan expression set; retain as design/source history, not as the live full-body sprite set.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/portraits/rowan/playful.png",
+    "width": 1254,
+    "height": 1254,
+    "alpha_bounds": [
+      29,
+      0,
+      1254,
+      1254
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 188,
+    "status": "Archive only",
+    "review": "Original cropped Rowan expression set; retain as design/source history, not as the live full-body sprite set.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/portraits/rowan/sad.png",
+    "width": 1254,
+    "height": 1254,
+    "alpha_bounds": [
+      33,
+      0,
+      1254,
+      1254
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 189,
+    "status": "Archive only",
+    "review": "Original cropped Rowan expression set; retain as design/source history, not as the live full-body sprite set.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/portraits/rowan/smile.png",
+    "width": 1254,
+    "height": 1254,
+    "alpha_bounds": [
+      37,
+      0,
+      1254,
+      1254
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 190,
+    "status": "Archive only",
+    "review": "Original cropped Rowan expression set; retain as design/source history, not as the live full-body sprite set.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/portraits/rowan/surprised.png",
+    "width": 1254,
+    "height": 1254,
+    "alpha_bounds": [
+      35,
+      0,
+      1254,
+      1254
+    ],
+    "references": [],
+    "identical_to": null,
+    "tile": 191,
+    "status": "Archive only",
+    "review": "Original cropped Rowan expression set; retain as design/source history, not as the live full-body sprite set.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/portraits/rowan-age-11/concerned.png",
+    "width": 1024,
+    "height": 1536,
+    "alpha_bounds": [
+      65,
+      0,
+      830,
+      1521
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 192,
+    "status": "Keep",
+    "review": "Approved age-eleven sprites form a coherent short-hair set. Preserve child scale, ordinary shirt/shorts/slippers and all expressions; no adult proportions or cardigan.",
+    "usage": [
+      "manifest.portraits.RowanChild.concerned"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/portraits/rowan-age-11/neutral.png",
+    "width": 1024,
+    "height": 1536,
+    "alpha_bounds": [
+      65,
+      2,
+      832,
+      1521
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 193,
+    "status": "Keep",
+    "review": "Approved age-eleven sprites form a coherent short-hair set. Preserve child scale, ordinary shirt/shorts/slippers and all expressions; no adult proportions or cardigan.",
+    "usage": [
+      "manifest.portraits.RowanChild.neutral"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/portraits/rowan-age-11/playful.png",
+    "width": 1024,
+    "height": 1536,
+    "alpha_bounds": [
+      71,
+      0,
+      831,
+      1522
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 194,
+    "status": "Keep",
+    "review": "Approved age-eleven sprites form a coherent short-hair set. Preserve child scale, ordinary shirt/shorts/slippers and all expressions; no adult proportions or cardigan.",
+    "usage": [
+      "manifest.portraits.RowanChild.playful"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/portraits/rowan-age-11/sad.png",
+    "width": 1024,
+    "height": 1536,
+    "alpha_bounds": [
+      65,
+      0,
+      831,
+      1522
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 195,
+    "status": "Keep",
+    "review": "Approved age-eleven sprites form a coherent short-hair set. Preserve child scale, ordinary shirt/shorts/slippers and all expressions; no adult proportions or cardigan.",
+    "usage": [
+      "manifest.portraits.RowanChild.sad"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/portraits/rowan-age-11/smile.png",
+    "width": 1024,
+    "height": 1536,
+    "alpha_bounds": [
+      65,
+      0,
+      832,
+      1521
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 196,
+    "status": "Keep",
+    "review": "Approved age-eleven sprites form a coherent short-hair set. Preserve child scale, ordinary shirt/shorts/slippers and all expressions; no adult proportions or cardigan.",
+    "usage": [
+      "manifest.portraits.RowanChild.smile"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/portraits/rowan-age-11/surprised.png",
+    "width": 1024,
+    "height": 1536,
+    "alpha_bounds": [
+      65,
+      0,
+      832,
+      1522
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 197,
+    "status": "Keep",
+    "review": "Approved age-eleven sprites form a coherent short-hair set. Preserve child scale, ordinary shirt/shorts/slippers and all expressions; no adult proportions or cardigan.",
+    "usage": [
+      "manifest.portraits.RowanChild.surprised"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/portraits/rowan-standing/book.png",
+    "width": 1024,
+    "height": 1536,
+    "alpha_bounds": [
+      51,
+      0,
+      944,
+      1536
+    ],
+    "references": [
+      "assets/portraits/backups/rowan-before-approved-upgrade/manifest.json"
+    ],
+    "identical_to": "assets/portraits/backups/rowan-before-approved-upgrade/rowan-standing/book.png",
+    "status": "Archive only",
+    "review": "Superseded Rowan pose/eye/smile versions. Retain untouched backups; use current upgraded sprites as the live reference, not an older pupil or mouth variant.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/portraits/rowan-standing/concerned.png",
+    "width": 1024,
+    "height": 1536,
+    "alpha_bounds": [
+      71,
+      0,
+      874,
+      1536
+    ],
+    "references": [
+      "assets/portraits/backups/rowan-before-approved-upgrade/manifest.json"
+    ],
+    "identical_to": "assets/portraits/backups/rowan-before-approved-upgrade/rowan-standing/concerned.png",
+    "status": "Archive only",
+    "review": "Superseded Rowan pose/eye/smile versions. Retain untouched backups; use current upgraded sprites as the live reference, not an older pupil or mouth variant.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/portraits/rowan-standing/embarrassed.png",
+    "width": 1024,
+    "height": 1536,
+    "alpha_bounds": [
+      0,
+      1,
+      944,
+      1536
+    ],
+    "references": [
+      "assets/portraits/backups/rowan-before-approved-upgrade/manifest.json"
+    ],
+    "identical_to": "assets/portraits/backups/rowan-before-approved-upgrade/rowan-standing/embarrassed.png",
+    "status": "Archive only",
+    "review": "Superseded Rowan pose/eye/smile versions. Retain untouched backups; use current upgraded sprites as the live reference, not an older pupil or mouth variant.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/portraits/rowan-standing/neutral.png",
+    "width": 1024,
+    "height": 1536,
+    "alpha_bounds": [
+      65,
+      0,
+      867,
+      1536
+    ],
+    "references": [
+      "assets/portraits/backups/rowan-before-approved-upgrade/manifest.json"
+    ],
+    "identical_to": "assets/portraits/backups/rowan-before-approved-upgrade/rowan-standing/neutral.png",
+    "status": "Archive only",
+    "review": "Superseded Rowan pose/eye/smile versions. Retain untouched backups; use current upgraded sprites as the live reference, not an older pupil or mouth variant.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/portraits/rowan-standing/playful-restored.png",
+    "width": 1024,
+    "height": 1536,
+    "alpha_bounds": [
+      0,
+      0,
+      944,
+      1536
+    ],
+    "references": [],
+    "identical_to": "assets/portraits/backups/rowan-before-approved-upgrade/rowan-standing/playful-restored.png",
+    "status": "Archive only",
+    "review": "Superseded Rowan pose/eye/smile versions. Retain untouched backups; use current upgraded sprites as the live reference, not an older pupil or mouth variant.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/portraits/rowan-standing/playful-soft.png",
+    "width": 1024,
+    "height": 1536,
+    "alpha_bounds": [
+      188,
+      0,
+      893,
+      1536
+    ],
+    "references": [
+      "assets/portraits/backups/rowan-before-approved-upgrade/manifest.json"
+    ],
+    "identical_to": "assets/portraits/backups/rowan-before-approved-upgrade/rowan-standing/playful-soft.png",
+    "status": "Archive only",
+    "review": "Superseded Rowan pose/eye/smile versions. Retain untouched backups; use current upgraded sprites as the live reference, not an older pupil or mouth variant.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/portraits/rowan-standing/playful.png",
+    "width": 1024,
+    "height": 1536,
+    "alpha_bounds": [
+      0,
+      0,
+      944,
+      1536
+    ],
+    "references": [],
+    "identical_to": "assets/portraits/backups/rowan-before-approved-upgrade/rowan-standing/playful.png",
+    "status": "Archive only",
+    "review": "Superseded Rowan pose/eye/smile versions. Retain untouched backups; use current upgraded sprites as the live reference, not an older pupil or mouth variant.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/portraits/rowan-standing/sad.png",
+    "width": 1024,
+    "height": 1536,
+    "alpha_bounds": [
+      65,
+      0,
+      893,
+      1536
+    ],
+    "references": [
+      "assets/portraits/backups/rowan-before-approved-upgrade/manifest.json"
+    ],
+    "identical_to": "assets/portraits/backups/rowan-before-approved-upgrade/rowan-standing/sad.png",
+    "status": "Archive only",
+    "review": "Superseded Rowan pose/eye/smile versions. Retain untouched backups; use current upgraded sprites as the live reference, not an older pupil or mouth variant.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/portraits/rowan-standing/smile.png",
+    "width": 1024,
+    "height": 1536,
+    "alpha_bounds": [
+      69,
+      0,
+      868,
+      1536
+    ],
+    "references": [
+      "assets/portraits/backups/rowan-before-approved-upgrade/manifest.json"
+    ],
+    "identical_to": "assets/portraits/backups/rowan-before-approved-upgrade/rowan-standing/smile.png",
+    "status": "Archive only",
+    "review": "Superseded Rowan pose/eye/smile versions. Retain untouched backups; use current upgraded sprites as the live reference, not an older pupil or mouth variant.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/portraits/rowan-standing/surprised.png",
+    "width": 1024,
+    "height": 1536,
+    "alpha_bounds": [
+      71,
+      0,
+      868,
+      1536
+    ],
+    "references": [
+      "assets/portraits/backups/rowan-before-approved-upgrade/manifest.json"
+    ],
+    "identical_to": "assets/portraits/backups/rowan-before-approved-upgrade/rowan-standing/surprised.png",
+    "status": "Archive only",
+    "review": "Superseded Rowan pose/eye/smile versions. Retain untouched backups; use current upgraded sprites as the live reference, not an older pupil or mouth variant.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/portraits/rowan-upgraded/annoyed.png",
+    "width": 1024,
+    "height": 1536,
+    "alpha_bounds": [
+      65,
+      13,
+      962,
+      1522
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 198,
+    "status": "Keep",
+    "review": "Approved live Rowan sprite set is the style/identity anchor. Keep faces, expressions and full-body anatomy. Correct relative on-screen staging with Mayumi rather than redesigning Rowan.",
+    "usage": [
+      "manifest.portraits.Rowan.annoyed"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/portraits/rowan-upgraded/book.png",
+    "width": 1024,
+    "height": 1536,
+    "alpha_bounds": [
+      65,
+      13,
+      1010,
+      1523
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 199,
+    "status": "Keep",
+    "review": "Approved live Rowan sprite set is the style/identity anchor. Keep faces, expressions and full-body anatomy. Correct relative on-screen staging with Mayumi rather than redesigning Rowan.",
+    "usage": [
+      "manifest.portraits.Rowan.book"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/portraits/rowan-upgraded/concerned.png",
+    "width": 1024,
+    "height": 1536,
+    "alpha_bounds": [
+      49,
+      13,
+      962,
+      1536
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 200,
+    "status": "Keep",
+    "review": "Approved live Rowan sprite set is the style/identity anchor. Keep faces, expressions and full-body anatomy. Correct relative on-screen staging with Mayumi rather than redesigning Rowan.",
+    "usage": [
+      "manifest.portraits.Rowan.concerned"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/portraits/rowan-upgraded/confused.png",
+    "width": 1024,
+    "height": 1536,
+    "alpha_bounds": [
+      65,
+      0,
+      962,
+      1523
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 201,
+    "status": "Keep",
+    "review": "Approved live Rowan sprite set is the style/identity anchor. Keep faces, expressions and full-body anatomy. Correct relative on-screen staging with Mayumi rather than redesigning Rowan.",
+    "usage": [
+      "manifest.portraits.Rowan.confused"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/portraits/rowan-upgraded/embarrassed.png",
+    "width": 1024,
+    "height": 1536,
+    "alpha_bounds": [
+      49,
+      0,
+      962,
+      1523
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 202,
+    "status": "Keep",
+    "review": "Approved live Rowan sprite set is the style/identity anchor. Keep faces, expressions and full-body anatomy. Correct relative on-screen staging with Mayumi rather than redesigning Rowan.",
+    "usage": [
+      "manifest.portraits.Rowan.embarrassed"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/portraits/rowan-upgraded/neutral.png",
+    "width": 1024,
+    "height": 1536,
+    "alpha_bounds": [
+      49,
+      13,
+      962,
+      1522
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 203,
+    "status": "Keep",
+    "review": "Approved live Rowan sprite set is the style/identity anchor. Keep faces, expressions and full-body anatomy. Correct relative on-screen staging with Mayumi rather than redesigning Rowan.",
+    "usage": [
+      "manifest.portraits.Rowan.neutral"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/portraits/rowan-upgraded/playful.png",
+    "width": 1024,
+    "height": 1536,
+    "alpha_bounds": [
+      49,
+      12,
+      962,
+      1523
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 204,
+    "status": "Keep",
+    "review": "Approved live Rowan sprite set is the style/identity anchor. Keep faces, expressions and full-body anatomy. Correct relative on-screen staging with Mayumi rather than redesigning Rowan.",
+    "usage": [
+      "manifest.portraits.Rowan.playful"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/portraits/rowan-upgraded/sad.png",
+    "width": 1024,
+    "height": 1536,
+    "alpha_bounds": [
+      65,
+      10,
+      938,
+      1523
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 205,
+    "status": "Keep",
+    "review": "Approved live Rowan sprite set is the style/identity anchor. Keep faces, expressions and full-body anatomy. Correct relative on-screen staging with Mayumi rather than redesigning Rowan.",
+    "usage": [
+      "manifest.portraits.Rowan.sad"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/portraits/rowan-upgraded/smile.png",
+    "width": 1024,
+    "height": 1536,
+    "alpha_bounds": [
+      73,
+      10,
+      938,
+      1523
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 206,
+    "status": "Keep",
+    "review": "Approved live Rowan sprite set is the style/identity anchor. Keep faces, expressions and full-body anatomy. Correct relative on-screen staging with Mayumi rather than redesigning Rowan.",
+    "usage": [
+      "manifest.portraits.Rowan.smile"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/portraits/rowan-upgraded/surprised.png",
+    "width": 1024,
+    "height": 1536,
+    "alpha_bounds": [
+      49,
+      13,
+      962,
+      1522
+    ],
+    "references": [
+      "assets/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 207,
+    "status": "Keep",
+    "review": "Approved live Rowan sprite set is the style/identity anchor. Keep faces, expressions and full-body anatomy. Correct relative on-screen staging with Mayumi rather than redesigning Rowan.",
+    "usage": [
+      "manifest.portraits.Rowan.surprised"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/references/rowan-original.png",
+    "width": 600,
+    "height": 600,
+    "alpha_bounds": [
+      20,
+      0,
+      589,
+      600
+    ],
+    "references": [
+      "src/app.js",
+      "src/phone-ui.js",
+      "assets/manifest.json",
+      "assets/portraits/backups/rowan-before-approved-upgrade/manifest.json"
+    ],
+    "identical_to": null,
+    "tile": 208,
+    "status": "Reference only",
+    "review": "Original user-created Rowan identity reference. Preserve unchanged; use alongside the approved upgraded sprites for all future character edits.",
+    "usage": [
+      "manifest.originalReference",
+      "src/app.js",
+      "src/phone-ui.js"
+    ],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/portraits/rowan-neutral.svg",
+    "status": "Archive only",
+    "review": "Legacy SVG placeholder, inspected as source. Keep untouched and do not reintroduce into the current illustrated game.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/portraits/rowan-smile.svg",
+    "status": "Archive only",
+    "review": "Legacy SVG placeholder, inspected as source. Keep untouched and do not reintroduce into the current illustrated game.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  },
+  {
+    "path": "assets/portraits/rowan-thoughtful.svg",
+    "status": "Archive only",
+    "review": "Legacy SVG placeholder, inspected as source. Keep untouched and do not reintroduce into the current illustrated game.",
+    "usage": [],
+    "proposed_target": "No replacement proposed"
+  }
+]

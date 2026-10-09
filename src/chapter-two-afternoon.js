@@ -15,7 +15,7 @@ export const chapterTwoAfternoon={
     "lines": [
       {
         "speaker": "",
-        "text": "After washing my face and changing, I head downstairs."
+        "text": "After fixing my hair and changing, I head downstairs."
       },
       {
         "speaker": "",
@@ -257,7 +257,7 @@ export const chapterTwoAfternoon={
     ],
     "cgCue": {
       "key": "summer-lunch",
-      "from": "After washing my face and changing, I head downstairs."
+      "from": "After fixing my hair and changing, I head downstairs."
     }
   },
   "c2Wait": {

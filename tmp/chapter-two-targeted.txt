@@ -1,0 +1,47 @@
+✔ Every afternoon route and channel sequence reaches the real chapter ending (2875.8987ms)
+✔ Solo gardening saves tugs, supports early exit, and cannot change the first round or relationships (1.151ms)
+✔ Solo activities exclude Rowan and news follows his return; reveal remembers the chosen route (0.3507ms)
+✔ New scenes have real art/music assets, and solo activities use ambience without a rival (36.0024ms)
+✔ Old endpoint and ambition saves retain progress, prior choices, relationship, and historical text (1.055ms)
+✔ All CGs appear only inside their authored cue windows without changing saves (65.2519ms)
+✔ All event illustrations are optimized WebP with accessible descriptions (77.457ms)
+✔ Third ending builds clouds individually and restores the same density (1.5279ms)
+✔ Final nightmare ends on its own and resumes saved time without a failure penalty (0.6608ms)
+✔ Legacy third-wave saves preserve clears and an ending already in progress (0.2832ms)
+✔ Nightmare settings remain continuous and waking passes through darkness (1.8044ms)
+✔ Every nightmare and recovery choice reaches the afternoon bridge with boundaries and saves intact (147.5711ms)
+✔ Chapter Two unlocks from old completed saves without resetting them; future chapters stay locked (0.8564ms)
+✔ Nightmare progress resumes and all waves are time-bounded without changing affinity (0.7149ms)
+✔ Privacy branches never show seated Rowan CG and Sevi’s confrontations use their separate settings (0.4338ms)
+✔ Sevi interest beats require the earlier explicit response; ordinary scenes stay platonic (0.3612ms)
+✔ Legacy confrontation saves remain valid without changing relationships or archived history (0.6013ms)
+✔ Ten gradual clouds have distinct outcomes and never block story progression (0.7286ms)
+✔ Removed committee choices migrate safely; revised script keeps withdrawal fixed (0.3635ms)
+✔ Gallery does not reveal future CGs or mutate progress; exact viewed history migrates (2.8332ms)
+✔ Every CG unlocks only at its cue, including branch-specific illustrations (1.8153ms)
+✔ Catalog preserves character order, Sevi artwork ownership, and asset references (39.3952ms)
+✔ Sevi story art retains unlocks and is excluded from Rowan without changing other entries (0.697ms)
+✔ Both characters are 23; Rowan is he/him and player choices remain available (4.4924ms)
+✔ All expression cues match authored text and every expression is used (21.243ms)
+✔ Book pose is present in sorting, absent in outdoor scenes and night texting (0.3493ms)
+✔ Existing saves retain choices while old authored pronouns are refreshed (0.9815ms)
+✔ All ten approved sprite PNGs share canvas and RGBA transparency format (16.1411ms)
+✔ Authored action cues exist in the script and never mutate it (18.754ms)
+✔ Effects cancel on exit, never replay after a menu, and suppress loaded reactions (1.4334ms)
+✔ Nightmare smoke stays mounted between dialogue lines and stops with motion disabled (0.5204ms)
+✔ All nodes reachable; all exits exist; no story cycles (3.7292ms)
+✔ Every branch renders, persists, and reaches the ending (1637.1212ms)
+✔ Boundary, respectful disagreement, friendship and skipped detour cost no trust (38.7906ms)
+✔ All three childhood memory variants return later (109.0651ms)
+✔ Chosen pronouns render in the photograph inscription (0.2547ms)
+✔ Malformed and stale saves are rejected (0.226ms)
+✔ Preview cannot grant trust, promises, or authored relationship changes (39.4376ms)
+✔ Every referenced original asset is present (18.0693ms)
+ℹ tests 39
+ℹ suites 0
+ℹ pass 39
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3118.8286

@@ -1,0 +1,21 @@
+import fs from 'node:fs';
+let s=fs.readFileSync('src/app.js','utf8');
+s=s.replace("  const portrait=!cg&&sprite&&manifest.portraits[sprite.character||'Rowan']?.[sprite.key];","  const portraits=cg?'':spritesAt(story,saved).map(actor=>{const src=manifest.portraits[actor.character||'Rowan']?.[actor.key];return src?'<img class=\"save-portrait\" '+(actor.slot?'style=\"left:'+ (actor.slot==='left'?'32':'70')+'%;right:auto;transform:translateX(-50%)\" ':'')+'src=\"'+escape(src)+'\" alt=\"\" loading=\"lazy\">':'';}).join('');");
+s=s.replace(":portrait?`<img class=\"save-portrait\" src=\"${escape(portrait)}\" alt=\"\" loading=\"lazy\">`:''}",":portraits}");
+fs.writeFileSync('src/app.js',s);
+let p=fs.readFileSync('tools/check-chapter-two-revision.mjs','utf8');
+let a=p.indexOf(" await load('c2MarketWalk')"), b=p.indexOf(' assert.deepEqual(errors,[])',a);
+p=p.slice(0,a)+` await load('c2Workshop',4);assert.match(await page.locator('.event-cg').getAttribute('src'),/scene-approved-v1\\/nestor/);
+ await page.locator('[data-action="next"]').click();await page.waitForTimeout(100);
+ await load('c2Workshop',8);assert.equal(await page.locator('.event-cg').count(),0);
+ await load('c2GraveTogether',2,{graveTogether:false,c2Flowers:'roses'});assert.match(await page.locator('.event-cg').getAttribute('src'),/grave-alone-roses/);
+ await load('c2GraveTogether',2,{graveTogether:true,c2Flowers:'lilies'});assert.match(await page.locator('.event-cg').getAttribute('src'),/grave-together-lilies/);
+ await load('c2Grave',5,{graveTogether:true,c2GraveStay:true,c2Flowers:'orchids'});assert.match(await page.locator('.event-cg').getAttribute('src'),/grave-comfort-orchids/);
+ await load('c2Mayumi',0,{graveTogether:true});assert.match(await page.locator('.event-cg').getAttribute('src'),/mayumi/);
+ await load('c2Mayumi',7,{graveTogether:true});assert.equal(await page.locator('.character-stage').count(),2);
+ await page.screenshot({path:'tmp/approved-dual-cast-desktop.png'});
+ await load('c2FamilyArrival',0,{graveTogether:false});assert.equal(await page.locator('.character-stage').count(),1);
+ await load('c2FamilyArrival',6,{graveTogether:false});assert.equal(await page.locator('.character-stage').count(),2);
+`+p.slice(b);
+fs.writeFileSync('tools/check-approved-scene-art.mjs',p);
+

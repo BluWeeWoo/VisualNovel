@@ -18,13 +18,17 @@ export function nightmareProgress(state,wave){
 }
 export function nightmareOutcome(progress,wave){
  if(wave!==3&&Array.from({length:10},(_,i)=>i).every(i=>progress.cleared.includes(i)))return 'clear';
+ if(wave!==3&&progress.elapsed>=waveDurations[wave])return 'overwhelmed';
  return wave===3&&progress.endingElapsed>=8?'overwhelmed':null;
 }
 export function finishNightmare(state,wave,outcome){state.flags['nightmareOutcome'+wave]=outcome;}
 export function tickNightmare(progress,wave,seconds){
  const delta=Math.max(0,Math.min(1,seconds));
  if(wave===3&&Number.isFinite(progress.endingElapsed))progress.endingElapsed=Math.min(8,progress.endingElapsed+delta);
- else progress.elapsed=Math.min(wave===3?8.9:waveDurations[wave],progress.elapsed+delta);
+ else {
+  progress.elapsed=Math.min(waveDurations[wave],progress.elapsed+delta);
+  if(wave===3&&progress.elapsed>=8.9)progress.endingElapsed=0;
+ }
  return nightmareOutcome(progress,wave)!==null;
 }
 export function clearThought(progress,wave,id){
@@ -42,12 +46,13 @@ export function mountNightmare(root,state,{wave,motion,save,done,menu,endingAudi
  const visibility=()=>{root.querySelector('.nightmare-screen')?.classList.toggle('fx-hidden',document.hidden);if(wave===3){endingAudio?.pause(paused||document.hidden);last=performance.now();}};
  document.addEventListener('visibilitychange',visibility);
  const field=root.querySelector('.thought-field'),status=root.querySelector('.dream-status'),pause=root.querySelector('.dream-pause');
- const finish=(outcome=nightmareOutcome(progress,wave))=>{if(stopped||!nightmareOutcome(progress,wave))return;stopped=true;clearInterval(timer);finishNightmare(state,wave,outcome||'overwhelmed');save();done();};
+ const finish=(outcome=nightmareOutcome(progress,wave))=>{if(stopped||!outcome)return;stopped=true;clearInterval(timer);finishNightmare(state,wave,outcome);save();done();};
+ const skip=document.createElement('button');skip.className='dream-skip';skip.textContent='Skip dream activity';skip.onclick=()=>finish('bypass');root.querySelector('footer div').append(skip);
  const blockHeldKey=e=>{if((e.key===' '||e.key==='Enter')&&e.repeat){e.preventDefault();e.stopPropagation();}};
  root.addEventListener('keydown',blockHeldKey);
  delete state.flags.nightmareSkip;
  if(wave===3&&progress.cleared.length<10)progress.elapsed=Math.min(progress.elapsed,8.9);
- if(wave===3)root.querySelector('.dream-instruction').firstChild.textContent='Release all ten thoughts. Keep going until the dream passes.';
+ root.querySelector('.dream-instruction').firstChild.textContent=wave===3?'Let the dream pass. You cannot fail this scene.':'Let a thought go, or wait for the dream to pass.';
  root.querySelector('.dream-menu').onclick=()=>{save();menu();};
  pause.onclick=()=>{paused=!paused;pause.textContent=translate(paused?'Resume':'Pause');root.querySelector('main').classList.toggle('paused',paused);last=performance.now();endingAudio?.pause(paused||document.hidden);};
  const positions=[[19,22],[72,18],[44,46],[17,71],[77,70],[49,15],[78,43],[42,76],[18,47],[61,62],[61,30],[34,30]];

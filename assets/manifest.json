@@ -7,11 +7,11 @@
     "pier": "assets/backgrounds/pier-day.png",
     "bus": "assets/cg/opening/bus-interior.webp",
     "saint-luis": "assets/cg/opening/hill-houses.webp",
-    "repair": "assets/cg/opening/door-before-outfit.webp",
+    "repair": "assets/cg/porch-door-v2/door-repair.webp",
     "manila-bedroom": "assets/cg/reunion/manila-bedroom.webp",
     "manila-landing": "assets/cg/reunion/manila-landing.webp",
     "manila-service": "assets/cg/reunion/manila-service.webp",
-    "reunion-porch": "assets/cg/reunion/reunion-porch.webp",
+    "reunion-porch": "assets/cg/porch-door-v2/porch-day.webp",
     "d2-bedroom-evening": "assets/cg/day-two/bedroom-evening.webp",
     "d2-bedroom-night": "assets/cg/day-two/bedroom-night.webp",
     "d2-bedroom-morning": "assets/cg/day-two/bedroom-morning.webp",
@@ -25,8 +25,8 @@
     "d2-garden-hat-poke": "assets/cg/day-two/garden-hat-poke.webp",
     "d2-garden-startled": "assets/cg/day-two/garden-startled.webp",
     "garden-rematch": "assets/cg/day-two/garden-reveal.webp",
-    "garden-bed": "assets/cg/reunion/reunion-porch.webp",
-    "d2-porch-night": "assets/cg/after-garden/porch-night.webp",
+    "garden-bed": "assets/cg/porch-door-v2/porch-day.webp",
+    "d2-porch-night": "assets/cg/porch-door-v2/night.webp",
     "c2-city": "assets/cg/chapter-two/nightmare.webp",
     "c2-school": "assets/cg/chapter-two/classroom.webp",
     "c2-assignment": "assets/cg/chapter-two/sevi-assignment.webp",
@@ -40,7 +40,35 @@
     "summer-workshop": "assets/cg/chapter-two/workshop.webp",
     "summer-grave": "assets/cg/chapter-two/grave-solo.webp",
     "summer-mayumi": "assets/cg/chapter-two/mayumi.webp",
-    "summer-news": "assets/cg/chapter-two/television-news.webp"
+    "summer-news": "assets/cg/chapter-two/television-news-mayor-v2.webp",
+    "summer-flowers": "assets/cg/chapter-two/flower-stall-v1.webp",
+    "c2-painted-grave-late-afternoon": "assets/cg/chapter-two/continuity-v1/grave-late-afternoon.png",
+    "c2-painted-grave-sunset": "assets/cg/chapter-two/continuity-v1/grave-sunset.png",
+    "c2-painted-porch-early-evening": "assets/cg/porch-door-v2/evening.webp",
+    "c2-painted-porch-night": "assets/cg/porch-door-v2/night.webp",
+    "c2-painted-living-night": "assets/cg/chapter-two/continuity-v1/living-night.png",
+    "c2-painted-hill-houses-night": "assets/cg/chapter-two/continuity-v1/hill-houses-night.png",
+    "c2-painted-hill-early-evening": "assets/cg/chapter-two/continuity-v1/hill-early-evening.png",
+    "c2-painted-saint-luis-palengke": "assets/cg/chapter-two/continuity-v1/saint-luis-palengke.png",
+    "c2-painted-review-nestor": "assets/cg/chapter-two/scene-approved-v1/nestor.webp",
+    "c2-painted-review-grave-alone": "assets/cg/chapter-two/scene-approved-v1/grave-alone.webp",
+    "c2-painted-review-grave-together": "assets/cg/chapter-two/scene-approved-v1/grave-together.webp",
+    "c2-painted-review-grave-comfort": "assets/cg/chapter-two/scene-approved-v1/grave-comfort.webp",
+    "c2-painted-review-mayumi": "assets/cg/porch-door-v2/mayumi.webp",
+    "c2-painted-review-workshop-empty": "assets/cg/chapter-two/scene-approved-v1/workshop-empty.webp",
+    "c2-painted-review-grave-alone-lilies": "assets/cg/chapter-two/scene-approved-v1/grave-alone-lilies.webp",
+    "c2-painted-review-grave-alone-roses": "assets/cg/chapter-two/scene-approved-v1/grave-alone-roses.webp",
+    "c2-painted-review-grave-alone-orchids": "assets/cg/chapter-two/scene-approved-v1/grave-alone-orchids.webp",
+    "c2-painted-review-grave-together-lilies": "assets/cg/chapter-two/scene-approved-v1/grave-together-lilies.webp",
+    "c2-painted-review-grave-together-roses": "assets/cg/chapter-two/scene-approved-v1/grave-together-roses.webp",
+    "c2-painted-review-grave-together-orchids": "assets/cg/chapter-two/scene-approved-v1/grave-together-orchids.webp",
+    "c2-painted-review-grave-comfort-lilies": "assets/cg/chapter-two/scene-approved-v1/grave-comfort-lilies.webp",
+    "c2-painted-review-grave-comfort-roses": "assets/cg/chapter-two/scene-approved-v1/grave-comfort-roses.webp",
+    "c2-painted-review-grave-comfort-orchids": "assets/cg/chapter-two/scene-approved-v1/grave-comfort-orchids.webp",
+    "c2-painted-tricycle-stop": "assets/cg/porch-door-v2/waiting.webp",
+    "c2-father-kitchen-night": "assets/cg/chapter-two/father-continuation-v1/kitchen-night.webp",
+    "c2-father-dining-background": "assets/cg/chapter-two/father-continuation-v1/dining-background.webp",
+    "c2-father-stair-background": "assets/cg/chapter-two/father-continuation-v1/stair-background.webp"
   },
   "portraits": {
     "Rowan": {
@@ -62,6 +90,15 @@
       "concerned": "assets/portraits/rowan-age-11/concerned.png",
       "sad": "assets/portraits/rowan-age-11/sad.png",
       "surprised": "assets/portraits/rowan-age-11/surprised.png"
+    },
+    "Mayumi": {
+      "neutral": "assets/portraits/mayumi-consistent-v1/neutral.png",
+      "warm-smile": "assets/portraits/mayumi-v2/warm-smile.png",
+      "concerned": "assets/portraits/mayumi-v2/concerned.png",
+      "surprised": "assets/portraits/mayumi-v2/surprised.png",
+      "sad": "assets/portraits/mayumi-v2/sad.png",
+      "serious": "assets/portraits/mayumi-v2/serious.png",
+      "teasing": "assets/portraits/mayumi-v2/teasing.png"
     }
   },
   "portraitLabel": "",
@@ -82,7 +119,7 @@
   },
   "cgs": {
     "reunion": {
-      "src": "assets/cg/reunion.webp",
+      "src": "assets/cg/porch-door-v2/legacy-reunion.webp",
       "alt": "Rowan greets you on the guesthouse porch, holding a screwdriver and the troublesome door latch."
     },
     "promises": {
@@ -110,11 +147,11 @@
       "alt": "Lola’s blue-doored house and Rowan’s home above the sea."
     },
     "familiar-door": {
-      "src": "assets/cg/opening/familiar-door-outfit.webp",
+      "src": "assets/cg/porch-door-v2/recognition.webp",
       "alt": "Rowan looks up in surprised recognition, kneeling beside Lola’s blue door with a lowered hammer."
     },
     "reunion-hug": {
-      "src": "assets/cg/reunion/reunion-hug.webp",
+      "src": "assets/cg/porch-door-v2/hug.webp",
       "alt": "Rowan reaches around the viewpoint in a gentle welcome-back embrace on Lola’s sunlit porch."
     },
     "hidden-letters": {
@@ -170,11 +207,11 @@
       "alt": "Rowan catches his hat in surprise."
     },
     "after-garden-quiet": {
-      "src": "assets/cg/after-garden/quiet.webp",
+      "src": "assets/cg/porch-door-v2/quiet.webp",
       "alt": "Rowan sits quietly on Lola’s shaded porch, a cold glass of water within reach, after talking about her death."
     },
     "after-garden-wave": {
-      "src": "assets/cg/after-garden/wave-outfit.webp",
+      "src": "assets/cg/porch-door-v2/wave.webp",
       "alt": "Rowan stands at the open porch gate with his full legs and shoes visible, waving goodnight beneath a warm lamp in the blue evening."
     },
     "c2-nightmare": {
@@ -234,8 +271,112 @@
       "alt": "Mayumi and Rowan talk across the kitchen table."
     },
     "summer-news": {
-      "src": "assets/cg/chapter-two/television-news.webp",
+      "src": "assets/cg/chapter-two/television-news-mayor-v2.webp",
       "alt": "Mayor Sanchez appears in a local news report on the living room television."
+    },
+    "summer-flowers": {
+      "src": "assets/cg/chapter-two/flower-stall-v1.webp",
+      "alt": "White chrysanthemums, lilies, pink roses and purple orchids at a shaded flower stall in Saint Luis."
+    },
+    "summer-mayumi-night": {
+      "src": "assets/cg/chapter-two/continuity-v1/family-night.webp",
+      "alt": "Mayumi and Rowan at the familiar kitchen table, warmly lit at night."
+    },
+    "c2-review-nestor": {
+      "src": "assets/cg/chapter-two/scene-approved-v1/nestor.webp",
+      "alt": "Manong Nestor welcomes you at his workshop."
+    },
+    "c2-review-grave-alone": {
+      "src": "assets/cg/chapter-two/scene-approved-v1/grave-alone.webp",
+      "alt": "grave alone"
+    },
+    "c2-review-grave-together": {
+      "src": "assets/cg/chapter-two/scene-approved-v1/grave-together.webp",
+      "alt": "grave together"
+    },
+    "c2-review-grave-comfort": {
+      "src": "assets/cg/chapter-two/scene-approved-v1/grave-comfort.webp",
+      "alt": "grave comfort"
+    },
+    "c2-review-mayumi": {
+      "src": "assets/cg/porch-door-v2/mayumi.webp",
+      "alt": "Mayumi waits facing the blue porch door."
+    },
+    "c2-review-workshop-empty": {
+      "src": "assets/cg/chapter-two/scene-approved-v1/workshop-empty.webp",
+      "alt": "workshop empty"
+    },
+    "c2-review-grave-alone-lilies": {
+      "src": "assets/cg/chapter-two/scene-approved-v1/grave-alone-lilies.webp",
+      "alt": "grave alone lilies"
+    },
+    "c2-review-grave-alone-roses": {
+      "src": "assets/cg/chapter-two/scene-approved-v1/grave-alone-roses.webp",
+      "alt": "grave alone roses"
+    },
+    "c2-review-grave-alone-orchids": {
+      "src": "assets/cg/chapter-two/scene-approved-v1/grave-alone-orchids.webp",
+      "alt": "grave alone orchids"
+    },
+    "c2-review-grave-together-lilies": {
+      "src": "assets/cg/chapter-two/scene-approved-v1/grave-together-lilies.webp",
+      "alt": "grave together lilies"
+    },
+    "c2-review-grave-together-roses": {
+      "src": "assets/cg/chapter-two/scene-approved-v1/grave-together-roses.webp",
+      "alt": "grave together roses"
+    },
+    "c2-review-grave-together-orchids": {
+      "src": "assets/cg/chapter-two/scene-approved-v1/grave-together-orchids.webp",
+      "alt": "grave together orchids"
+    },
+    "c2-review-grave-comfort-lilies": {
+      "src": "assets/cg/chapter-two/scene-approved-v1/grave-comfort-lilies.webp",
+      "alt": "grave comfort lilies"
+    },
+    "c2-review-grave-comfort-roses": {
+      "src": "assets/cg/chapter-two/scene-approved-v1/grave-comfort-roses.webp",
+      "alt": "grave comfort roses"
+    },
+    "c2-review-grave-comfort-orchids": {
+      "src": "assets/cg/chapter-two/scene-approved-v1/grave-comfort-orchids.webp",
+      "alt": "grave comfort orchids"
+    },
+    "c2-father-dinner-interrupted": {
+      "src": "assets/character-consistency-v1/cg/chapter-two/father-continuation-v1/dinner-interrupted.png",
+      "alt": "Rowan stops reaching for bread when Mayumi mentions his father."
+    },
+    "c2-father-kitchen-honesty": {
+      "src": "assets/cg/chapter-two/father-continuation-v1/kitchen-honesty.webp",
+      "alt": "Rowan listens quietly beside the kitchen cabinet at night."
+    },
+    "c2-father-birthday": {
+      "src": "assets/cg/chapter-two/father-continuation-v1/birthday.webp",
+      "alt": "Rowan at eighteen celebrates his birthday with Mayumi and Lola."
+    },
+    "c2-father-cardigan-gifts": {
+      "src": "assets/cg/chapter-two/father-continuation-v1/cardigan-gifts.webp",
+      "alt": "Lola’s handmade gray dog-pattern and brown cat-pattern cardigans on the bed."
+    },
+    "c2-father-father-reveal": {
+      "src": "assets/cg/chapter-two/father-continuation-v1/father-reveal.webp",
+      "alt": "Mayumi introduces Enrich while Lola stands beside the blue doorway, hands clasped."
+    },
+    "summer-lunch-attentive": {
+      "src": "assets/cg/chapter-two/lunch-expressions-v1/attentive.webp",
+      "alt": "Rowan looks attentive across the unchanged lunch table at Lola’s house."
+    },
+    "summer-lunch-worried": {
+      "src": "assets/cg/chapter-two/lunch-expressions-v1/worried.webp",
+      "alt": "Rowan looks worried across the unchanged lunch table at Lola’s house."
+    },
+    "summer-lunch-wistful": {
+      "src": "assets/cg/chapter-two/lunch-expressions-v1/wistful.webp",
+      "alt": "Rowan looks wistful across the unchanged lunch table at Lola’s house."
+    },
+    "summer-lunch-embarrassed": {
+      "src": "assets/cg/chapter-two/lunch-expressions-v1/embarrassed.webp",
+      "alt": "Rowan looks embarrassed across the unchanged lunch table at Lola’s house."
     }
   }
 }

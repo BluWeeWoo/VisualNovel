@@ -6655,7 +6655,7 @@ There is no reason I have to stand up this second.
 
 *Scene: c2Lunch · Proposed revision/addition*
 
-After washing my face and changing, I head downstairs.
+After fixing my hair and changing, I head downstairs.
 
 Rowan is setting a bowl of rice on the table.
 
