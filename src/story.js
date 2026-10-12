@@ -1,6 +1,7 @@
 import {chapterTwoAfternoon} from './chapter-two-afternoon.js';
 import {reviseChapterTwo} from './chapter-two-revision.js';
 import {extendChapterTwo} from './chapter-two-father.js';
+import {finishChapterTwo} from './chapter-two-ending.js';
 import {repairedDoor,apprenticeshipConversation} from './carpentry-setup.js';
 import {chapterTwo} from './chapter-two.js';
 import {afterGarden} from './after-garden.js';
@@ -31,6 +32,7 @@ for(const [id,node] of Object.entries(story))if(/^aTopic\d+_rowan_start$/.test(i
 story.aEnd.next='c2Start';
 reviseChapterTwo(story);
 extendChapterTwo(story);
+finishChapterTwo(story);
 
 // Presentation metadata only: unlabelled rows narrate; Thought| marks silent MC thought.
 // Named rows remain spoken. Written messages retain their existing phone/note presentation.

@@ -25,7 +25,7 @@ try{
  assert.equal(await page.locator('.character-stage').count(),2);
  for(const [node,file] of [['c2NewEnding','dinner-interrupted'],['c2KitchenHonesty','kitchen-honesty'],['c2BirthdayDinner','birthday'],['c2CardiganGifts','cardigan-gifts'],['c2FatherReveal','father-reveal']]){
   await load(node,node==='c2NewEnding'?1:0);
-  assert.match(await page.locator('.event-cg').getAttribute('src'),new RegExp('father-continuation-v1/'+file));
+  assert.match(await page.locator('.event-cg').getAttribute('src'),new RegExp((file==='kitchen-honesty'?'ending-v1/':'father-continuation-v1/')+file));
  }
  await page.screenshot({path:'tmp/father-reveal-desktop.png'});
  for(const node of ['c2BirthdayWish','c2BirthdayStairs']){

@@ -38,7 +38,8 @@ test('Legacy third-wave saves preserve clears and an ending already in progress'
 });
 
 test('Nightmare settings remain continuous and waking passes through darkness',()=>{
- for(const id of ['c2CloudIntro','c2Wave1','c2Wave1After'])assert.equal(story[id].place,'c2-city');
+ for(const id of ['c2CloudIntro','c2Wave1'])assert.equal(story[id].place,'c2-confrontation');
+ assert.equal(story.c2Wave1After.place,'c2-city');
  for(const id of ['c2Wave2','c2Wave2After'])assert.equal(story[id].place,'c2-assignment');
  for(const id of ['c2Hall','c2Wave3','c2Calling','c2Blackout'])assert.equal(story[id].place,'c2-empty-hallway');
  assert.equal(story.c2Calling.next,'c2Blackout');

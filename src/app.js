@@ -347,7 +347,7 @@ function drawModal(){
 
   if(modal==='love-interests'){
     shell('Love Interests','','li-modal');
-    mountGallery($('.li-modal'),{manifest,unlocks:syncGallery(),onClose:closeModal});
+    mountGallery($('.li-modal'),{manifest,unlocks:syncGallery(),state:state||read('-auto')?.state,onClose:closeModal});
     return;
   }
   if(modal==='new'){shell('Before your summer begins','','new-summer-modal');mountNewSummer($('.new-summer-modal'),{onBack:closeModal,hasSave:!!read('-auto'),onBegin:profile=>{playSummerTransition({kind:'new',language:profile.language,motion:settings.motion,reveal:()=>{settings.language=normalizeLanguage(profile.language);setLanguage(settings.language);write('-settings',settings);$('.modal-layer')?.remove();start(profile.name,profile.pronouns,profile);enterAudio();}});}});return;}

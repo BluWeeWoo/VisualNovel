@@ -144,6 +144,9 @@ function migrateRevisionFour(s,story){
 
 // Old saves keep their route through the flashback they already entered.
 export function nextStoryNode(story,state){
+ if(state.node==='c2EndSupport'&&state.history.some(h=>!h.id.startsWith('c2')&&/check.?up/i.test(h.text)))return 'c2EndCheckupsKnown';
+ if(state.node==='c2EndGoodbye'&&state.flags.seviDescription==='something')return 'c2EndSevi';
+ if(state.node==='c2EndNight'&&state.history.some(h=>h.id.startsWith('c2EndExpectations:')))return 'c2EndKnown';
  if(Number.isInteger(story[state.node].mayumiTopic)){
   // Include the current topic for saves made before repeatable conversation existed.
   const current=story[state.node].mayumiTopic;
@@ -197,7 +200,7 @@ function migrateRevisionFive(s,story){
 
 // Revision six keeps old saves on their selected route through the revised scenes.
 export function migrateStorySave(s,story){
- if(s?.node==='c2NewEnding'&&story.c2NewEnding.next)s.completed=false;
+ if(['c2NewEnding','c2FatherPresent'].includes(s?.node)&&story[s.node].next)s.completed=false;
  if(s?.version===VERSION&&s.flags&&Array.isArray(s.history)&&!s.carpentryRevision){
   const changed=id=>/^aTopic\d+_rowan_start$/.test(id);
   if(changed(s.node)&&story[s.node]){

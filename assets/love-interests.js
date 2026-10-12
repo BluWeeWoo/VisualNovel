@@ -1,4 +1,5 @@
 import {cgAt} from '../src/staging.js';
+import {surnameRevealed} from '../src/chapter-two-ending.js';
 
 // Only recorded lines/current reading positions grant CGs; never infer from a
 // relationship score or completion flag. This does not mutate story saves.
@@ -22,11 +23,11 @@ export function galleryUnlocks(story, manifest, states, previous=[]){
 const asset=name=>`assets/gallery/${name}.webp`;
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const sheet=(id,title,src,note='Approved design preview')=>({id,title,src,note});
-export function galleryCatalog(manifest,unlocks){
+export function galleryCatalog(manifest,unlocks,state){
   const seviKeys=new Set(['c2-sevi-assignment','c2-sevi-confrontation','c2-sevi-meeting']);
   const storyArt=Object.entries(manifest.cgs||{}).map(([id,cg],index)=>({id,src:cg.src,title:unlocks.includes(id)?`Story artwork ${index+1}`:'Unseen story artwork',note:unlocks.includes(id)?cg.alt:`Unlock by viewing this illustration in ${seviKeys.has(id)?'Sevi’s':'Rowan’s'} story. Some scenes depend on your choices.`,locked:!unlocks.includes(id)}));
   return {
-    rowan:{name:'Rowan',portrait:manifest.portraits.Rowan.neutral,description:'An old friend, a familiar doorstep, and a summer with room to begin again.',
+    rowan:{name:surnameRevealed(state)?'Rowan Sanchez':'Rowan',portrait:manifest.portraits.Rowan.neutral,description:'An old friend, a familiar doorstep, and a summer with room to begin again.',
       Outfits:[sheet('seaglass','Sea-glass morning',asset('rowan-seaglass'),'Alternative outfit preview'),sheet('porch','Porch reader',asset('rowan-porch'),'Alternative outfit preview'),sheet('harbor','Harbor afternoon',asset('rowan-harbor'),'Alternative outfit preview'),sheet('original','Original cardigan',manifest.portraits.Rowan.neutral,'Rowan’s familiar dog-and-bone cardigan.'),sheet('summer','Summer wardrobe',asset('rowan-outfits'),'Sea-glass morning · Porch reader · Harbor afternoon. Alternative outfit concepts; viewing does not change his story outfit.')],
       Expressions:[...Object.entries(manifest.portraits.Rowan).map(([id,src])=>sheet(id,({smile:'Happy',playful:'Playful',book:'Reading',concerned:'Concerned'})[id]||id[0].toUpperCase()+id.slice(1),src,'Character sprite preview')),sheet('sheet','Seven expressions',asset('rowan-expressions'),'Neutral · Happy · Annoyed · Embarrassed · Sad · Surprised · Emotionally confused')],
       Artwork:[sheet('summerhouse','Summerhouse afternoon','assets/backgrounds/menu-seaglass.png','Main-menu illustration'),...storyArt.filter(item=>!seviKeys.has(item.id))]},
@@ -48,8 +49,8 @@ function illustration(art,alt=''){
   const clip=`li-art-${++illustrationId}`;
   return `<span class="li-image li-crop"><svg viewBox="${x} ${y} ${w} ${h}" width="${w}" height="${h}" role="img" aria-label="${esc(alt)}" preserveAspectRatio="xMidYMid meet"><defs><clipPath id="${clip}"><rect x="${x}" y="${y}" width="${w}" height="${h}"/></clipPath></defs><image href="${art.src}" width="1672" height="941" clip-path="url(#${clip})"/></svg></span>`;
 }
-export function mountGallery(root,{manifest,unlocks,onClose}){
-  const catalog=galleryCatalog(manifest,unlocks);
+export function mountGallery(root,{manifest,unlocks,state,onClose}){
+  const catalog=galleryCatalog(manifest,unlocks,state);
   const scenic=[[824,263,223,303],[1070,263,222,303],[1314,263,221,303]];
   catalog.rowan.Outfits.slice(0,3).forEach((item,i)=>Object.assign(item,reference('rowan',item.title,scenic[i])));
   Object.assign(catalog.rowan.Artwork[0],reference('rowan','Summerhouse afternoon',[824,624,711,209]));

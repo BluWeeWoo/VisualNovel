@@ -347,7 +347,7 @@
       "alt": "Rowan stops reaching for bread when Mayumi mentions his father."
     },
     "c2-father-kitchen-honesty": {
-      "src": "assets/cg/chapter-two/father-continuation-v1/kitchen-honesty.webp",
+      "src": "assets/cg/chapter-two/ending-v1/kitchen-honesty.webp",
       "alt": "Rowan listens quietly beside the kitchen cabinet at night."
     },
     "c2-father-birthday": {
@@ -377,6 +377,18 @@
     "summer-lunch-embarrassed": {
       "src": "assets/cg/chapter-two/lunch-expressions-v1/embarrassed.webp",
       "alt": "Rowan looks embarrassed across the unchanged lunch table at Lola’s house."
+    },
+    "c2-end-confrontation": {
+      "src": "assets/cg/chapter-two/ending-v1/confrontation.webp",
+      "alt": "Mayumi and Lola face Enrich at the doorway during Rowan’s eighteenth birthday."
+    },
+    "c2-end-glass": {
+      "src": "assets/cg/chapter-two/ending-v1/glass.webp",
+      "alt": "Rowan quietly dries a glass behind the kitchen table while sharing his worries."
+    },
+    "c2-end-stay": {
+      "src": "assets/cg/chapter-two/ending-v1/stay.webp",
+      "alt": "Rowan blushes shyly at the kitchen table, hoping the MC will stay a little longer."
     }
   }
 }
