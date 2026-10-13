@@ -10,5 +10,5 @@ export function reviewedCG(story,state){
  if(state.node==='c2Workshop')return between('Without missing a beat','So, did Rowan')?'c2-review-nestor':null;
  if(state.node==='c2GraveTogether')return between('Then I crouch')?'c2-review-'+graveArt(state.flags.graveTogether===true?'grave-together':'grave-alone',state):null;
  if(state.node==='c2Grave')return state.flags.graveTogether===true&&state.flags.c2GraveStay===true&&between('I feel an arm','I adjust the flowers.')?'c2-review-'+graveArt('grave-comfort',state):null;
- if(state.node==='c2Mayumi')return between('As I head home,',state.flags.graveTogether===true?'She turns.':'There’s a short pause.')?'c2-review-mayumi':null;
+ if(state.node==='c2Mayumi')return between('a woman in her forties is standing on the porch',state.flags.graveTogether===true?'She turns.':'There’s a short pause.')?'c2-review-mayumi':null;
 }

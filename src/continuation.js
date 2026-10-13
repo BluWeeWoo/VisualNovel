@@ -3,7 +3,7 @@ const scene=(place,title,text,end={})=>({place,time:'day',opening:true,continuat
  lines:text.trim().split('\n').filter(Boolean).map(row=>{const [body,expression]=row.split('~');const i=body.indexOf('|');return {speaker:i<0?'':body.slice(0,i),text:i<0?body:body.slice(i+1),...(expression?{expression}: {})};}),...end});
 const opt=(text,next,set)=>({text,next,set});
 const porch=(title,text,end={})=>scene('reunion-porch',title,text,{music:'reunion',rowan:true,...end});
-const flash=(place,title,text,end={})=>scene(place,title,text,{time:'night',music:'rainy-night',rowan:false,...end});
+const flash=(place,title,text,end={})=>scene(place,title,text,{time:'night',music:'rainy-night',rowan:false,flashback:true,...end});
 export const continuation={
 rGreeting:porch('He’s here',`
 Thought|He’s here.~surprised

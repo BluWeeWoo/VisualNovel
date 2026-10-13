@@ -27,7 +27,7 @@ Rowan|Just leave.
 Enrich|Rowan…
 Mayumi|Sinabi na ng anak mo. Leave.
 Lola|Utoy, umalis ka na.
-Enrich|Babalikan ko kayo.`,'c2FatherPresent',{rowan:false,viewpoint:'Rowan',place:'c2-father-stair-background',cgCue:{key:'c2-end-confrontation',from:'Why is he here?'}}),
+Enrich|Babalikan ko kayo.`,'c2FatherPresent',{flashback:true,rowan:false,viewpoint:'Rowan',music:'letters',place:'c2-father-stair-background',cgCue:{key:'c2-end-confrontation',from:'Why is he here?'}}),
  c2EndSupport:n(`Rowan|After that, groceries and other things started arriving at the house.
 Rowan|Mama and I knew they were from my father. He was trying to bribe us into going with him.
 Rowan|Of course, I didn’t accept any of it. But he kept sending more, and it became too much.
@@ -192,4 +192,4 @@ Thought|And he gives up a lot to look after me.
  }
 }
 export function heardRowanHistory(state){return state.node==='c2EndKnown'||state.history?.some(h=>h.id.startsWith('c2EndExpectations:'));}
-export function surnameRevealed(state){return !!state&&((state.node==='c2EndKnown'&&state.line>=6)||state.history?.some(h=>h.id==='c2EndKnown:6'));}
+export function surnameRevealed(state){return !!state&&((state.node==='c2FatherDinner'&&state.line>=21)||(state.node==='c2EndKnown'&&state.line>=6)||(state.history||[]).some(h=>h.id==='c2EndKnown:6'||(h.id.startsWith('c2FatherDinner:')&&h.text==='He’s the mayor.')));}

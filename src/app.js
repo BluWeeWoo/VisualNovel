@@ -4,7 +4,7 @@ import {playSummerTransition,transitionActive} from '../assets/summer-transition
 import {mountNewSummer} from '../assets/new-summer.js';
 import {translate,translateRecorded,setLanguage,normalizeLanguage} from '../assets/story-language.js';
 import {mountNightmare} from '../assets/nightmare.js';
-import {chapterMenu,chapterComplete} from '../assets/chapters.js';
+import {chapterMenu,chapterComplete,chapterTwoComplete} from '../assets/chapters.js';
 import {morningPhone} from './morning-phone.js';
 import {mountGarden} from '../assets/garden-game.js';
 import {rowansLetter} from './continuation.js';
@@ -157,6 +157,17 @@ async function updateVisual(host,html,key){
   if(host._revision!==revision||!host.isConnected)return;
   const previous=[...host.children];
   const current=previous.at(-1);
+  const currentCG=current?.querySelector('.event-cg');
+  const nextCG=layer.querySelector('.event-cg');
+  // Expression variants share a composition: keep the mounted image opaque.
+  if(currentCG&&nextCG&&nextCG.getAttribute('data-expression-family')&&
+     currentCG.getAttribute('data-expression-family')===nextCG.getAttribute('data-expression-family')){
+    current.getAnimations().forEach(animation=>animation.cancel());
+    for(const name of ['src','alt','width','height'])
+      if(currentCG.getAttribute(name)!==nextCG.getAttribute(name))currentCG.setAttribute(name,nextCG.getAttribute(name));
+    previous.filter(old=>old!==current).forEach(old=>old.remove());
+    return;
+  }
   const currentSprite=current?.querySelector('.character-stage');
   const nextSprite=layer.querySelector('.character-stage');
   if(currentSprite&&nextSprite){
@@ -191,6 +202,7 @@ function mountGame(html,backgroundKey,artKey){
   const next=template.content.firstElementChild;
   let main=app.querySelector('.game-screen');
   if(!main){main=next;app.replaceChildren(main);}
+  main.className=next.className;
   for(const selector of ['.scene-backdrops','.scene-art']){
     const target=main.querySelector(selector),incoming=next.querySelector(selector);
     const content=incoming.innerHTML;
@@ -233,10 +245,11 @@ function renderGame(){
   const staging=cast[0];
   const portrait=staging&&manifest.portraits[staging.character||'Rowan']?.[staging.key];
   const cg=manifest.cgs?.[cgAt(story,state)];
+  const memoryCG=!!cg&&(node.flashback||node.childhood);
   if(['c2Lunch','c2LunchMeal','c2Wait','c2Market','c2AloneGrave'].includes(state.node))preloadLunchArt();
-  const gameHTML=`<main class="game-screen"><div class="scene-backdrops">${bg(node.place,node.time)}</div>
+  const gameHTML=`<main class="game-screen${node.flashback||node.childhood?' memory-scene':''}"><div class="scene-backdrops">${bg(node.place,node.time)}</div>
     <div class="scene-art" aria-label="Scene illustration">
-    ${cg?`<img class="event-cg" src="${escape(cg.src)}" width="1672" height="941" alt="${escape(cg.alt)}" fetchpriority="high" decoding="async">`:cast.map(actor=>{const src=manifest.portraits[actor.character||'Rowan']?.[actor.key];return src?`<aside class="character-stage ${node.time}${node.childhood?' childhood':''}${actor.slot?' cast-'+actor.slot:''}" data-character="${actor.character||'Rowan'}" data-expression="${actor.expression}" data-pose="${actor.pose}"><img src="${escape(src)}" width="${manifest.spriteCanvas.width}" height="${manifest.spriteCanvas.height}" alt="${actor.character||'Rowan'}, ${actor.expression}" fetchpriority="high"></aside>`:'';}).join('')}
+    ${cg?`<img class="event-cg${memoryCG?' memory-cg':''}" data-expression-family="${lunchCGKeys.includes(cgAt(story,state))?'summer-lunch':state.node==='c2KitchenHonesty'?'kitchen-honesty':''}" src="${escape(cg.src)}" width="1672" height="941" alt="${escape(cg.alt)}" fetchpriority="high" decoding="async">${memoryCG?'<div class="memory-cg-haze" aria-hidden="true"></div>':''}`:cast.map(actor=>{const src=manifest.portraits[actor.character||'Rowan']?.[actor.key];return src?`<aside class="character-stage ${node.time}${node.childhood?' childhood':''}${actor.slot?' cast-'+actor.slot:''}" data-character="${actor.character||'Rowan'}" data-expression="${actor.expression}" data-pose="${actor.pose}"><img src="${escape(src)}" width="${manifest.spriteCanvas.width}" height="${manifest.spriteCanvas.height}" alt="${actor.character||'Rowan'}, ${actor.expression}" fetchpriority="high"></aside>`:'';}).join('')}
     </div>
     <div class="scene-bottom">
     <section class="dialogue-card ${cue?.message?'narration':line.kind|| (line.speaker?'spoken':'narration')}" aria-label="Story dialogue">
@@ -244,11 +257,11 @@ function renderGame(){
     <div class="dialogue-copy"><p class="dialogue-reserve" aria-hidden="true">${escape(displayText)}</p><p id="dialogue-text" aria-live="off"></p></div><span class="sr-only dialogue-status" role="status">${escape(cue?.message?displayText:(line.speaker?line.speaker+': ':'')+display(line.text))}</span>
     <div class="dialogue-extras">${morningPhone(node,state)}${node.letter?'<button class="secondary" data-action="letter">Read Rowan’s letter ↗</button>':''}${last&&node.choices?`<div class="choices" aria-label="Choose your response">${node.choices.map((c,i)=>`<button data-choice="${i}"><span class="choice-number">${i+1}</span>${escape(display(c.text))}<span class="choice-arrow" aria-hidden="true">↗</span></button>`).join('')}</div>`:''}
     ${last&&node.phone?'<div class="phone-invitation"><p>A short late-night conversation · up to 4 messages<br><small>An early preview. Open conversations unlock at Close in future chapters.</small></p><button class="primary" data-action="phone">Open your phone ↗</button><button class="text-button" data-action="skip-chat">Save your words for morning</button></div>':''}
-    ${last&&node.openingEnd?`<div class="opening-end"><span class="eyebrow">END OF THE CURRENT STORY</span><p>${node.chapterTwo?'Chapter Two is complete. Your choices and this moment are saved.':node.afterGarden?'Chapter One — Reunion at a Familiar House. Chapter Two is ready in Chapters.':'Your place is saved. You can continue from here.'}</p><button class="text-button" data-action="title">Back to the title ↗</button>${state.node==='aEnd'?'<button class="secondary" data-action="chapters">View chapters ↗</button>':`<button class="secondary" data-action="chapter-finish">${node.chapterTwo?'Keep this moment':'Close this chapter'} ↗</button>`}</div>`:''}
+    ${last&&node.openingEnd?`<div class="opening-end"><span class="eyebrow">END OF THE CURRENT STORY</span><p>${node.chapterTwo?'Chapter Two is complete. Your choices and this moment are saved.':node.afterGarden?'Chapter One — Reunion at a Familiar House. Chapter Two is ready in Chapters.':'Your place is saved. You can continue from here.'}</p><button class="text-button" data-action="title">Back to the title ↗</button>${state.node==='aEnd'?'<button class="secondary" data-action="chapters">View chapters ↗</button>':`<button class="secondary" data-action="chapter-finish">Close this chapter ↗</button>`}</div>`:''}
     ${last&&node.ending&&!node.openingEnd?`<div class="chapter-end"><span class="eyebrow">END OF CHAPTER ONE</span><h2>A little less unfinished.</h2><p>Your summer is saved. The sunrise is planned, not yet fulfilled.</p><div><button class="primary" data-action="promises">Keep the list ↗</button><button class="secondary" data-action="title">Back to the title</button></div><small>Chapters 1 and 2 are playable. This ending belongs to an earlier story draft.</small></div>`:''}
     </div><div class="dialogue-footer"><nav class="dialogue-tools" aria-label="Game tools"><button data-action="history">History</button><button data-action="saves">Save / load</button><button data-action="settings">Settings &amp; Accessibility</button><button data-action="promises">Promises</button>${hasRowanContact(state)?'<button data-action="sg">Phone</button>':''}<button data-action="title" aria-label="Return to title">Menu</button></nav>${!(last&&(node.choices||node.phone||node.ending))?'<button class="next-button" data-action="next" aria-label="Continue dialogue">Continue <span aria-hidden="true">→</span></button>':'<span class="small-flower" aria-hidden="true">✳</span>'}</div></section>
     <footer class="game-footer"><span>${escape(state.name)}’s summer <span class="footer-dot">·</span> <button data-action="relationship" aria-label="Relationship milestones">${escape(state.milestone)}</button></span><span>${state.phoneUnlocked?'<button data-action="phone">↗ Late-night messages</button>':'A story at your own pace'}</span><span class="save-indicator">${storageAvailable?'● Progress saved locally':'! Local saves unavailable'}</span></footer></div></main>`;
-  mountGame(gameHTML,`${node.place}:${node.time}`,cg?`cg:${cg.src}`:`sprite:${cast.map(a=>(a.character||'Rowan')+':'+a.key+':'+(a.slot||'')).join('|')}:${node.time}`);
+  mountGame(gameHTML,`${node.place}:${node.time}`,cg?`cg:${cg.src}:${memoryCG?'memory':'present'}`:`sprite:${cast.map(a=>(a.character||'Rowan')+':'+a.key+':'+(a.slot||'')).join('|')}:${node.time}`);
   refreshSceneEffects();
   const gameScreen=app.querySelector('.game-screen');
   gameScreen.classList.toggle('dream-waking-sequence',['c2Calling','c2Blackout','c2Wake'].includes(state.node));
@@ -262,7 +275,7 @@ function renderGame(){
   else {textNode.textContent='';typing=true;timerIndex=0;timer=setInterval(()=>{timerIndex+=2;textNode.textContent=fullText.slice(0,timerIndex);if(timerIndex>=fullText.length)stopTyping();},1000/settings.speed);}
   $('.dialogue-card').onclick=e=>{if(!e.target.closest('button,input,textarea'))advance();};
   const chapterEndKey=String(state.startedAt)+':'+state.node;
-  if(state.node==='aEnd'&&last&&presentedChapterEnd!==chapterEndKey){
+  if((state.node==='aEnd'||['c2EndKnown','c2EndQuiet'].includes(state.node))&&last&&presentedChapterEnd!==chapterEndKey){
     presentedChapterEnd=chapterEndKey;
     action('chapter-finish');
   }
@@ -332,7 +345,7 @@ function saveMoment(key,confirmed=false){
 function drawModal(){
   if(modal==='chapters'){
     const current=state||read('-auto')?.state;
-    shell('Chapters of our summer',chapterMenu(current,chapterComplete(current,story)),'chapters-modal');
+    shell('Chapters of our summer',chapterMenu(current,chapterComplete(current,story),chapterTwoComplete(current,story)),'chapters-modal');
     $('.chapters-modal>.modal-header')?.remove();
     $('.chapters-heading .close')?.focus();
     return;
@@ -449,7 +462,7 @@ function action(type){
     const node=story[state?.node];
     if(!node?.ending||state.line<nodeLines().length-1)return;
     autoSave();
-    playSummerTransition({kind:'chapter',chapter:node.chapter||1,partial:!!node.chapterTwo,language:settings.language,motion:settings.motion,reveal:()=>openModal('chapters')});return;
+    playSummerTransition({kind:'chapter',chapter:node.chapter||1,partial:false,language:settings.language,motion:settings.motion,reveal:()=>openModal('chapters')});return;
   }
   if(type==='chapter-two'){
     const current=state||read('-auto')?.state;
@@ -457,6 +470,13 @@ function action(type){
     state=structuredClone(current);closeModal();screen='game';
     if(!story[state.node].chapterTwo){state.flags.chapterOneComplete=true;state.completed=false;enter('c2Start');}
     render();return;
+  }
+  if(type==='chapter-two-memories'){
+    const current=state||read('-auto')?.state;
+    if(!chapterTwoComplete(current,story))return;
+    const lines=current.history.filter(h=>h.id.startsWith('c2'));
+    shell('Chapter 2 · Your memories',`<div class="chapter-memories">${lines.map(h=>`<p><strong>${escape(h.speaker==='You'?current.name:h.speaker)}</strong> ${escape(translateRecorded(h.text,current))}</p>`).join('')}</div><button class="secondary" data-action="chapters">Back to chapters</button>`);
+    return;
   }
   if(type==='chapter-resume'){
     const current=state||read('-auto')?.state;

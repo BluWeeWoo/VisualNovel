@@ -326,11 +326,11 @@ You|Thanks, Ro.
 `),
 rant:scene('Always understanding',`
 You|I’m tired of being the person who’s supposed to understand everything.
-Rowan|What do you mean?~concerned
+Rowan|What do you mean?~confused
 You|Someone misses their part of a project? I’m supposed to understand.
 You|Someone needs a favor? I’m supposed to make time.
 You|But if I’m struggling, suddenly I should’ve planned better.
-Rowan puts his glass down.
+Rowan puts his glass down.~concerned
 You|I already get enough of that at home.
 You|And then there’s Sevrine.
 Rowan|Sevrine?~neutral

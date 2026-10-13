@@ -17,7 +17,7 @@ export const promises = [
   'Leave town together someday.'
 ];
 export function freshState(name = 'Alex', pronouns = 'they', profile = {}) {
-  return { version: VERSION, storyRevision: 6, seviSceneRevision: 3, carpentryRevision: 1, chapterTwoRevision: 2, name: name.trim().slice(0, 24) || 'Alex', pronouns,
+  return { version: VERSION, storyRevision: 6, pacingRevision: 2, seviSceneRevision: 3, carpentryRevision: 1, chapterTwoRevision: 2, name: name.trim().slice(0, 24) || 'Alex', pronouns,
     gender:profile.gender||({he:'male',she:'female',they:'non-binary'}[pronouns]||'custom'),portrait:profile.portrait==='none'?'none':'silhouette',
     ...(pronouns==='custom'&&validCustomPronouns(profile.customPronouns)?{customPronouns:{...profile.customPronouns}}:{}),
     node: 'journey', line: 0, flags: {letterTiming:'later'}, history: [], chat: [], chatTurns: 0,
@@ -144,6 +144,7 @@ function migrateRevisionFour(s,story){
 
 // Old saves keep their route through the flashback they already entered.
 export function nextStoryNode(story,state){
+ if(state.node==='c2FlowerDeparture')return state.flags.graveTogether===true?'c2CemeteryWalkTogether':'c2CemeteryWalkAlone';
  if(state.node==='c2EndSupport'&&state.history.some(h=>!h.id.startsWith('c2')&&/check.?up/i.test(h.text)))return 'c2EndCheckupsKnown';
  if(state.node==='c2EndGoodbye'&&state.flags.seviDescription==='something')return 'c2EndSevi';
  if(state.node==='c2EndNight'&&state.history.some(h=>h.id.startsWith('c2EndExpectations:')))return 'c2EndKnown';
@@ -250,7 +251,7 @@ export function migrateStorySave(s,story){
  const revision=s.storyRevision||0;
  const original={node:s.node,line:s.line,history:s.history.map(h=>({...h}))};
  migrateRevisionFive(s,story);
- if(revision>=6)return s;
+ if(revision>=6)return migratePacing(s,story);
  const affected=id=>['d2Call','d2Hug','d2Missed','aWater','aNews','aPorch'].includes(id)||/^aTopic\d+_lola_(yes|quiet)$/.test(id);
  const position=(node,index,text)=>{
   let target=node,line=index;
@@ -275,5 +276,40 @@ export function migrateStorySave(s,story){
   return interpolate(current.text,s)===old.text?{...old,id:`${target}:${line}`}:{...old,id:`revision5:${old.id}`};
  });
  s.storyRevision=6;
+ return migratePacing(s,story);
+}
+
+function migratePacing(s,story){
+ const revision=s.pacingRevision||0;
+ if(revision>=2)return s;
+ const oldLines=id=>{
+  const n=story[id];if(!n)return [];
+  const lines=(n.casualOldLines||n.lines).filter(l=>lineVisible(l,s.flags));
+  return revision<1&&n.pacingRevised?lines.filter(l=>!l.pacingAdded):lines;
+ };
+ const map=(id,index)=>{
+  const n=story[id];if(!n)return index;
+  const old=oldLines(id),available=visibleLines(n,s),line=old[index];
+  if(!line)return Math.max(0,Math.min(index,available.length-1));
+  let exact=available.indexOf(line);
+  if(exact<0)exact=available.findIndex(l=>l.text===line.text&&l.speaker===line.speaker);
+  if(exact>=0)return exact;
+  // Resume a replaced passage at the next retained beat, without resetting the scene.
+  for(let i=index+1;i<old.length;i++){
+   const next=available.findIndex(l=>l.text===old[i].text&&l.speaker===old[i].speaker);
+   if(next>=0)return next;
+  }
+  return Math.max(0,Math.min(index,available.length-1));
+ };
+ s.line=map(s.node,s.line);
+ s.history=s.history.map(h=>{
+  const m=/^([^:]+):(\d+)$/.exec(h.id);
+  if(!m||!story[m[1]])return h;
+  const id=m[1],index=Number(m[2]),line=oldLines(id)[index];
+  const available=visibleLines(story[id],s);
+  const next=line?available.findIndex(l=>l.text===line.text&&l.speaker===line.speaker):-1;
+  return next>=0?{...h,id:id+':'+next}:story[id].casualOldLines?{...h,id:'beforeCasual:'+h.id}:{...h,id:id+':'+map(id,index)};
+ });
+ s.pacingRevision=2;
  return s;
 }

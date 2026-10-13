@@ -367,20 +367,20 @@ const nodes={
     "lines": [
       {
         "speaker": "Sevi",
-        "text": "Good. I’ll just send you a reviewer, pambawi. My notes have more than three headings."
+        "text": "Thanks. I’ll send you my reviewer tonight, pambawi."
       },
       {
         "speaker": "You",
-        "text": "Then I’m expecting great things."
+        "text": "Fine. Just don’t forget."
       },
       {
         "speaker": "Sevi",
-        "text": "I’ll send them tonight."
+        "text": "I won’t."
       }
     ],
     "cgCue": {
       "key": "c2-sevi-confrontation",
-      "from": "Good. I’ll just send you a reviewer, pambawi. My notes have more than three headings."
+      "from": "Thanks. I’ll send you my reviewer tonight, pambawi."
     },
     "next": "c2CorridorAfter"
   },
@@ -4663,7 +4663,13 @@ const nodes={
       },
       {
         "speaker": "",
-        "text": "As I head home, a woman in her forties is standing on the porch of Lola’s house, carrying a bag."
+        "text": "As I head home, a woman in her forties is standing on the porch of Lola’s house, carrying a bag.",
+        "conditions": [["graveTogether", true, true]]
+      },
+      {
+        "speaker": "",
+        "text": "As we head home, a woman in her forties is standing on the porch of Lola’s house, carrying a bag.",
+        "conditions": [["graveTogether", true]]
       },
       {
         "speaker": "",

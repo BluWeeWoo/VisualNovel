@@ -66,9 +66,10 @@
     "c2-painted-review-grave-comfort-roses": "assets/cg/chapter-two/scene-approved-v1/grave-comfort-roses.webp",
     "c2-painted-review-grave-comfort-orchids": "assets/cg/chapter-two/scene-approved-v1/grave-comfort-orchids.webp",
     "c2-painted-tricycle-stop": "assets/cg/porch-door-v2/waiting.webp",
-    "c2-father-kitchen-night": "assets/cg/chapter-two/father-continuation-v1/kitchen-night.webp",
+    "c2-father-kitchen-night": "assets/backgrounds/kitchen-night-clear-v2.webp",
     "c2-father-dining-background": "assets/cg/chapter-two/father-continuation-v1/dining-background.webp",
-    "c2-father-stair-background": "assets/cg/chapter-two/father-continuation-v1/stair-background.webp"
+    "c2-father-stair-background": "assets/cg/chapter-two/father-continuation-v1/stair-background.webp",
+    "c2-painted-cemetery-road": "assets/backgrounds/cemetery-road-v1.webp"
   },
   "portraits": {
     "Rowan": {
@@ -81,7 +82,10 @@
       "confused": "assets/portraits/rowan-upgraded/confused.png",
       "playful": "assets/portraits/rowan-upgraded/playful.png",
       "concerned": "assets/portraits/rowan-upgraded/concerned.png",
-      "book": "assets/portraits/rowan-upgraded/book.png"
+      "book": "assets/portraits/rowan-upgraded/book.png",
+      "weak-smile": "assets/portraits/rowan-expressions-v4/weak-smile.png",
+      "relieved": "assets/portraits/rowan-expressions-v4/relieved.png",
+      "downcast": "assets/portraits/rowan-expressions-v4/downcast.png"
     },
     "RowanChild": {
       "neutral": "assets/portraits/rowan-age-11/neutral.png",
@@ -389,6 +393,14 @@
     "c2-end-stay": {
       "src": "assets/cg/chapter-two/ending-v1/stay.webp",
       "alt": "Rowan blushes shyly at the kitchen table, hoping the MC will stay a little longer."
+    },
+    "c2-father-kitchen-honesty-touched": {
+      "src": "assets/cg/chapter-two/ending-v1/kitchen-honesty-touched.webp",
+      "alt": "Rowan looks touched while listening to the MC in the warmly lit kitchen at night."
+    },
+    "c2-father-kitchen-honesty-blushing": {
+      "src": "assets/cg/chapter-two/ending-v1/kitchen-honesty-blushing.webp",
+      "alt": "Rowan looks blushing while listening to the MC in the warmly lit kitchen at night."
     }
   }
 }

@@ -6,6 +6,33 @@ import {openingAudioCue,menuAudioCue,tracks,createSoundtrackPlayer,createNightma
 const at=(node,fragment)=>openingAudioCue(story[node],{node,line:fragment?story[node].lines.findIndex(l=>l.text.includes(fragment)):0});
 const keys=c=>c.layers.map(l=>l.key);
 
+test('Every part of Rowan’s birthday flashback has music, including background-only scenes',()=>{
+ for(const id of ['c2BirthdayDinner','c2BirthdayWish','c2BirthdayGiftSetup','c2CardiganGifts','c2BirthdayStairs','c2FatherReveal','c2EndConfrontation']){
+  assert.equal(story[id].flashback,true);
+  assert.ok(keys(at(id)).includes('letters'),id);
+ }
+ for(const id of ['c2WishPresent','c2CardiganPresent','c2FatherPresent'])assert.ok(!story[id].flashback);
+});
+
+test('Dinner interruption keeps a music cue through both family discussion branches',()=>{
+ for(const id of ['c2NewEnding','c2FatherDinner','c2FatherAsk','c2FatherQuiet','c2FatherPressure','c2FatherOffer','c2MayumiLeaves']){
+  for(let line=0;line<story[id].lines.length;line++){
+   assert.ok(keys(openingAudioCue(story[id],{node:id,line})).includes('letters'),id);
+  }
+ }
+});
+
+test('Flower departure and both cemetery walks retain music and outdoor ambience',()=>{
+ for(const id of ['c2FlowerDeparture','c2CemeteryWalkTogether','c2CemeteryWalkAlone']){
+  for(let line=0;line<story[id].lines.length;line++){
+   const audio=openingAudioCue(story[id],{node:id,line});
+   assert.deepEqual(keys(audio),['letters','outdoors']);
+   assert.ok(audio.fade>0);
+  }
+ }
+ assert.deepEqual(keys(at('c2GraveTogether')),['lola','outdoors']);
+});
+
 test('Eerie audio carries through calling and blackout, then waking begins with quiet ambience',()=>{
  for(const id of ['c2Wave3','c2Calling','c2Blackout'])assert.equal(nightmareAudioContinues(id),true);
  for(const id of ['c2Wave1','c2Wave2','c2Wake','c2WakeChoice',undefined])assert.equal(nightmareAudioContinues(id),false);

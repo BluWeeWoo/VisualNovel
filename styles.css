@@ -13,8 +13,6 @@
 .scene-bottom{--stage-gap:clamp(200px,28vh,280px);padding-top:var(--stage-gap)}
 .character-stage{position:absolute;right:12%;bottom:calc(100% - var(--stage-gap) - 112px);width:clamp(310px,44vh,440px);aspect-ratio:1;pointer-events:none;z-index:0}
 .character-stage img{display:block;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 5px 9px #493b3320)}
-.character-stage.evening img{filter:sepia(.07) drop-shadow(0 5px 9px #493b3320)}
-.character-stage.twilight img{filter:brightness(.89) saturate(.88) drop-shadow(0 5px 9px #23344b22)}
 .dialogue-card{z-index:1;background:#f8f2e4fa}
 .paper-grain{opacity:.023}
 .phone-avatar{width:44px;height:44px;object-fit:cover;object-position:50% 18%;border-radius:50%;background:#d5d5c3;vertical-align:middle;margin-right:10px;border:1px solid #b6bca8}
@@ -91,7 +89,7 @@
 .scene-art .character-stage img{object-fit:contain;object-position:center top}
 /* Full-body Rowan uses a smaller figure within the same canvas than the old
    knee-cropped art. Compensate only on the story stage, not in the gallery. */
-.scene-art .character-stage:has(img[src*="/rowan-upgraded/"]){top:9.4svh;height:161.2svh;width:107.467svh}
+.scene-art .character-stage[data-character="Rowan"]{top:9.4svh;height:161.2svh;width:107.467svh}
 /* Match the approved conversation staging across Mayumi's expressions. */
 @media(min-width:651px){
  .scene-art .character-stage[data-character="Mayumi"]{top:15svh;height:145svh;width:96.667svh}
@@ -427,7 +425,6 @@
   .dialogue-card .opening-end p { margin:5px 0; }
   .dialogue-card .opening-end .text-button { padding-top:5px;padding-bottom:5px; }
 }
-.character-stage.night img { filter:brightness(.78) saturate(.8) drop-shadow(0 5px 9px #16243555); }
 .scene-art .character-stage.cast-left{left:32%}
 .scene-art .character-stage.cast-right{left:70%}
 
@@ -440,3 +437,9 @@
 
 .solo-garden .weed-title h1{font-size:clamp(20px,2.25vw,34px);white-space:normal;line-height:1.1}
 @media(min-width:701px){.solo-garden .weed-patch{left:28%;top:35%;width:62%;height:40%}}
+
+/* A bright, static memory treatment; original art and dialogue stay untouched. */
+.memory-scene .scene-backdrops,.memory-scene .scene-art{filter:sepia(.18) saturate(.86) contrast(.96) brightness(1.05)}
+.memory-scene .scene-art::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 44%,#fff3d926 76%,#fff3d955 100%);box-shadow:inset 0 0 65px #fff3d925}
+.memory-scene .memory-cg-haze{display:none}
+.memory-cg-haze{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 44%,#fff3d926 76%,#fff3d955 100%);box-shadow:inset 0 0 65px #fff3d925}

@@ -6,7 +6,7 @@ import {chapterTwoAfternoon} from './chapter-two-afternoon.js';
 import {chapterTwo} from './chapter-two.js';
 import {afterGarden} from './after-garden.js';
 // Authored direction: no keyword-based expression guessing.
-export const expressions=['neutral','smile','playful','embarrassed','concerned','sad','surprised','annoyed'];
+export const expressions=['weak-smile','relieved','downcast','confused','neutral','smile','playful','embarrassed','concerned','sad','surprised','annoyed'];
 // Event illustrations are presentation only: no story, save or relationship mutations.
 const baseCues={
  d2Hug:{key:'d2-bedroom-hug',from:'He crosses the room'},
@@ -41,6 +41,20 @@ for(const [id,node] of Object.entries({...afterGarden,...chapterTwo,...chapterTw
 export const cgCues=approvedChapterTwoCues;
 for(const [id,cue] of Object.entries(baseCues))if(!id.startsWith('c2'))cgCues[id]=cue;
 export function cgAt(story,state){
+ if(state.node==='c2KitchenHonesty'){
+  const lines=story[state.node].lines.filter(l=>lineVisible(l,state.flags));
+  let key='c2-father-kitchen-honesty';
+  for(const [text,suffix] of [
+   ['But, Ro, I want to know more about you.','-touched'],
+   ['He draws his shoulders in, blushing.','-blushing'],
+   ['All right. I’ll tell you everything.','-touched'],
+   ['I met my father on my eighteenth birthday.','']
+  ]){
+   const at=lines.findIndex(l=>l.text===text);
+   if(at>=0&&state.line>=at)key='c2-father-kitchen-honesty'+suffix;
+  }
+  return key;
+ }
  const lunch=lunchCG(story,state);
  if(lunch!==undefined)return lunch;
  const reviewed=reviewedCG(story,state);
@@ -113,7 +127,7 @@ export function spritesAt(story,state){
  const primary=spriteAt(story,state);
  if(node.character!=='Mayumi')return primary?[primary]:[];
  if(state.node==='c2Mayumi'){
-  const porch=lines.findIndex(l=>l.text.startsWith('As I head home,'));
+  const porch=lines.findIndex(l=>l.text.includes('a woman in her forties is standing on the porch'));
   if(state.line<porch)return state.flags.graveTogether===true?[rowan('concerned')]:[];
  }
  let present=state.flags.graveTogether===true;
@@ -155,7 +169,7 @@ export function sceneAt(story,state){
  if(id==='c2GraveLeave')return painted(state.line===0?'grave-late-afternoon':'grave-sunset','evening');
  if(id==='c2Groceries')return painted(state.line<2?'hill-early-evening':'hill-houses-night',state.line<2?'twilight':'night');
  if(id==='c2Mayumi'){
-  const atPorch=lines.findIndex(l=>l.text.startsWith('As I head home,'));
+  const atPorch=lines.findIndex(l=>l.text.includes('a woman in her forties is standing on the porch'));
   if(state.flags.afternoonRoute==='market'&&state.line<atPorch)return painted('hill-houses-night','night');
   if(state.flags.afternoonRoute!=='market'&&state.line===0)return painted('hill-early-evening','twilight');
   if(state.flags.afternoonRoute!=='market'&&state.line===1)return painted('hill-houses-night','night');

@@ -31,17 +31,18 @@ function fixture(motion=false){
  const host={dataset:{},children:[],isConnected:true,append(layer){this.children.push(layer);}};
  const element=attributes=>({getAttribute:name=>attributes[name],setAttribute:(name,value)=>attributes[name]=value});
  const document={createElement(){
-  let html='',sprite=null;const running=[];
+  let html='',sprite=null,cg=null;const running=[];
   return {
    get innerHTML(){return html;},set innerHTML(value){
     html=value;
+    if(value.startsWith('cg:'))cg={...element({src:value,alt:value,width:'1672',height:'941','data-expression-family':'summer-lunch'}),decode:()=>decodes.get(value)||Promise.resolve()};
     if(value.startsWith('sprite:')){
      const image={...element({src:value,alt:value,width:'1024',height:'1536'}),decode:()=>decodes.get(value)||Promise.resolve()};
      sprite={...element({class:'character-stage day','data-expression':value.slice(7),'data-pose':'ordinary'}),querySelector:selector=>selector==='img'?image:null};
     }
    },
-   querySelector:selector=>selector==='.character-stage'?sprite:null,
-   querySelectorAll(selector){return selector==='img'?[sprite?sprite.querySelector('img'):{decode:()=>decodes.get(html)||Promise.resolve()}]:selector==='.character-stage'&&sprite?[sprite]:[];},
+   querySelector:selector=>selector==='.character-stage'?sprite:selector==='.event-cg'?cg:null,
+   querySelectorAll(selector){return selector==='img'?[cg|| (sprite?sprite.querySelector('img'):{decode:()=>decodes.get(html)||Promise.resolve()})]:selector==='.character-stage'&&sprite?[sprite]:[];},
    animate(frames,options){animations.push(options);const animation={finished:Promise.resolve(),cancel(){animation.cancelled=true;}};running.push(animation);return animation;},
    getAnimations:()=>running,
    remove(){host.children=host.children.filter(child=>child!==this);}
@@ -101,4 +102,16 @@ test('A pending or failed expression keeps Rowan visible and cannot overwrite a 
  assert.equal(image.getAttribute('src'),'sprite:smile');
  assert.equal(f.host.children.length,1);
  assert.equal(f.host.dataset.visualKey,'');
+});
+
+test('Lunch expression changes retain the opaque CG and ignore stale loads',async()=>{
+ const f=fixture(true);await f.update('cg:relaxed','relaxed');
+ const layer=f.host.children[0],image=layer.querySelector('.event-cg'),count=f.animations.length;
+ let finish;f.decodes.set('cg:attentive',new Promise(resolve=>finish=resolve));
+ const pending=f.update('cg:attentive','attentive');
+ assert.equal(image.getAttribute('src'),'cg:relaxed');
+ await f.update('cg:worried','worried');finish();await pending;
+ assert.equal(f.host.children[0],layer);assert.equal(layer.querySelector('.event-cg'),image);
+ assert.equal(image.getAttribute('src'),'cg:worried');
+ assert.equal(f.host.children.length,1);assert.equal(f.animations.length,count);
 });

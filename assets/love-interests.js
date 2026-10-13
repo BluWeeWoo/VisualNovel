@@ -51,8 +51,8 @@ function illustration(art,alt=''){
 }
 export function mountGallery(root,{manifest,unlocks,state,onClose}){
   const catalog=galleryCatalog(manifest,unlocks,state);
-  const scenic=[[824,263,223,303],[1070,263,222,303],[1314,263,221,303]];
-  catalog.rowan.Outfits.slice(0,3).forEach((item,i)=>Object.assign(item,reference('rowan',item.title,scenic[i])));
+  catalog.rowan.Outfits=catalog.rowan.Outfits.filter(item=>!['seaglass','porch','harbor'].includes(item.id));
+  catalog.sevi.Outfits=catalog.sevi.Outfits.filter(item=>!['contrast','monochrome','coastal'].includes(item.id));
   Object.assign(catalog.rowan.Artwork[0],reference('rowan','Summerhouse afternoon',[824,624,711,209]));
   Object.assign(catalog.sevi.Artwork[0],reference('sevi','A meeting of minds',[767,529,810,274]));
   const expressionCrops={neutral:[767,257,239,217],happy:[1034,258,238,216],confused:[1303,257,238,217]};
@@ -60,7 +60,7 @@ export function mountGallery(root,{manifest,unlocks,state,onClose}){
   const confused=catalog.sevi.Expressions.findIndex(item=>item.id==='confused');
   catalog.sevi.Expressions.splice(2,0,...catalog.sevi.Expressions.splice(confused,1));
   const heroes={rowan:reference('rowan','Rowan',[308,30,493,911]),sevi:reference('sevi','Sevi',[290,20,429,909])};
-  let character='rowan',tab='Outfits',index=0,viewer=false,featuredViewer=false;
+  let character='rowan',tab='Outfits',index=0,viewer=false,featuredViewer=false,zoom=1;
   const content=document.createElement('div');content.className='li-content';root.append(content);
   function render(focus){
     const person=catalog[character],items=person[tab],item=items[index],feature=person.Artwork[0];
@@ -68,8 +68,8 @@ export function mountGallery(root,{manifest,unlocks,state,onClose}){
     content.dataset.character=character;content.dataset.category=tab;content.classList.toggle('is-viewing',viewer);
     content.innerHTML=`<aside class="li-sidebar"><p class="li-sidebar-title">Characters</p><div class="li-ornament" aria-hidden="true">◇</div>${['rowan','sevi'].map(key=>`<button class="li-character" data-character="${key}" aria-pressed="${character===key}"><span>${key==='rowan'?'Rowan':'Sevi'}</span><span aria-hidden="true">${key==='rowan'?'✧':'❧'}</span></button>${key==='sevi'?'<small>Coming in Part 2</small>':''}`).join('')}<p class="li-aside-note">Some stories take<br>longer to find<br>their way home.</p></aside>
       <div class="li-portrait" aria-hidden="true">${illustration(heroes[character])}</div>
-      <section class="li-main" aria-label="Character gallery"><header class="li-heading"><h3>${character==='sevi'?'Sevrine Buenaventura':'Rowan'}</h3>${character==='sevi'?'<div class="li-subtitle"><i>Sevi</i><span class="li-ornament" aria-hidden="true">◇</span><span class="li-badge">Coming in Part 2</span></div>':'<div class="li-ornament" aria-hidden="true">◇</div>'}<p class="li-description">${person.description}</p></header>
-      ${viewer?`<div class="li-viewer"><button data-command="shrink">← Back to gallery</button>${illustration(shown,shown.title)}<h4>${esc(shown.title)}</h4><p>${esc(shown.note||'Approved character illustration')}</p></div>`:`<div class="li-tabs" role="tablist" aria-label="Gallery categories">${['Artwork','Outfits','Expressions'].map(label=>`<button role="tab" id="li-tab-${label}" aria-selected="${tab===label}" aria-controls="li-panel" tabindex="${tab===label?'0':'-1'}" data-tab="${label}">${label}</button>`).join('')}</div>
+      <section class="li-main" aria-label="Character gallery"><header class="li-heading"><h3>${character==='sevi'?'Sevrine Buenaventura':esc(person.name)}</h3>${character==='sevi'?'<div class="li-subtitle"><i>Sevi</i><span class="li-ornament" aria-hidden="true">◇</span><span class="li-badge">Coming in Part 2</span></div>':'<div class="li-ornament" aria-hidden="true">◇</div>'}<p class="li-description">${person.description}</p></header>
+      ${viewer?`<div class="li-viewer"><button data-command="shrink">← Back to gallery</button><div class="li-zoom-controls"><button data-command="zoom-out" aria-label="Zoom out" ${zoom<=1?'disabled':''}>−</button><span>${Math.round(zoom*100)}%</span><button data-command="zoom-in" aria-label="Zoom in" ${zoom>=3?'disabled':''}>+</button><button data-command="zoom-reset">Reset</button></div><div class="li-zoom-viewport"><div class="li-zoom-canvas" style="width:${zoom*100}%;height:${zoom*100}%">${illustration(shown,shown.title)}</div></div><h4>${esc(shown.title)}</h4><p>${esc(shown.note||'Approved character illustration')}</p></div>`:`<div class="li-tabs" role="tablist" aria-label="Gallery categories">${['Artwork','Outfits','Expressions'].map(label=>`<button role="tab" id="li-tab-${label}" aria-selected="${tab===label}" aria-controls="li-panel" tabindex="${tab===label?'0':'-1'}" data-tab="${label}">${label}</button>`).join('')}</div>
       <div id="li-panel" role="tabpanel" aria-labelledby="li-tab-${tab}"><div class="li-cards">${items.slice(page,page+3).map((art,offset)=>{const i=page+offset;return `<button class="li-card ${art.locked?'li-locked':''} ${art.crop?'li-scenic':''} ${art.src.includes('/rowan-upgraded/')?'li-rowan-sprite':''}" data-item="${i}" aria-label="${esc(art.title)}${art.locked?' — locked':' — view larger'}" aria-pressed="${index===i}">${art.locked?'<span class="li-silhouette" aria-hidden="true"></span>':illustration(art)}<span class="li-card-title">${esc(art.title)}</span>${art.locked?'<small>Locked · View the story scene</small>':''}</button>`;}).join('')}</div>
       <p class="li-selection" aria-live="polite">${item.locked?esc(item.note):'Select an artwork to view it larger.'}</p></div>
       <button class="li-feature" data-command="feature" aria-label="View ${esc(feature.title)} larger">${illustration(feature)}<span>${esc(feature.title)}</span></button>`}
@@ -81,6 +81,11 @@ export function mountGallery(root,{manifest,unlocks,state,onClose}){
   content.addEventListener('click',event=>{
     const button=event.target.closest('button');if(!button||button.disabled)return;
     let focus;
+    if(button.dataset.command?.startsWith('zoom-')){
+      zoom=button.dataset.command==='zoom-reset'?1:Math.max(1,Math.min(3,zoom+(button.dataset.command==='zoom-in'?.5:-.5)));
+      render('[data-command="'+button.dataset.command+'"]');return;
+    }
+    zoom=1;
     if(button.dataset.character){character=button.dataset.character;tab=character==='sevi'?'Expressions':'Outfits';index=0;viewer=false;featuredViewer=false;focus=`[data-character="${character}"]`;}
     else if(button.dataset.tab){tab=button.dataset.tab;index=0;viewer=false;featuredViewer=false;focus=`[data-tab="${tab}"]`;}
     else if(button.dataset.item!==undefined){index=Number(button.dataset.item);featuredViewer=false;viewer=!catalog[character][tab][index].locked;focus=viewer?'[data-command="shrink"]':`[data-item="${index}"]`;}

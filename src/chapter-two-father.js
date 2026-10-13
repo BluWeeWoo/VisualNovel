@@ -4,7 +4,7 @@ const lines=text=>text.trim().split('\n').map(row=>{const i=row.indexOf('|');ret
 const node=(title,text,next,extra={})=>({title,place:'c2-painted-living-night',time:'night',day:3,chapter:2,chapterTwo:true,opening:true,continuation:true,rowan:true,music:null,lines:lines(text),...(next?{next}:{}),...extra});
 const choice=(text,next)=>({text,next,set:{}});
 const kitchen={place:'c2-father-kitchen-night'};
-const flash={rowan:false,viewpoint:'Rowan',music:null};
+const flash={flashback:true,rowan:false,viewpoint:'Rowan',music:'letters'};
 const cg=(key,from)=>({key:'c2-father-'+key,from});
 export function extendChapterTwo(story){
  Object.assign(story,{
@@ -136,7 +136,7 @@ Rowan|Oh…
 |His hand stays on the cabinet for a moment.
 |Then he lets go.
 Thought|He kept asking if I was okay earlier.
-Thought|I haven’t really asked him.`,null,{...kitchen,choices:[choice('Ask him about what’s going on.','c2KitchenAsk')]}),
+Thought|I haven’t really asked him.`,'c2KitchenAsk',{...kitchen}),
  c2KitchenAsk:node('You could have told me',`You|You could’ve told me.
 Rowan|About my dad?
 You|All of it.
@@ -257,6 +257,8 @@ You|Babalik ako, Lola.
  story.c2NewEnding.next='c2FatherDinner';
  story.c2NewEnding.cgCue=cg('dinner-interrupted','Ro. Your father called.');
  story.c2NewEnding.cast='family';
+ // This former endpoint now continues into the family conversation, not silence.
+ for(const id of ['c2NewEnding','c2FatherDinner','c2FatherAsk','c2FatherQuiet','c2FatherPressure','c2FatherOffer','c2MayumiLeaves'])story[id].music='letters';
  story.c2FatherDinner.lines.splice(2,0,{speaker:'Thought',text:'So his father was the one calling him at the market.',conditions:[['afternoonRoute','market']]});
  const reveal=story.c2FatherDinner.lines.findIndex(l=>l.text==='It all happened after you left.');
  story.c2FatherDinner.lines.splice(reveal,0,{speaker:'Thought',text:'Is that why he reacted so strangely when the mayor appeared on the news?',conditions:[['afternoonRoute','market',true]]});
