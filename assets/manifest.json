@@ -401,6 +401,22 @@
     "c2-father-kitchen-honesty-blushing": {
       "src": "assets/cg/chapter-two/ending-v1/kitchen-honesty-blushing.webp",
       "alt": "Rowan looks blushing while listening to the MC in the warmly lit kitchen at night."
+    },
+    "reunion-hug-he": {
+      "src": "assets/cg/approved-hugs/reunion-he.png",
+      "alt": "Rowan embraces the male MC, seen from behind, on the sunny porch."
+    },
+    "reunion-hug-she": {
+      "src": "assets/cg/approved-hugs/reunion-she.png",
+      "alt": "Rowan embraces the female MC, seen from behind, on the sunny porch."
+    },
+    "d2-bedroom-hug-he": {
+      "src": "assets/cg/approved-hugs/bedroom-he.png",
+      "alt": "Rowan embraces the male MC, seen from behind, in the bedroom at sunset."
+    },
+    "d2-bedroom-hug-she": {
+      "src": "assets/cg/approved-hugs/bedroom-she.png",
+      "alt": "Rowan embraces the female MC, seen from behind, in the bedroom at sunset."
     }
   }
 }

@@ -1,8 +1,8 @@
-.modal-layer:has(.new-summer-modal){padding:0;background:#493e31;overflow:hidden;backdrop-filter:none}
-.modal.new-summer-modal{position:fixed;inset:0;width:100%;height:100%;max-width:none;max-height:none;padding:0;border:0;border-radius:0;background:none;overflow:hidden;box-shadow:none;color:#193c57}
+.modal-layer:has(.new-summer-modal){padding:32px;background:#122c354d;overflow:hidden;backdrop-filter:blur(2px)}
+.modal.new-summer-modal{position:relative;inset:auto;flex:none;max-width:none;max-height:none;padding:0;border:0;border-radius:12px;background:none;overflow:hidden;box-shadow:0 22px 70px #10202866;color:#193c57}
 .new-summer-modal>.modal-header{display:none}
-.summer-canvas{position:absolute;left:50%;top:50%;width:1672px;height:941px;transform-origin:center;background:url('new-summer-reference.png') center/100% 100%;font:22px/1.35 Georgia,serif}
-.summer-form{position:absolute;left:481px;top:238px;width:893px;height:640px;padding:0 13px;background:#f2e7d5 url('journal-paper.svg');box-shadow:0 0 15px 14px #f2e7d5;margin:0}
+.summer-canvas{position:absolute;left:50%;top:50%;width:1040px;height:860px;transform-origin:center;background:#f2e7d5 url('journal-paper.svg');border:double 6px #8b9d9f;border-radius:12px;font:22px/1.35 Georgia,serif}
+.summer-form{position:absolute;left:62px;top:165px;width:904px;height:640px;padding:0 13px;background:#f2e7d5 url('journal-paper.svg');box-shadow:0 0 15px 14px #f2e7d5;margin:0}
 .summer-columns{display:grid;grid-template-columns:416px 1fr;gap:36px;height:495px}
 .summer-columns>section+section{border-left:1px solid #83949a88;padding-left:35px}
 .summer-canvas h2{font:34px/1.2 Georgia,serif;border-bottom:1px solid #85959d;margin:0 0 15px;padding-bottom:6px;color:#193c57}
@@ -37,7 +37,7 @@
 .summer-footer>.summer-hint{font-size:16px;margin-top:14px}
 .summer-canvas .custom-edit{font:16px Georgia,serif;padding:4px 10px;margin-top:5px}
 .summer-canvas:has(.custom-edit:not([hidden])) .summer-language{margin-top:12px}
-.summer-review{position:absolute;left:485px;top:240px;width:884px;min-height:615px;padding:40px;background:#f4e9d7 url('journal-paper.svg');box-shadow:0 0 18px 18px #f4e9d7;border:1px solid #a5b1ac}
+.summer-review{position:absolute;left:62px;top:165px;width:904px;min-height:615px;padding:40px;background:#f4e9d7 url('journal-paper.svg');box-shadow:0 0 18px 18px #f4e9d7;border:1px solid #a5b1ac}
 .summer-review[hidden],.summer-canvas [hidden]{display:none!important}
 .summer-review p{font:23px/1.5 Georgia,serif;margin:25px 0}
 .summer-review .summer-actions{margin-top:45px}
@@ -52,3 +52,8 @@
 
 .summer-canvas .summer-preview-note{font:italic 14px/1.3 Georgia,serif;margin:-8px 0 8px;color:#617487}
 .summer-preview .summer-keepsake{height:145px}
+
+.summer-heading{text-align:center;position:absolute;top:35px;left:55px;right:55px;color:#193c57}
+.summer-heading h1{font:42px/1.2 Georgia,serif;margin:0 0 12px}
+.summer-heading p{font:italic 21px Georgia,serif;margin:0;color:#617487}
+.summer-canvas .summer-close{position:absolute;right:16px;top:12px;border:0;background:none;box-shadow:none;padding:5px 12px;font:30px Georgia,serif}

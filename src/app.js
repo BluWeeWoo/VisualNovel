@@ -400,7 +400,7 @@ function storyPhoneModal(){
   const nextButton=nextMessage?'<button class="sg-main-button" data-action="phone-next">Read next message →</button>':'';
   const existing=$('.sg-device');
   if(existing){const activeAction=document.activeElement?.dataset.action;existing.querySelector('.sg-body').innerHTML=content+nextButton;bind(existing);const target=[...existing.querySelectorAll('[data-action]')].find(el=>el.dataset.action===activeAction);(target||existing.querySelector('[data-action=close]'))?.focus();}
-  else shell('Your phone',`<div class="sg-body">${content}${nextButton}</div>`,'sg-device');
+  else shell('Your phone',`<div class="sg-hardware" aria-hidden="true"><i></i><span></span></div><div class="sg-body">${content}${nextButton}</div><button class="sg-home-button" data-action="${phonePage==='lola'?'close':'sg-home'}" aria-label="${phonePage==='lola'?'Put phone down':'Phone home screen'}"><span></span></button>`,'sg-device');
 }
 function phoneModal(){
   if(!state?.phoneUnlocked){shell('A number, not yet exchanged','<p>The phone opens later in chapter one.</p>');return;}

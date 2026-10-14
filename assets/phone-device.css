@@ -1,0 +1,34 @@
+/* Illustrated handset, sized for the desktop game's overlay. */
+.modal.sg-device {
+  width:390px; height:min(790px,calc(100svh - 28px)); max-height:none;
+  box-sizing:border-box; padding:48px 13px 62px; position:relative;
+  border:3px solid #343b3d; border-radius:46px;
+  background:linear-gradient(110deg,#fff1e7,#efd0c3 48%,#f9dfd3);
+  box-shadow:inset 3px 0 0 #fff9,inset -4px 0 0 #ad8f8370,0 0 0 3px #baaaa0,7px 8px 0 #354144,0 24px 70px #102c4870;
+  overflow:visible;
+}
+.sg-device .modal-header { position:absolute; top:12px; left:21px; right:18px; height:25px; }
+.sg-device .modal-header h2 { font-size:10px; letter-spacing:.07em; color:#75685f; }
+.sg-device .modal-header .close { position:absolute;right:0;top:-2px;color:#544c47;z-index:2; }
+.sg-hardware { position:absolute;top:21px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:10px; }
+.sg-hardware i { width:7px;height:7px;border:2px solid #66615f;background:#203e47;border-radius:50%; }
+.sg-hardware>span { width:45px;height:5px;border-radius:8px;background:#4a4946;box-shadow:0 1px 1px #fff; }
+.sg-device .sg-body { height:100%;box-sizing:border-box;overflow:auto;overscroll-behavior:contain;background:#f7f4ec;border:3px solid #343d3e;border-radius:15px;padding:12px;box-shadow:0 0 0 2px #e8c9bd;scrollbar-width:thin; }
+.sg-device .device-clock { font:600 10px system-ui;padding:0 2px 12px; }
+.sg-device .sg-brand { padding:4px 0 8px; }
+.sg-device .sg-brand>span:last-child { font-size:25px; }
+.sg-device .sg-content { max-height:none;min-height:180px;overflow:visible; }
+.sg-device .sg-tabs button { font-size:11px; }
+.sg-device .sg-bottom { gap:8px; }
+.sg-device .sg-bottom small { font-size:9px; }
+.sg-home-button { position:absolute;bottom:10px;left:50%;transform:translateX(-50%);width:41px;height:41px;border-radius:50%;border:2px solid #9b8376;background:linear-gradient(140deg,#fff4ea,#e4bfb0);box-shadow:inset 1px 2px 3px #fff9,0 1px 2px #fff;display:grid;place-items:center;padding:0; }
+.sg-home-button>span { width:13px;height:13px;border:1px solid #9a8579;border-radius:4px; }
+.sg-home-button:focus-visible { outline:3px solid #23766e;outline-offset:3px; }
+.sg-home { min-height:380px;padding:18px 6px;background:linear-gradient(160deg,#e5efda,#c2ddd5 55%,#91b8bb);border-radius:9px;text-align:center; }
+.sg-device .sg-home-place { font:10px system-ui;letter-spacing:.25em; }
+.sg-device .sg-home h3 { font:29px Georgia;margin:10px 0; }
+.sg-app-grid { display:grid;grid-template-columns:repeat(2,1fr);gap:23px 15px;margin:30px 4px; }
+.sg-app-grid button { display:flex;flex-direction:column;align-items:center;gap:7px;font:12px system-ui;color:#264a4c;background:none;border:0;padding:0; }
+.sg-app-icon { display:grid;place-items:center;width:58px;height:58px;border:2px solid #405757;border-radius:17px 15px 18px 14px;box-shadow:inset 0 0 0 4px #fff9,2px 3px 0 #37535430;font:34px Georgia; }
+.sg-icon-messages { background:#a6ccad; }.sg-icon-contact { background:#efc3ad; }.sg-icon-profile { background:#9ebcdb; }.sg-icon-feed { background:#e6d58e; }
+.sg-home-note { font:italic 15px/1.6 Georgia;color:#3c6665;padding:12px; }

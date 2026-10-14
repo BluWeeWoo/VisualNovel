@@ -64,7 +64,10 @@ export function cgAt(story,state){
  const lines=story[state.node].lines.filter(l=>lineVisible(l,state.flags));
  const start=lines.findIndex(l=>l.text.includes(cue.from));
  const end=cue.until?lines.findIndex(l=>l.text.includes(cue.until)):lines.length;
- return start>=0&&state.line>=start&&state.line<end?cue.key:null;
+ if(!(start>=0&&state.line>=start&&state.line<end))return null;
+ // Approved MC variants are presentation only; other identities retain the original CG.
+ if(['reunion-hug','d2-bedroom-hug'].includes(cue.key)&&['he','she'].includes(state.pronouns))return `${cue.key}-${state.pronouns}`;
+ return cue.key;
 }
 const defaults={arrival:'neutral',hug:'smile',latch:'playful',space:'concerned',entry:'neutral',sort:'neutral',hideout:'smile',treasure:'smile',list:'neutral',regret:'sad',want:'concerned',disagree:'concerned',break:'playful',street:'playful',gull:'playful',ambition:'embarrassed',challenge:'concerned',offer:'neutral',optional:'smile',pier:'neutral',homeward:'smile',kitchen:'neutral',cupstay:'sad',cake:'sad',cupaway:'concerned',absence:'sad',plan:'neutral',numbers:'neutral',friends:'smile',warm:'embarrassed',oneday:'smile'};
 export const directions={
