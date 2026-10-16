@@ -57,3 +57,132 @@
 .summer-heading h1{font:42px/1.2 Georgia,serif;margin:0 0 12px}
 .summer-heading p{font:italic 21px Georgia,serif;margin:0;color:#617487}
 .summer-canvas .summer-close{position:absolute;right:16px;top:12px;border:0;background:none;box-shadow:none;padding:5px 12px;font:30px Georgia,serif}
+
+.summer-canvas .summer-affinity{margin-top:18px}
+.summer-affinity .summer-hint{font-size:14px;margin:8px 0 0}
+.summer-affinity .summer-options label{font-size:16px;padding:7px}
+
+.summer-page{height:495px}
+.summer-page-two{display:grid;grid-template-columns:310px 1fr;gap:32px}
+.summer-rowan-portrait{position:relative;overflow:hidden;border:1px solid #aeb8af;border-radius:8px;background:linear-gradient(#c4d9d8aa,#f2e7d5)}
+.summer-rowan-portrait img{width:100%;height:100%;object-fit:cover;object-position:top}
+.summer-rowan-portrait p{position:absolute;bottom:0;left:0;right:0;background:#f2e7d5e8;padding:12px;text-align:center;font:italic 17px Georgia;margin:0}
+.summer-canvas .summer-affinity{margin:0}
+.summer-affinity legend{font-size:18px}
+.summer-affinity .summer-options{grid-template-columns:1fr;gap:7px}
+.summer-affinity .summer-options label{min-height:55px;padding:8px 12px}
+.summer-affinity strong{display:block;font:19px Georgia}
+.summer-affinity small{display:block;font:15px/1.3 Georgia;color:#526b78;margin-top:3px}
+.summer-affinity .summer-hint{display:none}
+.summer-feelings-panel .summer-dialogue{margin-top:14px}
+.summer-feelings-panel .summer-dialogue p{font-size:16px}
+.summer-footer{padding-top:20px}
+.summer-actions .summer-reset{font-size:16px;min-width:0;padding:8px;background:none;border:0;box-shadow:none;text-decoration:underline}
+.summer-review{top:145px;padding:26px 36px;min-height:640px}
+.summer-review p{font-size:19px;line-height:1.4;margin:16px 0}
+.summer-review .summer-keepsake{height:145px;margin:10px auto}
+.summer-review .summer-actions{margin-top:20px}
+/* Coastal scrapbook setup: reuse the game's approved artwork. */
+.summer-canvas{border:1px solid #91a8a6;border-radius:14px;background:radial-gradient(ellipse at 0 0,#dae7e1aa,transparent 48%),url('journal-paper.svg'),#f3ead8;box-shadow:inset 0 0 0 7px #faf4e6,inset 0 0 0 8px #b0b8a5}
+.summer-canvas::before,.summer-canvas::after{content:'';position:absolute;pointer-events:none;width:110px;height:165px;background:url('journal-botanical.svg') center/contain no-repeat;opacity:.55;z-index:0}
+.summer-canvas::before{left:-15px;top:-35px;transform:rotate(55deg)}
+.summer-canvas::after{right:-10px;bottom:-40px;transform:rotate(-130deg)}
+.summer-heading{top:27px;left:50px;right:50px}
+.summer-edition,.summer-kicker{display:block;font:11px/1.5 Arial,sans-serif;letter-spacing:2.5px;color:#617d7e}
+.summer-edition span{padding:0 14px;color:#b28a4e}
+.summer-heading h1{font-size:36px;margin:10px 0 14px}
+.summer-heading>p{display:none}
+.summer-steps{display:flex;align-items:center;justify-content:center;gap:17px;font:14px Georgia;color:#718388}
+.summer-steps span{display:flex;align-items:center;gap:8px}
+.summer-steps b{display:grid;place-items:center;width:27px;height:27px;border:1px solid #a4b3af;border-radius:50%;font:11px Arial}
+.summer-steps .is-active{color:#214d60}
+.summer-steps .is-active b{background:#315a69;border-color:#315a69;color:#fff7e8;box-shadow:0 0 0 3px #315a6914}
+.summer-steps i{width:38px;height:1px;background:#b0bcb3}
+.summer-form{left:52px;top:170px;width:924px;height:630px;padding:0;background:none;box-shadow:none}
+.summer-page,.summer-columns{height:495px}
+.summer-columns{grid-template-columns:1fr 1fr;gap:34px}
+.summer-columns>section:first-child{padding:19px 22px;background:#fffaf06b;border:1px solid #d2c6ad;border-radius:3px;box-shadow:0 5px 16px #6656320c}
+.summer-columns>section+section{padding:18px 20px;border:1px solid #d2c6ad;background:#fffaf088;box-shadow:0 5px 16px #66563210;transform:rotate(.5deg)}
+.summer-canvas h2{font-size:29px;border:0;margin-bottom:18px;padding:0}
+.summer-canvas .name-label,.summer-canvas legend{font-size:18px}
+.summer-canvas input:not([type=radio]):not([type=checkbox]){border-radius:2px;border:0;border-bottom:1px solid #78989b;background:#fffdf578;box-shadow:inset 0 0 0 1px #bcae902b}
+.summer-canvas fieldset{margin-top:21px}
+.summer-options label{border-color:#c9c6b4;border-radius:3px;background:#fffdf538;min-height:48px;transition:background .16s,border-color .16s}
+.summer-options label:hover{background:#e2ebe380;border-color:#6c9296}
+.summer-options label:has(:checked),.portrait-row label:has(:checked){background:#dce8e3;border-color:#71989a;box-shadow:inset 3px 0 #416e73}
+.summer-canvas input[type=radio]{width:18px;height:18px;accent-color:#3d7378}
+.summer-canvas .summer-hint{font-size:15px}
+.summer-ticket{display:flex;gap:14px;align-items:center;margin-top:22px;padding:17px 14px;border-top:1px dashed #a6b2a5;border-bottom:1px dashed #a6b2a5;background:#e4e7d84d}
+.summer-ticket small{display:block;font:9px Arial;letter-spacing:1.5px;color:#708480}
+.summer-ticket strong{display:block;max-width:240px;overflow:hidden;text-overflow:ellipsis;font:25px Georgia;margin:5px 0}
+.summer-ticket div>span{font:italic 14px Georgia;color:#718178}
+.ticket-sun{font:39px Georgia;color:#b09152}
+.ticket-number{margin-left:auto;font:10px/1.8 Arial;letter-spacing:1px;color:#86948d;text-align:center;border-left:1px dashed #a6b2a5;padding-left:12px}
+.summer-arrival-photo{height:196px;position:relative;border:7px solid #fff9e9;background:url('backgrounds/menu-seaglass.png') 10% 54%/220% auto;box-shadow:0 3px 8px #4c503824;margin-bottom:20px}
+.summer-arrival-photo::before,.summer-rowan-portrait::before{content:'';position:absolute;z-index:2;width:92px;height:24px;top:-17px;left:calc(50% - 46px);background:#d4bd8370;border-left:2px dotted #eee2bc;transform:rotate(-4deg)}
+.summer-arrival-photo p{position:absolute;bottom:0;left:0;right:0;margin:0;padding:10px;background:linear-gradient(transparent,#fff7e8df);font:italic 19px Georgia}
+.summer-postmark{position:absolute;top:9px;right:9px;border:2px double #416e7480;border-radius:50%;width:78px;height:78px;text-align:center;padding-top:15px;transform:rotate(14deg);font:9px/1.7 Arial;letter-spacing:1px;color:#345c64;background:#f9f2dc33}
+.portrait-row{gap:18px}
+.summer-portrait{width:103px;height:102px;transform:rotate(-3deg);filter:drop-shadow(0 3px 3px #54442b24)}
+.portrait-row fieldset{margin:0;gap:4px;flex:1}
+.portrait-row label{font-size:17px;min-height:40px;padding:7px 10px;border:1px solid #c7c9b9;border-radius:3px}
+.summer-canvas .summer-preview-note{font:italic 13px/1.5 Georgia;margin:16px 0 0;color:#637f83}
+.summer-page-two{grid-template-columns:345px 1fr;gap:33px}
+.summer-rowan-portrait{border:8px solid #fff8e9;border-bottom-width:47px;border-radius:2px;overflow:visible;transform:rotate(-1.3deg);background:url('backgrounds/menu-seaglass.png') left center/auto 100%;box-shadow:0 6px 17px #4d50332c}
+.summer-rowan-portrait img{position:absolute;width:100%;height:100%;object-fit:cover;object-position:50% 0%;clip-path:inset(0);transform:none}
+.summer-rowan-portrait p{bottom:-39px;background:none;padding:9px 0;font-size:18px}
+.summer-feelings-panel{padding:8px 0}
+.summer-feelings-panel h2{font-size:32px;margin-bottom:11px}
+.summer-canvas .summer-affinity{margin:0}
+.summer-affinity legend{font:italic 16px Georgia;color:#718178;margin-bottom:13px}
+.summer-affinity .summer-options{gap:8px}
+.summer-affinity .summer-options label{min-height:58px;padding:9px 14px;border-radius:3px;position:relative}
+.summer-affinity .summer-options label:has(:checked)::after{content:'✧';position:absolute;right:14px;top:12px;font-size:24px;color:#587e7d}
+.summer-affinity strong{font-size:19px}
+.summer-affinity small{font-size:14px;margin-top:4px}
+.summer-affinity .summer-options label span{padding-right:20px}
+.summer-feelings-panel .summer-dialogue{background:#fffcf0b3;border:0;border-left:3px solid #a8b8a6;box-shadow:0 3px 9px #6e60450c;padding:12px 16px;margin-top:17px}
+.summer-dialogue h3{font:10px Arial;letter-spacing:2px;text-transform:uppercase;border:0;color:#718178;margin:0 0 8px}
+.summer-feelings-panel .summer-dialogue p{font:16px/1.35 Georgia;grid-template-columns:65px 1fr}
+.summer-footer{margin-top:20px;border-top:1px solid #acb5a5;padding-top:19px}
+.summer-actions{gap:24px;align-items:center}
+.summer-canvas button{border-radius:3px;font-size:21px;padding:13px 27px;box-shadow:0 3px 6px #4b342322}
+.summer-actions .summer-back,.summer-canvas .keep-editing{background:#faf2df;border-color:#b8b69f;min-width:180px}
+.summer-actions .summer-begin,.summer-actions .confirm-summer{background-color:#305969;border-color:#31596a;min-width:255px}
+.summer-footer>.summer-hint{font-size:14px;margin-top:13px}
+.summer-canvas .summer-close{font-size:27px;right:18px;top:17px}
+.summer-review{z-index:4}
+.summer-final-review{left:52px;top:170px;width:924px;min-height:0;height:620px;padding:0;border:0;background:#f3ead8 url('journal-paper.svg');box-shadow:none}
+.review-title{text-align:center;margin-bottom:18px}
+.review-title h2{font-size:31px;margin:6px 0 0}
+.review-postcard{display:grid;grid-template-columns:330px 1fr;gap:0;min-height:390px;border:1px solid #c8bea5;background:#fffaf0;box-shadow:0 7px 20px #5f513f16}
+.review-illustration{position:relative;background:linear-gradient(180deg,transparent 35%,#f4ead6 74%),url('backgrounds/menu-seaglass.png') 8% top/auto 300px no-repeat;min-height:390px;border-right:1px dashed #bcb99c}
+.review-stamp{position:absolute;top:18px;left:19px;border:2px solid #426a7380;border-radius:50%;padding:13px 9px;text-align:center;transform:rotate(-13deg);font:10px/1.7 Arial;letter-spacing:2px;color:#325e6b;background:#fff5dd66}
+.review-letter{position:absolute;bottom:37px;left:8px;right:8px;transform:rotate(-4deg)}
+.summer-final-review .summer-keepsake{width:100%;height:140px;margin:0}
+.summer-final-review .review-illustration>p{position:absolute;bottom:12px;width:100%;text-align:center;font:italic 16px Georgia;margin:0;color:#536e72}
+.review-details{padding:25px 30px}
+.review-details h3{font:36px Georgia;border:0;margin:5px 0 18px;overflow-wrap:anywhere}
+.review-details dl{margin:0;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.review-details dl>div{border-bottom:1px solid #d4ccb8;padding-bottom:10px}
+.review-details dt{font:11px Arial;letter-spacing:1px;color:#6e8582;margin-bottom:6px}
+.review-details dd{font:19px Georgia;margin:0}
+.review-details .review-feeling{grid-column:1/-1}
+.review-details .review-feeling dd{color:#325e65;font-size:24px}
+.summer-final-review .review-boundary{font:15px/1.5 Georgia;color:#596f70;margin:15px 0 10px}
+.summer-final-review .review-save{font:italic 14px/1.4 Georgia;color:#7a765f;margin:0}
+.summer-final-review .summer-actions{margin-top:24px}
+@media(prefers-reduced-motion:reduce){.summer-options label{transition:none}}
+.summer-canvas:has(.summer-review:not([hidden]))>.summer-form{visibility:hidden}
+.summer-rowan-crop{position:absolute;inset:0;overflow:hidden}
+.summer-rowan-crop img{width:150%;max-width:none;height:auto;left:-25%;top:-7px;object-fit:initial}
+.summer-canvas:has(.custom-edit:not([hidden])) .summer-ticket{margin-top:9px;padding-top:10px;padding-bottom:10px}
+.summer-portrait:has(.player-silhouette){border:5px solid #fff8e8;border-bottom-width:12px;box-shadow:0 3px 7px #4b463027;width:112px;height:112px;filter:none;background:#e3e4d4}
+.player-silhouette{width:100%;height:100%;display:block;object-fit:cover}
+.silhouette-caption{display:flex;flex-direction:column;gap:6px;padding-left:6px}
+.silhouette-caption strong{font:20px Georgia;color:#234862}
+.silhouette-caption span{font:16px Georgia;color:#526f74}
+.silhouette-caption small{font:italic 13px Georgia;color:#718178}
+
+.summer-rowan-crop img.affinity-illustration{width:100%;height:100%;left:0;top:0;object-fit:cover;object-position:center top}
+.summer-rowan-portrait:has(.affinity-illustration) p{font-size:16px}

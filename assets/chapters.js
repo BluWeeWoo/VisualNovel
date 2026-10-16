@@ -1,3 +1,4 @@
+import {normalizeRowanFeeling} from './player-identity.js';
 export const affinityLevels=['Reacquainted','Familiar','Trusted','Close','Committed'];
 export const chapterTitles=['Reunion at a familiar house','Are we starting again or continuing where we left off?','Fixated memories can be difficult','An Eye for an Eye to Hope','Will We meet again?'];
 export function chapterComplete(state,story){
@@ -31,6 +32,6 @@ export function chapterMenu(state,complete,twoComplete=false){
     return `<article class="chapter-card ${unlocked?'is-current':'is-locked'}"><div class="chapter-picture">${picture}</div><h3>Chapter ${i+1}</h3><p>${title}</p>${control}</article>`;
   }).join('');
   return `<header class="chapters-heading"><p>Our Summer, Unfinished</p><span>${twoComplete?'CHAPTER 2 COMPLETE · NEXT: CHAPTER 3':inTwo?'CHAPTER 2 · THE STORY CONTINUES':complete?'CHAPTER 1 COMPLETE':'YOUR SUMMER SO FAR'}</span><h2 id="modal-title">Chapters of our summer</h2><button class="close" data-action="close" aria-label="Close chapter menu">×</button></header>
-  <div class="chapters-layout"><aside class="chapter-companion" aria-label="Rowan affinity: ${affinity.label}">${art('assets/chapters/affinity-sheet.png',[xs[affinity.pose],132,270,435],`Rowan, ${affinity.label}`,'affinity-art')}<span>Rowan · Affinity</span><strong>${affinity.label}</strong><p>Every shared moment stays with you.</p></aside><section class="chapter-cards" aria-label="Chapters">${cards}</section></div>
+  <div class="chapters-layout"><aside class="chapter-companion" aria-label="Rowan bond: ${affinity.label}">${art('assets/chapters/affinity-sheet.png',[xs[affinity.pose],132,270,435],`Rowan, ${affinity.label}`,'affinity-art')}<span>Rowan · Bond</span><strong>${affinity.label}</strong><p>Your feelings: ${normalizeRowanFeeling(state?.flags?.rowanFeeling)}</p></aside><section class="chapter-cards" aria-label="Chapters">${cards}</section></div>
   <footer class="chapters-footer"><span>More of our summer is still to come.</span><button data-action="new">Start a new summer</button><button data-action="saves">Save / Load</button><button data-action="title">Back to main menu</button></footer>`;
 }

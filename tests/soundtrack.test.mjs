@@ -6,6 +6,18 @@ import {openingAudioCue,menuAudioCue,tracks,createSoundtrackPlayer,createNightma
 const at=(node,fragment)=>openingAudioCue(story[node],{node,line:fragment?story[node].lines.findIndex(l=>l.text.includes(fragment)):0});
 const keys=c=>c.layers.map(l=>l.key);
 
+test('Waking and every recovery branch retain music until the morning transition',()=>{
+ for(const id of ['c2Wake','c2WakeChoice','c2Okay','c2Fine','c2Explain','c2Joke','c2Company','c2Alone','c2Silent','c2Food']){
+  for(let line=0;line<story[id].lines.length;line++){
+   const audio=openingAudioCue(story[id],{node:id,line});
+   assert.deepEqual(keys(audio),['letters','outdoors'],`${id}:${line}`);
+   assert.ok(audio.fade>0);
+  }
+ }
+ assert.deepEqual(keys(at('c2Blackout')),[]);
+ for(const id of ['c2SmallStep','c2Curtains','c2Wash','c2Sit'])assert.deepEqual(keys(at(id)),['back-together','outdoors']);
+});
+
 test('Every part of Rowan’s birthday flashback has music, including background-only scenes',()=>{
  for(const id of ['c2BirthdayDinner','c2BirthdayWish','c2BirthdayGiftSetup','c2CardiganGifts','c2BirthdayStairs','c2FatherReveal','c2EndConfrontation']){
   assert.equal(story[id].flashback,true);
@@ -33,11 +45,11 @@ test('Flower departure and both cemetery walks retain music and outdoor ambience
  assert.deepEqual(keys(at('c2GraveTogether')),['lola','outdoors']);
 });
 
-test('Eerie audio carries through calling and blackout, then waking begins with quiet ambience',()=>{
+test('Eerie audio carries through calling and blackout, then waking begins with gentle music and ambience',()=>{
  for(const id of ['c2Wave3','c2Calling','c2Blackout'])assert.equal(nightmareAudioContinues(id),true);
  for(const id of ['c2Wave1','c2Wave2','c2Wake','c2WakeChoice',undefined])assert.equal(nightmareAudioContinues(id),false);
  for(const id of ['c2Calling','c2Blackout'])assert.deepEqual(keys(at(id)),[]);
- for(const id of ['c2Wake','c2WakeChoice'])assert.deepEqual(keys(at(id)),['outdoors']);
+ for(const id of ['c2Wake','c2WakeChoice'])assert.deepEqual(keys(at(id)),['letters','outdoors']);
  assert.equal(at('c2Okay').layers[0].key,'letters');
 });
 

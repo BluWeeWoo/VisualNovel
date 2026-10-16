@@ -1,3 +1,4 @@
+import {installRowanFeelings} from './rowan-feelings.js';
 import {reviseCasualChapterTwo} from './chapter-two-casual.js';
 import {paceChapterTwo} from './chapter-two-pacing.js';
 import {chapterTwoAfternoon} from './chapter-two-afternoon.js';
@@ -70,6 +71,8 @@ for(const [id,text,expression] of [
  const line=story[id].lines.find(l=>l.text===text);
  if(line)line.expression=expression;
 }
+
+installRowanFeelings(story);
 
 // Presentation metadata only: unlabelled rows narrate; Thought| marks silent MC thought.
 // Named rows remain spoken. Written messages retain their existing phone/note presentation.

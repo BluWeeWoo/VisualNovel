@@ -1460,7 +1460,7 @@ const nodes={
     "opening": true,
     "continuation": true,
     "rowan": false,
-    "music": null,
+    "music": "letters",
     "lines": [
       {
         "speaker": "",
@@ -1543,7 +1543,7 @@ const nodes={
     "opening": true,
     "continuation": true,
     "rowan": true,
-    "music": null,
+    "music": "letters",
     "lines": [
       {
         "speaker": "Rowan",
@@ -1669,7 +1669,7 @@ const nodes={
     "opening": true,
     "continuation": true,
     "rowan": true,
-    "music": null,
+    "music": "letters",
     "lines": [
       {
         "speaker": "You",
@@ -1867,6 +1867,24 @@ const nodes={
     "lines": [
       {
         "speaker": "Rowan",
+        "text": "And you shouldn’t have to— I mean…",
+        "expression": "concerned"
+      },
+      {
+        "speaker": "",
+        "text": "He lifts a hand as if the rest will follow, then lets it fall back onto his knee."
+      },
+      {
+        "speaker": "Rowan",
+        "text": "Wait. Let me start again.",
+        "expression": "embarrassed"
+      },
+      {
+        "speaker": "",
+        "text": "He takes a breath. A second passes, and he lets out a small, sheepish laugh."
+      },
+      {
+        "speaker": "Rowan",
         "text": "Takte. I had a more impressive speech ready in my head. Hahaha.",
         "expression": "embarrassed"
       },
@@ -1908,6 +1926,23 @@ const nodes={
       {
         "speaker": "You",
         "text": "A little. Thank you."
+      },
+      {
+        "speaker": "",
+        "text": "His shoulders ease a little. He stays beside me while I take another sip of water.",
+        "expression": "smile"
+      },
+      {
+        "speaker": "",
+        "text": "For a while, neither of us says anything. The fan turns quietly above us."
+      },
+      {
+        "speaker": "",
+        "text": "When I set the glass down, Rowan gets up and gently pushes the chair back toward the desk."
+      },
+      {
+        "speaker": "",
+        "text": "He gives me a small smile, then walks toward the door."
       }
     ],
     "next": "c2Food"
@@ -1978,7 +2013,7 @@ const nodes={
     "opening": true,
     "continuation": true,
     "rowan": true,
-    "music": null,
+    "music": "letters",
     "lines": [
       {
         "speaker": "You",
@@ -2022,7 +2057,7 @@ const nodes={
     "opening": true,
     "continuation": true,
     "rowan": true,
-    "music": null,
+    "music": "letters",
     "lines": [
       {
         "speaker": "",
@@ -2070,7 +2105,7 @@ const nodes={
     "opening": true,
     "continuation": true,
     "rowan": true,
-    "music": null,
+    "music": "letters",
     "lines": [
       {
         "speaker": "",

@@ -1,3 +1,5 @@
+import {rowanFeelings,normalizeRowanFeeling} from '../assets/player-identity.js';
+import {confirmFeeling,rememberFeelingLine} from './rowan-feelings.js';
 import {createSceneEffects} from '../assets/scene-effects.js';
 import {playSoftBump} from './opening-audio.js';
 import {playSummerTransition,transitionActive} from '../assets/summer-transitions.js';
@@ -63,6 +65,7 @@ function syncGallery(){
 function enter(id){state.node=id;state.line=0;Object.assign(state,story[id].enter||{});autoSave();}
 function nodeLines(){return visibleLines(story[state.node],state);}
 function record(line){
+  rememberFeelingLine(state,line);
   const text=interpolate(line.text,state);
   const id=`${state.node}:${state.line}`;
   if(!state.history.some(h=>h.id===id))state.history.push({id,speaker:line.speaker||'',text});
@@ -343,6 +346,22 @@ function saveMoment(key,confirmed=false){
   }
 }
 function drawModal(){
+  if(modal==='feelings'){
+    const chapter=story[state.node].chapterTwo?2:1;
+    const current=normalizeRowanFeeling(state.flags.rowanFeeling),floor=rowanFeelings.indexOf(current);
+    if(state.flags['feelingReflection'+chapter]){openModal('chapters');return;}
+    shell('How do you feel about Rowan now?',`<p>Your feelings: <strong>${escape(current)}</strong></p><p>You can stay here or move forward. Friendship remains a complete path.</p><div class="feeling-reflection-options">${rowanFeelings.map((value,i)=>`<button data-feeling="${value}" ${i<floor?'disabled':''}>${value}${i===floor?' · Stay here':''}</button>`).join('')}</div><p id="feeling-confirmation">Earlier conversations and unresolved hurt stay part of your history.</p><button id="confirm-feeling" class="primary" disabled>Confirm feeling →</button>`);
+    let selected=null;
+    document.querySelectorAll('[data-feeling]').forEach(button=>button.onclick=()=>{
+      selected=button.dataset.feeling;
+      document.querySelectorAll('[data-feeling]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
+      $('#feeling-confirmation').textContent=`Choose “${selected}”? You can stay at this feeling or move forward later, but you cannot lower it in this save’s timeline.`;
+      $('#confirm-feeling').disabled=false;
+    });
+    $('#confirm-feeling').onclick=()=>{if(confirmFeeling(state,chapter,selected)){autoSave();openModal('chapters');}};
+    return;
+  }
+
   if(modal==='chapters'){
     const current=state||read('-auto')?.state;
     shell('Chapters of our summer',chapterMenu(current,chapterComplete(current,story),chapterTwoComplete(current,story)),'chapters-modal');
@@ -462,12 +481,12 @@ function action(type){
     const node=story[state?.node];
     if(!node?.ending||state.line<nodeLines().length-1)return;
     autoSave();
-    playSummerTransition({kind:'chapter',chapter:node.chapter||1,partial:false,language:settings.language,motion:settings.motion,reveal:()=>openModal('chapters')});return;
+    playSummerTransition({kind:'chapter',chapter:node.chapter||1,partial:false,language:settings.language,motion:settings.motion,reveal:()=>openModal(state.flags['feelingReflection'+(node.chapterTwo?2:1)]?'chapters':'feelings')});return;
   }
   if(type==='chapter-two'){
     const current=state||read('-auto')?.state;
     if(!validSave(current,story)||!chapterComplete(current,story))return;
-    state=structuredClone(current);closeModal();screen='game';
+    state=structuredClone(current);if(!story[state.node].chapterTwo&&!state.flags.feelingReflection1){openModal('feelings');return;}closeModal();screen='game';
     if(!story[state.node].chapterTwo){state.flags.chapterOneComplete=true;state.completed=false;enter('c2Start');}
     render();return;
   }

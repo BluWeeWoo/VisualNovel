@@ -1,7 +1,7 @@
 // Chapter Two opening: approved review script. Stable IDs preserve saves.
 const scene=(title,text,end={})=>({title,place:'c2-city',time:'day',day:3,chapter:2,chapterTwo:true,opening:true,continuation:true,rowan:false,music:'lost-contact',lines:text.trim().split('\n').filter(Boolean).map(row=>{const [body,expression]=row.split('~'),i=body.indexOf('|');return {speaker:i<0?'':body.slice(0,i),text:i<0?body:body.slice(i+1),...(expression?{expression}:{})};}),...end});
 const opt=(text,next,set)=>({text,next,...(set?{set}:{})});
-const room=(title,text,end={})=>scene(title,text,{place:'d2-bedroom-morning',music:null,...end});
+const room=(title,text,end={})=>scene(title,text,{place:'d2-bedroom-morning',music:'letters',...end});
 const illustrated=(key,place)=>(title,text,end={})=>scene(title,text,{place,cgCue:{key,from:text.trim().split('\n')[0].split('|').at(-1)},...end});
 const corridor=illustrated('c2-sevi-confrontation','c2-confrontation');
 const meeting=illustrated('c2-sevi-meeting','c2-meeting');

@@ -84,7 +84,7 @@ test('Nightmare progress resumes and all waves are time-bounded without changing
 
 test('Privacy branches never show seated Rowan CG and Sevi’s confrontations use their separate settings',()=>{
  const s=freshState();for(const id of ['c2Alone','c2Silent']){s.node=id;for(let i=0;i<story[id].lines.length;i++){s.line=i;assert.equal(cgAt(story,s),null);}}
- assert.equal(cgAt(story,{...s,node:'c2Confrontation',line:0}),'c2-sevi-meeting');assert.equal(cgAt(story,{...s,node:'c2Corridor',line:0}),'c2-sevi-confrontation');assert.equal(story.c2Wake.music,null);
+ assert.equal(cgAt(story,{...s,node:'c2Confrontation',line:0}),'c2-sevi-meeting');assert.equal(cgAt(story,{...s,node:'c2Corridor',line:0}),'c2-sevi-confrontation');assert.equal(story.c2Wake.music,'letters');
 });
 
 test('Sevi interest beats require the earlier explicit response; ordinary scenes stay platonic',()=>{

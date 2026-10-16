@@ -1,5 +1,5 @@
 import {lineVisible} from './line-visibility.js';
-import {pronounForms,validCustomPronouns} from '../assets/player-identity.js';
+import {pronounForms,validCustomPronouns,normalizeRowanFeeling} from '../assets/player-identity.js';
 import {gardenAffection,validGarden} from '../assets/garden-game.js';
 export const VERSION = 1;
 export const milestones = [
@@ -20,7 +20,7 @@ export function freshState(name = 'Alex', pronouns = 'they', profile = {}) {
   return { version: VERSION, storyRevision: 6, pacingRevision: 2, seviSceneRevision: 3, carpentryRevision: 1, chapterTwoRevision: 2, name: name.trim().slice(0, 24) || 'Alex', pronouns,
     gender:profile.gender||({he:'male',she:'female',they:'non-binary'}[pronouns]||'custom'),portrait:profile.portrait==='none'?'none':'silhouette',
     ...(pronouns==='custom'&&validCustomPronouns(profile.customPronouns)?{customPronouns:{...profile.customPronouns}}:{}),
-    node: 'journey', line: 0, flags: {letterTiming:'later'}, history: [], chat: [], chatTurns: 0,
+    node: 'journey', line: 0, flags: {letterTiming:'later',rowanFeeling:normalizeRowanFeeling(profile.rowanFeeling),...(profile.rowanFeeling?{feelingsChapter1:true,feelingsChapter2:true,rowanFeelingChapter1:normalizeRowanFeeling(profile.rowanFeeling),rowanFeelingChapter2:normalizeRowanFeeling(profile.rowanFeeling)}:{})}, history: [], chat: [], chatTurns: 0,
     chatDone: false, promiseFound: false, sunrise: 'unstarted', milestone: 'Reacquainted',
     memories: [], completed: false, startedAt: Date.now() };
 }
@@ -144,6 +144,7 @@ function migrateRevisionFour(s,story){
 
 // Old saves keep their route through the flashback they already entered.
 export function nextStoryNode(story,state){
+ if(state.node==='c2KitchenCabinet'&&state.flags.feelingsChapter2&&state.history.some(h=>h.id.startsWith('c2TVNews:')&&h.text==='I just got back from carrying groceries uphill. Give me a minute.'))return 'c2FeelingApology';
  if(state.node==='c2FlowerDeparture')return state.flags.graveTogether===true?'c2CemeteryWalkTogether':'c2CemeteryWalkAlone';
  if(state.node==='c2EndSupport'&&state.history.some(h=>!h.id.startsWith('c2')&&/check.?up/i.test(h.text)))return 'c2EndCheckupsKnown';
  if(state.node==='c2EndGoodbye'&&state.flags.seviDescription==='something')return 'c2EndSevi';

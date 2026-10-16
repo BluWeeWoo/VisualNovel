@@ -30,10 +30,11 @@ export function lunchCG(story,state){
  const start=cue.from?lines.findIndex(l=>l.text===cue.from):0;
  const end=cue.until?lines.findIndex(l=>l.text===cue.until):lines.length;
  if(start<0||end<0||state.line<start||state.line>=end)return null;
- let expression=cue.initial||'relaxed';
+ let expression=cue.initial||'relaxed',lastChange=-1;
  for(const [anchor,next] of cue.changes){
   const index=lines.findIndex(l=>l.text===anchor);
-  if(index>=start&&index<=state.line)expression=next;
+  if(index>=start&&index<=state.line){expression=next;lastChange=index;}
  }
+ for(let i=Math.max(start,lastChange+1);i<=state.line;i++)if(lines[i]?.lunchExpression)expression=lines[i].lunchExpression;
  return expression==='relaxed'?'summer-lunch':'summer-lunch-'+expression;
 }
