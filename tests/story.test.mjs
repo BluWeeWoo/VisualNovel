@@ -25,7 +25,10 @@ test('All nodes reachable; all exits exist; no story cycles',()=>{
   const visited=new Set();
   function walk(id,ancestors=[]){assert.ok(story[id],id);assert.ok(!ancestors.includes(id),`Cycle: ${id}`);if(visited.has(id))return;visited.add(id);
     const n=story[id];assert.ok(n.lines.length);assert.ok(n.ending||n.next||n.choices);for(const next of [...(n.next?[n.next]:[]),...(n.choices||[]).map(c=>c.next)])walk(next,[...ancestors,id]);
-  }walk('arrival');walk('journey');for(const id of Object.keys(story))assert.ok(visited.has(id)||id.startsWith('c2'),id); // Older Chapter Two locations remain loadable.
+  }walk('arrival');walk('journey');
+  // Relationship scenes have state-selected incoming edges, exercised by the route tests.
+  for(const id of Object.keys(story).filter(id=>id.startsWith('rb')))walk(id);
+  for(const id of Object.keys(story))assert.ok(visited.has(id)||id.startsWith('c2'),id); // Older Chapter Two locations remain loadable.
 });
 test('Every branch renders, persists, and reaches the ending',()=>{
   const covered=new Set();

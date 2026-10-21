@@ -21,8 +21,21 @@ export const tracks={
 };
 const cue=(keys,fade=3)=>({layers:keys.map(key=>typeof key==='string'?{key}:key),fade});
 export const menuAudioCue=()=>cue(['menu'],2);
+const uncertainReunionMusic=new Set(['rbReunion_uncertain','rbPracticalUncertain','rbContactUncertain','rbContactPresent','rbLowBags','rbBagHelp','rbBagOwn','rbInsideUncertain','rbLetterBrief','rbLeaveUncertain']);
 export function openingAudioCue(node,state){
  if(!node?.opening)return cue([], .35);
+ // Keep the same recording through a continuous conversation. The short branch
+ // nodes inherit different source-scene cues, but are not musical scene changes.
+ const uncertainReunion=state.flags?.rbScene_reunion==='uncertain';
+ const uncertainVisit=state.flags?.rbScene_visit==='uncertain';
+ let sceneFade=2;
+ if(uncertainReunion&&uncertainReunionMusic.has(state.node)){
+  node={...node,music:'reunion-new'};sceneFade=4;
+ }
+ if(uncertainVisit&&node.dayTwo&&!node.chapterTwo&&!node.afternoon&&node.music){
+  node={...node,music:'back-together'};sceneFade=4;
+ }
+ if(uncertainReunion&&['rbEveningUncertain','rbEveningTextUncertain','rbSleep'].includes(state.node))sceneFade=4;
  if(node.afternoon){
   const layers=node.music?[{key:node.music,level:state.node==='c2TVNews'?.12:state.node==='c2Family'?.18:.26}]:[];
   layers.push({key:'outdoors',level:node.soloGarden||['c2WaitGarden','c2GardenAfter','c2WaitRest'].includes(state.node)?.18:.07});
@@ -33,14 +46,14 @@ export function openingAudioCue(node,state){
   const music=Object.hasOwn(node,'music')?node.music:(node.place==='d2-bedroom-morning'?'back-together':null);
   const layers=music?[{key:music,level:.24}]:[];
   if(!node.place.startsWith('c2-')||node.place==='c2-rest')layers.push({key:'outdoors',level:.08});
-  return cue(layers,2);
+  return cue(layers,sceneFade);
  }
  if(node.dayTwo){
   const layers=node.music?[{key:node.music,level:.32}]:[];
   layers.push({key:'outdoors',level:node.time==='night'?.05:.14});
   if(node.afterGarden&&['Rowan · text','You · text'].includes(node.lines[state.line]?.speaker))layers.push('phone');
   if(state.node==='d2Call'&&state.line===1)layers.push('steps');
-  return cue(layers,2);
+  return cue(layers,sceneFade);
  }
  if(node.continuation){
   const key=node.music==='reunion'?'reunion-new':node.music;
@@ -57,10 +70,10 @@ export function openingAudioCue(node,state){
   if(state.node==='rPorchEnvelopes'&&state.line===0)layers.push('steps');
   if(state.node==='rPorchEnvelopes'&&text.startsWith('Lola sets a small box'))layers.push('box');
   if(state.node==='rPorchEnvelopes'&&(text.startsWith('Lola sets a small box')||text.startsWith('He chooses a yellow envelope')))layers.push('paper');
-  return cue(layers,node.time==='night'?2.5:2);
+  return cue(layers,sceneFade===4?4:node.time==='night'?2.5:2);
  }
  const reached=fragment=>{const index=node.lines.findIndex(l=>l.text.includes(fragment));return index>=0&&state.line>=index;};
- switch(state.node){
+ switch(node.audioSource||state.node){
   case 'journey':
    if(reached('SAINT LUIS!'))return cue(['bus'],.45);
    if(reached('Then I remember Lola’s funeral.'))return cue(['lola']);
@@ -75,7 +88,7 @@ export function openingAudioCue(node,state){
   case 'otherDoor':return reached('Rowan’s house is right there.')?cue(['neighbor']):cue([{key:'hill',level:.36}]);
   case 'neighborVisit':case 'neighborWait':return cue(['neighbor']);
   case 'doorRepair':return reached('Excuse me!')?cue(['outdoors'],.12):cue(['hammer',{key:'outdoors',level:.30}],.35);
-  case 'recognition':return cue(['reunion','outdoors'],2);
+  case 'recognition':return state.flags?.chapterOneBranches&&state.flags?.rowanFeeling==='Uncertain'?cue(['reunion-new',{key:'outdoors',level:.18}],4):cue(['reunion','outdoors'],2);
   default:return cue([],.35);
  }
 }

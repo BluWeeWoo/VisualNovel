@@ -21,17 +21,17 @@ You|Of course.
 `,{place:'living',next:'aNews'}),
 aNews:scene('The local news',`
 The television takes a second to respond. Then a local news report fills the screen.
-Newsreader · TV|Nicolas Sanchez took office as mayor of Saint Luis this morning, following his election earlier this year. His father, the former mayor, attended the ceremony after retiring from public office.
-You|Mayor Sanchez retired?
-Rowan|Yeah. His son ran in the last election.~neutral
-You|I didn’t know he had a son.
+Newsreader · TV|Mayor Enrich Sanchez met with municipal staff today to discuss improvements to local services in Saint Luis.
+You|Mayor Sanchez…
+Rowan|Yeah.~neutral
+You|I really haven’t kept up with things here.
 Rowan sets his glass on a coaster.
-You|I remember the old mayor. People seemed to like him.
+You|Do you know much about him?
 Rowan|He came to Lola’s funeral.
 I look at him.
 You|He did?
 Rowan|For a little while.
-The report cuts to the new mayor speaking outside the municipal hall.
+The report cuts to the mayor speaking outside the municipal hall.
 Rowan|I hope he does a good job.
 You|Same. Especially if he can do something about the road near the bus stop.
 Rowan|You’ve been back one day and you already have a complaint.~smile

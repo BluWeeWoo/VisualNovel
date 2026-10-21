@@ -4,6 +4,27 @@ import {story} from '../src/story.js';
 import {freshState,visibleLines,validSave} from '../src/engine.js';
 import {phoneCue,hasRowanContact,authoredMessages,phoneBody,phoneIdentity} from '../src/phone-ui.js';
 const at=(node,text)=>{const s=freshState('River','they');s.node=node;s.flags.greeting='shocked';s.line=visibleLines(story[node],s).findIndex(l=>l.text===text);assert.ok(s.line>=0);return s;};
+test('Revised exchanges save the contact and display messages, including after reload',()=>{
+ for(const node of ['rbContactPresent','rbContactReturn']){
+  const s=freshState('River','they',{rowanFeeling:'Uncertain'});s.node=node;
+  assert.equal(hasRowanContact(s),false);
+  const lines=visibleLines(story[node],s);
+  for(const [i,line] of lines.entries()){
+   s.line=i;s.history.push({id:node+':'+i,speaker:line.speaker,text:line.text});
+   if(line.text.startsWith('I enter his number.')){
+    assert.equal(phoneCue(story,s).page,'contact');assert.equal(hasRowanContact(s),true);
+   }
+   if(line.speaker==='Rowan · text'){
+    assert.equal(phoneCue(story,s).page,'messages');assert.equal(hasRowanContact(s),true);
+    assert.match(phoneBody('messages',s),/It&#39;s Rowan/);
+   }
+  }
+  const restored=JSON.parse(JSON.stringify(s));assert.equal(hasRowanContact(restored),true);
+  restored.node='rBedroom';assert.equal(hasRowanContact(restored),false);
+  restored.node='rbWaterSolo';assert.equal(hasRowanContact(restored),true);
+  assert.equal(!!restored.phoneUnlocked,false);
+ }
+});
 test('Authored phone moments open the correct screen without changing story state',()=>{
  for(const [node,text,page] of [['rExchange','I reach for my phone.','contact'],['rBedroom','I kept opening her contact.','lola'],['rReturn','I enter his number.','contact'],['rReturn','It’s Rowan.','messages'],['rReturn','The one who’s still alive.','messages']]){
   const s=at(node,text),before=JSON.stringify(s);assert.equal(phoneCue(story,s).page,page);assert.equal(JSON.stringify(s),before);assert.ok(validSave(s,story));

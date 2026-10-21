@@ -35,10 +35,10 @@ export function mountNewSummer(root,{onBack,onBegin,hasSave}){
   const observer=new MutationObserver(()=>{if(!root.isConnected){window.removeEventListener('resize',resize);observer.disconnect();}});observer.observe(document.body,{childList:true});
   const summary=()=>{const p=pronounForms(draft);return `${draft.name.trim()||'Alex'} · ${p.subject}/${p.object} · ${silhouettePreview(draft).label} · ${draft.rowanFeeling}`;};
   const affinityArtwork={
-    'Uncertain':{file:'uncertain',caption:'A familiar face. A little distance.'},
+    'Uncertain':{file:'uncertain',version:2,caption:'A familiar face. A little distance.'},
     'Familiar':{file:'familiar',caption:'An old friend. An easy smile.'},
-    'Drawn to You':{file:'drawn',caption:'Something more, between the words.'},
-    'In Love':{file:'love',caption:'Some feelings never quite left.'}
+    'Drawn to You':{file:'drawn',version:2,caption:'Something more, between the words.'},
+    'In Love':{file:'love',version:2,caption:'Some feelings never quite left.'}
   };
   const artworkCache=new Map();
   let requestedArtwork='';
@@ -47,7 +47,7 @@ export function mountNewSummer(root,{onBack,onBegin,hasSave}){
     if(!art||requestedArtwork===art.file)return;
     requestedArtwork=art.file;
     let pending=artworkCache.get(art.file);
-    if(!pending){const image=new Image();image.src='assets/portraits/rowan-affinity/'+art.file+'-v1.png';pending=image.decode().then(()=>image);artworkCache.set(art.file,pending);}
+    if(!pending){const image=new Image();image.src='assets/portraits/rowan-affinity/'+art.file+'-v'+(art.version||1)+'.png';pending=image.decode().then(()=>image);artworkCache.set(art.file,pending);}
     pending.then(image=>{
       if(!root.isConnected||requestedArtwork!==art.file)return;
       const portrait=root.querySelector('.summer-rowan-crop img');

@@ -350,12 +350,14 @@ function drawModal(){
     const chapter=story[state.node].chapterTwo?2:1;
     const current=normalizeRowanFeeling(state.flags.rowanFeeling),floor=rowanFeelings.indexOf(current);
     if(state.flags['feelingReflection'+chapter]){openModal('chapters');return;}
-    shell('How do you feel about Rowan now?',`<p>Your feelings: <strong>${escape(current)}</strong></p><p>You can stay here or move forward. Friendship remains a complete path.</p><div class="feeling-reflection-options">${rowanFeelings.map((value,i)=>`<button data-feeling="${value}" ${i<floor?'disabled':''}>${value}${i===floor?' · Stay here':''}</button>`).join('')}</div><p id="feeling-confirmation">Earlier conversations and unresolved hurt stay part of your history.</p><button id="confirm-feeling" class="primary" disabled>Confirm feeling →</button>`);
+    const descriptions=['I’m still figuring out how I feel.','I’m glad we’re finding our way back as friends.','I think there might be something more.','I know my feelings go deeper than friendship.'];
+    shell('How do you feel about Rowan now?',`<div class="reflection-current"><span>Where you are now</span><strong>${escape(current)}</strong></div><p class="reflection-intro">Take a moment. What feels right after this chapter?</p><div class="feeling-reflection-options" role="group" aria-label="Your feelings for Rowan">${rowanFeelings.map((value,i)=>`<button class="reflection-card" data-feeling="${value}" aria-pressed="false" ${i<floor?'disabled':''}><span class="reflection-card-top"><strong>${value}</strong><span class="reflection-check" aria-hidden="true"></span></span><span class="reflection-description">${descriptions[i]}</span><span class="reflection-status">${i<floor?'Earlier feeling · unavailable':i===floor?'Your current feeling · stay here':'Choose this feeling'}</span></button>`).join('')}</div><p class="reflection-note">There’s no rush to move forward. Friendship is a complete path.</p><div class="reflection-footer"><p id="feeling-confirmation" aria-live="polite">Choose a card to continue. Your shared history stays with you.</p><button id="confirm-feeling" class="primary" disabled>Confirm feeling →</button></div>`,'feelings-modal');
     let selected=null;
     document.querySelectorAll('[data-feeling]').forEach(button=>button.onclick=()=>{
       selected=button.dataset.feeling;
       document.querySelectorAll('[data-feeling]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
-      $('#feeling-confirmation').textContent=`Choose “${selected}”? You can stay at this feeling or move forward later, but you cannot lower it in this save’s timeline.`;
+      $('#feeling-confirmation').textContent=selected===current?`Stay at ${selected}. You can let your feelings grow in a later chapter.`:`Move to ${selected}. You can stay there or move higher later, but cannot return to an earlier feeling.`;
+      $('#confirm-feeling').textContent=selected===current?'Stay '+current+' →':'Choose '+selected+' →';
       $('#confirm-feeling').disabled=false;
     });
     $('#confirm-feeling').onclick=()=>{if(confirmFeeling(state,chapter,selected)){autoSave();openModal('chapters');}};

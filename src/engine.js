@@ -1,3 +1,4 @@
+import {chapterOneTarget} from './chapter-one-branches.js';
 import {lineVisible} from './line-visibility.js';
 import {pronounForms,validCustomPronouns,normalizeRowanFeeling} from '../assets/player-identity.js';
 import {gardenAffection,validGarden} from '../assets/garden-game.js';
@@ -17,12 +18,14 @@ export const promises = [
   'Leave town together someday.'
 ];
 export function freshState(name = 'Alex', pronouns = 'they', profile = {}) {
-  return { version: VERSION, storyRevision: 6, pacingRevision: 2, seviSceneRevision: 3, carpentryRevision: 1, chapterTwoRevision: 2, name: name.trim().slice(0, 24) || 'Alex', pronouns,
+  const state = { version: VERSION, storyRevision: 6, pacingRevision: 2, seviSceneRevision: 3, carpentryRevision: 1, chapterTwoRevision: 2, name: name.trim().slice(0, 24) || 'Alex', pronouns,
     gender:profile.gender||({he:'male',she:'female',they:'non-binary'}[pronouns]||'custom'),portrait:profile.portrait==='none'?'none':'silhouette',
     ...(pronouns==='custom'&&validCustomPronouns(profile.customPronouns)?{customPronouns:{...profile.customPronouns}}:{}),
     node: 'journey', line: 0, flags: {letterTiming:'later',rowanFeeling:normalizeRowanFeeling(profile.rowanFeeling),...(profile.rowanFeeling?{feelingsChapter1:true,feelingsChapter2:true,rowanFeelingChapter1:normalizeRowanFeeling(profile.rowanFeeling),rowanFeelingChapter2:normalizeRowanFeeling(profile.rowanFeeling)}:{})}, history: [], chat: [], chatTurns: 0,
     chatDone: false, promiseFound: false, sunrise: 'unstarted', milestone: 'Reacquainted',
     memories: [], completed: false, startedAt: Date.now() };
+  if(profile.rowanFeeling){state.flags.chapterOneBranches=true;state.node=chapterOneTarget(state.node,state);}
+  return state;
 }
 export function interpolate(text, state) {
   const p = pronounForms(state);
@@ -37,7 +40,7 @@ export function applyChoice(state, choice) {
   Object.assign(state.flags, choice.set || {});
   if(choice.set?.gardenMode==='declined')gardenAffection(state,false);
   if (choice.state) Object.assign(state, choice.state);
-  state.node = choice.next;
+  state.node = chapterOneTarget(choice.next,state);
   state.line = 0;
   return state;
 }
@@ -143,7 +146,8 @@ function migrateRevisionFour(s,story){
 }
 
 // Old saves keep their route through the flashback they already entered.
-export function nextStoryNode(story,state){
+export function nextStoryNode(story,state){return chapterOneTarget(baseNextStoryNode(story,state),state);}
+function baseNextStoryNode(story,state){
  if(state.node==='c2KitchenCabinet'&&state.flags.feelingsChapter2&&state.history.some(h=>h.id.startsWith('c2TVNews:')&&h.text==='I just got back from carrying groceries uphill. Give me a minute.'))return 'c2FeelingApology';
  if(state.node==='c2FlowerDeparture')return state.flags.graveTogether===true?'c2CemeteryWalkTogether':'c2CemeteryWalkAlone';
  if(state.node==='c2EndSupport'&&state.history.some(h=>!h.id.startsWith('c2')&&/check.?up/i.test(h.text)))return 'c2EndCheckupsKnown';

@@ -91,8 +91,56 @@ export const directions={
  numbers:[['That phone went','embarrassed'],['For identification','playful'],['Got you.','smile']],
  friends:[['Then what are we even doing','playful']]
 };
+// Uncertain stays reserved, but reacts to the conversation rather than holding
+// one expression. Exact authored beats also preserve expressions on save reload.
+const uncertainExpressions={
+ rbReunion_uncertain:{
+  'You actually came back?':'confused',
+  'Okay lang. The lock kept catching. I was just fixing it.':'neutral',
+  'I’m sorry about Lola, by the way.':'downcast',
+  'It’s good to see you, by the way.':'neutral'
+ },
+ rbPracticalUncertain:{
+  'Wait. Are you okay?':'concerned',
+  'Okay. Sabihin mo lang if you need help, ah.':'neutral'
+ },
+ rbContactUncertain:{
+  'They didn’t pass it on. Sorry.':'confused',
+  'Want to exchange numbers now?':'neutral'
+ },
+ rbContactPresent:{},rbLowBags:{},rbBagHelp:{},rbBagOwn:{},rbInsideUncertain:{},
+ rbLetterBrief:{
+  'You kept writing?':'confused',
+  'Yeah. Lola thought letters would be a nice way to stay in touch.':'neutral',
+  'Oh. I didn’t know.':'downcast',
+  'Okay. Thanks for telling me.':'neutral'
+ },
+ rbLeaveUncertain:{},
+ rbVisit_uncertain:{
+  'Ma said you might need a few things. I wasn’t sure what you liked, so I got the basics.':'neutral',
+  'Honestly? Nothing. I haven’t eaten yet.':'concerned',
+  'Good timing, then.':'weak-smile',
+  'Anyway, I’ll let you get on with your day.':'neutral'
+ },
+ rbVisitShort:{
+  'Yeah. If you’re sure?':'confused',
+  'Okay. Sure.':'weak-smile',
+  'Some days. Tapos helping Mama rin.':'neutral',
+  'I will. She’ll probably bring more food when she visits.':'weak-smile',
+  'Still clicking.':'confused',
+  'Okay. I’ll have another look sometime, if you want.':'neutral',
+  'Anytime. See you around.':'weak-smile'
+ },
+ rbVisitLeaveUncertain:{'Of course.':'weak-smile'}
+};
+function beforeGroceryArrival(node,state){
+ if(state.node!=='rbVisit_uncertain')return false;
+ const arrival=node.lines.filter(l=>lineVisible(l,state.flags)).findIndex(l=>l.text==='Rowan stands outside with a grocery bag.');
+ return arrival>=0&&state.line<arrival;
+}
 export function spriteAt(story,state){
  const node=story[state.node];
+ if(beforeGroceryArrival(node,state))return null;
  if(node.character==='Mayumi'){
   const lines=node.lines.filter(l=>lineVisible(l,state.flags));
   let expression='neutral';
@@ -104,6 +152,13 @@ export function spriteAt(story,state){
   const lines=node.lines.filter(l=>lineVisible(l,state.flags));
   let expression='neutral';
   for(let i=0;i<=state.line;i++)if(lines[i]?.expression)expression=lines[i].expression;
+  if(state.flags.rbScene_reunion==='uncertain'&&['rbReunion_uncertain','rbPractical','rbContactLow','rbContactReturn','rbContactPresent','rbLowBags','rbBagHelp','rbBagOwn','rbLowInside','rbLetterBrief','rbLeave'].includes(state.node))expression='neutral';
+  const uncertainScene=state.node.startsWith('rbVisit')?'visit':'reunion';
+  const cues=uncertainExpressions[state.node];
+  if(cues&&state.flags['rbScene_'+uncertainScene]==='uncertain'){
+   expression='neutral';
+   for(const line of lines.slice(0,state.line+1))if(cues[line.text])expression=cues[line.text];
+  }
   return {expression,pose:'ordinary',key:expression,...(node.childhood?{character:'RowanChild'}:{})};
  }
  if(!(state.node in defaults))return null;
@@ -163,6 +218,7 @@ const mayumiExpressions={
 };
 export function sceneAt(story,state){
  const node=story[state.node],id=state.node;
+ if(beforeGroceryArrival(node,state))return {...node,place:'living',time:'day',rowan:false};
  const lines=node.lines.filter(l=>lineVisible(l,state.flags));
  const painted=(name,time)=>({...node,place:'c2-painted-'+name,time});
  if(['c2Tricycle','c2TricycleBack','c2TricycleTogether'].includes(id))return painted('tricycle-stop','day');

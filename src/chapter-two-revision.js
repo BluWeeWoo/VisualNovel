@@ -3541,7 +3541,7 @@ const nodes={
       },
       {
         "speaker": "You",
-        "text": "Your “new” mayor seems pretty good."
+        "text": "Your mayor seems pretty good."
       },
       {
         "speaker": "",

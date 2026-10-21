@@ -1,15 +1,17 @@
 import {translateRecorded,translate} from '../assets/story-language.js';
+import {lineVisible} from './line-visibility.js';
 // Presentation-only phone data. No network, relationship changes or future messages.
 export const phoneIdentity={name:'Rowan',username:'rowan.bythewater',number:'+1 (202) 555-0147',app:'Seaglass',initials:'SG'};
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export function phoneCue(story,state){
  if(!state)return null;
- const line=story[state.node].lines.filter(l=>!l.if||state.flags[l.if[0]]===l.if[1])[state.line];
+ const line=story[state.node].lines.filter(l=>lineVisible(l,state.flags))[state.line];
  const text=line?.text||'';
  if(['Rowan · text','You · text'].includes(line?.speaker))return {page:'messages',message:true};
  if(state.node==='rExchange'&&text==='I reach for my phone.')return {page:'contact'};
  if(state.node==='rReturn'&&text==='I’ll send you a message so you have mine.')return {page:'messages',typing:true};
  if(state.node==='rReturn'&&text==='I enter his number.')return {page:'contact'};
+ if(['rbContactPresent','rbContactReturn'].includes(state.node)&&text.startsWith('I enter his number.'))return {page:'contact'};
  if(state.node==='rBedroom'&&text==='I kept opening her contact.')return {page:'lola'};
  if(state.node==='numbers'&&text.startsWith('You exchange phones.'))return {page:'contact'};
  if(state.node==='numbers'&&text==='You send a single wave. His pocket lights up.')return {page:'messages',wave:true};
@@ -18,7 +20,7 @@ export function phoneCue(story,state){
 }
 export function hasRowanContact(state){
  if(['rLetterPromise','rPorchEnvelopes','rYellowLook','rYellowName','rYellowWords','rYellowPromise','rBedroom','rLanding','rPush','rQuiet','rLetters','rBurning','rEnvelope','rReadNow','rLetterNow','rReadNowAfter','rKeepSealed','rAfterEnvelope'].includes(state?.node))return false;
- return !!state&&(state.phoneUnlocked||state.history.some(h=>h.id.startsWith('rReturn:')||h.id.startsWith('rExchange:')&&h.text==='I reach for my phone.'||h.id.startsWith('numbers:')&&h.text.startsWith('You exchange phones.')));
+ return !!state&&(state.phoneUnlocked||state.history.some(h=>h.id.startsWith('rReturn:')||/^(rbContactPresent|rbContactReturn):/.test(h.id)&&h.text.startsWith('I enter his number.')||h.id.startsWith('rExchange:')&&h.text==='I reach for my phone.'||h.id.startsWith('numbers:')&&h.text.startsWith('You exchange phones.')));
 }
 export function authoredMessages(state){
  const messages=[];

@@ -5,6 +5,19 @@ import {story} from '../src/story.js';
 import {openingAudioCue,menuAudioCue,tracks,createSoundtrackPlayer,createNightmareEndingAudio,nightmareAudioContinues} from '../src/opening-audio.js';
 const at=(node,fragment)=>openingAudioCue(story[node],{node,line:fragment?story[node].lines.findIndex(l=>l.text.includes(fragment)):0});
 const keys=c=>c.layers.map(l=>l.key);
+test('Uncertain conversations keep one recording across topic and choice changes',()=>{
+ const flags={chapterOneBranches:true,rowanFeeling:'Uncertain',rbScene_reunion:'uncertain',rbScene_visit:'uncertain'};
+ for(const node of ['recognition','rbReunion_uncertain','rbPracticalUncertain','rbContactUncertain','rbContactPresent','rbLowBags','rbBagHelp','rbBagOwn','rbInsideUncertain','rbLetterBrief','rbLeaveUncertain']){
+  const cue=openingAudioCue(story[node],{node,line:0,flags});
+  assert.equal(cue.layers[0].key,'reunion-new',node);assert.equal(cue.fade,4);
+ }
+ for(const node of ['rbMorningPauseUncertain','rbMorningDownUncertain','rbVisit_uncertain','rbVisitShort','rbVisitLeaveUncertain','rbSoloUncertain','rbSoloNews','rbRestUncertain','rbWorkshopText','rbDuskUncertain','rbBedroom','rbMessage_uncertain']){
+  const cue=openingAudioCue(story[node],{node,line:0,flags});
+  assert.equal(cue.layers[0].key,'back-together',node);assert.equal(cue.fade,4);
+ }
+ assert.ok(!keys(openingAudioCue(story.rbSleep,{node:'rbSleep',line:0,flags})).includes('back-together'));
+ assert.equal(openingAudioCue(story.rbLetterBrief,{node:'rbLetterBrief',line:0,flags:{rbScene_reunion:'familiar'}}).layers[0].key,'lost-contact');
+});
 
 test('Waking and every recovery branch retain music until the morning transition',()=>{
  for(const id of ['c2Wake','c2WakeChoice','c2Okay','c2Fine','c2Explain','c2Joke','c2Company','c2Alone','c2Silent','c2Food']){
